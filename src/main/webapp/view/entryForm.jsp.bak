@@ -1,0 +1,115 @@
+<%
+    String wordEnglish = "";
+    String wordIrish = "";
+    String verbEnglish = "";
+    String verbIrish = "";
+    String verb = request.getParameter("verb");
+    String wordParam = request.getParameter("word");
+    String language = request.getParameter("language");
+    if((language != null) && language.equals("english")) {
+        if(wordParam != null) {
+            wordEnglish = wordParam;
+        }
+        if(verb != null) {
+            verbEnglish = verb;
+        }
+    }
+    if((language != null) && language.equals("irish")) {
+        if(wordParam != null) {
+            wordIrish = wordParam;
+        }
+        if(verb != null) {
+            verbIrish = verb;
+        }
+    }
+%>
+              <table border=0 cellpadding=0 cellspacing=0 class=form-input width=100%>
+                <tr>
+                  <form action=dictionary method=post name=word>
+                  <input type=hidden name=language value=english>
+                  <td valign=top align=center width=50%>
+                    <table border=0>
+                      <tr>
+                        <td>
+                          TYPE ENGLISH WORD(S)<BR/>
+                          <input type=text name=word class=main value="<%= wordEnglish %>" maxlength="200"><input type=submit value="look up" class=submit>
+                          <script language="JavaScript">
+                                  document.word.word.focus();
+                                  document.word.word.select();
+                          </script>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  </form>
+                  <form action=dictionary method=post name=irishWord>
+                  <input type=hidden name=language value=irish>
+                  <td valign=top align=center  width=50%>
+                    <table border=0>
+                      <tr>
+                        <td>
+                          TYPE IRISH WORD(S)<BR/>
+                          <input type=text name=word class=main value="<%= wordIrish %>" maxlength="200"><input type=submit value="look up" class=submit><br/>
+                          <div class=light>
+                          Add a Fada:&nbsp;
+                              <a href=# onclick="document.irishWord.word.value=document.irishWord.word.value+'á'" class=topnav>[á]</a>
+                              <a href=# onclick="document.irishWord.word.value=document.irishWord.word.value+'é'" class=topnav>[é]</a>
+                              <a href=# onclick="document.irishWord.word.value=document.irishWord.word.value+'í'" class=topnav>[í]</a>
+                              <a href=# onclick="document.irishWord.word.value=document.irishWord.word.value+'ó'" class=topnav>[ó]</a>
+                              <a href=# onclick="document.irishWord.word.value=document.irishWord.word.value+'ú'" class=topnav>[ú]</a>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  </form>
+                </tr>
+                <tr>
+                  <td colspan=2 align=center class=light>
+                    Over 26,000 words translated and put to use.
+                  </td>
+                </tr>
+                <tr>
+                  <form action=verb method=post name=verb>
+                  <input type=hidden name=rs value=search>
+                  <input type=hidden name=language value=english>
+                  <td valign=top align=center  width=50%>
+                    <table border=0>
+                      <tr>
+                        <td>
+                          TYPE ENGLISH VERB<BR/>
+                          <input type=text name=verb class=main value="<%= verbEnglish %>" maxlength="200"><input type=submit value="look up" class=submit>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  </form>
+                  <form action=verb method=post name=irishVerb>
+                  <input type=hidden name=rs value=search>
+                  <input type=hidden name=language value=irish>
+                  <td valign=top align=center  width=50%>
+                    <table border=0>
+                      <tr>
+                        <td>
+                          TYPE IRISH VERB<BR/>
+                          <input type=text name=verb class=main value="<%= verbIrish %>" maxlength="200"><input type=submit value="look up" class=submit><br/>
+                          <div class=light>
+                          Add a Fada:&nbsp;
+                              <a href=# onclick="document.irishVerb.verb.value=document.irishVerb.verb.value+'á'" class=topnav>[á]</a>
+                              <a href=# onclick="document.irishVerb.verb.value=document.irishVerb.verb.value+'é'" class=topnav>[é]</a>
+                              <a href=# onclick="document.irishVerb.verb.value=document.irishVerb.verb.value+'í'" class=topnav>[í]</a>
+                              <a href=# onclick="document.irishVerb.verb.value=document.irishVerb.verb.value+'ó'" class=topnav>[ó]</a>
+                              <a href=# onclick="document.irishVerb.verb.value=document.irishVerb.verb.value+'ú'" class=topnav>[ú]</a>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  </form>
+                </tr>
+                <tr>
+                  <td colspan=2 align=center class=light>
+                    1,400 English and 768 Irish verbs conjugated and translated.
+                  </td>
+                </tr>
+              </table>

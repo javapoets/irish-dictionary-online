@@ -1,0 +1,24 @@
+  <table border=0 cellpadding=0 cellspacing=0>
+    <tr><td nowrap>&nbsp;</td></tr>
+    <tr><td nowrap><u class=orangebold><%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %></u></td></tr>
+    <tr><td nowrap><%= verbConjugation.getMe() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getMe() %>; <% } %></td></tr>
+    <tr><td nowrap><%= verbConjugation.getYouSing() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getYouSing() %>; <% } %></td></tr>
+    <tr><td nowrap><%= verbConjugation.getHe() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getHe() %>; <% } %></td></tr>
+    <tr><td nowrap><%= verbConjugation.getShe() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getShe() %>; <% } %></td></tr>
+    <tr><td nowrap><%= verbConjugation.getYouPlur() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getWe() %>; <% } %></td></tr>
+    <tr><td nowrap><%= verbConjugation.getWe() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getYouPlur() %>; <% } %></td></tr>
+    <tr><td nowrap><%= verbConjugation.getThey() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getThey() %>; <% } %></td></tr>
+    <tr><td nowrap><font class=orange>Autonomous : </font><%= verbConjugation.getAut() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getAut() %>; <% } %></td></tr>
+    <tr><td nowrap><font class=orange>Negative (Diúltach): </font><%= verbConjugation.getNeg() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getNeg() %>; <% } %></td></tr>
+    <tr><td nowrap><font class=orange>Question (Ceisteach): </font><%= verbConjugation.getQuestion() %></td></tr>
+    <tr><td align=right class=gold>&nbsp;&nbsp;<% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getQuestion() %>; <% } %></td></tr>
+  </table>

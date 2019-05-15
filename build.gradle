@@ -1,0 +1,296 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {      // Configuration for building
+
+  	repositories {
+
+        //mavenCentral()
+        jcenter()      // Bintray's repository - a fast Maven Central mirror & more
+
+        // enable this to use snapshot versions of Gretty:
+        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+  	}
+
+  	dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+        //classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+}
+
+repositories {   // repositories for jars you access in your code
+
+    jcenter()
+
+    // enable this to use snapshot versions of Gretty:
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
+
+gretty {
+
+    classPath 'build/resources/main'
+
+    /*
+    host = buildProperties.getProperty("server")
+    host = 'producersmarket-javapoet.c9users.io'
+    host = 'ispaces-jetty-server-javapoet.c9users.io'
+    host = 'javapoet-ispaces-jetty-server-5279200'
+    host = 'localhost'
+    host = hostname
+    host = server
+    host = 'www.producersmarket.com'
+    host = 'dermotsurface.producersmarket.com'
+    host = 'desktop-fa2ith5.producersmarket.com'
+    */
+    // Gretty can be dynamically configured to run on a different hostname: `gradle appRun -PhostName=localhost` otnerwise `dev.producersmarket.com` is used
+    if(project.hasProperty('hostName')) {
+        host = hostName
+        println 'hostName = ' + hostName
+        println 'host = ' + host
+    } else {
+        host = 'dev.producersmarket.com'
+    }
+
+    /*
+    httpPort = 80
+    httpPort = 8080
+    */
+    // The HTTP port to listen on can be be dynamically configured: `gradle appRun -Pport=80` otnerwise `8080` is used
+    httpPort = project.hasProperty("port") ? port.toInteger() : 8080
+    println "httpPort = " + httpPort
+
+    // HTTPS
+    httpsEnabled = true
+    sslKeyStorePath = './bin/mykeystore'
+    sslKeyStorePassword = '50m05D105'
+
+    servletContainer = 'jetty9.4'
+    contextPath = '/'
+    loggingLevel = 'DEBUG'
+
+    // Temporarily removed - Exception in thread "main" java.lang.IllegalStateException: The type registry TypeRegistry(id=1901663135,loader=sun.misc.Launcher$AppClassLoader) does not know about type id 695
+    //managedClassReload = true
+
+    /*
+    jvmArgs = [
+        '-Dfile.encoding=UTF-8'
+      , '-XX:MaxPermSize=128m',
+      , '-Xms256m',
+      , '-Xmx512m',
+      , '-Xdebug',
+    ]
+    */
+}
+
+List compileList =  [
+
+      "javax.servlet:javax.servlet-api:${project.property('servlet.version')}"
+    , "org.apache.logging.log4j:log4j-core:${project.property('log4j.version')}"
+    , "org.apache.logging.log4j:log4j-api:${project.property('log4j.version')}"
+    , "commons-lang:commons-lang:2.6"
+    , "commons-net:commons-net:3.5"
+    , "org.json:json:20140107"
+    , "com.sun.activation:javax.activation:1.2.0"
+    , "com.sun.mail:mailapi:${project.property('javamail.version')}"
+    , "com.sun.mail:smtp:${project.property('javamail.version')}"
+    , "mysql:mysql-connector-java:8.0.11"
+
+    // Jetty
+    , "org.eclipse.jetty:jetty-annotations:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-server:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-continuation:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-http:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-server:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-servlets:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-servlet:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-webapp:${project.property('jetty.version')}"
+    , "org.eclipse.jetty:jetty-util:${project.property('jetty.version')}"
+    , "com.atlassian.commonmark:commonmark:0.10.0"
+
+    // JSP support
+    , "javax.servlet.jsp:jsp-api:${project.property('jsp.version')}"
+
+    , fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: '*.jar')  // local libs
+]
+
+dependencies {
+
+    if (project.hasProperty("apachejsp")) compileList << "org.eclipse.jetty:apache-jsp:${project.property('jetty.version')}"  // Apache JSP
+
+    compile compileList
+
+    runtime files('src/main/resources')
+}
+
+task deleteProperties(type: Delete) {
+    println 'Executing '+project.name+'.deleteProperties(type: Delete)'
+
+    delete 'src/main/webapp/WEB-INF/init.properties'
+    followSymlinks = true
+}
+
+task copyView(type: Copy) {
+    println 'Executing copyView'
+
+    from('src/main/webapp/view') {
+        include '**'
+        exclude 'css/fontawesome/5.2.0/fontawesome.min.css'
+        exclude 'css/fontawesome/5.2.0/brands.min.css'
+        exclude 'svg/*'
+        exclude '**/*.bak'
+    } 
+
+    into 'build/exploded/view'
+}
+
+task copyImages(type: Copy) {
+    println 'Executing copyImages'
+
+    from('src/main/webapp/images') {
+        include '**'
+        exclude '**/*.bak'
+    } 
+    into 'build/exploded/images'
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+task dev(dependsOn: [deleteProperties, copyView]) {
+    println 'dev()'
+
+   def buildProperties = new Properties()
+
+    doFirst {
+        //def buildProperties = new Properties()
+        file("src/main/config/dev.properties").withInputStream {
+            stream -> buildProperties.load(stream)
+        }
+
+        println buildProperties.getProperty("protocol") + "://" + buildProperties.getProperty("server") + ":" + buildProperties.getProperty("port")
+
+        def server = buildProperties.getProperty("server")
+        println "server = " + server
+
+    }
+    doLast {
+        println 'dev.copy()'
+        copy {
+            from 'src/main/config/init.properties'
+            into 'src/main/webapp/WEB-INF'
+            filter(
+                ReplaceTokens
+                , tokens: buildProperties
+            )
+        }
+    }
+}
+
+task stage(dependsOn: [deleteProperties, copyView]) {
+    println 'stage()'  
+
+    def buildProperties = new Properties()
+
+    doFirst {
+
+        //def buildProperties = new Properties()
+        file("src/main/config/stage.properties").withInputStream { buildProperties.load(it) }
+      
+        println buildProperties.getProperty("protocol") + "://" + buildProperties.getProperty("server") + ":" + buildProperties.getProperty("port")
+
+        def server = buildProperties.getProperty("server")
+        println "server = " + server
+      
+    }
+    doLast {
+        println 'stage.copy()'
+        copy {
+            from 'src/main/config/init.properties'
+            into 'src/main/webapp/WEB-INF'
+            filter(
+                ReplaceTokens
+              , tokens: buildProperties
+            )
+        }
+    }
+}
+
+task prod(dependsOn: [deleteProperties, copyView]) {
+    println 'prod()'  
+
+    def buildProperties = new Properties()
+
+    doFirst {
+
+        file("src/main/config/prod.properties").withInputStream { buildProperties.load(it) }
+      
+        println buildProperties.getProperty("protocol") + "://" + buildProperties.getProperty("server") + ":" + buildProperties.getProperty("port")
+
+        def server = buildProperties.getProperty("server")
+        println "server = " + server
+    }
+    
+    doLast {
+        println 'prod.copy()'
+        copy {
+            from 'src/main/config/init.properties'
+            into 'src/main/webapp/WEB-INF'
+            filter(
+                ReplaceTokens
+              , tokens: buildProperties
+            )
+        }
+    }
+}
+
+task buildName {
+
+    doLast {
+        println "$buildName"
+
+        def buildProperties = new Properties()
+        //file("src/main/config/"+buildName+".properties").withInputStream { buildProperties.load(it) }
+        file("src/main/config/"+buildName+".properties").withInputStream {
+            stream -> buildProperties.load(stream)
+        }
+      
+        println buildProperties.getProperty("protocol") + "://" + buildProperties.getProperty("server") + ":" + buildProperties.getProperty("port") + "/" + buildProperties.getProperty("context")
+
+        def server = buildProperties.getProperty("server")
+        println "server = " + server
+      
+        copy {
+            from 'src/main/config/init.properties'
+            into 'src/main/webapp/WEB-INF'
+            filter(
+                ReplaceTokens
+              , tokens: buildProperties
+            )
+        }
+    }
+}
+
+task deploy(dependsOn: [clean, build]) << {
+
+  println 'deploy()'  
+
+}
+
+jar.baseName = project.name +'-'+ artifactMajorVersion +'.'+ artifactBuildNumber
+
+task explodedWar(type: Copy) {
+    into "$buildDir/exploded"
+    with war
+}
+
+war.dependsOn explodedWar
+
+war {
+    archiveName = project.property('name') +'-'+ artifactMajorVersion +'.'+ artifactBuildNumber + '.war'
+}

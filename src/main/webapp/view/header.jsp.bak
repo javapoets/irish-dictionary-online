@@ -1,0 +1,60 @@
+<%@ include file="/view/imports.jsp" %>
+<%@ include file="/view/variables.jsp" %>
+<%@ page contentType="text/html; charset=ISO-8859-1" errorPage="/view/error.jsp" %>
+<%@ taglib uri="irishdictionary.tld" prefix="irishdictionary" %>
+<%@ taglib prefix="javapoets" tagdir="/WEB-INF/tags" %>
+<html>
+  <head>
+<%--
+    <% if(webPagePage != null && webPagePage.getTitle() != null) { %><title><%= webPagePage.getTitle() %></title><% } %>
+    <meta http-equiv=Content-Type content=text/html;charset=iso-8859-1>
+    <% if(webPagePage != null && webPagePage.getDescription() != null) { %><meta name=description content="<%= webPagePage.getDescription() %>"><% } %>
+    <% if(webPagePage != null && webPagePage.getKeywords() != null) { %><meta name=keywords content="<%= webPagePage.getKeywords() %>"><% } %>
+    <META name="verify-v1" content="25CuMx0m4jcYgBnCJpi/VL78S/7YLWsXviE8b45rN2k=" />
+    <META NAME="ROBOTS" CONTENT="NOARCHIVE">
+    <link rel=stylesheet href=css?rs=main type=text/css>
+    <!--script language=Javascript type=text/javascript src=javascript?rs=main></script-->
+--%>
+
+    <title>Irish dictionary online, Irish gaelic dictionary, Irish Dictionary, Gaelic dictionary, translate Irish, Irish language dictionary.</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+    <meta name="description" content="A premium online Irish Gaelic dictionary providing quick word searches, definitions and usage." />
+    <meta name="keywords" content="irish dictionary, irish dictionary online, gaelic dictionary, irish, gaelic, translate Irish, dictionary irish, dictionary, ireland dictionary, irish words, irish translation, translation, ireland" />
+    <META name="verify-v1" content="25CuMx0m4jcYgBnCJpi/VL78S/7YLWsXviE8b45rN2k=" />
+    <META NAME="ROBOTS" CONTENT="NOARCHIVE">
+    <link rel="stylesheet" href="css?rs=main" type="text/css">
+
+  </head>
+  <body leftmargin=0 rightmargin=0 topmargin=0 marginwidth=0 bottommargin=0 marginheight=0 style="background-color:#fff">
+<%--
+    <table width="<%= siteWidth %>" border="0" cellspacing="0" cellpadding="0" align="center" class="admin1" height="100%">
+--%>
+    <table width="1000" border="0" cellspacing="0" cellpadding="0" align="center" class="admin1" height="100%">
+      <tr>
+        <td valign=top align=center>
+<%--
+--%>
+
+<%--
+          <table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" style="padding:8px;">
+--%>
+          <table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" style="padding:8px;">
+
+            <tr>
+              <td colspan=3 valign=top height=1%>
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom:8px;">
+                  <tr><td align="center"><%@ include file="googleBar.html" %></td></tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td colspan=3 valign=top height=1%>
+<%--
+--%>
+                <%@ include file="top.jsp" %>
+              </td>
+            </tr>
+            <tr>
+<%--
+              <%@ include file="/view/menu/main/left.jsp" %>
+--%>
