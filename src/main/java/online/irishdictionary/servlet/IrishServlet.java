@@ -59,14 +59,14 @@ public class IrishServlet extends InitServlet {
             if(language.equals("english")) {
 
                 try {
-                    DictionaryDatabaseManager.selectEnglishWord(word);
+                    DictionaryDatabaseManager.selectEnglishWord(word, getConnectionPool());
                     request.setAttribute("word", word);
                 } catch(Exception e) {
                     logger.error(e);
                 }
             } else if(language.equals("irish")) {
                 try {
-                    DictionaryDatabaseManager.selectIrishWord(word);
+                    DictionaryDatabaseManager.selectIrishWord(word, getConnectionPool());
                     //request.setAttribute("irishWord", word);
                     request.setAttribute("word", word);
                 } catch(Exception e) {

@@ -61,7 +61,7 @@ public class EnglishServlet extends InitServlet {
             Word word = new Word(wordParam.trim());
 
             try {
-                DictionaryDatabaseManager.selectEnglishWord(word);
+                DictionaryDatabaseManager.selectEnglishWord(word, getConnectionPool());
                 request.setAttribute("fromLanguage", fromLanguage);
                 request.setAttribute("toLanguage", toLanguage);
                 request.setAttribute("word", word);

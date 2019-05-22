@@ -156,7 +156,7 @@ public class DictionaryServlet extends InitServlet {
             try {
 
                 //DictionaryManager.selectWord(word);
-                DictionaryDatabaseManager.selectWord(word, languageId);
+                DictionaryDatabaseManager.selectWord(word, languageId, getConnectionPool());
                 request.setAttribute("word", word);
 
             } catch(Exception e) {

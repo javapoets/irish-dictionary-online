@@ -13,9 +13,8 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-//import com.javapoets.db.ConnectionManager;
-import com.ispaces.dbcp.ConnectionManager;
-import com.ispaces.dbcp.ConnectionPool;
+import com.javapoets.dbcp.ConnectionManager;
+import com.javapoets.dbcp.ConnectionPool;
 
 import online.irishdictionary.model.Verb;
 import online.irishdictionary.model.VerbConjugation;
@@ -27,13 +26,11 @@ public class VerbDatabaseManager {
 
     public static void selectVerb(Verb verb, Object connectionPoolObject) throws SQLException, Exception {
         logger.debug("selectVerb("+connectionPoolObject+")");
-
         selectVerb(verb, (ConnectionPool) connectionPoolObject);
     }
 
     public static void selectVerb(Verb verb, ConnectionPool connectionPool) throws SQLException, Exception {
         logger.debug("selectVerb("+connectionPool+")");
-
         selectVerb(verb, new ConnectionManager(connectionPool));
     }
 
@@ -153,14 +150,12 @@ public class VerbDatabaseManager {
 
     }
 
-    public static void selectAllVerbs(List verbList, String languageId) {
-        logger.debug("selectAllVerbs(verbList, languageId)");
+    public static void selectAllVerbs(List verbList, String languageId, ConnectionManager connectionManager) {
+        logger.debug("selectAllVerbs(verbList, languageId, connectionManager)");
 
         try {
 
             String statementName = "selectAllVerbs";
-            ConnectionManager connectionManager = new ConnectionManager(className, statementName);
-
             ResultSet rset = null;
             PreparedStatement stmt = null;
 

@@ -17,9 +17,8 @@ import org.apache.commons.lang.time.StopWatch;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-//import com.javapoets.db.ConnectionPool;
-import com.ispaces.dbcp.ConnectionPool;
-import com.ispaces.dbcp.ConnectionManager;
+import com.javapoets.dbcp.ConnectionPool;
+import com.javapoets.dbcp.ConnectionManager;
 
 import online.irishdictionary.util.PropertiesUtil;
 
@@ -37,9 +36,7 @@ public class InitServlet extends HttpServlet {
     public static final String FORWARDSLASH = "/";
 
     public ServletContext servletContext;
-
     public Properties properties = null;  // the init properties
-
     private ConnectionPool connectionPool;  // a database connection pool
 
     public ConnectionPool getConnectionPool() {
