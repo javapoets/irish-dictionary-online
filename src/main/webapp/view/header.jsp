@@ -1,7 +1,9 @@
 <%@ include file="/view/imports.jsp" %>
 <%@ include file="/view/variables.jsp" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="irishdictionary.tld" prefix="irishdictionary" %>
+<%@ taglib uri="/WEB-INF/irishdictionary.tld" prefix="irishdictionary" %>
+<%--@ taglib uri="<%= contextUrl %>/irishdictionary.tld" prefix="irishdictionary" --%>
+<%--@ taglib prefix="spring" uri="/WEB-INF/spring.tld" --%>
 <%@ taglib prefix="javapoets" tagdir="/WEB-INF/tags" %>
 
 <!doctype html>
@@ -32,7 +34,7 @@ function searchEnglishWord(form){
 
   var url=[
     '<%= contextUrl %>'
-    ,'/dictionary'
+    ,'dictionary'
     ,'?language=english'
     //,'&fromLanguage=english'
     ,'&toLanguage=irish'
@@ -40,10 +42,11 @@ function searchEnglishWord(form){
     ,'&word=',wordElement.value
   ].join('');
 
-  //alert(url);
+  console.debug(url);
 
   window.location=url;
 }
+
 function searchIrishWord(form){
   //alert('searchIrishWord('+form+')');
 

@@ -1,4 +1,5 @@
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Set" %>
 <%--
@@ -28,8 +29,8 @@
 <%@ page import="com.englishirishdictionary.util.*" %>
 --%>
 
-<%@ page import="com.javapoets.util.sortable.SortableList" %>
+<%--@ page import="com.javapoets.util.sortable.SortableList" --%>
 
-<%@ page import="ie.irishdictionary.model.Word" %>
-<%@ page import="ie.irishdictionary.model.Verb" %>
-<%@ page import="ie.irishdictionary.model.VerbConjugation" %>
+<%@ page import="online.irishdictionary.model.Word" %>
+<%@ page import="online.irishdictionary.model.Verb" %>
+<%@ page import="online.irishdictionary.model.VerbConjugation" %>

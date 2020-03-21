@@ -1,11 +1,17 @@
 <%@ include file="/view/header.jsp" %>
+
 <%
-    Verb verb = (Verb)request.getAttribute("verb");
+
+    Verb verb = (Verb) request.getAttribute("verb");
     Map verbConjugationMap = verb.getVerbConjugationMap();
-    //System.out.println("verbConjugationMap :"+verbConjugationMap.size());
-    String verbString = (String)request.getAttribute("verbString");
+
+    String verbString = (String) request.getAttribute("verbString");
     //SortableList verbList = (SortableList)verb.getVerbList();
-    SortableList verbList = (SortableList)verb.getVerbSortableList();
+    //SortableList verbList = (SortableList)verb.getVerbSortableList();
+    List verbList = (List) verb.getVerbList();
+
+    //System.out.println("verbConjugationMap :"+verbConjugationMap.size());
+
     int count = 0;
     if(verbList != null) {
         count = verbList.size();

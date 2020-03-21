@@ -1,11 +1,14 @@
 <%@ include file="/view/header.jsp" %>
+
 <%
-    SortableList wordList = (SortableList)request.getAttribute("wordList");
-    SortableList irishWordList = (SortableList)request.getAttribute("irishWordList");
-    Word word = null;
-    Word irishWord = null;
-    word = (Word)request.getAttribute("word");
-    irishWord = (Word)request.getAttribute("irishWord");
+
+    //SortableList wordList = (SortableList)request.getAttribute("wordList");
+    //List wordList = (List) request.getAttribute("wordList");
+    //SortableList irishWordList = (SortableList)request.getAttribute("irishWordList");
+    //List irishWordList = (List) request.getAttribute("irishWordList");
+
+    Word word = (Word) request.getAttribute("word");
+    Word irishWord = (Word) request.getAttribute("irishWord");
 
     //System.out.println("results.jsp: word = "+word);
     //System.out.println("results.jsp: irishWord = "+irishWord);

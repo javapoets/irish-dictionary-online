@@ -1,6 +1,8 @@
 package online.irishdictionary.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -161,6 +163,10 @@ public class DictionaryServlet extends InitServlet {
 
             } catch(Exception e) {
                 logger.error(e);
+                StringWriter stringWriter = new StringWriter();
+                PrintWriter printWriter = new PrintWriter(stringWriter);
+                e.printStackTrace(printWriter);
+                logger.error(stringWriter.toString());
             }
 
             //displayResults(request, response);

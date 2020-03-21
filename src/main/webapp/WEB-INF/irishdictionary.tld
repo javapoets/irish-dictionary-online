@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://www.irishdictionary.ie/dtd/web-jsptaglibrary_1_1.dtd">
+<!--DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://www.irishdictionary.ie/dtd/web-jsptaglibrary_1_1.dtd"-->
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://www.oracle.com/webfolder/technetwork/jsc/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
 <!-- "http://www.irishdictionary.ie/dtd/web-jsptaglibrary_1_1.dtd" -->
 <!-- "file:///D:/XML/dtds/web-jsptaglibrary_1_1.dtd" -->
 <!-- "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd" -->
+<!--
+   http://www.oracle.com/webfolder/technetwork/jsc/j2ee/dtds/index.html
+-->   
 <taglib>
    <tlibversion>1.0</tlibversion>
    <jspversion>1.1</jspversion>
@@ -11,31 +15,31 @@
    <info>Tag library for English Irish Dictionary</info>
    <tag>
       <name>word</name>
-      <tagclass>ie.irishdictionary.taglib.WordTag</tagclass>
+      <tagclass>online.irishdictionary.taglib.WordTag</tagclass>
       <bodycontent>jsp</bodycontent>
       <info>HTML word definition display tag</info>
    </tag>
    <tag>
       <name>irishword</name>
-      <tagclass>ie.irishdictionary.taglib.IrishWordTag</tagclass>
+      <tagclass>online.irishdictionary.taglib.IrishWordTag</tagclass>
       <bodycontent>jsp</bodycontent>
       <info>HTML word definition display tag</info>
    </tag>
    <tag>
       <name>wordwap</name>
-      <tagclass>ie.irishdictionary.taglib.WordTagWap</tagclass>
+      <tagclass>online.irishdictionary.taglib.WordTagWap</tagclass>
       <bodycontent>jsp</bodycontent>
       <info>HTML word definition display tag</info>
    </tag>
    <tag>
       <name>irishwordwap</name>
-      <tagclass>ie.irishdictionary.taglib.IrishWordTagWap</tagclass>
+      <tagclass>online.irishdictionary.taglib.IrishWordTagWap</tagclass>
       <bodycontent>jsp</bodycontent>
       <info>HTML word definition display tag</info>
    </tag>
    <tag>
       <name>irishdate</name>
-      <tagclass>ie.irishdictionary.taglib.IrishDateTag</tagclass>
+      <tagclass>online.irishdictionary.taglib.IrishDateTag</tagclass>
       <bodycontent>jsp</bodycontent>
       <info>displays todays date in Irish</info>
    </tag>

@@ -1,7 +1,11 @@
 <%
-    String contextUrl = ie.irishdictionary.servlet.InitServlet.init.getProperty("contextUrl");
-    //String imagesUrl = contextUrl + "/images/";
-    String imagesUrl = contextUrl + "/view/images/";
+
+    //String contextUrl = online.irishdictionary.servlet.InitServlet.init.getProperty("contextUrl");
+    //String contextUrl = online.irishdictionary.servlet.InitServlet.init.getProperty("contextUrl");
+    String contextUrl = (String) application.getAttribute("contextUrl");
+
+
+    String imagesUrl = contextUrl + "view/images/";
     String sortParameter = null;
     String fieldName, fieldValue = "";
     String cssClass = "main";
