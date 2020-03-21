@@ -37,25 +37,13 @@ gretty {
 
     classPath 'build/resources/main'
 
-    /*
-    host = buildProperties.getProperty("server")
-    host = 'producersmarket-javapoet.c9users.io'
-    host = 'ispaces-jetty-server-javapoet.c9users.io'
-    host = 'javapoet-ispaces-jetty-server-5279200'
-    host = 'localhost'
-    host = hostname
-    host = server
-    host = 'www.producersmarket.com'
-    host = 'dermotsurface.producersmarket.com'
-    host = 'desktop-fa2ith5.producersmarket.com'
-    */
-    // Gretty can be dynamically configured to run on a different hostname: `gradle appRun -PhostName=localhost` otnerwise `dev.producersmarket.com` is used
+    // Gretty can be dynamically configured to run on a different hostname: `gradle appRun -PhostName=localhost` otnerwise `dev.irishdictionary.online` is used
     if(project.hasProperty('hostName')) {
         host = hostName
         println 'hostName = ' + hostName
         println 'host = ' + host
     } else {
-        host = 'dev.producersmarket.com'
+        host = 'dev.irishdictionary.online'
     }
 
     /*
