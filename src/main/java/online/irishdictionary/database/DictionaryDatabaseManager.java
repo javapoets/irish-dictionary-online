@@ -14,8 +14,8 @@ import java.util.Set;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import com.javapoets.dbcp.ConnectionPool;
-import com.javapoets.dbcp.ConnectionManager;
+import javapoets.dbcp.ConnectionPool;
+import javapoets.dbcp.ConnectionManager;
 
 import online.irishdictionary.model.Definition;
 import online.irishdictionary.model.Usage;

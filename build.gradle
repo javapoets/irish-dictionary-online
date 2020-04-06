@@ -270,7 +270,21 @@ task deploy(dependsOn: [clean, build]) << {
 
 }
 
-jar.baseName = project.name +'-'+ artifactMajorVersion +'.'+ artifactBuildNumber
+task buildnumberplusone << {
+
+  Properties props = new Properties()
+  File propsFile = new File(‘gradle.properties’)
+  props.load(propsFile.newDataInputStream())
+
+  Integer nextbuildnum = ( ((props.getProperty('artifactBuildNumber')) as BigDecimal) + 1 )
+  props.setProperty('artifactBuildNumber', nextbuildnum.toString())
+  props.store(propsFile.newWriter(), null)
+  props.load(propsFile.newDataInputStream())
+}
+
+// E.g. PROJECT-NAME-MAJOR.MINOR.PATCH-BUILD-NUMBER.jar
+// E.g. irish-dictionary-online-0.1.0-2-SNAPSHOT.jar
+jar.baseName = project.name +'-'+ artifactMajorVersion +'-'+ artifactBuildNumber
 
 task explodedWar(type: Copy) {
     into "$buildDir/exploded"
@@ -280,5 +294,5 @@ task explodedWar(type: Copy) {
 war.dependsOn explodedWar
 
 war {
-    archiveName = project.property('name') +'-'+ artifactMajorVersion +'.'+ artifactBuildNumber + '.war'
+    archiveName = project.property('name') +'-'+ artifactMajorVersion +'-'+ artifactBuildNumber + '.war'
 }

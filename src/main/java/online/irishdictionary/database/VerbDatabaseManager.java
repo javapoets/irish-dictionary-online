@@ -13,8 +13,8 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import com.javapoets.dbcp.ConnectionManager;
-import com.javapoets.dbcp.ConnectionPool;
+import javapoets.dbcp.ConnectionManager;
+import javapoets.dbcp.ConnectionPool;
 
 import online.irishdictionary.model.Verb;
 import online.irishdictionary.model.VerbConjugation;

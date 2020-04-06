@@ -15,7 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <meta name="description" content="A premium online Irish Gaelic dictionary providing quick word searches, definitions and usage." />
 <meta name="keywords" content="irish dictionary, irish dictionary online, gaelic dictionary, irish, gaelic, translate Irish, dictionary irish, dictionary, ireland dictionary, irish words, irish translation, translation, ireland" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="css" />
 
 <script type="text/javascript">function $(x){return document.getElementById(x)}</script>
@@ -115,6 +115,7 @@ function searchIrishVerb(form){
 </head>
 <body>
 
+<%--
 <div style="position:fixed;top:0;height:100px;border:0px solid;width:100%;">
   <div style="text-align:center;margin:auto auto 0px auto;width:100%;border:0px solid;vertical-align:bottom;">
     <div style="border:0px solid;vertical-align:bottom;">
@@ -126,8 +127,9 @@ function searchIrishVerb(form){
     </div>
   </div>
 </div>
+--%>
 
-
+<%--
 <div style="position:fixed;bottom:0;height:100px;border:0px solid;width:100%;">
   <div style="text-align:center;margin:auto auto 0px auto;width:100%;border:0px solid;vertical-align:bottom;padding-top:10px;">
     <div style="border:0px solid;vertical-align:bottom;">
@@ -139,3 +141,4 @@ function searchIrishVerb(form){
     </div>
   </div>
 </div>
+--%>

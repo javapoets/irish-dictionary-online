@@ -17,8 +17,8 @@ import org.apache.commons.lang.time.StopWatch;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import com.javapoets.dbcp.ConnectionPool;
-import com.javapoets.dbcp.ConnectionManager;
+import javapoets.dbcp.ConnectionPool;
+import javapoets.dbcp.ConnectionManager;
 
 import online.irishdictionary.util.PropertiesUtil;
 
@@ -204,7 +204,7 @@ public class InitServlet extends HttpServlet {
             String databaseMinimumConnections = properties.getProperty("database-mininimum-connections");
             String databaseMaximumConnections = properties.getProperty("database-maximum-connections");
             String databaseConnectionMaximumAgeDays = properties.getProperty("database-connection-maximum-age-days");
-            String databaseConnectionMaximumIdleSeconds = properties.getProperty("database-connection-maximum-idle-seconds");
+            String databaseConnectionMaximumIdleSeconds = properties.getProperty("database-connection-maximum-idle-seconds");            
 
             logger.debug("jdbcDriver = " + jdbcDriver);
             logger.debug("databaseUrl = " + databaseUrl);
@@ -231,15 +231,21 @@ public class InitServlet extends HttpServlet {
             properties.setProperty("databaseConnectionMaximumIdleSeconds", databaseConnectionMaximumIdleSeconds);
 
             java.util.Properties connectionPoolProperties = new java.util.Properties();
-            connectionPoolProperties.setProperty("id", "-1");
-            connectionPoolProperties.setProperty("url", databaseUrl);
-            connectionPoolProperties.setProperty("driver", jdbcDriver);
-            connectionPoolProperties.setProperty("username", databaseUsername);
-            connectionPoolProperties.setProperty("password", databasePassword);
-            connectionPoolProperties.setProperty("minConns", databaseMinimumConnections);
-            connectionPoolProperties.setProperty("maxConns", databaseMaximumConnections);
-            connectionPoolProperties.setProperty("maxAgeDays", databaseConnectionMaximumAgeDays);
-            connectionPoolProperties.setProperty("maxIdleSeconds", databaseConnectionMaximumIdleSeconds);
+            //connectionPoolProperties.setProperty("id", "-1");
+            connectionPoolProperties.setProperty("database-url", databaseUrl);
+            connectionPoolProperties.setProperty("database-driver", jdbcDriver);
+            connectionPoolProperties.setProperty("database-username", databaseUsername);
+            connectionPoolProperties.setProperty("database-password", databasePassword);
+            /*
+            connectionPoolProperties.setProperty("database-mininimum-connections", databaseMinimumConnections);
+            connectionPoolProperties.setProperty("database-maximum-connections", databaseMaximumConnections);
+            connectionPoolProperties.setProperty("database-connection-maximum-age-days", databaseConnectionMaximumAgeDays);
+            connectionPoolProperties.setProperty("database-connection-maximum-idle-seconds", databaseConnectionMaximumIdleSeconds);
+            */
+            connectionPoolProperties.setProperty("connection-pool-minimum-connections", databaseMinimumConnections);
+            connectionPoolProperties.setProperty("connection-pool-maximum-connections", databaseMaximumConnections);
+            connectionPoolProperties.setProperty("connection-maximum-time-since-creation-minutes", databaseConnectionMaximumAgeDays);
+            connectionPoolProperties.setProperty("connection-maximum-time-in-use-seconds", databaseConnectionMaximumIdleSeconds);
 
             logger.debug("connectionPoolProperties = " + connectionPoolProperties);
 
