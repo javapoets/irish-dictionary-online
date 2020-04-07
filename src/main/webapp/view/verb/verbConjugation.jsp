@@ -11,15 +11,15 @@
  <li>
   <%= verbConjugation.getMe() %>
 <%--
-<%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getMe() %>; <% } %>
+<%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getMe() %>; <% } %>
 --%>
 <%
     StringBuilder sb = new StringBuilder();
     String me = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         me = vC.getMe();
         if(me != null) {
             if(i > 0)sb.append(", ");
@@ -38,15 +38,15 @@
  <li>
   <%= verbConjugation.getYouSing() %>
 <%--
-<%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getYouSing() %>, <% } %>
+<%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getYouSing() %>, <% } %>
 --%>
 <%
     sb = new StringBuilder();
     String youSing = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         youSing = vC.getYouSing();
         if(youSing != null) {
             if(i > 0)sb.append(", ");
@@ -68,9 +68,9 @@
     sb = new StringBuilder();
     String he = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         he = vC.getHe();
         if(he != null) {
             if(i > 0)sb.append(", ");
@@ -92,9 +92,9 @@
     sb = new StringBuilder();
     String she = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         she = vC.getShe();
         if(she != null) {
             if(i > 0)sb.append(", ");
@@ -116,9 +116,9 @@
     sb = new StringBuilder();
     String we = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         we = vC.getWe();
         if(we != null) {
             if(i > 0)sb.append(", ");
@@ -140,9 +140,9 @@
     sb = new StringBuilder();
     String youPlur = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         youPlur = vC.getYouPlur();
         if(youPlur != null) {
             if(i > 0)sb.append(", ");
@@ -164,9 +164,9 @@
     sb = new StringBuilder();
     String they = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         they = vC.getThey();
         if(they != null) {
             if(i > 0)sb.append(", ");
@@ -186,15 +186,15 @@
   <span style="font-size:12px">(Autonomous)</span>
   <%= verbConjugation.getAut() %>
 <%--
-  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getAut() %>; <% } %>
+  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getAut() %>; <% } %>
 --%>
 <%
     sb = new StringBuilder();
     String aut = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         aut = vC.getAut();
         if(
           aut != null
@@ -220,15 +220,15 @@
   <span style="font-size:12px">(Negative</span><span style="font-size:10px;">/Diúltach)</span>
   <%= verbConjugation.getNeg() %>
 <%--
-  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getNeg() %>; <% } %>
+  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getNeg() %>; <% } %>
 --%>
 <%
     sb = new StringBuilder();
     String neg = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         neg = vC.getNeg();
         if(
           neg != null
@@ -251,15 +251,15 @@
   <span style="font-size:12px">(Question</span><span style="font-size:10px;">/Ceisteach)</span>
   <%= verbConjugation.getQuestion() %>
 <%--
-  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.getItem(i)).getVerbConjugationMap()).get(tenseId)).getQuestion() %>; <% } %>
+  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getQuestion() %>; <% } %>
 --%>
 <%
     sb = new StringBuilder();
     String question = null;
     for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.getItem(i);
+        Verb v = (Verb)verbList.get(i);
         Map vCM = (Map)v.getVerbConjugationMap();
-        ie.irishdictionary.model.VerbConjugation vC = (ie.irishdictionary.model.VerbConjugation)vCM.get(tenseId);
+        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
         question = vC.getQuestion();
         if(
           question != null

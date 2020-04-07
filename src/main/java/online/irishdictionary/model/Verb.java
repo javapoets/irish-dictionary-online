@@ -19,8 +19,8 @@ public class Verb {
     private int languageId = -1;
     private String language = null;
     private String broadOrSlender = null;
-    private Map verbConjugationMap;
-    private List verbList = null;
+    private Map<String, VerbConjugation> verbConjugationMap;
+    private List<Verb> verbList = null;
 
     public Verb() {}
 
@@ -47,7 +47,8 @@ public class Verb {
     }
 
     public String getVerb() {
-        return this.verb;}
+        return this.verb;
+    }
 
     public void setVerb(String verb) {
         this.verb = verb;
@@ -147,19 +148,19 @@ public class Verb {
         this.broadOrSlender = broadOrSlender;
     }
 
-    public Map  getVerbConjugationMap() {
+    public Map<String, VerbConjugation> getVerbConjugationMap() {
         return this.verbConjugationMap;
     }
 
-    public void setVerbConjugationMap(Map verbConjugationMap) {
+    public void setVerbConjugationMap(Map<String, VerbConjugation> verbConjugationMap) {
         this.verbConjugationMap = verbConjugationMap;
     }
 
-    public List getVerbList() {
+    public List<Verb> getVerbList() {
         return this.verbList;
     }
 
-    public void setVerbList(List verbList) {
+    public void setVerbList(List<Verb> verbList) {
         this.verbList = verbList;
     }
 

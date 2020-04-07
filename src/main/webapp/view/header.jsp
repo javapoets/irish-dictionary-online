@@ -22,15 +22,17 @@
 
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<%@ include file="google-analytics-async.html" %>
+<%--@ include file="google-analytics-async.html" --%>
 
 <script type="text/javascript">
-function searchEnglishWord(form){
-  //alert('searchEnglishWord('+form+')');
 
-  var wordElement=form.elements['word'];
-  //alert('wordElement = '+wordElement);
-  //alert('wordElement.value = '+wordElement.value);
+function searchEnglishWord(form){
+  console.trace('searchEnglishWord('+form+')');
+
+  var wordElement = form.elements['word'];
+
+  console.debug('wordElement = '+wordElement);
+  console.debug('wordElement.value = '+wordElement.value);
 
   var url=[
     '<%= contextUrl %>'
@@ -48,15 +50,16 @@ function searchEnglishWord(form){
 }
 
 function searchIrishWord(form){
-  //alert('searchIrishWord('+form+')');
+  console.trace('searchIrishWord('+form+')');
 
-  var wordElement=form.elements['word'];
-  //alert('wordElement = '+wordElement);
-  //alert('wordElement.value = '+wordElement.value);
+  var wordElement = form.elements['word'];
+
+  console.debug('wordElement = '+wordElement);
+  console.debug('wordElement.value = '+wordElement.value);
 
   var url=[
     '<%= contextUrl %>'
-    ,'/dictionary'
+    ,'dictionary'
     ,'?language=irish'
     //,'&fromLanguage=irish'
     ,'&toLanguage=english'
@@ -64,20 +67,22 @@ function searchIrishWord(form){
     ,'&word=',wordElement.value
   ].join('');
 
-  //alert(url);
+  console.debug(url);
 
   window.location=url;
 }
+
 function searchEnglishVerb(form){
-  //alert('searchEnglishVerb('+form+')');
+  console.trace('searchEnglishVerb('+form+')');
 
   var verbElement=form.elements['verb'];
-  //alert('verbElement = '+verbElement);
-  //alert('verbElement.value = '+verbElement.value);
+
+  console.debug('verbElement = '+verbElement);
+  console.debug('verbElement.value = '+verbElement.value);
 
   var url=[
     '<%= contextUrl %>'
-    ,'/verb'
+    ,'verb'
     ,'?language=english'
     //,'&fromLanguage=english'
     ,'&toLanguage=irish'
@@ -85,20 +90,22 @@ function searchEnglishVerb(form){
     ,'&verb=',verbElement.value
   ].join('');
 
-  //alert(url);
+  console.debug(url);
 
   window.location=url;
 }
+
 function searchIrishVerb(form){
-  //alert('searchIrishVerb('+form+')');
+  console.trace('searchIrishVerb('+form+')');
 
   var verbElement=form.elements['verb'];
-  //alert('verbElement = '+verbElement);
-  //alert('verbElement.value = '+verbElement.value);
+
+  console.debug('verbElement = '+verbElement);
+  console.debug('verbElement.value = '+verbElement.value);
 
   var url=[
     '<%= contextUrl %>'
-    ,'/verb'
+    ,'verb'
     ,'?language=irish'
     //,'&fromLanguage=irish'
     ,'&toLanguage=english'
@@ -106,11 +113,12 @@ function searchIrishVerb(form){
     ,'&verb=',verbElement.value
   ].join('');
 
-  //alert(url);
+  console.trace(url);
 
   window.location=url;
 }
-</script type="text/javascript">
+
+</script>
 
 </head>
 <body>
@@ -127,9 +135,8 @@ function searchIrishVerb(form){
     </div>
   </div>
 </div>
---%>
 
-<%--
+
 <div style="position:fixed;bottom:0;height:100px;border:0px solid;width:100%;">
   <div style="text-align:center;margin:auto auto 0px auto;width:100%;border:0px solid;vertical-align:bottom;padding-top:10px;">
     <div style="border:0px solid;vertical-align:bottom;">

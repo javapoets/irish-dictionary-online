@@ -18,7 +18,12 @@
     String emailSent = (String) request.getAttribute("emailSent");
 %>
 
+<%--
 <div style="padding-top:108px;padding-bottom:108px;width:728px;text-align:center;margin:auto;">
+<div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
+<div style="padding-top:108px;padding-bottom:108px;text-align:center;margin:auto;">
+--%>  
+<div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
   <div style="text-align:center;margin:auto;">
 
     <div style="text-align:left;margin:0px auto 0xp 0px;">
@@ -36,6 +41,7 @@
     </div>
 
     <div style="text-align:center;margin:auto;padding-top:20px">
+      <%@ include file="/view/entryFormVariables.jsp" %>
       <%@ include file="/view/entryForm.jsp" %>
     </div>
 

@@ -1,10 +1,11 @@
 package online.irishdictionary.database;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,14 +40,18 @@ public class VerbDatabaseManager {
 
         try {
 
-            PreparedStatement preparedStatement = connectionManager.loadStatement("selectVerb");
-            ResultSet resultSet = preparedStatement.executeQuery();
+            //PreparedStatement preparedStatement = connectionManager.loadStatement("selectVerb");
+            //ResultSet resultSet = preparedStatement.executeQuery();
+            //logger.debug("resultSet = " + resultSet);
 
             selectVerbOnly(verb, connectionManager);
+            logger.debug("verb.getVerb() = " + verb.getVerb());
 
             List<Integer> tenseIdArray = new ArrayList<Integer>();
             selectTenseIds(tenseIdArray, connectionManager);
-            Map verbConjugationMap = new HashMap();
+            logger.debug("tenseIdArray = " + tenseIdArray);
+            
+            Map<String, VerbConjugation> verbConjugationMap = new HashMap<String, VerbConjugation>();
 
             for(int i = 0; i < tenseIdArray.size(); i++) {
                 int tenseId = tenseIdArray.get(i);
@@ -56,13 +61,17 @@ public class VerbDatabaseManager {
             }
             verb.setVerbConjugationMap(verbConjugationMap);
 
-            List verbList = new ArrayList();
+            List<Verb> verbList = new ArrayList<Verb>();
             selectMappedVerbsByVerb(verbList, verb, connectionManager);
             verb.setVerbList(verbList);
             //verb.setVerbList(verbList);
 
         } catch(Exception e) {
             logger.error(e);
+            StringWriter stringWriter = new StringWriter();
+            PrintWriter printWriter = new PrintWriter(stringWriter);
+            e.printStackTrace(printWriter);
+            logger.error(stringWriter.toString());
         } finally {
             // Free resources allocated.
             connectionManager.commit();
@@ -73,13 +82,10 @@ public class VerbDatabaseManager {
         logger.debug("selectTenseIds(tenseIdArray, connectionManager)");
 
         String statementName = "selectTenseIds";
-        ResultSet rset = null;
-        PreparedStatement stmt = null;
-        // Load up the correct SQL statement
-        stmt = connectionManager.loadStatement(statementName);
-        rset = stmt.executeQuery();
+        PreparedStatement stmt = connectionManager.loadStatement(statementName);
+        ResultSet rset = stmt.executeQuery();
         while(rset.next()) {
-            //logger.debug("tenseIdArray.add("+rset.getInt(1)+")");
+            logger.debug("tenseIdArray.add("+rset.getInt(1)+")");
             tenseIdArray.add(rset.getInt(1));
         }
     }
@@ -114,8 +120,8 @@ public class VerbDatabaseManager {
     public static void selectVerbOnly(Verb verb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         logger.debug("selectVerbOnly("+verb.getVerb()+", connectionManager)");
 
-        //logger.debug("verb.getLanguageId() = "+verb.getLanguageId());
-        //logger.debug("verb.getVerb() = "+verb.getVerb());
+        logger.debug("verb.getLanguageId() = " + verb.getLanguageId());
+        logger.debug("verb.getVerb() = " + verb.getVerb());
 
         try {
 
@@ -141,8 +147,8 @@ public class VerbDatabaseManager {
                 verb.setBroadOrSlender(rset.getString(9));
             }
 
-            //logger.debug("verb.getParticiple() ="+verb.getParticiple());
-            //logger.debug("verb.getConjugation() ="+verb.getConjugation());
+            logger.debug("verb.getParticiple() ="+verb.getParticiple());
+            logger.debug("verb.getConjugation() ="+verb.getConjugation());
 
         } catch(Exception e) {
             logger.error(e);
@@ -150,7 +156,7 @@ public class VerbDatabaseManager {
 
     }
 
-    public static void selectAllVerbs(List verbList, String languageId, ConnectionManager connectionManager) {
+    public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionManager connectionManager) {
         logger.debug("selectAllVerbs(verbList, languageId, connectionManager)");
 
         try {
@@ -189,7 +195,7 @@ public class VerbDatabaseManager {
         }
     }
 
-    public static void selectVerbMapByEnglishVerb(List verbList, String englishVerb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectVerbMapByEnglishVerb(List<String> verbList, String englishVerb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         logger.debug("selectVerbMapByEnglishVerb(verbList, '"+englishVerb+"', connectionManager)");
 
         PreparedStatement stmt = connectionManager.loadStatement("selectVerbMapByEnglishVerb");
@@ -198,7 +204,7 @@ public class VerbDatabaseManager {
         while(rset.next()) verbList.add(rset.getString(1));
     }
 
-    public static void selectVerbMapByIrishVerb(List verbList, String irishVerb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectVerbMapByIrishVerb(List<String> verbList, String irishVerb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         logger.debug("selectVerbMapByIrishVerb(verbList, '"+irishVerb+"', connectionManager)");
 
         PreparedStatement stmt = connectionManager.loadStatement("selectVerbMapByIrishVerb");
@@ -208,7 +214,7 @@ public class VerbDatabaseManager {
     }
 
     // SELECT vm.english,description,stem,verbal_noun,verbal_adjective,infinitive,participle,gerund,regular,conjugation,broad_slender FROM verb_map vm,verb v WHERE vm.irish=? AND vm.english=v.verb
-    public static void selectMappedVerbsByVerb(List verbList, Verb verb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectMappedVerbsByVerb(List<Verb> verbList, Verb verb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         logger.debug("selectMappedVerbsByVerb(verbList, '"+verb+"', connectionManager)");
 
         String statementName = null;
@@ -245,7 +251,7 @@ public class VerbDatabaseManager {
 
                 List<Integer> tenseIdArray = new ArrayList<Integer>();
                 selectTenseIds(tenseIdArray, connectionManager);
-                Map verbConjugationMap = new HashMap();
+                Map<String, VerbConjugation> verbConjugationMap = new HashMap<String, VerbConjugation>();
 
                 for(int j = 0; j < tenseIdArray.size(); j++) {
                     int tenseId = tenseIdArray.get(j);

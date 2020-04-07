@@ -4,13 +4,14 @@
 
     Verb verb = (Verb) request.getAttribute("verb");
     Map verbConjugationMap = verb.getVerbConjugationMap();
-
-    String verbString = (String) request.getAttribute("verbString");
-    //SortableList verbList = (SortableList)verb.getVerbList();
-    //SortableList verbList = (SortableList)verb.getVerbSortableList();
-    List verbList = (List) verb.getVerbList();
-
+    //log.debug("verbConjugationMap :"+verbConjugationMap.size());
     //System.out.println("verbConjugationMap :"+verbConjugationMap.size());
+    System.out.println("verbConjugationMap = " + verbConjugationMap);
+
+    String verbString = (String)request.getAttribute("verbString");
+    //SortableList verbList = (SortableList)verb.getVerbList();
+    //SortableList verbList = (SortableList) verb.getVerbSortableList();
+    List<Verb> verbList = (List<Verb>) verb.getVerbList();
 
     int count = 0;
     if(verbList != null) {
@@ -50,6 +51,7 @@
     boolean isIrish = language.equals("irish");
 %>
 
+<%--
 <div class="red0" style="padding-top:108px;padding-bottom:108px;width:728px;text-align:center;margin:auto;">
   <div class="blue0" style="text-align:center;margin:auto;">
 
@@ -66,9 +68,37 @@
         </div>
       </div>
     </div>
+--%>
+<div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
+  <div style="text-align:center;margin:auto;">
+
+<%--
+    <div style="text-align:left;margin:0px auto 0xp 0px;">
+                            
+      <div class="table">
+        <div class="row">
+          <div class="cell" style="vertical-align:top;">
+            <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+          </div>
+          <div class="cell" style="vertical-align:middle;margin:auto;width:100%;">
+            <%@ include file="/view/topForm.jsp" %>
+          </div>
+        </div>
+      </div>
+    </div>
+--%>
+    <div class="header">
+      <div>
+        <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+      </div>
+      <div>
+        <%@ include file="/view/topForm.jsp" %>
+      </div>
+    </div>
 
 
-    <div class="yellow0" style="width:728px;">
+
+    <div class="yellow0" style="max-width:728px;">
 
       <div>
         <div class="definition red0" style="text-align:left;max-height:400px;overflow-y:auto;">
@@ -76,13 +106,13 @@
 <%--
           <div class="header blue" style="text-align:left;color:#6B6D6B;font-size:20px;font-weight:bold;padding:8px;">
 --%>
-          <div class="header blue0" style="">
+          <div>
             <% if(isEnglish) { %>English verb: <% } %>
             <% if(isIrish) { %>Irish verb: <% } %>
             <% if(verb != null) { %><%= verb.getVerb() %><% } %>
             =
 <%--
-            <%= ((Verb)verbList.getItem(i)).getVerb() %><% } } %>
+            <%= ((Verb)verbList.get(i)).getVerb() %><% } } %>
 --%>
 <%
             Verb v0 = null;
@@ -90,7 +120,7 @@
             if(verbList != null) {
                 int verbListSize = verbList.size();
                 for(int i = 0; i < verbListSize; i++) {
-                    v0 = (Verb)verbList.getItem(i);
+                    v0 = (Verb)verbList.get(i);
                     verb0 = v0.getVerb();
 %>
 <%--
@@ -112,7 +142,7 @@
                 <% } else { %>
                 <span style="font-size:12px;">(Sainmhíniú<span style="font-size:10px;">/Definition</span>)</span>
                 <% } %>
-                <% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.getItem(i)).getVerb() %><% } } %>
+                <% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.get(i)).getVerb() %><% } } %>
               </li>
 
 <%--
@@ -123,7 +153,7 @@
                 <% } else { %>
                 <span style="font-size:12px;">(Réimniú</span><span style="font-size:10px;">/Conjugation</span>)</span>
                 <% } %>
-                <% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((((Verb)verbList.getItem(i)).getConjugation() == 1) ? "first" : "second") %><% } } %>
+                <% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((((Verb)verbList.get(i)).getConjugation() == 1) ? "first" : "second") %><% } } %>
               </li>
               <% } %>
 --%>
@@ -136,7 +166,7 @@
                 <span style="font-size:12px;">(Aidiacht Briathartha<span style="font-size:10px;">/Verbal Adjective</span>)</span>
                 <% } %>
                 <%= verb.getVerbalAdjective() %>
-                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.getItem(i)).getParticiple() %><% } } %>)
+                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.get(i)).getParticiple() %><% } } %>)
               </li>
               <% } %>
 
@@ -148,7 +178,7 @@
                 <span style="font-size:12px;">(Ainm Briathartha<span style="font-size:10px;">/Verbal Noun</span>)</span>
                 <% } %>
                 <%= verb.getVerbalNoun() %>
-                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if(i > 0) { %>, <% } %><%= ((Verb)verbList.getItem(i)).getGerund() %><% } } %>)
+                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if(i > 0) { %>, <% } %><%= ((Verb)verbList.get(i)).getGerund() %><% } } %>)
               </li>
               <% } %>
 
@@ -160,7 +190,7 @@
                 <span style="font-size:12px;">(Aidiacht Briathartha</span><span style="font-size:10px;">/Verbal Adjective</span>)</span>
                 <% } %>
                 <%= verb.getParticiple() %>
-                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.getItem(i)).getVerbalAdjective() %><% } } %>)
+                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.get(i)).getVerbalAdjective() %><% } } %>)
               </li>
               <% } %>
 
@@ -168,7 +198,7 @@
               <li>
                 <span style="font-size:12px;">(Verb Gerund)</span>
                 <%= verb.getGerund() %>
-                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= "ag " + ((Verb)verbList.getItem(i)).getVerbalNoun() %><% } } %>)
+                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= "ag " + ((Verb)verbList.get(i)).getVerbalNoun() %><% } } %>)
               </li>
               <% } %>
 
@@ -202,7 +232,8 @@
           String tenseId;
           for(int x = 1; x <= 7; x++) {
               tenseId = String.valueOf(x);
-              verbConjugation = (VerbConjugation)verbConjugationMap.get(tenseId);
+              System.out.println("tenseId = " + tenseId);
+              verbConjugation = (VerbConjugation) verbConjugationMap.get(tenseId);
       %>
         <div>
           <%@ include file="/view/verb/verbConjugation.jsp" %>
