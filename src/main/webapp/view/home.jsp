@@ -28,7 +28,7 @@
 
     <div style="text-align:left;margin:0px auto 0xp 0px;">
 
-      <div class="table" style="width:100%;">
+      <div class="table" style="width:100%; padding-left: 33px;">
         <div class="row">
 
           <div class="cell">
