@@ -1,6 +1,29 @@
-body {
-  margin:0px;
+
+:root {
+  --gold: #C4A029;
+  --gray: #8B9290;
+  --mediumgray: #C0C5C4;
+  --lightgray: #EDF0EE;
+  --darkgreen: #0E4F24;
+  --mediumgreen: #4B8029;
+  --bloggreen: #28804A;
+  --darktext: #201F22;
+  --sitewidthint: 900;
+  --sitewidth: 900px;
+}
+
+html
+,body
+{
+  height:100%;
   background-color:#fff;
+  margin: 0px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body div.header
@@ -37,9 +60,9 @@ body div.header
   /*
   align-items: stretch;
   align-items: flex-end;
-  align-items: center;
-  */
   align-items: flex-start
+  */
+  align-items: center;
 
   /*
   justify-content: space-between;
@@ -55,13 +78,13 @@ body div.header
 body div.header > div
 {
   border: red 1px solid;
-  align-items: center;
+  /*align-items: center;*/
 }
 
 body div.entry-form
 {
-  border: blue 1px solid;
-  max-width:428px;
+  border: black 1px solid;
+  max-width: 428px;
   text-align: center;
   margin: auto;
 }

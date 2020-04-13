@@ -2,22 +2,11 @@
 
 <%
 
-    //SortableList wordList = (SortableList)request.getAttribute("wordList");
-    //List wordList = (List) request.getAttribute("wordList");
-    //SortableList irishWordList = (SortableList)request.getAttribute("irishWordList");
-    //List irishWordList = (List) request.getAttribute("irishWordList");
-
     Word word = (Word) request.getAttribute("word");
-    Word irishWord = (Word) request.getAttribute("irishWord");
+    logger.debug("word = " + word);
 
-    //System.out.println("results.jsp: word = "+word);
-    //System.out.println("results.jsp: irishWord = "+irishWord);
+    if(word != null) pageContext.setAttribute("word", word);
 
-    if(word != null) {
-      pageContext.setAttribute("word", word);
-    } else {
-      pageContext.setAttribute("irishWord", irishWord);
-    }
     String emailSent = (String)request.getAttribute("emailSent");
 
     String wordEnglish = null;
@@ -29,9 +18,9 @@
     String wordParam = request.getParameter("word");
     String language = request.getParameter("language");
 
-    //System.out.println("results.jsp: verbParam = "+verbParam);
-    //System.out.println("results.jsp: wordParam = "+wordParam);
-    //System.out.println("results.jsp: language = "+language);
+    logger.debug("verbParam = " + verbParam);
+    logger.debug("wordParam = " + wordParam);
+    logger.debug("language = " + language);
 
     if(language != null) {
         if(language.equals("english")) {
@@ -58,9 +47,12 @@
                       
 <%--
 <div style="padding-top:108px;padding-bottom:108px;width:728px;text-align:center;margin:auto;">
---%>
 <div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
   <div style="text-align:center;margin:auto;">
+--%>
+<div class="container" style=" border: blue 0px solid; height: 100%; text-align: center;  vertical-align: top; margin: auto; margin-top: 0px; padding: 0px; ">
+
+  <div style=" text-align: center; margin: auto; margin-top: 0px; border: green 1px solid; width: 100%; max-width: var(--sitewidth); ">
 
 <%--
     <div style="text-align:left;margin:0px auto 0xp 0px;">
@@ -83,23 +75,16 @@
       </div>
       <div>
         <%--@ include file="/view/topForm.jsp" --%>
-        <%@ include file="/view/entryForm.jsp" %>
+        <%--@ include file="/view/entryForm.jsp" --%>
+        <%@ include file="/view/entry-form.jsp" %>
       </div>
     </div>
 
 
-    <div style="max-width:728px;">
-    <% if((word != null) || (irishWord != null)) { %>
+    <div>
       <% if(word != null) { %>
         <irishdictionary:word />
-      <% } else { %>
-<%--
-        <irishdictionary:irishword />
-        <irishdictionary:word />
---%>
-        <irishdictionary:word />
       <% } %>
-    <% } %>
     </div>
 
   </div>
