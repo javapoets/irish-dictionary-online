@@ -1,46 +1,41 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!--DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://www.irishdictionary.ie/dtd/web-jsptaglibrary_1_1.dtd"-->
-<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://www.oracle.com/webfolder/technetwork/jsc/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
-<!-- "http://www.irishdictionary.ie/dtd/web-jsptaglibrary_1_1.dtd" -->
-<!-- "file:///D:/XML/dtds/web-jsptaglibrary_1_1.dtd" -->
-<!-- "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd" -->
+
 <!--
-   http://www.oracle.com/webfolder/technetwork/jsc/j2ee/dtds/index.html
--->   
-<taglib>
-   <tlibversion>1.0</tlibversion>
-   <jspversion>1.1</jspversion>
-   <shortname>irishdictionary</shortname>
-   <uri></uri>
-   <info>Tag library for English Irish Dictionary</info>
-   <tag>
-      <name>word</name>
-      <tagclass>online.irishdictionary.taglib.WordTag</tagclass>
-      <bodycontent>jsp</bodycontent>
-      <info>HTML word definition display tag</info>
-   </tag>
-   <tag>
-      <name>irishword</name>
-      <tagclass>online.irishdictionary.taglib.IrishWordTag</tagclass>
-      <bodycontent>jsp</bodycontent>
-      <info>HTML word definition display tag</info>
-   </tag>
-   <tag>
-      <name>wordwap</name>
-      <tagclass>online.irishdictionary.taglib.WordTagWap</tagclass>
-      <bodycontent>jsp</bodycontent>
-      <info>HTML word definition display tag</info>
-   </tag>
-   <tag>
-      <name>irishwordwap</name>
-      <tagclass>online.irishdictionary.taglib.IrishWordTagWap</tagclass>
-      <bodycontent>jsp</bodycontent>
-      <info>HTML word definition display tag</info>
-   </tag>
-   <tag>
-      <name>irishdate</name>
-      <tagclass>online.irishdictionary.taglib.IrishDateTag</tagclass>
-      <bodycontent>jsp</bodycontent>
-      <info>displays todays date in Irish</info>
-   </tag>
+   http://wiki.metawerx.net/wiki/TLDFilesDTDAndXSD
+-->
+
+<!--DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://www.irishdictionary.ie/dtd/web-jsptaglibrary_1_1.dtd"-->
+<!--!DOCTYPE taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://www.oracle.com/webfolder/technetwork/jsc/j2ee/dtds/web-jsptaglibrary_1_1.dtd"-->
+
+<!--
+<taglib
+   version="2.0"
+   xmlns="http://java.sun.com/xml/j2ee"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+      http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd" 
+      version="2.1">
+
+<!--taglib-->
+  <tlib-version>2.0</tlib-version>
+  <jsp-version>2.0</jsp-version>
+  <short-name>irishdictionary</short-name>
+  <!--uri>tag lib version id</uri-->
+  <description>
+     Tag library for the Irish Dictionary Online 
+  </description>
+
+  <tag>
+    <name>word</name>
+    <tag-class>online.irishdictionary.taglib.WordTag</tag-class>
+    <body-content>jsp</body-content>
+  </tag>
+  
 </taglib>

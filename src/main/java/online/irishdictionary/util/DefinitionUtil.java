@@ -37,34 +37,34 @@ public class DefinitionUtil {
     }
 
     public String linkize(Word word, String fromLanguage, String toLanguage) {
-        //logger.debug("linkize('"+word.getWord()+"', '"+fromLanguage+"', '"+toLanguage+"')");
+        logger.trace("linkize('"+word.getWord()+"', '"+fromLanguage+"', '"+toLanguage+"')");
 
         StringBuffer sb = new StringBuffer();  // to hold the message body
         List definitionList = word.getDefinitionList();
         List usageList = word.getUsageList();
 
         //sb.append("<div class=\"definition red0\" style=\"text-align:left;max-height:400px;overflow-y:auto;\">");
-        sb.append("<div class=\"definition red0\" style=\"text-align:left;\">");
+        sb.append("<div class=\"definition\">");
 
-        //sb.append("<div class=\"blue0\" style=\"text-align:left;color:#2C5A26;font-size: 20px;font-weight:bold;padding:8px;border-bottom:#ccc 1px solid;\">").append(word.getWord()).append("</div>");
-        //sb.append("<div class=\"blue0\" style=\"text-align:left;color:#2C5A26;font-size: 20px;font-weight:bold;padding:8px;border-bottom:#2C5A26 1px solid;\">").append(word.getWord()).append("</div>");
-        //sb.append("<div class=\"blue0\" style=\"text-align:left;color:#6B6D6B;font-size:20px;font-weight:bold;padding:8px;border-bottom:#6B6D6B 1px solid;\">").append(word.getWord()).append("</div>");
-        //sb.append("<div class=\"blue0\" style=\"text-align:left;color:#6B6D6B;font-size:20px;font-weight:bold;padding:8px;\">").append(word.getWord()).append("</div>");
-        sb.append("<div class=\"blue0\" style=\"text-align:left;color:#6B6D6B;font-size:20px;font-weight:bold;\">").append(word.getWord()).append("</div>");
+        sb
+          //.append("<div style=\"text-align:left;color:#6B6D6B;font-size:20px;font-weight:bold;\">")
+          .append("<div class=\"word-header\">")
+          .append("<span class=\"language-label\">").append(fromLanguage).append("</span>").append(" word: ")
+          .append("<span class=\"word\">").append(word.getWord()).append("</span>")
+          //.append(word.getWord())
+          .append("</div>");
 
         if((definitionList != null) && definitionList.size() != 0) {
-            //sb.append("<tr><th>Translation:</th></tr>");
 
             //logger.debug("definitionList.size() = "+definitionList.size());
 
             sb.append("<div>");
-            //sb.append("<div style=\"max-height:200px;overflow-y:auto;\">");
             sb.append("<ol>");
 
             String type, gender, description;
-
             //List sortedList = (List)definitionList.getSortedList("definitionId");
             List sortedList = definitionList;
+
             for(int i = 0; i < sortedList.size(); i++) {
 
                 Definition definition = (Definition)sortedList.get(i);
@@ -115,7 +115,7 @@ public class DefinitionUtil {
                     }
                     */
 
-                    //if(type != null || gender != null) {
+                    /*
                     if(
                         hasType
                         || hasGender
@@ -128,13 +128,15 @@ public class DefinitionUtil {
                         }
                         sb.append(")</span>");
                     }
+                    */
 
+                    /*
                     if(hasDescription) {
                         //sb.append("<span class=\"description\"> " + generateHrefOnWords(definition.getDescription(), "english", "normal", "color1") + "</span>");
                         //sb.append("<span class=\"description\">" + generateHrefOnWords(definition.getDescription(), "english", "normal", "color1") + "</span>");
                         sb.append("<span class=\"description\">"+description+"</span>");
                     }
-
+                    */
 
                     //sb.append(";");
                     //sb.append("</div></div></div>");
@@ -151,7 +153,7 @@ public class DefinitionUtil {
             sb.append("<div class=\"usage\">");
 
             //sb.append("<div style=\"border-bottom:#ccc 1px solid;\">Usage</div>");
-            sb.append("<div>Usage</div>");
+            sb.append("<div class=\"word-header\">Usage:</div>");
 
             sb.append("<div>");
             //sb.append("<div style=\"max-height:200px;overflow-y:auto;\">");

@@ -1,6 +1,7 @@
 <%@ include file="/view/header.jsp" %>
 
 <%
+
     List wordList = (List) request.getAttribute("wordList");
     List irishWordList = (List) request.getAttribute("irishWordList");
     Word word = (Word) request.getAttribute("word");
@@ -16,6 +17,7 @@
     }
 
     String emailSent = (String) request.getAttribute("emailSent");
+
 %>
 
 <%--
@@ -42,6 +44,22 @@
     </div>
     --%>
 
+<%--
+    <div class="header">
+      <div>
+        <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+      </div>
+      <div>
+        <div style=" border: red 2px solid; display: inline-block; text-align: center; vertical-align: middle; margin: auto; ">
+          <%@ include file="/view/entryFormVariables.jsp" %>
+          <%@ include file="/view/entryForm.jsp" %>
+        </div>
+      </div>
+    </div>
+--%>
+
+<%--
+--%>
     <div style=" border: red 2px solid; display: inline-block; text-align: center; vertical-align: middle; margin: auto; ">
       <%@ include file="/view/entryFormVariables.jsp" %>
       <%@ include file="/view/entryForm.jsp" %>

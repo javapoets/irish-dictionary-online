@@ -7,7 +7,7 @@
 
     if(word != null) pageContext.setAttribute("word", word);
 
-    String emailSent = (String)request.getAttribute("emailSent");
+    String emailSent = (String) request.getAttribute("emailSent");
 
     String wordEnglish = null;
     String wordIrish = null;
@@ -70,12 +70,14 @@
     </div>
 --%>
     <div class="header">
+      <%--
+      <div style="align-self: start;">
       <div>
+      --%>  
+      <div style="padding-left: 42px; padding-right: 42px;">
         <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
       </div>
       <div>
-        <%--@ include file="/view/topForm.jsp" --%>
-        <%--@ include file="/view/entryForm.jsp" --%>
         <%@ include file="/view/entry-form.jsp" %>
       </div>
     </div>
