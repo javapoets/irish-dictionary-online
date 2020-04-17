@@ -21,6 +21,14 @@
 %>
 
 <%--
+<div class="logo-offset">
+  <div>
+    <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+  </div>
+</div>
+--%>  
+
+<%--
 <div style="padding-top:108px;padding-bottom:108px;width:728px;text-align:center;margin:auto;">
 <div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
 <div style="padding-top:108px;padding-bottom:108px;text-align:center;margin:auto;">
@@ -57,6 +65,12 @@
       </div>
     </div>
 --%>
+
+<div class="logo-offset">
+  <div>
+    <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+  </div>
+</div>
 
 <%--
 --%>

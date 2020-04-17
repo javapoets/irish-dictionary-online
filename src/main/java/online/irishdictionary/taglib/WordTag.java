@@ -181,12 +181,11 @@ public class WordTag implements Tag {
                     */
 
                     /*
+                    */
                     if(hasDescription) {
-                        //stringBuilder.append("<span class=\"description\"> " + generateHrefOnWords(definition.getDescription(), "english", "normal", "color1") + "</span>");
                         //stringBuilder.append("<span class=\"description\">" + generateHrefOnWords(definition.getDescription(), "english", "normal", "color1") + "</span>");
                         stringBuilder.append("<span class=\"description\">"+description+"</span>");
                     }
-                    */
 
                     stringBuilder.append("</li>");
                 }
@@ -218,10 +217,10 @@ public class WordTag implements Tag {
             for(int i = start; i < end; i++) {
 
                 Usage usageObject = (Usage)sortedList.get(i);
-                usage = usageObject.getUsage();
+                usage           = usageObject.getUsage();
                 usageTranslated = usageObject.getUsageTranslated();
-                type = usageObject.getType();
-                description = usageObject.getDescription();
+                type            = usageObject.getType();
+                description     = usageObject.getDescription();
 
                 boolean hasUsage = !"".equals(usage);
                 boolean hasUsageTranslated = !"".equals(usageTranslated);
@@ -235,7 +234,8 @@ public class WordTag implements Tag {
                     stringBuilder.append(linkize(usage, word.getWord(), fromLanguage, toLanguage));
                 }
 
-                stringBuilder.append(" <span style=\"color:#ff8f00;\">=</span> ");
+                //stringBuilder.append(" <span style=\"color:#ff8f00;\">=</span> ");
+                stringBuilder.append("<br/>");
 
                 if(hasUsageTranslated) {
                     stringBuilder.append("<span class=\"translated\">");

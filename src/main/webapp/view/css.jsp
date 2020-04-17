@@ -1,20 +1,24 @@
-
 :root {
   --gold: #C4A029;
+  --orange: #FF8F00;
   --gray: #8B9290;
   --mediumgray: #C0C5C4;
   --lightgray: #EDF0EE;
   --darkgreen: #0E4F24;
   --mediumgreen: #4B8029;
-  --bloggreen: #28804A;
-  --darktext: #201F22;
-  --sitewidthint: 900;
+  --darktext: #322;
+  --mediumtext: #6B6D6B;
   --sitewidth: 900px;
 }
 
 .gold
 { 
   color: var(--gold);
+}
+
+.orange
+{ 
+  color: var(--orange);
 }
 
 .reverse
@@ -131,7 +135,6 @@
   border-bottom: var(--mediumgray) 1px solid;
 }
 
-
 footer div.container
 {
   width: 100%;
@@ -166,6 +169,17 @@ footer div.container
   /*
   border: #fff 1px solid;
   */
+}
+
+.logo-offset
+{
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  margin-top: -266px;
+  margin-left: -200px;
 }
 
 html
@@ -229,37 +243,69 @@ body div.header
   justify-content: space-evenly;
   */
   justify-content: flex-start;
-
-  border: blue 1px solid;
 }
 
+/*
 body div.header > div
 {
-  border: red 1px solid;
-  /*align-items: center;*/
+  align-items: center;
 }
+*/
 
 body div.entry-form
 {
-  border: black 1px solid;
   max-width: 428px;
   text-align: center;
   margin: auto;
 }
 
+/*
 body div.entry-form > div
 {
   border: red 1px solid;
   padding: 15px;
 }
+*/
+
+@media (max-width: 670px) {
+
+  body div.header
+  {
+    /*
+    justify-content: flex-start;
+    */
+    justify-content: center;
+  }
+
+  body div.entry-form > div
+  {
+    padding: 15px;
+  }
+
+}
+
+@media (min-width: 670px) {
+  body div.entry-form > div
+  {
+    /*
+    border: red 1px solid;
+    */
+    padding: 8px;
+  }
+}
+
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
 
 div.grey { background-color:grey; }
 div.red { border:red 1px solid; }
 div.blue { border:blue 1px solid; }
 div.yellow { border:yellow 1px solid; }
-div.table {display:table}
-div.row {display:table-row}
-div.cell {display:table-cell}
+
 div.bottombox {
   width:100%;
   position:fixed;
@@ -413,6 +459,7 @@ input.blur {
   outline:none;
   font-size:15px;
 }
+
 input.focus {
   color:#000;
   background-color:transparent;
@@ -431,96 +478,125 @@ div.bold {
   font-weight:bold;
 }
 
-div.definition {
-  color:#6B6D6B;
-  font-family:Arial;
+div.definition
+{
+  color: #6B6D6B;
+  color: var(--darktext);
+  font-family: Arial;
+  padding-top: 20px;
 }
 
-div.definition .language-label {
+div.definition .language-label
+{
   text-transform: capitalize;
   font-weight: bold;
 }
 
-div.definition div.word-header {
+div.definition div.word-header
+{
   text-align: left;
-  color: #6B6D6B;
   font-size: 20px;
   /*
+  color: #6B6D6B;
   */
   font-weight: bold;
+  padding-left: 20px;
 }
 
-div.definition div.word-header .word {
+div.definition div.word-header .word
+{
   text-align: left;
-  color: #6B6D6B;
+  color: var(--darktext);
   font-size: 20px;
   /*
   */
   font-weight: normal;
 }
 
-div.definition > div {
+div.definition > div
+{
   text-align: left;
-  color: #6B6D6B;
   font-size: 20px;
   /*
+  color: #6B6D6B;
   font-weight: bold;
-  */
   border: green 1x solid;
+  */
 }
 
-div.definition > div ol {
+div.definition div ol {
   /*
   text-align: left;
   color: #6B6D6B;
   font-size: 20px;
   font-weight: bold;
-  */
   border: black 1px solid;
+  */
+  /*
+  padding: 0px;
+  margin: 0px;
+  padding-right: 20px;
+  padding: 10px 20px 10px 20px;
+  */
+  padding: 10px 20px 10px 40px;
 }
 
-div.definition div:first-child {
-  border: red 1px solid;
-  text-align:left;
-  color:#6B6D6B;
-  font-size:20px;
   /*
+div.definition div:first-child
+{
+  text-align:left;
+  font-size:20px;
+  border: red 1px solid;
+  color:#6B6D6B;
   font-weight:bold;
-  */
   padding:8px;
 }
+  */
 
-div.definition div:first-child a {
+div.definition div:first-child a
+{
   text-decoration:none;
+  /*
   color:#6B6D6B;
+  */
 }
 
-div.definition div:first-child a:hover {
+div.definition div:first-child a:hover
+{
   text-decoration:underline;
 }
 
 div.definition span.definition a {
+  /*
   color:#f7941d;
   color:#6B6D6B;
+  */
+  color: var(--darktext);
   text-decoration:none;
 }
 
 div.definition span.definition a:hover {
+  /*
   color:#f7941d;
   color:#6B6D6B;
+  */
   text-decoration:underline;
 }
 
 div.definition span.description a {
+  /*
   color:#f7941d;
   color:#6B6D6B;
+  */
   font-size:11px;
   text-decoration:none;
 }
 
 div.definition span.type {
+  /*
   color:#f7941d;
   color:#6B6D6B;
+  */
   font-size:11px;
   text-decoration:underline;
   padding-left:5px;
@@ -538,38 +614,58 @@ div.definition li span.type {
   padding-left:5px;
 }
 
-div.definition li span.description {
+div.definition li span.description
+{
+  /*
   color:#f7941d;
   color:#6B6D6B;
-  font-size:11px;
-  text-decoration:none;
+  color: var(--darktext);
+  */
+  color: var(--mediumtext);
+
+  font-size:15px;
   padding-left:5px;
 }
-div.definition li span.description a {
+
+div.definition li span.description a
+{
+  /*
   color:#f7941d;
   color:#6B6D6B;
   font-size:11px;
+  */
   text-decoration:none;
 }
-div.definition li span.description a:hover {
+
+div.definition li span.description a:hover
+{
+  /*
   color:#f7941d;
   color:#6B6D6B;
   font-size:11px;
+  */
   text-decoration:underline;
 }
-div.usage {
+
+div.usage
+{
   padding:0px;
 }
 
-div.usage li span.translated {
+div.usage li span.translated
+{
   color:#2C5A26;
+  font-style: italic;
 }
+
 div.usage li span.translated a {
   color:#2C5A26;
   font-weight:bold;
   font-weight:normal;
 }
-div.usage li {
+
+div.usage li
+{
   list-style:none;
 <%--
   border-bottom:#ccc 1px dotted;
@@ -579,20 +675,24 @@ div.usage li {
   margin-top:3px;
   border-bottom:#ddd 1px solid;
 --%>
-  border-bottom:#eee 1px solid;
-  padding:3px;
+  border-bottom: #ccc 1px solid;
+  padding: 5px 0px;
 }
-div.usage li a:hover {
-  list-style:none;
-  color:#f7941d;
-  color:#6B6D6B;
-  text-decoration:underline;
-}
+
 div.usage li a {
+<%--
   color:#f7941d;
   color:#6B6D6B;
-<%--
   font-size:13px;
 --%>
+  color: var(--darktext);
   text-decoration:none;
+}
+
+div.usage li a:hover {
+  /*
+  color:#f7941d;
+  color:#6B6D6B;
+  */
+  text-decoration:underline;
 }

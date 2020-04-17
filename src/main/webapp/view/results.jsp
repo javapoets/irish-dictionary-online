@@ -1,4 +1,25 @@
-<%@ include file="/view/header.jsp" %>
+<%--@ include file="/view/header.jsp" --%>
+
+<%@ page
+    language="java"
+    contentType="text/html;charset=UTF-8"
+    pageEncoding="UTF-8"
+    session="false" %>
+<%@ include file="/view/imports.jsp" %>
+<%@ include file="/view/logger.jsp" %>
+<%@ include file="/view/variables.jsp" %>
+<%@ taglib uri="/WEB-INF/irishdictionary.tld" prefix="irishdictionary" %>
+<%@ taglib prefix="javapoets" tagdir="/WEB-INF/tags" %>
+
+<!doctype html>
+<html>
+<head>
+
+<%@ include file="/view/head.jsp" %>
+
+</head>
+
+<body>
 
 <%
 
@@ -69,12 +90,13 @@
       </div>
     </div>
 --%>
-    <div class="header">
+    <div class="header" style="padding-top: 20px;">
       <%--
       <div style="align-self: start;">
       <div>
-      --%>  
       <div style="padding-left: 42px; padding-right: 42px;">
+      --%>  
+      <div style="padding: 13px 42px;">
         <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
       </div>
       <div>
