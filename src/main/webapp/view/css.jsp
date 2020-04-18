@@ -171,16 +171,6 @@ footer div.container
   */
 }
 
-.logo-offset
-{
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  margin: auto;
-  margin-top: -266px;
-  margin-left: -200px;
-}
 
 html
 ,body
@@ -212,6 +202,8 @@ body div.header
   padding: 1px 0px;
   padding: 5px 0px;
   */
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   /*
   text-align: center;
@@ -260,12 +252,12 @@ body div.entry-form
 }
 
 /*
+*/
 body div.entry-form > div
 {
-  border: red 1px solid;
+  /*border: red 1px solid;*/
   padding: 15px;
 }
-*/
 
 @media (max-width: 670px) {
 
@@ -279,7 +271,8 @@ body div.entry-form > div
 
   body div.entry-form > div
   {
-    padding: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
 }
@@ -288,18 +281,38 @@ body div.entry-form > div
   body div.entry-form > div
   {
     /*
+    padding: 8px;
     border: red 1px solid;
     */
-    padding: 8px;
   }
 }
 
+.logo-offset
+{
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  margin-top: -266px;
+  margin-left: -200px;
+}
+
+@media (min-width: 500px) {
+  .logo-offset
+  {
+    margin-left: -95px;
+  }
+}
+
+<%--
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
 @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
 @media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
 @media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
 @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
 @media (min-width:1281px) { /* hi-res laptops and desktops */ }
+--%>
 
 div.grey { background-color:grey; }
 div.red { border:red 1px solid; }
@@ -362,7 +375,8 @@ input.orangebutton2 {
   -webkit-box-shadow:inset 0px -10px 20px 0px rgba(0,0,0,0.13),0 0 3px #999;
 }
 
-input.orangebutton3 {
+input.orangebutton3
+{
   color:#fff;
   cursor:pointer;
   border:0;
@@ -370,7 +384,12 @@ input.orangebutton3 {
   font-weight:bold;
   background:#FF8F00;
   border-radius:15px;
+  /*
   padding:5px 15px;
+  */
+  padding:5px 15px;
+  margin: 0px;
+
   text-transform: uppercase;
   /*
   box-shadow:inset 0px -10px 20px 0px rgba(0,0,0,0.13),0 0 3px #999;
@@ -434,12 +453,24 @@ div.ad-bottom {
 div.input {
   background-color: #B4CD8F;
   display:inline-table;
-  border:#2C5A26 2px solid;
+  border: #2C5A26 2px solid;
   border-radius: 20px;
+  padding: 0px;
+  margin: 0px;
   padding:5px;
   /*
+  border: 0px;
+  outline: #2C5A26 2px solid;
+  margin-left:5px;
+  margin-right:5px;
+  padding:5px;
   box-shadow:inset 0px -10px 20px 0px rgba(0,0,0,0.13),0 0 3px #999;
   */
+}
+
+div.input div.table div.cell
+{
+  padding-left: 5px;
 }
 
 input.text {
@@ -483,7 +514,9 @@ div.definition
   color: #6B6D6B;
   color: var(--darktext);
   font-family: Arial;
+  /*
   padding-top: 20px;
+  */
 }
 
 div.definition .language-label
@@ -501,13 +534,15 @@ div.definition div.word-header
   */
   font-weight: bold;
   padding-left: 20px;
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
 
 div.definition div.word-header .word
 {
   text-align: left;
   color: var(--darktext);
-  font-size: 20px;
+  font-size: 22px;
   /*
   */
   font-weight: normal;
@@ -537,8 +572,13 @@ div.definition div ol {
   margin: 0px;
   padding-right: 20px;
   padding: 10px 20px 10px 20px;
+  margin-bottom: 0px;
   */
+  margin-top: 0px;
+  /*
   padding: 10px 20px 10px 40px;
+  */
+  padding-right: 20px;
 }
 
   /*

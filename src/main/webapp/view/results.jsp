@@ -17,6 +17,17 @@
 
 <%@ include file="/view/head.jsp" %>
 
+<style type="text/css">
+  
+/*@media (min-width: 670px) {*/
+  body div.entry-form > div
+  {
+    padding: 8px;
+    /*border: red 1px solid;*/
+  }
+/*}*/
+
+</style>
 </head>
 
 <body>
@@ -71,9 +82,9 @@
 <div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
   <div style="text-align:center;margin:auto;">
 --%>
-<div class="container" style=" border: blue 0px solid; height: 100%; text-align: center;  vertical-align: top; margin: auto; margin-top: 0px; padding: 0px; ">
+<div class="container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
 
-  <div style=" text-align: center; margin: auto; margin-top: 0px; border: green 1px solid; width: 100%; max-width: var(--sitewidth); ">
+  <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--sitewidth);">
 
 <%--
     <div style="text-align:left;margin:0px auto 0xp 0px;">
@@ -90,12 +101,7 @@
       </div>
     </div>
 --%>
-    <div class="header" style="padding-top: 20px;">
-      <%--
-      <div style="align-self: start;">
-      <div>
-      <div style="padding-left: 42px; padding-right: 42px;">
-      --%>  
+    <div class="header">
       <div style="padding: 13px 42px;">
         <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
       </div>
@@ -104,8 +110,7 @@
       </div>
     </div>
 
-
-    <div>
+    <div style="padding-bottom: 40px;">
       <% if(word != null) { %>
         <irishdictionary:word />
       <% } %>

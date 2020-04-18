@@ -33,7 +33,7 @@
 <div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
 <div style="padding-top:108px;padding-bottom:108px;text-align:center;margin:auto;">
 --%>  
-<div class="container" style=" border: blue 0px solid; height: 100%; text-align: center;  vertical-align: middle; margin: 0px; padding: 0px; ">
+<div class="container" style=" border: blue 0px solid; height: 100%; text-align: center;  vertical-align: middle; margin: 0px; padding: 0px;">
   <!--div style="text-align:center;margin:auto;"-->
 
     <%--
@@ -66,6 +66,8 @@
     </div>
 --%>
 
+<%--
+--%>
 <div class="logo-offset">
   <div>
     <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
@@ -74,7 +76,12 @@
 
 <%--
 --%>
-    <div style=" border: red 2px solid; display: inline-block; text-align: center; vertical-align: middle; margin: auto; ">
+    <div style="
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      /*border: red 1px solid;*/
+      margin: auto;">
       <%@ include file="/view/entryFormVariables.jsp" %>
       <%@ include file="/view/entryForm.jsp" %>
     </div>
