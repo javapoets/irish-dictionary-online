@@ -1,5 +1,4 @@
 :root {
-  --gold: #C4A029;
   --orange: #FF8F00;
   --gray: #8B9290;
   --mediumgray: #C0C5C4;
@@ -11,172 +10,32 @@
   --sitewidth: 900px;
 }
 
-.gold
-{ 
-  color: var(--gold);
-}
-
 .orange
 { 
   color: var(--orange);
 }
 
-.reverse
-{
-  transform:rotateY(180deg);
-  -webkit-transform:rotateY(180deg);
-  -moz-transform:rotateY(180deg);
-  -o-transform:rotateY(180deg);
-  -ms-transform:rotateY(180deg);
-  unicode-bidi:bidi-override;
-  direction:rtl;
-  display: inline-block;
-}
-
-.table
+div.table
 {
   display: table;
   width: 100%;
 }
 
-.row
+div.row
 {
   display: table-row;
 }
 
-.cell
+div.cell
 {
   display: table-cell;
 }
-
-.responsive-container
-{
-
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  /*
-  justify-content: space-between;
-  justify-content: space-around;
-  */
-  justify-content: center;
-
-  /*
-  align-items: center;
-  align-items: flex-end;
-  align-items: stretch;
-  */
-  align-items: stretch;
-
-  /*
-  width: 1250px;
-  max-width: 1100px;
-  */
-  max-width: var(--sitewidth);
-  width: 100%;
-
-  /*
-  height: 100%;
-  */
-
-  /*
-  margin: auto;
-  text-align: center;
-  */
-  margin-left: auto;
-  margin-right: auto;
-
-  /*
-  border-spacing: 0px 33px;
-  border-collapse: separate;
-  */
-
-  /*
-  display: table;
-  */
-
-  font-family: BarlowCondensed-Medium;
-
-  /*
-  border: red 1px solid;
-  background-color: #999;
-  */
-}
-
-.responsive-container > div
-{
-  /*
-  flex: 1 1 auto;
-  flex-basis: 333px;
-  flex-basis: var(--sitewidthint/3)px;
-  */
-  flex-basis: 366px;
-
-  /*
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: -40px;
-  margin-top: 20px;
-  */
-  padding-top: 13px;
-  padding-bottom: 13px;
-
-  /*
-  background-color: #fff;
-  vertical-align: top;
-  height: 100%;
-  */
-
-  /*
-  border-right: #999 1px solid;
-  border: blue 1px solid;
-  */
-  border-bottom: var(--mediumgray) 1px solid;
-}
-
-footer div.container
-{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  /*
-  justify-content: space-between;
-  justify-content: space-around;
-  justify-content: center;
-  */
-  justify-content: space-evenly;
-
-  /*
-  align-items: center;
-  align-items: stretch;
-  */
-  align-items: flex-start;
-
-  /*
-  flex: 1;
-  flex-shrink: 1;
-  flex-grow: 1;
-  */
-  flex-basis: 322px;
-
-  margin-left: auto;
-  margin-right: auto;
-  max-width: var(--sitewidth);
-
-  /*
-  border: #fff 1px solid;
-  */
-}
-
 
 html
 ,body
 {
   height:100%;
-  background-color:#fff;
+  background-color: #fff;
   margin: 0px;
 }
 
@@ -256,7 +115,7 @@ body div.entry-form
 body div.entry-form > div
 {
   /*border: red 1px solid;*/
-  padding: 15px;
+  padding: 10px;
 }
 
 @media (max-width: 670px) {
@@ -294,30 +153,21 @@ body div.entry-form > div
   top: 50%;
   left: 50%;
   margin: auto;
-  margin-top: -266px;
-  margin-left: -200px;
+  margin-top: -250px;
+  margin-left: -180px;
 }
 
-@media (min-width: 500px) {
+@media (max-width: 500px) {
   .logo-offset
   {
     margin-left: -95px;
   }
+  .entry-form
+  {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
-
-<%--
-@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
-@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
-@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
-@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
-@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
-@media (min-width:1281px) { /* hi-res laptops and desktops */ }
---%>
-
-div.grey { background-color:grey; }
-div.red { border:red 1px solid; }
-div.blue { border:blue 1px solid; }
-div.yellow { border:yellow 1px solid; }
 
 div.bottombox {
   width:100%;
@@ -347,7 +197,7 @@ input.orangebutton1 {
   border:0;
   font-size:13px;
   font-weight:bold;
-  background:#FF8F00;
+  background: var(--orange);
 <%--
   padding:1px 8px 2px 8px;
 --%>
@@ -363,7 +213,7 @@ input.orangebutton2 {
   border:0;
   font-size:18px;
   font-weight:bold;
-  background:#FF8F00;
+  background:  var(--orange);
   border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;
   padding:3px 18px;
 <%--
@@ -382,7 +232,7 @@ input.orangebutton3
   border:0;
   font-size:18px;
   font-weight:bold;
-  background:#FF8F00;
+  background: var(--orange);
   border-radius:15px;
   /*
   padding:5px 15px;
