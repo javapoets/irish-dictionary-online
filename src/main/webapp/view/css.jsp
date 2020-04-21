@@ -1,13 +1,14 @@
 :root {
   --orange: #FF8F00;
   --gray: #8B9290;
-  --mediumgray: #C0C5C4;
-  --lightgray: #EDF0EE;
-  --darkgreen: #0E4F24;
-  --mediumgreen: #4B8029;
-  --darktext: #322;
-  --mediumtext: #6B6D6B;
-  --sitewidth: 900px;
+  --medium-gray: #C0C5C4;
+  --light-gray: #EDF0EE;
+  --dark-green: #0E4F24;
+  --medium-green: #4B8029;
+  --dark-text: #322;
+  --medium-text: #6B6D6B;
+  --site-width: 900px;
+  --search-block-width: 366px;
 }
 
 .orange
@@ -39,40 +40,23 @@ html
   margin: 0px;
 }
 
-.container {
+.container
+{
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 0px;
 }
 
 body div.header
 {
-
-  /*
-  position: fixed;
-  width: 100%;
-  top: 0px;
-  z-index: 5;
-  */
-
-  /*
-  padding: 1px 0px;
-  padding: 8px 0px 3px;
-  padding: 1px 0px;
-  padding: 5px 0px;
-  */
   padding-top: 20px;
   padding-bottom: 20px;
-
-  /*
-  text-align: center;
-  */
   margin: auto;
-
-  /*
-  box-shadow: 0px 11px 8px -10px #ccc;
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, .13);
-  */
 
   display: flex;
   flex-direction: row;
@@ -90,7 +74,6 @@ body div.header
   justify-content: space-between;
   justify-content: space-around;
   justify-content: center;
-  max-width: var(--sitewidth);  
   justify-content: space-evenly;
   */
   justify-content: flex-start;
@@ -105,20 +88,33 @@ body div.header > div
 
 body div.entry-form
 {
+  /*
   max-width: 428px;
+  border: red 1px solid;
+  */
+  width: 100%;
   text-align: center;
   margin: auto;
 }
 
-/*
-*/
 body div.entry-form > div
 {
-  /*border: red 1px solid;*/
-  padding: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
-@media (max-width: 670px) {
+.search-block
+{
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+  width: 100%;
+  max-width: var(--search-block-width);
+}
+
+@media (max-width: 670px)
+{
 
   body div.header
   {
@@ -133,18 +129,42 @@ body div.entry-form > div
     padding-left: 5px;
     padding-right: 5px;
   }
-
 }
 
-@media (min-width: 670px) {
+<%--
+@media (min-width: 670px)
+{
+
   body div.entry-form > div
   {
     /*
     padding: 8px;
+    border: green 1px solid;
     border: red 1px solid;
     */
   }
+
+  /*
+  .search-block
+  {
+    border: green 1px solid;
+    width: 366px;
+    width: var(--search-block-width);
+  }
+  */
+
 }
+
+@media (min-width: var(--search-block-width))
+@media (min-width: 366px)
+{
+  .search-block
+  {
+    border: green 2px solid;
+    width: 100%;
+  }
+}
+--%>
 
 .logo-offset
 {
@@ -157,16 +177,21 @@ body div.entry-form > div
   margin-left: -180px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 500px)
+{
   .logo-offset
   {
     margin-left: -95px;
   }
+
+  /*
   .entry-form
   {
     padding-left: 20px;
     padding-right: 20px;
   }
+  */
+
 }
 
 div.bottombox {
@@ -302,13 +327,13 @@ div.ad-bottom {
 
 div.input {
   background-color: #B4CD8F;
-  display:inline-table;
   border: #2C5A26 2px solid;
-  border-radius: 20px;
+  border-radius: 25px;
   padding: 0px;
   margin: 0px;
-  padding:5px;
+  padding: 5px;
   /*
+  display:inline-table;
   border: 0px;
   outline: #2C5A26 2px solid;
   margin-left:5px;
@@ -401,7 +426,7 @@ div.definition div.word-header .word
 div.definition > div
 {
   text-align: left;
-  font-size: 20px;
+  font-size: 19px;
   /*
   color: #6B6D6B;
   font-weight: bold;
@@ -566,7 +591,7 @@ div.usage li
   border-bottom:#ddd 1px solid;
 --%>
   border-bottom: #ccc 1px solid;
-  padding: 5px 0px;
+  padding: 7px 0px;
 }
 
 div.usage li a {

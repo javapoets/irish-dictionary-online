@@ -20,7 +20,7 @@
 
 %>
 
-<div class="container" style=" border: blue 0px solid; height: 100%; text-align: center;  vertical-align: middle; margin: 0px; padding: 0px;">
+<div class="container">
 
   <div class="logo-offset">
     <div>
@@ -28,14 +28,13 @@
     </div>
   </div>
 
-  <div style="
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    /*border: red 1px solid;*/
-    margin: auto;">
-    <%@ include file="/view/entryFormVariables.jsp" %>
-    <%@ include file="/view/entryForm.jsp" %>
+  <div>
+    <div class="search-block">
+      <%@ include file="/view/entryFormVariables.jsp" %>
+      <%--@ include file="/view/entryForm.jsp" --%>
+      <%@ include file="/view/entry-form.jsp" %>
+    </div>
+    <%@ include file="/view/word-count-statement.jsp" %>
   </div>
 
 </div>

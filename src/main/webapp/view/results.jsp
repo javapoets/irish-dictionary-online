@@ -13,32 +13,31 @@
 
 <!doctype html>
 <html>
-<head>
 
-<%@ include file="/view/head.jsp" %>
+  <head>
+    <%@ include file="/view/head.jsp" %>
+    <style type="text/css">
+      body div.entry-form > div
+      {
+        /*border: blue 1px solid;*/
+        padding: 9px;
+      }
 
-<%--
---%>
-<style type="text/css">
-  
-body div.entry-form > div
-{
-  /*border: blue 1px solid;*/
-  padding: 9px;
-}
+      @media (min-width: 670px) {
+        body div.entry-form > div
+        {
+          padding: 5px;
+          /*border: red 1px solid;*/
+        }
+        .search-block
+        {
+          margin-left: 0px;    
+        }
+      }
+    </style>
+  </head>
 
-@media (min-width: 670px) {
-  body div.entry-form > div
-  {
-    padding: 5px;
-    /*border: red 1px solid;*/
-  }
-}
-
-</style>
-</head>
-
-<body>
+  <body>
 
 <%
 
@@ -87,16 +86,23 @@ body div.entry-form > div
                       
 <div class="container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
 
-  <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--sitewidth);">
+  <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
 
     <div class="header">
-      <div style="padding: 13px 42px;">
+
+      <div style="padding: 13px 42px; width: 200px;">
         <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
       </div>
+<%--
+      <div style="border: red 1px solid; width: 100%;">
       <div>
+      <div class="search-block" style="align-self: flex-start;">
+--%>      
+      <div class="search-block">
         <%@ include file="/view/entry-form.jsp" %>
       </div>
-    </div>
+
+    </div><!--div class="header"-->
 
     <div style="padding-bottom: 40px;">
       <% if(word != null) { %>

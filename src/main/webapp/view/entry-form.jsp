@@ -1,8 +1,8 @@
-<div class="entry-form" style="text-align:center;margin:auto;">
+<div class="entry-form">
 
   <div>
 
-    <form action="dictionary" method="post" name="word" style="margin:0px;" onsubmit="searchEnglishWord(this);return false;">
+    <form action="dictionary" method="post" name="word" onsubmit="searchEnglishWord(this); return false;">
 
       <input type="hidden" name="languageId" value="1" />
       <input type="hidden" name="language" value="english" />
@@ -10,7 +10,7 @@
       <input type="hidden" name="toLanguage" value="irish" />
 
       <div class="input">
-        <div class="table" style="border: red 0px solid; padding-left: 0px;">
+        <div class="table">
           <div class="row">
             <div class="cell">
                 <input
@@ -23,7 +23,7 @@
                   placeholder="English word(s)"
                   style="width: 100%;" />
             </div>
-            <div class="cell">
+            <div class="cell" style="margin-right: 0px; text-align: right; width: 60px;">
               <input type="button" value="go" class="orangebutton3" onclick="searchEnglishWord(this.form)" />
             </div>
           </div>
@@ -38,7 +38,7 @@
   --%>
   <div>
 
-    <form action="dictionary" method="post" name="irishWord" style="margin:0px;" onsubmit="searchIrishWord(this);return false;">
+    <form action="dictionary" method="post" name="irishWord" onsubmit="searchIrishWord(this);return false;">
       
       <input type="hidden" name="languageId" value="2" />
       <input type="hidden" name="language" value="irish" />
@@ -46,7 +46,7 @@
       <input type="hidden" name="toLanguage" value="english" />
 
       <div class="input">
-        <div class="table" style="width: 100%;">
+        <div class="table">
           <div class="row">
             <div class="cell">
                 <input
@@ -64,7 +64,7 @@
                   placeholder="Irish word(s)"
                   style="width: 100%;" />
             </div>
-            <div class="cell">
+            <div class="cell" style="margin-right: 0px; text-align: right; width: 60px;">
               <input type="button" value="go" class="orangebutton3" onclick="searchIrishWord(this.form)" />
             </div>
           </div>
