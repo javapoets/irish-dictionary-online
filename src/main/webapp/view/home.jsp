@@ -1,25 +1,8 @@
 <%@ include file="/view/header.jsp" %>
-
 <%
-
     List wordList = (List) request.getAttribute("wordList");
     List irishWordList = (List) request.getAttribute("irishWordList");
-    Word word = (Word) request.getAttribute("word");
-    Word irishWord = (Word) request.getAttribute("irishWord");
-
-    //System.out.println("home.jsp: word = "+word);
-    //System.out.println("home.jsp: irishWord = "+irishWord);
-
-    if(word != null) {
-      pageContext.setAttribute("word", word);
-    } else {
-      pageContext.setAttribute("irishWord", irishWord);
-    }
-
-    String emailSent = (String) request.getAttribute("emailSent");
-
 %>
-
 <div class="container">
 
   <div class="logo-offset">

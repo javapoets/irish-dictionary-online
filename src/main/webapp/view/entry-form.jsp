@@ -1,9 +1,7 @@
 <div class="entry-form">
 
   <div>
-
     <form action="dictionary" method="post" name="word" onsubmit="searchEnglishWord(this); return false;">
-
       <input type="hidden" name="languageId" value="1" />
       <input type="hidden" name="language" value="english" />
       <input type="hidden" name="fromLanguage" value="english" />
@@ -31,15 +29,10 @@
       </div>
 
     </form>
-
   </div>
 
-  <%--
-  --%>
   <div>
-
     <form action="dictionary" method="post" name="irishWord" onsubmit="searchIrishWord(this);return false;">
-      
       <input type="hidden" name="languageId" value="2" />
       <input type="hidden" name="language" value="irish" />
       <input type="hidden" name="fromLanguage" value="irish" />
@@ -54,12 +47,7 @@
                   name="word"
                   id="irishWord"
                   class="text"
-                  <%--
-                  value="<%= wordIrish %>"
-                  --%>
-                  <% if(wordIrish != null) { %>
-                  value="<%= wordIrish %>"
-                  <% } %>
+                  <% if(wordIrish != null) { %>value="<%= wordIrish %>"<% } %>
                   maxlength="200"
                   placeholder="Irish word(s)"
                   style="width: 100%;" />
@@ -72,7 +60,6 @@
       </div>
 
     </form>
-
   </div>
 
 </div>

@@ -1,10 +1,10 @@
 <div class="table" style="
     width: 100%;
     color: var(--dark-green);
-    /*
+<%--
     font-family: Roboto, Arial Narrow, Arial, Verdana, Georgia, Garamond, Impact;
     letter-spacing: -1px;
-    */
+--%>
     font-family: Arial;
     font-size: 14px;
     text-transform: uppercase;
