@@ -113,7 +113,7 @@ task prod {
    def buildProperties = new Properties()
 
     doFirst {
-        file("src/main/config/build.properties").withInputStream {
+        file("src/main/config/prod.properties").withInputStream {
             stream -> buildProperties.load(stream)
         }
         println buildProperties.getProperty("protocol") + "://" + buildProperties.getProperty("server") + ":" + buildProperties.getProperty("port")
