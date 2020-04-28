@@ -9,7 +9,7 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Logger name="com.producersmarket" level="trace" />
+    <Logger name="online.irishdictionary" level="trace" />
     <Root level="debug">
       <AppenderRef ref="STDOUT" />
     </Root>

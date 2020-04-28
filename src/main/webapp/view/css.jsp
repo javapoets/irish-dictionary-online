@@ -522,9 +522,8 @@ div.definition li {
 }
 
 div.definition li span.type {
-  color:#f7941d;
   color:#6B6D6B;
-  font-size:11px;
+  font-size:12px;
   text-decoration:none;
   padding-left:5px;
 }
