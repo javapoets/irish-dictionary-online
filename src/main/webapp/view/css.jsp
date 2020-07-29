@@ -537,7 +537,7 @@ div.definition li span.description
   */
   color: var(--mediumtext);
 
-  font-size:15px;
+  font-size:12px;
   padding-left:5px;
 }
 

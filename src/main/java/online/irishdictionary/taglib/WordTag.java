@@ -26,6 +26,9 @@ public class WordTag implements Tag {
 
     private static final Logger logger = LogManager.getLogger();
 
+    private static final String ENGLISH = "english";
+    private static final String IRISH = "irish";
+
     private String invalidChars = "_-!@#$%^&*()+[]=\\|?/'\",.<>`~:; ";
     protected PageContext pageContext;
     protected Tag parent;
@@ -182,7 +185,7 @@ public class WordTag implements Tag {
         if((usageList != null) && (usageList.size() > 0)) {
 
             stringBuilder.append("<div class=\"usage\">");
-            stringBuilder.append("<div class=\"word-header\">Usage:</div>");
+            stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
             stringBuilder.append("<ol>");
 
             //List sortedList = (List) usageList.getSortedList("usageLength");
@@ -214,6 +217,9 @@ public class WordTag implements Tag {
 
                 if(hasUsage) {
                     stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage));
+
+                    if(hasDescription && ENGLISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+
                 }
 
                 stringBuilder.append("<br/>");
@@ -238,6 +244,8 @@ public class WordTag implements Tag {
                     stringBuilder.append("<span class=\"description\">").append(linkize(description, fromLanguage, toLanguage)).append("</span>");
                 }
                 */
+                //if(hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                if(hasDescription && IRISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
 
                 stringBuilder.append("</li>");
             }
