@@ -16,12 +16,9 @@ import online.irishdictionary.servlet.InitServlet;
 public class VerbServlet extends InitServlet {
 
     private static final Logger logger = LogManager.getLogger();
-    protected final String  DIR_VERB = DIR_VIEW + "verb/";
-    private final String    JSP_VERB = DIR_VERB + "verb.jsp";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.debug("doGet(request, response)");
-
         doPost(request, response);
     }
 
@@ -39,31 +36,22 @@ public class VerbServlet extends InitServlet {
 
         String verbParam = (String)request.getParameter("verb");
         if(verbParam == null) {
-
             logger.debug("verbParam = "+verbParam);
             logger.debug("doPost(request, response): verbParam is null");
-            include(request, response, DIR_VERB+"verb.jsp");
+            include(request, response, "verb/verb.jsp");
             return;
-
         } else {
             verbParam = verbParam.trim();
         }
 
         String fromLanguage = null;
         String toLanguage = null;
-
         String language = request.getParameter("language");
-        if(language == null) {
-            language = "irish";
-        }
-        if(fromLanguage == null) {
-            fromLanguage = language;
-        }
-
-        logger.info(language+"/"+verbParam);
-
+        if(language == null) language = "irish";
+        if(fromLanguage == null) fromLanguage = language;
         //logger.debug("language = "+language);
         //logger.debug("verbParam = "+verbParam);
+        logger.info(language+"/"+verbParam);
 
         int languageId = -1;
         if(fromLanguage.equals("english")) {
@@ -87,7 +75,7 @@ public class VerbServlet extends InitServlet {
         }
 
         request.setAttribute("verb", verb);
-        include(request, response, DIR_VERB+"verb.jsp");
+        include(request, response, "verb/verb.jsp");
     }
 
 }

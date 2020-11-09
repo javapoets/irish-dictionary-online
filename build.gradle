@@ -19,9 +19,10 @@ gretty {
     } else {
         host = 'dev.irishdictionary.online'
     }
+    println "host = " + host
 
-    //httpPort = project.hasProperty("port") ? port.toInteger() : 8080
-    //println "httpPort = " + httpPort
+    httpPort = project.hasProperty("port") ? port.toInteger() : 8080
+    println "httpPort = " + httpPort
 
     // HTTPS
     //httpsEnabled = true
