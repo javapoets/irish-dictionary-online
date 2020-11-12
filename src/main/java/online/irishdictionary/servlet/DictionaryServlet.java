@@ -3,146 +3,134 @@ package online.irishdictionary.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-
 import online.irishdictionary.model.Word;
 import online.irishdictionary.database.DictionaryDatabaseManager;
 import online.irishdictionary.servlet.InitServlet;
 
 public class DictionaryServlet extends InitServlet {
 
-    private static final Logger logger = LogManager.getLogger();
-
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private final String JSP_HOME = DIR_VIEW + "home.jsp";
     private final String JSP_RESULTS = DIR_VIEW + "results.jsp";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.debug("doGet(request, response)");
-
+        log.debug("doGet(request, response)");
         //include(request, response, JSP_HOME);
         doPost(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.debug("doPost(request, response)");
+        log.debug("doPost(request, response)");
 
-        //*
+        //* Debug parameters:
         java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
-        while(parameterNames.hasMoreElements()) {
+        log.debug("Parameters:");
+        while (parameterNames.hasMoreElements()) {
             String parameterName = (String)parameterNames.nextElement();
-            logger.debug(parameterName+" = "+request.getParameter(parameterName));
-            //logger.debug("parameterName = "+parameterName);
+            log.debug(parameterName+" = "+request.getParameter(parameterName));
+            //log.debug("parameterName = "+parameterName);
         }
         //*/
 
-        //String wordParam = request.getParameter("word");
-        String wordParam = null;
+        //String wordParameter = request.getParameter("word");
+        String wordParameter = null;
         try {
-            wordParam = request.getParameter("word");
-        } catch(Exception e) {
+            wordParameter = request.getParameter("word");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         String language = request.getParameter("language");
         String languageIdParam = request.getParameter("languageId");
         String fromLanguage = request.getParameter("fromLanguage");
         String toLanguage = request.getParameter("toLanguage");
-
         String remoteAddr = request.getRemoteAddr();
-        //logger.debug("remoteAddr = "+remoteAddr);
-
+        //log.debug("remoteAddr = "+remoteAddr);
         String locale = (request.getLocale()).toString();
-        //logger.debug("locale = "+locale);
+        //log.debug("locale = "+locale);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(locale);
-        sb.append("/");
-        sb.append(remoteAddr);
-        sb.append(": ");
-        sb.append(language);
-        sb.append("/");
-        sb.append(wordParam);
+        StringBuilder stringBuilder = new StringBuilder()
+            .append(locale)
+            .append("/")
+            .append(remoteAddr)
+            .append(": ")
+            .append(language)
+            .append("/")
+            .append(wordParameter);
+        log.info(stringBuilder.toString());
 
-        logger.info(sb.toString());
-
-        if(wordParam == null) {
+        if (wordParameter == null) {
             //response.sendRedirect(java.net.URLDecoder.decode(request.getContextPath()+"/dictionary", "UTF-8"));
             response.sendRedirect("home");
             return;
         }
 
-        if(
+        if (
             language == null
             || language.equals("null")
         ) {
             language = "irish";
-            sb = new StringBuilder();
-            sb.append(locale);
-            sb.append("/");
-            sb.append(remoteAddr);
-            sb.append(": ");
-            sb.append(language);
-            sb.append("/");
-            sb.append(wordParam);
-            logger.info(sb.toString());
+            stringBuilder = new StringBuilder()
+                .append(locale)
+                .append("/")
+                .append(remoteAddr)
+                .append(": ")
+                .append(language)
+                .append("/")
+                .append(wordParam);
+            log.info(stringBuilder.toString());
         }
 
-        //logger.debug("word = "+wordParam);
-        //logger.debug("language = "+language);
-        //logger.debug("languageIdParam = "+languageIdParam);
-        //logger.debug("fromLanguage = "+fromLanguage);
-        //logger.debug("toLanguage = "+toLanguage);
-        if(fromLanguage == null) {
+        //log.debug("word = "+wordParam);
+        //log.debug("language = "+language);
+        //log.debug("languageIdParam = "+languageIdParam);
+        //log.debug("fromLanguage = "+fromLanguage);
+        //log.debug("toLanguage = "+toLanguage);
+        if (fromLanguage == null) {
             fromLanguage = language;
             request.setAttribute("fromLanguage", fromLanguage);
         }
 
-        if(toLanguage == null) {
-            if(fromLanguage != null) {
+        if (toLanguage == null) {
+            if (fromLanguage != null) {
                 toLanguage = fromLanguage.equals("english") ? "irish" : "english";
                 request.setAttribute("toLanguage", toLanguage);
             }
         }
 
         int languageId = -1;
-        if(languageIdParam != null) {
+        if (languageIdParam != null) {
             try {
                 languageId = Integer.parseInt(languageIdParam);
-            } catch(Exception e) {
-                logger.error(e);
+            } catch (Exception e) {
+                log.error(e);
             }
         } else {
-            if(fromLanguage != null && fromLanguage.equals("english")) {
+            if (fromLanguage != null && fromLanguage.equals("english")) {
                 languageId = 1;
             } else {
                 languageId = 2;
             }
         }
-        //logger.debug("languageId = "+languageIdParam);
-
-
+        //log.debug("languageId = "+languageIdParam);
         //request.setAttribute("fromLanguage", fromLanguage);
         //request.setAttribute("toLanguage", toLanguage);
 
-        if(!"".equals(wordParam)) {
+        if (!"".equals(wordParam)) {
 
             Word word = new Word(wordParam.trim());
 
             /*
             //user.setWord(word);
-            if(language.equals("english")) {
+            if (language.equals("english")) {
                 try {
                     DictionaryManager.selectEnglishWord(word);
                     request.setAttribute("word", word);
                 } catch(Exception e) {
-                    logger.error(e);
+                    log.error(e);
                 }
             } else if(language.equals("irish")) {
                 try {
@@ -150,29 +138,23 @@ public class DictionaryServlet extends InitServlet {
                     //request.setAttribute("irishWord", word);
                     request.setAttribute("word", word);
                 } catch(Exception e) {
-                    logger.error(e);
+                    log.error(e);
                 }
             }
             */
 
             try {
-
                 DictionaryDatabaseManager.selectWord(word, languageId, getConnectionPool());
-                
                 request.setAttribute("word", word);
-
-            } catch(Exception e) {
-                logger.error(e);
+            } catch (Exception e) {
+                log.error(e);
                 StringWriter stringWriter = new StringWriter();
                 PrintWriter printWriter = new PrintWriter(stringWriter);
                 e.printStackTrace(printWriter);
-                logger.error(stringWriter.toString());
+                log.error(stringWriter.toString());
             }
-
             include(request, response, JSP_RESULTS);
-
         } else {
-
             /*
             // Word select failed.  Redisplay the search Page
             // try looking up in the Irish dictionary
@@ -183,23 +165,18 @@ public class DictionaryServlet extends InitServlet {
             response.sendRedirect(java.net.URLDecoder.decode(thisReqURI, "UTF-8"));
             //request.getRequestDispatcher("dictionary").forward(request, response);
             */
-
             /*
             //include(request, response, JSP_HOME);
             String requestURI = new StringBuilder().append(request.getContextPath()).append("/home").append("?").append(locale).toString();
-            logger.debug("requestURI = "+requestURI);
+            log.debug("requestURI = "+requestURI);
             response.sendRedirect(java.net.URLDecoder.decode(requestURI, "UTF-8"));
             //request.getRequestDispatcher("dictionary").forward(request, response);
             */
-
             include(request, response, JSP_HOME);
         }
-
     }
 
-
     public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //HttpSession session = request.getSession(false);
         //User user = (User)session.getAttribute("user");
         request.setAttribute("pageType", "dictionary");
