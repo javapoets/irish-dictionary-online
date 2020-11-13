@@ -1,80 +1,173 @@
 package online.irishdictionary.servlet;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-
 import online.irishdictionary.model.Word;
 import online.irishdictionary.database.DictionaryDatabaseManager;
 import online.irishdictionary.servlet.InitServlet;
 
-//public class EnglishServlet extends InitServlet {
-public class EnglishServlet extends WordServlet {
+public class WordServlet extends InitServlet {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private final String JSP_HOME = DIR_VIEW + "home.jsp";
     private final String JSP_RESULTS = DIR_VIEW + "results.jsp";
-    private final String FSLASH = "/";
-    private final String fromLanguage = "english";
-    private final String toLanguage = "irish";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.debug("doGet(request, response)");
+        log.debug("doGet(request, response)");
         doPost(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.debug("doPost(request, response)");
+        log.debug("doPost(request, response)");
 
+        //* Debug parameters:
         java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
-        while(parameterNames.hasMoreElements()) {
+        log.debug("Parameters:");
+        while (parameterNames.hasMoreElements()) {
             String parameterName = (String)parameterNames.nextElement();
-            logger.debug(parameterName+" = "+request.getParameter(parameterName));
-            //logger.debug("parameterName = "+parameterName);
+            log.debug(parameterName+" = "+request.getParameter(parameterName));
+            //log.debug("parameterName = "+parameterName);
+        }
+        //*/
+
+        //String wordParameter = request.getParameter("word");
+        String wordParameter = null;
+        try {
+            wordParameter = request.getParameter("word");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        String pathInfo = request.getPathInfo();
-        logger.debug("pathInfo = '"+pathInfo+"'");
+        String language = request.getParameter("language");
+        String languageIdParameter = request.getParameter("languageId");
+        String fromLanguage = request.getParameter("fromLanguage");
+        String toLanguage = request.getParameter("toLanguage");
+        String remoteAddr = request.getRemoteAddr();
+        String locale = (request.getLocale()).toString();
+
+        log.debug("remoteAddr = "+remoteAddr);
+        log.debug("locale = "+locale);
+        log.debug("wordParameter = "+wordParameter);
+        log.debug("language = "+language);
+        log.debug("languageIdParameter = "+languageIdParameter);
+        log.debug("fromLanguage = "+fromLanguage);
+        log.debug("toLanguage = "+toLanguage);
+        StringBuilder stringBuilder = new StringBuilder()
+            .append(locale)
+            .append("/")
+            .append(remoteAddr)
+            .append(": ")
+            .append(language)
+            .append("/")
+            .append(wordParameter);
+        log.info(stringBuilder.toString());
+
+        if (wordParameter == null) {
+            //response.sendRedirect(java.net.URLDecoder.decode(request.getContextPath()+"/dictionary", "UTF-8"));
+            response.sendRedirect("home");
+            return;
+        }
+
+        if (
+            language == null
+            || language.equals("null")
+        ) {
+            language = "irish";
+            stringBuilder = new StringBuilder()
+                .append(locale)
+                .append("/")
+                .append(remoteAddr)
+                .append(": ")
+                .append(language)
+                .append("/")
+                .append(wordParameter);
+            log.info(stringBuilder.toString());
+        }
+
+        if (fromLanguage == null) {
+            fromLanguage = language;
+            request.setAttribute("fromLanguage", fromLanguage);
+        }
+
+        if (toLanguage == null) {
+            if (fromLanguage != null) {
+                toLanguage = fromLanguage.equals("english") ? "irish" : "english";
+                request.setAttribute("toLanguage", toLanguage);
+            }
+        }
+
+        displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+    }
+
+    public void displayWord(
+        HttpServletRequest request
+        , HttpServletResponse response
+        , String wordParameter
+        , String fromLanguage
+        , String toLanguage
+    ) throws ServletException, IOException {
+        log.debug("displayWord(request, response, "+wordParameter+", "+fromLanguage+", "+toLanguage+")");
+
+        int languageId = -1;
         /*
-        String[] split = pathInfo.split(FSLASH);
-        logger.debug("split.length = "+split.length);
-        logger.debug("split[0] = "+split[0]+", split[1] = "+split[1]);
+        if (languageIdParameter != null) {
+            try {
+                languageId = Integer.parseInt(languageIdParam);
+            } catch (Exception e) {
+                log.error(e);
+            }
+        } else {
+            if (fromLanguage != null && fromLanguage.equals("english")) {
+                languageId = 1;
+            } else {
+                languageId = 2;
+            }
+        }
         */
 
-        //String language = request.getParameter("language");
-        //String wordParam = request.getParameter("word");
-        //String language = split[0];
-        //String wordParam = split[1];
-        String wordParam = pathInfo.substring(1);
+        //log.debug("languageId = "+languageIdParam);
+        //request.setAttribute("fromLanguage", fromLanguage);
+        //request.setAttribute("toLanguage", toLanguage);
 
-        logger.debug("word = "+wordParam);
-        //logger.debug("language = "+language);
-
-        String letter;
-
-        if(!"".equals(wordParam.trim())) {
-
-            Word word = new Word(wordParam.trim());
+        if (!EMPTY.equals(wordParameter)) {
+            Word word = new Word(wordParameter.trim());
+            /*
+            //user.setWord(word);
+            if (language.equals("english")) {
+                try {
+                    DictionaryManager.selectEnglishWord(word);
+                    request.setAttribute("word", word);
+                } catch(Exception e) {
+                    log.error(e);
+                }
+            } else if(language.equals("irish")) {
+                try {
+                    DictionaryManager.selectIrishWord(word);
+                    //request.setAttribute("irishWord", word);
+                    request.setAttribute("word", word);
+                } catch(Exception e) {
+                    log.error(e);
+                }
+            }
+            */
 
             try {
-                DictionaryDatabaseManager.selectEnglishWord(word, getConnectionPool());
-                request.setAttribute("fromLanguage", fromLanguage);
-                request.setAttribute("toLanguage", toLanguage);
+                DictionaryDatabaseManager.selectWord(word, languageId, getConnectionPool());
                 request.setAttribute("word", word);
-            } catch(Exception e) {
-                logger.error(e);
+            } catch (Exception e) {
+                log.error(e);
+                StringWriter stringWriter = new StringWriter();
+                PrintWriter printWriter = new PrintWriter(stringWriter);
+                e.printStackTrace(printWriter);
+                log.error(stringWriter.toString());
             }
-
-            //displayResults(request, response);
             include(request, response, JSP_RESULTS);
-
         } else {
-
+            /*
             // Word select failed.  Redisplay the search Page
             // try looking up in the Irish dictionary
             String thisReqURI = request.getParameter("thisReqURI");
@@ -83,13 +176,19 @@ public class EnglishServlet extends WordServlet {
             }
             response.sendRedirect(java.net.URLDecoder.decode(thisReqURI, "UTF-8"));
             //request.getRequestDispatcher("dictionary").forward(request, response);
+            */
+            /*
+            //include(request, response, JSP_HOME);
+            String requestURI = new StringBuilder().append(request.getContextPath()).append("/home").append("?").append(locale).toString();
+            log.debug("requestURI = "+requestURI);
+            response.sendRedirect(java.net.URLDecoder.decode(requestURI, "UTF-8"));
+            //request.getRequestDispatcher("dictionary").forward(request, response);
+            */
+            include(request, response, JSP_HOME);
         }
-
     }
 
-
     public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //HttpSession session = request.getSession(false);
         //User user = (User)session.getAttribute("user");
         request.setAttribute("pageType", "dictionary");
@@ -197,13 +296,13 @@ public class EnglishServlet extends WordServlet {
             user.setWord(word);
             if(language.equals("english")) {
                 WordBean wordBean = new WordBean(word.trim());
-                DictionaryDatabaseManager.selectEnglishWord(wordBean);
+                DictionaryManager.selectEnglishWord(wordBean);
                 request.setAttribute("wordBean", wordBean);
                 System.out.println("request.setAttribute(\"wordBean\", wordBean);");
                 displayDictResults(request, response);
             } else if(language.equals("irish")) {
                 WordBean wordBean = new WordBean(word.trim());
-                DictionaryDatabaseManager.selectIrishWord(wordBean);
+                DictionaryManager.selectIrishWord(wordBean);
                 request.setAttribute("irishWordBean", wordBean);
                 System.out.println("request.setAttribute(\"irishWordBean\", wordBean);");
                 displayDictResults(request, response);
@@ -247,7 +346,7 @@ public class EnglishServlet extends WordServlet {
             WordBean wordBean = new WordBean();
             wordBean.setWord(word);
 
-            DictionaryDatabaseManager.selectEnglishWord(wordBean);
+            DictionaryManager.selectEnglishWord(wordBean);
 
                 session.setAttribute("wordBean", wordBean);
                 //try {
@@ -284,14 +383,14 @@ public class EnglishServlet extends WordServlet {
         if  ((letter != null) && !(letter.trim().equals(""))) {
             if(language.equals("ei")) {
                 Set letterWordSet = new TreeSet();
-                DictionaryDatabaseManager.selectWordByLetter(letterWordSet, letter);
+                DictionaryManager.selectWordByLetter(letterWordSet, letter);
                     request.setAttribute("letterWordSet", letterWordSet);
                     request.setAttribute("pageType", "dictionary");
                     displayJSP(request, response, "letterList.jsp");
 
             } else if(language.equals("ie")) {
                 Set letterWordSet = new TreeSet();
-                DictionaryDatabaseManager.selectWordByLetter(letterWordSet, letter);
+                DictionaryManager.selectWordByLetter(letterWordSet, letter);
                     request.setAttribute("letterWordSet", letterWordSet);
                     request.setAttribute("pageType", "dictionary");
                     displayJSP(request, response, "letterListIrish.jsp");
@@ -413,7 +512,7 @@ public class EnglishServlet extends WordServlet {
         String usageId = request.getParameter("usageId");
 
         UsageBean usageBean = new UsageBean(usageId);
-        DictionaryDatabaseManager.selectUsageByUsageId(usageBean);
+        DictionaryManager.selectUsageByUsageId(usageBean);
         request.setAttribute("usageBean", usageBean);
         displayJSP(request, response, "editUsage.jsp");
     }
@@ -424,7 +523,7 @@ public class EnglishServlet extends WordServlet {
         UsageBean usageBean = new UsageBean();
         ServletUtil.beanIntrospect(usageBean, request);
 
-        DictionaryDatabaseManager.insertUsage(usageBean);
+        DictionaryManager.insertUsage(usageBean);
         request.setAttribute("usageBean", usageBean);
         displayJSP(request, response, "usage.jsp");
     }

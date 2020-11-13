@@ -80,7 +80,7 @@ public class DictionaryServlet extends InitServlet {
                 .append(": ")
                 .append(language)
                 .append("/")
-                .append(wordParam);
+                .append(wordParameter);
             log.info(stringBuilder.toString());
         }
 
@@ -119,9 +119,9 @@ public class DictionaryServlet extends InitServlet {
         //request.setAttribute("fromLanguage", fromLanguage);
         //request.setAttribute("toLanguage", toLanguage);
 
-        if (!"".equals(wordParam)) {
+        if (!EMPTY.equals(wordParameter)) {
 
-            Word word = new Word(wordParam.trim());
+            Word word = new Word(wordParameter.trim());
 
             /*
             //user.setWord(word);

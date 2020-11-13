@@ -156,8 +156,19 @@ public class VerbDatabaseManager {
 
     }
 
-    public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionManager connectionManager) {
-        logger.debug("selectAllVerbs(verbList, languageId, connectionManager)");
+    public static void selectAllVerbs(List<Verb> verbList, String languageId, Object connectionPoolObject) throws SQLException, Exception {
+        logger.debug("selectAllVerbs(verbList, "+languageId +", "+connectionPoolObject+")");
+        selectAllVerbs(verbList, languageId, (ConnectionPool) connectionPoolObject);
+    }
+
+    public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionPool connectionPool) throws SQLException, Exception {
+        logger.debug("selectAllVerbs(verbList, "+languageId +", "+connectionPool+")");
+        selectAllVerbs(verbList, languageId, new ConnectionManager(connectionPool));
+    }
+
+    public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionManager connectionManager) throws SQLException, Exception {
+    //public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionManager connectionManager) {
+        logger.debug("selectAllVerbs(verbList, "+languageId +", "+connectionManager+")");
 
         try {
 
