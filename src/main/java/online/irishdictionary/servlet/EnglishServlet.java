@@ -1,22 +1,23 @@
 package online.irishdictionary.servlet;
 
 import java.io.IOException;
-
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-
 import online.irishdictionary.model.Word;
 import online.irishdictionary.database.DictionaryDatabaseManager;
 import online.irishdictionary.servlet.InitServlet;
 
+@WebServlet(name = "EnglishServlet", asyncSupported = false, urlPatterns = {
+      "english"
+    , "english/*"
+})
+//@Log4j2
 //public class EnglishServlet extends InitServlet {
 public class EnglishServlet extends WordServlet {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private final String JSP_HOME = DIR_VIEW + "home.jsp";
     private final String JSP_RESULTS = DIR_VIEW + "results.jsp";
     private final String FSLASH = "/";
@@ -24,57 +25,55 @@ public class EnglishServlet extends WordServlet {
     private final String toLanguage = "irish";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.debug("doGet(request, response)");
+        log.debug("doGet(request, response)");
         doPost(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.debug("doPost(request, response)");
+        log.debug("doPost(request, response)");
 
         java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
         while(parameterNames.hasMoreElements()) {
             String parameterName = (String)parameterNames.nextElement();
-            logger.debug(parameterName+" = "+request.getParameter(parameterName));
-            //logger.debug("parameterName = "+parameterName);
+            log.debug(parameterName+" = "+request.getParameter(parameterName));
+            //log.debug("parameterName = "+parameterName);
         }
 
         String pathInfo = request.getPathInfo();
-        logger.debug("pathInfo = '"+pathInfo+"'");
-        /*
+        log.debug("pathInfo = '"+pathInfo+"'");
         String[] split = pathInfo.split(FSLASH);
-        logger.debug("split.length = "+split.length);
-        logger.debug("split[0] = "+split[0]+", split[1] = "+split[1]);
-        */
+        log.debug("split.length = "+split.length);
+        log.debug("split[0] = "+split[0]+", split[1] = "+split[1]+", split[2] = "+split[2]);
 
         //String language = request.getParameter("language");
         //String wordParam = request.getParameter("word");
         //String language = split[0];
-        //String wordParam = split[1];
-        String wordParam = pathInfo.substring(1);
+        //String wordParam = pathInfo.substring(1);
+        String fromLanguage = "english";
+        String toLanguage = split[1];
+        String wordParameter = split[2];
 
-        logger.debug("word = "+wordParam);
-        //logger.debug("language = "+language);
+        log.debug("wordParameter = " + wordParameter);
+        log.debug("fromLanguage = " + fromLanguage);
+        log.debug("toLanguage = " + toLanguage);
 
+        super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+
+        /*
         String letter;
-
         if(!"".equals(wordParam.trim())) {
-
             Word word = new Word(wordParam.trim());
-
             try {
                 DictionaryDatabaseManager.selectEnglishWord(word, getConnectionPool());
                 request.setAttribute("fromLanguage", fromLanguage);
                 request.setAttribute("toLanguage", toLanguage);
                 request.setAttribute("word", word);
             } catch(Exception e) {
-                logger.error(e);
+                log.error(e);
             }
-
             //displayResults(request, response);
             include(request, response, JSP_RESULTS);
-
         } else {
-
             // Word select failed.  Redisplay the search Page
             // try looking up in the Irish dictionary
             String thisReqURI = request.getParameter("thisReqURI");
@@ -84,9 +83,8 @@ public class EnglishServlet extends WordServlet {
             response.sendRedirect(java.net.URLDecoder.decode(thisReqURI, "UTF-8"));
             //request.getRequestDispatcher("dictionary").forward(request, response);
         }
-
+        */
     }
-
 
     public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

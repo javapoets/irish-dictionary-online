@@ -149,3 +149,12 @@ war.dependsOn explodedWar
 war {
     archiveName = project.property('name') +'-'+ artifactMajorVersion +'-'+ artifactBuildNumber + '.war'
 }
+
+task copyView(type: Copy) {
+    println 'Executing copyView'
+    from('src/main/webapp/view') {
+        include '**'
+        exclude '**/*.bak'
+    } 
+    into 'build/exploded/view'
+}

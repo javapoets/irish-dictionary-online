@@ -3,8 +3,6 @@
     //String contextUrl = online.irishdictionary.servlet.InitServlet.init.getProperty("contextUrl");
     //String contextUrl = online.irishdictionary.servlet.InitServlet.init.getProperty("contextUrl");
     String contextUrl = (String) application.getAttribute("contextUrl");
-
-
     String imagesUrl = contextUrl + "view/images/";
     String sortParameter = null;
     String fieldName, fieldValue = "";

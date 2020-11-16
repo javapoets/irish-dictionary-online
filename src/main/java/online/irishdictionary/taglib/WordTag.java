@@ -2,16 +2,11 @@ package online.irishdictionary.taglib;
 
 import java.util.List;
 import java.util.StringTokenizer;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.Tag;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-
 import online.irishdictionary.model.Definition;
 import online.irishdictionary.model.Usage;
 import online.irishdictionary.model.Word;
@@ -24,7 +19,7 @@ import online.irishdictionary.util.Validator;
  */
 public class WordTag implements Tag {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
 
     private static final String ENGLISH = "english";
     private static final String IRISH = "irish";
@@ -46,23 +41,20 @@ public class WordTag implements Tag {
     }
 
     public int doStartTag() throws JspException {
-        //logger.debug("doStartTag()");
+        //log.debug("doStartTag()");
 
-        JspWriter out = this.pageContext.getOut();
+        JspWriter jspWriter = this.pageContext.getOut();
         Word word = (Word) pageContext.getAttribute("word");
         String fromLanguage = (String) pageContext.getAttribute("fromLanguage");
         String toLanguage = (String) pageContext.getAttribute("toLanguage");
-
-        logger.debug("word.getWord() = " + word.getWord());
-        logger.debug("fromLanguage = " + fromLanguage);
-        logger.debug("toLanguage = " + toLanguage);
+        log.debug("word.getWord() = " + word.getWord());
+        log.debug("fromLanguage = " + fromLanguage);
+        log.debug("toLanguage = " + toLanguage);
 
         try {
-
             if(word != null) {
-                out.print(createHtmlDefinition(word, fromLanguage, toLanguage));
+                jspWriter.print(createHtmlDefinition(word, fromLanguage, toLanguage));
             }
-
         } catch(java.io.IOException e) {
             System.out.println("IO Error: " + e.getMessage());
             throw new JspTagException("IO Error: " + e.getMessage());
@@ -93,7 +85,7 @@ public class WordTag implements Tag {
     }
 
     public String createHtmlDefinition(Word word, String fromLanguage, String toLanguage) {
-        logger.trace("createHtmlDefinition('"+word.getWord()+"', '"+fromLanguage+"', '"+toLanguage+"')");
+        log.trace("createHtmlDefinition('"+word.getWord()+"', '"+fromLanguage+"', '"+toLanguage+"')");
 
         StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
         List definitionList = word.getDefinitionList();
@@ -110,7 +102,7 @@ public class WordTag implements Tag {
 
         if((definitionList != null) && definitionList.size() != 0) {
 
-            logger.debug("definitionList.size() = " + definitionList.size());
+            log.debug("definitionList.size() = " + definitionList.size());
 
             stringBuilder.append("<div>");
             stringBuilder.append("<ol>");
@@ -122,9 +114,9 @@ public class WordTag implements Tag {
 
                 Definition definition = (Definition) sortedList.get(i);
 
-                logger.debug("definition.getType() = " + definition.getType());
-                logger.debug("definition.getGender() = " + definition.getGender());
-                logger.debug("definition.getDescription() = " + definition.getDescription());
+                log.debug("definition.getType() = " + definition.getType());
+                log.debug("definition.getGender() = " + definition.getGender());
+                log.debug("definition.getDescription() = " + definition.getDescription());
 
                 type = definition.getType();
                 gender = definition.getGender();
@@ -260,7 +252,7 @@ public class WordTag implements Tag {
     }
 
     private String linkizeWords(String words, String fromLanguage, String toLanguage) {
-        logger.trace("linkizeWords('" + words + "', '" + fromLanguage + "', '" + toLanguage + "')");
+        log.trace("linkizeWords('" + words + "', '" + fromLanguage + "', '" + toLanguage + "')");
 
         StringBuilder stringBuilder = new StringBuilder();
         StringTokenizer st = new StringTokenizer(words);
@@ -328,8 +320,9 @@ public class WordTag implements Tag {
     }
 
     private String addHref(String word, String fromLanguage, String toLanguage) {
-        //logger.trace("addHref('" + word + "', '" + fromLanguage + "', '" + toLanguage + "')");
+        log.trace("addHref('" + word + "', '" + fromLanguage + "', '" + toLanguage + "')");
 
+        /*
         return new StringBuilder()
             .append("<a href=\"dictionary")
             .append("?language=").append(fromLanguage)
@@ -339,10 +332,20 @@ public class WordTag implements Tag {
             .append(word)
             .append("</a>")
             .toString();
+        */
+        return new StringBuilder()
+            .append("<a href=\"/")
+            .append(fromLanguage)
+            .append("/").append(toLanguage)
+            .append("/").append(word)
+            .append("\">")
+            .append(word)
+            .append("</a>")
+            .toString();
     }
 
     private String linkizeUsage(String words, String searchWord, String fromLanguage, String toLanguage) {
-        logger.trace("linkizeUsage('" + words + "', '" + searchWord + "', '" + fromLanguage + "', '" + toLanguage + "')");
+        log.trace("linkizeUsage('" + words + "', '" + searchWord + "', '" + fromLanguage + "', '" + toLanguage + "')");
 
         StringBuilder stringBuilder = new StringBuilder();
         StringTokenizer st = new StringTokenizer(words);
@@ -409,14 +412,20 @@ public class WordTag implements Tag {
     }
 
     private String addHrefUsage(String word, String searchWord, String fromLanguage, String toLanguage) {
-        //logger.trace("addHrefUsage('"+word+"', '"+searchWord+"', '" + fromLanguage + "', '" + toLanguage + "')");
+        log.trace("addHrefUsage('"+word+"', '"+searchWord+"', '" + fromLanguage + "', '" + toLanguage + "')");
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder
+        /*
+        StringBuilder stringBuilder = new StringBuilder()
             .append("<a href=\"dictionary")
             .append("?language=").append(fromLanguage)
             .append("&toLanguage=").append(toLanguage)
             .append("&word=").append(word).append("\"");
+        */
+        StringBuilder stringBuilder = new StringBuilder()
+            .append("<a href=\"/")
+            .append(fromLanguage)
+            .append("/").append(toLanguage)
+            .append("/").append(word).append("\"");
 
         if (word.toLowerCase().equalsIgnoreCase(searchWord)) {
 

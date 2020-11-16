@@ -43,27 +43,24 @@ public class WordServlet extends InitServlet {
         }
 
         String language = request.getParameter("language");
-        String languageIdParameter = request.getParameter("languageId");
+        //String languageIdParameter = request.getParameter("languageId");
         String fromLanguage = request.getParameter("fromLanguage");
         String toLanguage = request.getParameter("toLanguage");
         String remoteAddr = request.getRemoteAddr();
         String locale = (request.getLocale()).toString();
 
-        log.debug("remoteAddr = "+remoteAddr);
-        log.debug("locale = "+locale);
         log.debug("wordParameter = "+wordParameter);
         log.debug("language = "+language);
-        log.debug("languageIdParameter = "+languageIdParameter);
+        log.debug("remoteAddr = "+remoteAddr);
+        log.debug("locale = "+locale);
+        //log.debug("languageIdParameter = "+languageIdParameter);
         log.debug("fromLanguage = "+fromLanguage);
         log.debug("toLanguage = "+toLanguage);
         StringBuilder stringBuilder = new StringBuilder()
             .append(locale)
-            .append("/")
-            .append(remoteAddr)
-            .append(": ")
-            .append(language)
-            .append("/")
-            .append(wordParameter);
+            .append("/").append(remoteAddr)
+            .append(":").append(language)
+            .append("/").append(wordParameter);
         log.info(stringBuilder.toString());
 
         if (wordParameter == null) {
@@ -109,8 +106,10 @@ public class WordServlet extends InitServlet {
         , String wordParameter
         , String fromLanguage
         , String toLanguage
+        //, String languageIdParameter
     ) throws ServletException, IOException {
-        log.debug("displayWord(request, response, "+wordParameter+", "+fromLanguage+", "+toLanguage+")");
+        log.debug("displayWord(request, response, '"+wordParameter+"', '"+fromLanguage+"', '"+toLanguage+"')");
+        //log.debug("displayWord(request, response, '"+wordParameter+"', '"+fromLanguage+"', '"+toLanguage+"', '"+languageIdParameter+"')");
 
         int languageId = -1;
         /*
@@ -121,17 +120,17 @@ public class WordServlet extends InitServlet {
                 log.error(e);
             }
         } else {
+        */
             if (fromLanguage != null && fromLanguage.equals("english")) {
                 languageId = 1;
             } else {
                 languageId = 2;
             }
-        }
-        */
+        //}
 
-        //log.debug("languageId = "+languageIdParam);
-        //request.setAttribute("fromLanguage", fromLanguage);
-        //request.setAttribute("toLanguage", toLanguage);
+        log.debug("languageId = " + languageId);
+        request.setAttribute("fromLanguage", fromLanguage);
+        request.setAttribute("toLanguage", toLanguage);
 
         if (!EMPTY.equals(wordParameter)) {
             Word word = new Word(wordParameter.trim());
@@ -157,6 +156,7 @@ public class WordServlet extends InitServlet {
 
             try {
                 DictionaryDatabaseManager.selectWord(word, languageId, getConnectionPool());
+                //DictionaryDatabaseManager.selectWord(word, language, getConnectionPool());
                 request.setAttribute("word", word);
             } catch (Exception e) {
                 log.error(e);

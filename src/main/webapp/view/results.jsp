@@ -1,13 +1,29 @@
 <%--@ include file="/view/header.jsp" --%>
-
 <%@ page
     language="java"
     contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"
     session="false" %>
-<%@ include file="/view/imports.jsp" %>
-<%@ include file="/view/logger.jsp" %>
-<%@ include file="/view/variables.jsp" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="online.irishdictionary.model.Word" %>
+<%@ page import="online.irishdictionary.model.Verb" %>
+<%@ page import="online.irishdictionary.model.VerbConjugation" %>
+<%!
+    org.apache.logging.log4j.Logger log;
+    public void jspInit() {
+        log = org.apache.logging.log4j.LogManager.getLogger();
+        log.debug("jspInit()");
+        log.debug("log = " + log);
+    }
+%>
+<%
+    String contextUrl = (String) application.getAttribute("contextUrl");
+    String imagesUrl = contextUrl + "view/images/";
+    log.debug("contextUrl = " + contextUrl);
+%>
 <%@ taglib uri="/WEB-INF/irishdictionary.tld" prefix="irishdictionary" %>
 <%@ taglib prefix="javapoets" tagdir="/WEB-INF/tags" %>
 
@@ -42,45 +58,40 @@
 <%
 
     Word word = (Word) request.getAttribute("word");
-    logger.debug("word = " + word);
+    String fromLanguage = (String)request.getAttribute("fromLanguage");
+    String toLanguage = (String)request.getAttribute("toLanguage");
+    log.debug("word = " + word);
+    log.debug("fromLanguage = "+fromLanguage);
+    log.debug("toLanguage = "+toLanguage);
 
+    pageContext.setAttribute("fromLanguage", fromLanguage);
+    pageContext.setAttribute("toLanguage", toLanguage);
     if(word != null) pageContext.setAttribute("word", word);
 
-    String emailSent = (String) request.getAttribute("emailSent");
-
+    //String emailSent = (String) request.getAttribute("emailSent");
     String wordEnglish = null;
     String wordIrish = null;
-    String verbEnglish = null;
-    String verbIrish = null;
+    //String verbEnglish = null;
+    //String verbIrish = null;
 
-    String verbParam = request.getParameter("verb");
-    String wordParam = request.getParameter("word");
-    String language = request.getParameter("language");
+    //String verbParam = request.getParameter("verb");
+    //String wordParam = request.getParameter("word");
+    //String language = request.getParameter("language");
 
-    logger.debug("verbParam = " + verbParam);
-    logger.debug("wordParam = " + wordParam);
-    logger.debug("language = " + language);
+    //log.debug("verbParam = " + verbParam);
+    //log.debug("wordParam = " + wordParam);
+    //log.debug("language = " + language);
 
-    if(language != null) {
-        if(language.equals("english")) {
-            if(wordParam != null) wordEnglish = wordParam;
-            if(verbParam != null) verbEnglish = verbParam;
-        } else if(language.equals("irish")) {
-            if(wordParam != null) wordIrish = wordParam;
-            if(verbParam != null) verbIrish = verbParam;
+    if(fromLanguage != null) {
+        if(fromLanguage.equals("english")) {
+            if(word != null) wordEnglish = word.getWord();
+            //if(verbParam != null) verbEnglish = verbParam;
+        } else if(fromLanguage.equals("irish")) {
+            if(word != null) wordIrish = word.getWord();
+            //if(verbParam != null) verbIrish = verbParam;
         }
     }
 
-    String fromLanguage = language;
-    //String fromLanguage = request.getParameter("fromLanguage");
-    //if(fromLanguage == null) fromLanguage = (String)request.getAttribute("fromLanguage");
-    //if(fromLanguage == null) fromLanguage = language;
-    String toLanguage = request.getParameter("toLanguage");
-    if(toLanguage == null) toLanguage = (String)request.getAttribute("toLanguage");
-    //System.out.println("results.jsp: fromLanguage = "+fromLanguage);
-    //System.out.println("results.jsp: toLanguage = "+toLanguage);
-    pageContext.setAttribute("fromLanguage", fromLanguage);
-    pageContext.setAttribute("toLanguage", toLanguage);
 
 %>
                       
