@@ -135,6 +135,28 @@ task prod {
     }
 }
 
+task buildName {
+    println 'Executing '+project.name+'.buildName()'
+    doLast {
+        println "$buildName"
+        def buildProperties = new Properties()
+        file("src/main/config/"+buildName+".properties").withInputStream {
+            stream -> buildProperties.load(stream)
+        }
+        println buildProperties.getProperty("protocol") + "://" + buildProperties.getProperty("server") + ":" + buildProperties.getProperty("port") + buildProperties.getProperty("context")
+        def server = buildProperties.getProperty("server")
+        println "server = " + server
+        copy {
+            from 'src/main/config/init.properties'
+            into 'src/main/webapp/WEB-INF'
+            filter(
+                ReplaceTokens
+              , tokens: buildProperties
+            )
+        }
+    }
+}
+
 // E.g. project-name-MAJOR.MINOR.PATCH-BUILD-NUMBER.jar
 // E.g. irish-dictionary-online-0.1.0-2-SNAPSHOT.jar
 jar.baseName = project.name +'-'+ artifactMajorVersion +'-'+ artifactBuildNumber
