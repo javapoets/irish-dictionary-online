@@ -20,10 +20,8 @@ import online.irishdictionary.util.Validator;
 public class WordTag implements Tag {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
-
     private static final String ENGLISH = "english";
     private static final String IRISH = "irish";
-
     private String invalidChars = "_-!@#$%^&*()+[]=\\|?/'\",.<>`~:; ";
     protected PageContext pageContext;
     protected Tag parent;
@@ -52,10 +50,10 @@ public class WordTag implements Tag {
         log.debug("toLanguage = " + toLanguage);
 
         try {
-            if(word != null) {
+            if (word != null) {
                 jspWriter.print(createHtmlDefinition(word, fromLanguage, toLanguage));
             }
-        } catch(java.io.IOException e) {
+        } catch (java.io.IOException e) {
             System.out.println("IO Error: " + e.getMessage());
             throw new JspTagException("IO Error: " + e.getMessage());
         }
@@ -85,7 +83,7 @@ public class WordTag implements Tag {
     }
 
     public String createHtmlDefinition(Word word, String fromLanguage, String toLanguage) {
-        log.trace("createHtmlDefinition('"+word.getWord()+"', '"+fromLanguage+"', '"+toLanguage+"')");
+        //log.trace("createHtmlDefinition('"+word.getWord()+"', '"+fromLanguage+"', '"+toLanguage+"')");
 
         StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
         List definitionList = word.getDefinitionList();
@@ -100,39 +98,28 @@ public class WordTag implements Tag {
           .append("<span class=\"word\">").append(word.getWord()).append("</span>")
           .append("</div>");
 
-        if((definitionList != null) && definitionList.size() != 0) {
-
+        if ((definitionList != null) && definitionList.size() != 0) {
             log.debug("definitionList.size() = " + definitionList.size());
-
             stringBuilder.append("<div>");
             stringBuilder.append("<ol>");
-
             String type, gender, description;
             List sortedList = definitionList;
-
             for(int i = 0; i < sortedList.size(); i++) {
-
                 Definition definition = (Definition) sortedList.get(i);
-
                 log.debug("definition.getType() = " + definition.getType());
                 log.debug("definition.getGender() = " + definition.getGender());
                 log.debug("definition.getDescription() = " + definition.getDescription());
-
                 type = definition.getType();
                 gender = definition.getGender();
                 description = definition.getDescription();
-
                 //boolean hasType = !"".equals(type);
                 //boolean hasGender = !"".equals(gender);
                 //boolean hasDescription = !"".equals(description);
                 boolean hasType = type != null && !type.equals("");
                 boolean hasGender = gender != null && !gender.equals("");
                 boolean hasDescription = description != null && !description.equals("");
-
                 if((definition.getDefinition() != null) && !(definition.getDefinition().trim().equals(""))) {
-
                     stringBuilder.append("<li>");
-
                     //if((definition.getType() != null) && !definition.getType().equals("")) {
                         //stringBuilder.append("<span class=\"type\">" + definition.getType() + "</span>");
                         /*
@@ -142,12 +129,10 @@ public class WordTag implements Tag {
                         }
                         */
                     //}
-
                     stringBuilder
                         .append("&nbsp;<span class=\"definition\">")
                         .append(linkizeWords(definition.getDefinition(), toLanguage, fromLanguage))
                         .append("</span>");
-
                     /*
                     if(
                         hasType
@@ -162,11 +147,9 @@ public class WordTag implements Tag {
                         stringBuilder.append(")</span>");
                     }
                     */
-
                     if(hasDescription) {
                         stringBuilder.append("<span class=\"description\">"+description+"</span>");
                     }
-
                     stringBuilder.append("</li>");
                 }
             }
@@ -174,54 +157,39 @@ public class WordTag implements Tag {
             stringBuilder.append("</div>");
         }
 
-        if((usageList != null) && (usageList.size() > 0)) {
-
+        if ((usageList != null) && (usageList.size() > 0)) {
             stringBuilder.append("<div class=\"usage\">");
             stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
             stringBuilder.append("<ol>");
-
             //List sortedList = (List) usageList.getSortedList("usageLength");
             List sortedList = usageList;
             int start = word.getStartUsageIndex();
             int end = sortedList.size();
-
             if(usageList.size() > word.getEndUsageIndex()) {
                 end = word.getEndUsageIndex();
             }
-
             String type, usage, usageTranslated, description;
-
-            for(int i = start; i < end; i++) {
-
+            for (int i = start; i < end; i++) {
                 Usage usageObject = (Usage)sortedList.get(i);
                 usage           = usageObject.getUsage();
                 usageTranslated = usageObject.getUsageTranslated();
                 type            = usageObject.getType();
                 description     = usageObject.getDescription();
-
                 boolean hasUsage = !"".equals(usage);
                 boolean hasUsageTranslated = !"".equals(usageTranslated);
                 boolean hasType = !"".equals(type);
                 boolean hasDescription = !"".equals(description);
-
-
                 stringBuilder.append("<li>");
-
-                if(hasUsage) {
+                if (hasUsage) {
                     stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage));
-
-                    if(hasDescription && ENGLISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
-
+                    if (hasDescription && ENGLISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                 }
-
                 stringBuilder.append("<br/>");
-
-                if(hasUsageTranslated) {
+                if (hasUsageTranslated) {
                     stringBuilder.append("<span class=\"translated\">");
                     stringBuilder.append(linkizeWords(usageTranslated, toLanguage, fromLanguage));
                     stringBuilder.append("</span>");
                 }
-
                 /*
                 if(
                     hasType
@@ -231,64 +199,50 @@ public class WordTag implements Tag {
                     if(hasType) stringBuilder.append(type);
                     stringBuilder.append(")</span>");
                 }
-
                 if(hasDescription) {
                     stringBuilder.append("<span class=\"description\">").append(linkize(description, fromLanguage, toLanguage)).append("</span>");
                 }
                 */
                 //if(hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
-                if(hasDescription && IRISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
-
+                if (hasDescription && IRISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                 stringBuilder.append("</li>");
             }
             stringBuilder.append("</ol>");
             stringBuilder.append("</div>");
             stringBuilder.append("</div>");
         }
-
         stringBuilder.append("</div>");  // stringBuilder.append("<div class=\"definition\">");
-
         return stringBuilder.toString();
     }
 
     private String linkizeWords(String words, String fromLanguage, String toLanguage) {
-        log.trace("linkizeWords('" + words + "', '" + fromLanguage + "', '" + toLanguage + "')");
+        //log.trace("linkizeWords('" + words + "', '" + fromLanguage + "', '" + toLanguage + "')");
 
         StringBuilder stringBuilder = new StringBuilder();
         StringTokenizer st = new StringTokenizer(words);
         int tokens = st.countTokens();
         int x = 0;
-
         while (st.hasMoreTokens()) {
-
             x++;
             String token = st.nextToken();
-
             if (Text.containsInvalidChars(token, invalidChars)) {
-
                 StringBuilder invalid = new StringBuilder();
                 StringBuilder valid = new StringBuilder();
-
                 for (int i = 0; i < token.length(); i++) {
-
                     if (Validator.inValidChar(token.charAt(i), invalidChars)) {
-
                         if (valid.length() >= 1) {
                             String newWord = addHref(valid.toString(), fromLanguage, toLanguage);
                             stringBuilder.append(newWord);
                             valid = new StringBuilder();
                         }
                         invalid.append(token.charAt(i));
-
                     } else {
-
                         String newWord = null;
                         if (invalid.length() >= 1) {
                             newWord = invalid.toString();
                             stringBuilder.append(newWord);
                             invalid = new StringBuilder();
                         }
-
                         if (
                                ((newWord != null) && (newWord.equals("</")))
                             || ((newWord != null) && (newWord.equals("<")))
@@ -299,7 +253,6 @@ public class WordTag implements Tag {
                         }
                     }
                 }
-
                 if (valid.length() >= 1) {
                     String newWord = addHref(valid.toString(), fromLanguage, toLanguage);
                     stringBuilder.append(newWord);
@@ -320,7 +273,7 @@ public class WordTag implements Tag {
     }
 
     private String addHref(String word, String fromLanguage, String toLanguage) {
-        log.trace("addHref('" + word + "', '" + fromLanguage + "', '" + toLanguage + "')");
+        //log.trace("addHref('" + word + "', '" + fromLanguage + "', '" + toLanguage + "')");
 
         /*
         return new StringBuilder()
@@ -345,22 +298,18 @@ public class WordTag implements Tag {
     }
 
     private String linkizeUsage(String words, String searchWord, String fromLanguage, String toLanguage) {
-        log.trace("linkizeUsage('" + words + "', '" + searchWord + "', '" + fromLanguage + "', '" + toLanguage + "')");
+        //log.trace("linkizeUsage('" + words + "', '" + searchWord + "', '" + fromLanguage + "', '" + toLanguage + "')");
 
         StringBuilder stringBuilder = new StringBuilder();
         StringTokenizer st = new StringTokenizer(words);
         int tokens = st.countTokens();
         int x = 0;
         while (st.hasMoreTokens()) {
-
             x++;
             String token = st.nextToken();
-
             if (Text.containsInvalidChars(token, invalidChars)) {
-
                 StringBuilder invalid = new StringBuilder();
                 StringBuilder valid = new StringBuilder();
-
                 for (int i=0; i < token.length(); i++) {
                     if (Validator.inValidChar(token.charAt(i), invalidChars)) {
                         if (valid.length() >= 1) {
@@ -370,14 +319,12 @@ public class WordTag implements Tag {
                         }
                         invalid.append(token.charAt(i));
                     } else {
-
                         String newWord = null;
                         if (invalid.length() >= 1) {
                             newWord = invalid.toString();
                             stringBuilder.append(newWord);
                             invalid = new StringBuilder();
                         }
-
                         if (
                                ((newWord != null) && (newWord.equals("</")))
                             || ((newWord != null) && (newWord.equals("<")))
@@ -388,20 +335,17 @@ public class WordTag implements Tag {
                         }
                     }
                 }
-
                 if (valid.length() >= 1) {
                     String newWord = addHrefUsage(valid.toString(), searchWord, fromLanguage, toLanguage);
                     stringBuilder.append(newWord);
                     valid = new StringBuilder();
                 }
-
                 if (invalid.length() >= 1) {
                     String newWord = invalid.toString();
                     stringBuilder.append(newWord);
                     invalid = new StringBuilder();
                 }
-
-                if(tokens > x) stringBuilder.append(" ");
+                if (tokens > x) stringBuilder.append(" ");
             } else {
                 stringBuilder.append(addHrefUsage(token, searchWord, fromLanguage, toLanguage));
                 if(tokens > x) stringBuilder.append(" ");
@@ -412,7 +356,7 @@ public class WordTag implements Tag {
     }
 
     private String addHrefUsage(String word, String searchWord, String fromLanguage, String toLanguage) {
-        log.trace("addHrefUsage('"+word+"', '"+searchWord+"', '" + fromLanguage + "', '" + toLanguage + "')");
+        //log.trace("addHrefUsage('"+word+"', '"+searchWord+"', '" + fromLanguage + "', '" + toLanguage + "')");
 
         /*
         StringBuilder stringBuilder = new StringBuilder()
@@ -428,29 +372,21 @@ public class WordTag implements Tag {
             .append("/").append(word).append("\"");
 
         if (word.toLowerCase().equalsIgnoreCase(searchWord)) {
-
             stringBuilder.append(" style=\"color:#ff8f00;\"");
-
         } else {
-
             /*
             stringBuilder.append("\"");
             stringBuilder.append("class=\"");
             stringBuilder.append(weight);
             stringBuilder.append(color);
             */
-
             /*
             stringBuilder.append(" style=\"");
             stringBuilder.append("color:").append(color).append(";");
             stringBuilder.append("font-weight:").append(weight).append(";");
             */
-
         }
-
         stringBuilder.append(">").append(word).append("</a>");
-
         return stringBuilder.toString();
     }
-
 }
