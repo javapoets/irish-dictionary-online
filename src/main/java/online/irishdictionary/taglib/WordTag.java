@@ -20,6 +20,7 @@ import online.irishdictionary.util.Validator;
 public class WordTag implements Tag {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
+    private static final String EMPTY = "";
     private static final String ENGLISH = "english";
     private static final String IRISH = "irish";
     private String invalidChars = "_-!@#$%^&*()+[]=\\|?/'\",.<>`~:; ";
@@ -147,9 +148,7 @@ public class WordTag implements Tag {
                         stringBuilder.append(")</span>");
                     }
                     */
-                    if(hasDescription) {
-                        stringBuilder.append("<span class=\"description\">"+description+"</span>");
-                    }
+                    if (hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                     stringBuilder.append("</li>");
                 }
             }
@@ -168,17 +167,19 @@ public class WordTag implements Tag {
             if(usageList.size() > word.getEndUsageIndex()) {
                 end = word.getEndUsageIndex();
             }
-            String type, usage, usageTranslated, description;
+            String type, usage, usageTranslated, description, plusSuffix;
             for (int i = start; i < end; i++) {
                 Usage usageObject = (Usage)sortedList.get(i);
                 usage           = usageObject.getUsage();
                 usageTranslated = usageObject.getUsageTranslated();
                 type            = usageObject.getType();
                 description     = usageObject.getDescription();
+                plusSuffix      = usageObject.getPlusSuffix();
                 boolean hasUsage = !"".equals(usage);
                 boolean hasUsageTranslated = !"".equals(usageTranslated);
                 boolean hasType = !"".equals(type);
                 boolean hasDescription = !"".equals(description);
+                boolean hasSuffix = !EMPTY.equals(plusSuffix);
                 stringBuilder.append("<li>");
                 if (hasUsage) {
                     stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage));
@@ -190,6 +191,7 @@ public class WordTag implements Tag {
                     stringBuilder.append(linkizeWords(usageTranslated, toLanguage, fromLanguage));
                     stringBuilder.append("</span>");
                 }
+                if (hasSuffix) stringBuilder.append("<span class=\"description\">").append(plusSuffix).append("</span>");
                 /*
                 if(
                     hasType

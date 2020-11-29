@@ -1,12 +1,10 @@
 <div class="entry-form">
-
   <div>
     <form action="dictionary" method="post" name="word" onsubmit="searchEnglishWord(this); return false;">
       <input type="hidden" name="languageId" value="1" />
       <input type="hidden" name="language" value="english" />
       <input type="hidden" name="fromLanguage" value="english" />
       <input type="hidden" name="toLanguage" value="irish" />
-
       <div class="input">
         <div class="table">
           <div class="row">
@@ -27,17 +25,14 @@
           </div>
         </div>
       </div>
-
     </form>
   </div>
-
   <div>
     <form action="dictionary" method="post" name="irishWord" onsubmit="searchIrishWord(this);return false;">
       <input type="hidden" name="languageId" value="2" />
       <input type="hidden" name="language" value="irish" />
       <input type="hidden" name="fromLanguage" value="irish" />
       <input type="hidden" name="toLanguage" value="english" />
-
       <div class="input">
         <div class="table">
           <div class="row">
@@ -58,8 +53,6 @@
           </div>
         </div>
       </div>
-
     </form>
   </div>
-
 </div>

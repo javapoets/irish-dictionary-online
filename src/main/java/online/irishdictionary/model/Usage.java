@@ -2,13 +2,15 @@ package online.irishdictionary.model;
 
 public class Usage {
 
+    private static final String EMPTY = "";
     private int usageId = -1;
-    private String word = "";
-    private String usage = "";
-    private String type = "";           // n, adj, adv, vi, vt, npl
-    private String description = "";
-    private String gender = "";         // m1. m2, m3, m4, f1, f2, f3, f4, mpl1, fpl2
-    private String usageTranslated = "";
+    private String word = null;
+    private String usage = null;
+    private String type = null;           // n, adj, adv, vi, vt, npl
+    private String description = null;
+    private String plusSuffix = null;     // E.g. + genitive, + noun
+    private String gender = null;         // m1. m2, m3, m4, f1, f2, f3, f4, mpl1, fpl2
+    private String usageTranslated = null;
     private int prevUsageId = -1;
 
     public Usage() {}
@@ -34,10 +36,10 @@ public class Usage {
     }
 
     public String getWord() {
-        if ( word != null ) {
+        if (word != null) {
             return word;
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
@@ -46,10 +48,10 @@ public class Usage {
     }
 
     public String getUsage() {
-        if ( usage != null ) {
+        if (usage != null) {
             return usage;
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
@@ -58,10 +60,10 @@ public class Usage {
     }
 
     public String getType() {
-        if ( type != null ) {
+        if (type != null) {
             return type;
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
@@ -69,52 +71,63 @@ public class Usage {
         this.description = description;
     }
 
-    public String getDescription(){
-        if ( description != null ) {
+    public String getDescription() {
+        if (description != null) {
             return description;
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
-    public void setGender(String gender){
+    public void setPlusSuffix(String plusSuffix) {
+        this.plusSuffix = plusSuffix;
+    }
+
+    public String getPlusSuffix() {
+        if (plusSuffix != null) {
+            return plusSuffix;
+        } else {
+            return EMPTY;
+        }
+    }
+
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getGender(){
-        if ( gender != null ) {
+    public String getGender() {
+        if (gender != null) {
             return gender;
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
-    public void setUsageTranslated(String usageTranslated){
+    public void setUsageTranslated(String usageTranslated) {
         this.usageTranslated = usageTranslated;
     }
 
-    public String getUsageTranslated(){
-        if ( usageTranslated != null ) {
+    public String getUsageTranslated() {
+        if (usageTranslated != null) {
             return usageTranslated;
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
-    public int getUsageLength(){
+    public int getUsageLength() {
         return usage.length();
     }
 
-    public int getUsageTranslatedLength(){
+    public int getUsageTranslatedLength() {
         return usageTranslated.length();
     }
 
-    public void setPrevUsageId(int prevUsageId){
+    public void setPrevUsageId(int prevUsageId) {
         this.prevUsageId = prevUsageId;
     }
 
-    public int getPrevUsageId(){
+    public int getPrevUsageId() {
         return prevUsageId;
     }
-
 }

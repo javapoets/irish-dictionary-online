@@ -20,7 +20,7 @@ public class EnglishServlet extends WordServlet {
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private final String JSP_HOME = DIR_VIEW + "home.jsp";
     private final String JSP_RESULTS = DIR_VIEW + "results.jsp";
-    private final String FSLASH = "/";
+    private final String FORWARDSLASH = "/";
     private final String fromLanguage = "english";
     private final String toLanguage = "irish";
 
@@ -41,7 +41,7 @@ public class EnglishServlet extends WordServlet {
 
         String pathInfo = request.getPathInfo();
         log.debug("pathInfo = '"+pathInfo+"'");
-        String[] split = pathInfo.split(FSLASH);
+        String[] split = pathInfo.split(FORWARDSLASH);
         log.debug("split.length = "+split.length);
         log.debug("split[0] = "+split[0]+", split[1] = "+split[1]+", split[2] = "+split[2]);
 

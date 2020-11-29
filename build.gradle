@@ -177,6 +177,7 @@ task copyView(type: Copy) {
     from('src/main/webapp/view') {
         include '**'
         exclude '**/*.bak'
+        exclude 'images/*'
     } 
     into 'build/exploded/view'
 }
