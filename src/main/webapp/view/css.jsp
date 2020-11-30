@@ -1,3 +1,10 @@
+/*
+*
+{
+  border: red 1px solid;
+}
+*/
+
 :root {
   --orange: #FF8F00;
   --gray: #8B9290;
@@ -386,77 +393,114 @@ div.bold {
 
 div.definition
 {
-  color: #6B6D6B;
-  color: var(--darktext);
-  font-family: Arial;
   /*
   padding-top: 20px;
+  color: #6B6D6B;
+  color: var(--darktext);
   */
+  font-family: Arial;
 }
 
 div.definition .language-label
 {
-  text-transform: capitalize;
+  /*
   font-weight: bold;
+  line-height: 30px;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  color: var(--lighttext);
+  color: #aaa;
+  vertical-align: bottom;
+  vertical-align: bottom;
+  border: red 1px solid;
+  */
+  color: #999;
+  line-height: 28px;
+}
+
+div.definition .language-label .capitalize
+{
+  text-transform: capitalize;
 }
 
 div.definition div.word-header
+, div.usage div.word-header
 {
   text-align: left;
-  font-size: 20px;
   /*
+  font-size: 20px;
   color: #6B6D6B;
-  */
-  font-weight: bold;
   padding-left: 20px;
-  padding-top: 0px;
   padding-bottom: 20px;
+  font-weight: bold;
+  padding-top: 0px;
+  padding-left: 0px;
+  margin: auto;
+  vertical-align: middle;
+  */
+  padding-bottom: 0px;
+  vertical-align: bottom;
+  margin: 0px;
+  font-size: 15px;
 }
 
 div.definition div.word-header .word
 {
+  /*
+  line-height: 30px;
+  vertical-align: middle;
+  border: red 1px solid;
+  line-height: 20px;
+  */
+  padding: 0px;
+  padding-left: 10px;
+  font-size: 33px;
+  vertical-align: bottom;
+  font-weight: normal;
   text-align: left;
   color: var(--darktext);
-  font-size: 22px;
-  /*
-  */
-  font-weight: normal;
 }
 
 div.definition > div
 {
-  text-align: left;
-  font-size: 19px;
   /*
   color: #6B6D6B;
   font-weight: bold;
   border: green 1x solid;
   */
+  text-align: left;
+  font-size: 19px;
+  padding: 10px 20px 10px 40px;
 }
 
 div.definition div ol {
   /*
-  text-align: left;
   color: #6B6D6B;
   font-size: 20px;
   font-weight: bold;
   border: black 1px solid;
-  */
-  /*
-  padding: 0px;
   margin: 0px;
   padding-right: 20px;
   padding: 10px 20px 10px 20px;
-  margin-bottom: 0px;
-  */
-  margin-top: 0px;
-  /*
   padding: 10px 20px 10px 40px;
-  */
+  padding: 0px;
   padding-right: 20px;
+  */
+  text-align: left;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
+div.definition li {
+  list-style:none;
   /*
+  padding-left: 30px;
+  */
+}
+
+/*
 div.definition div:first-child
 {
   text-align:left;
@@ -466,7 +510,7 @@ div.definition div:first-child
   font-weight:bold;
   padding:8px;
 }
-  */
+*/
 
 div.definition div:first-child a
 {
@@ -517,10 +561,6 @@ div.definition span.type {
   padding-left:5px;
 }
 
-div.definition li {
-  list-style:none;
-}
-
 div.definition li span.type {
   color:#6B6D6B;
   font-size:12px;
@@ -534,9 +574,9 @@ div.definition li span.description
   color:#f7941d;
   color:#6B6D6B;
   color: var(--darktext);
-  */
   color: var(--mediumtext);
-
+  */
+  color: #999;
   font-size:12px;
   padding-left:5px;
 }
@@ -566,10 +606,89 @@ div.usage
   padding:0px;
 }
 
+/*
+div.usage ol
+{
+  padding: 0px;
+  padding-left: 60px;
+}
+*/
+
+div.usage li
+{
+<%--
+  border-bottom:#ccc 1px dotted;
+  border-bottom:#ccc 1px solid;
+  border:#ddd 1px solid;
+  border-width:0px 0px 1px 1px;
+  margin-top:3px;
+  border-bottom:#ddd 1px solid;
+  padding-left: 50px;
+  padding-left: 5px;
+  padding: 7px 0px;
+--%>
+  border-bottom: #ccc 1px solid;
+  list-style:none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 50px;
+}
+
+<%--
+div.usage li > div
+{
+  border-bottom: #ccc 1px solid;
+}
+--%>
+
+<%--
+--%>
+div.usage li span.usage
+{
+  /*
+  border-bottom: blue 1px solid;
+  */
+  padding-left: 5px;
+  line-height: 25px;
+}
+
+div.usage li > div .usage-label
+{
+  /*
+  margin-left: -33px;
+  padding-left: 5px;
+  padding-right: 5px;
+  */
+  color: #999;
+  font-size: 12px;
+}
+ 
+/* 
+*/
+div.usage li > div .usage-label.english
+{
+  margin-left:-60px;
+  margin-left: -50px;
+  text-transform: capitalize;
+}
+
+div.usage li > div .usage-label.irish
+{
+  margin-left:-43px;
+  margin-left: -33px;
+  text-transform: capitalize;
+}
+
 div.usage li span.translated
 {
   color:#2C5A26;
   font-style: italic;
+  /*
+  border-bottom: blue 1px solid;
+  */
+  width: 100%;
+  padding-left: 5px;
+  line-height: 25px;
 }
 
 div.usage li span.translated a {
@@ -578,20 +697,6 @@ div.usage li span.translated a {
   font-weight:normal;
 }
 
-div.usage li
-{
-  list-style:none;
-<%--
-  border-bottom:#ccc 1px dotted;
-  border-bottom:#ccc 1px solid;
-  border:#ddd 1px solid;
-  border-width:0px 0px 1px 1px;
-  margin-top:3px;
-  border-bottom:#ddd 1px solid;
---%>
-  border-bottom: #ccc 1px solid;
-  padding: 7px 0px;
-}
 
 div.usage li a {
 <%--

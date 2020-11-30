@@ -153,7 +153,12 @@ public class VerbDatabaseManager {
         } catch(Exception e) {
             logger.error(e);
         }
+    }
 
+    public static void selectAllVerbs(List<Verb> verbList, int languageId, Object connectionPoolObject) throws SQLException, Exception {
+        logger.debug("selectAllVerbs(verbList, "+languageId +", "+connectionPoolObject+")");
+        String languageCode = "english";
+        selectAllVerbs(verbList, languageCode, (ConnectionPool) connectionPoolObject);
     }
 
     public static void selectAllVerbs(List<Verb> verbList, String languageId, Object connectionPoolObject) throws SQLException, Exception {

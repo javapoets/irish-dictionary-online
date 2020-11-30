@@ -94,9 +94,12 @@ public class WordTag implements Tag {
 
         stringBuilder
           .append("<div class=\"word-header\">")
-          .append("<span class=\"language-label\">").append(fromLanguage).append("</span>")
-          .append(" word: ")
-          .append("<span class=\"word\">").append(word.getWord()).append("</span>")
+            .append("<span class=\"language-label\">")
+              .append("<span class=\"capitalize\">").append(fromLanguage).append("</span>")
+              .append(" word")
+            .append("</span>")
+          //.append(" word: ")
+            .append("<span class=\"word\">").append(word.getWord()).append("</span>")
           .append("</div>");
 
         if ((definitionList != null) && definitionList.size() != 0) {
@@ -120,7 +123,11 @@ public class WordTag implements Tag {
                 boolean hasGender = gender != null && !gender.equals("");
                 boolean hasDescription = description != null && !description.equals("");
                 if((definition.getDefinition() != null) && !(definition.getDefinition().trim().equals(""))) {
+                    //stringBuilder.append("<li>");
                     stringBuilder.append("<li>");
+                    //stringBuilder.append("<div style=\"padding-left:17px;\">");
+                    //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-33px;\">").append(i + 1).append(". ").append("</span>");
+                    stringBuilder.append("<span class=\"description\">").append(i + 1).append(". ").append("</span>");
                     //if((definition.getType() != null) && !definition.getType().equals("")) {
                         //stringBuilder.append("<span class=\"type\">" + definition.getType() + "</span>");
                         /*
@@ -149,6 +156,7 @@ public class WordTag implements Tag {
                     }
                     */
                     if (hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                    //stringBuilder.append("</div>");
                     stringBuilder.append("</li>");
                 }
             }
@@ -158,13 +166,18 @@ public class WordTag implements Tag {
 
         if ((usageList != null) && (usageList.size() > 0)) {
             stringBuilder.append("<div class=\"usage\">");
-            stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
+            //stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
+            stringBuilder.append("<div class=\"word-header\">")
+                .append("<span class=\"language-label\">")
+                .append("Example usage:")
+                .append("</span>")
+                .append("</div>");
             stringBuilder.append("<ol>");
             //List sortedList = (List) usageList.getSortedList("usageLength");
             List sortedList = usageList;
             int start = word.getStartUsageIndex();
             int end = sortedList.size();
-            if(usageList.size() > word.getEndUsageIndex()) {
+            if (usageList.size() > word.getEndUsageIndex()) {
                 end = word.getEndUsageIndex();
             }
             String type, usage, usageTranslated, description, plusSuffix;
@@ -175,18 +188,28 @@ public class WordTag implements Tag {
                 type            = usageObject.getType();
                 description     = usageObject.getDescription();
                 plusSuffix      = usageObject.getPlusSuffix();
-                boolean hasUsage = !"".equals(usage);
-                boolean hasUsageTranslated = !"".equals(usageTranslated);
-                boolean hasType = !"".equals(type);
-                boolean hasDescription = !"".equals(description);
+                boolean hasUsage = !EMPTY.equals(usage);
+                boolean hasUsageTranslated = !EMPTY.equals(usageTranslated);
+                boolean hasType = !EMPTY.equals(type);
+                boolean hasDescription = !EMPTY.equals(description);
                 boolean hasSuffix = !EMPTY.equals(plusSuffix);
                 stringBuilder.append("<li>");
+                //stringBuilder.append("<div style=\"padding-left:50px;\">");
+                stringBuilder.append("<div>");
+                //stringBuilder.append("<li>").append(fromLanguage).append(": ");
+                //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-33px;\">").append(fromLanguage).append(" ").append("</span>");
+                stringBuilder.append("<span class=\"usage-label "+fromLanguage+"\">").append(fromLanguage).append(" ").append("</span>");
+                //stringBuilder.append("<span class=\"description\">").append(fromLanguage).append(": ").append("</span>");
                 if (hasUsage) {
-                    stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage));
+                    stringBuilder.append("<span class=\"usage\">").append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage)).append("</span>");
                     if (hasDescription && ENGLISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                 }
                 stringBuilder.append("<br/>");
                 if (hasUsageTranslated) {
+                    //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-50px;\">").append(toLanguage).append(" ").append("</span>");
+                    //stringBuilder.append("<span class=\"description\" style=\"margin-left:-50px;\">").append(toLanguage).append(" ").append("</span>");
+                    stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(toLanguage).append(" ").append("</span>");
+                    //stringBuilder.append("<span class=\"description\">").append(toLanguage).append(": ").append("</span>");
                     stringBuilder.append("<span class=\"translated\">");
                     stringBuilder.append(linkizeWords(usageTranslated, toLanguage, fromLanguage));
                     stringBuilder.append("</span>");
@@ -207,6 +230,7 @@ public class WordTag implements Tag {
                 */
                 //if(hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                 if (hasDescription && IRISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                stringBuilder.append("</div>");
                 stringBuilder.append("</li>");
             }
             stringBuilder.append("</ol>");
