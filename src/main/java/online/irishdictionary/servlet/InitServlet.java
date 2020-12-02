@@ -197,6 +197,7 @@ public class InitServlet extends HttpServlet {
 
         if(this.connectionPool == null) {
 
+            /*
             String jdbcDriver = properties.getProperty("database-driver");
             String databaseUrl = properties.getProperty("database-url");
             String databaseUsername = properties.getProperty("database-username");
@@ -236,22 +237,21 @@ public class InitServlet extends HttpServlet {
             connectionPoolProperties.setProperty("database-driver", jdbcDriver);
             connectionPoolProperties.setProperty("database-username", databaseUsername);
             connectionPoolProperties.setProperty("database-password", databasePassword);
-            /*
-            connectionPoolProperties.setProperty("database-mininimum-connections", databaseMinimumConnections);
-            connectionPoolProperties.setProperty("database-maximum-connections", databaseMaximumConnections);
-            connectionPoolProperties.setProperty("database-connection-maximum-age-days", databaseConnectionMaximumAgeDays);
-            connectionPoolProperties.setProperty("database-connection-maximum-idle-seconds", databaseConnectionMaximumIdleSeconds);
-            */
+            //connectionPoolProperties.setProperty("database-mininimum-connections", databaseMinimumConnections);
+            //connectionPoolProperties.setProperty("database-maximum-connections", databaseMaximumConnections);
+            //connectionPoolProperties.setProperty("database-connection-maximum-age-days", databaseConnectionMaximumAgeDays);
+            //connectionPoolProperties.setProperty("database-connection-maximum-idle-seconds", databaseConnectionMaximumIdleSeconds);
             connectionPoolProperties.setProperty("connection-pool-minimum-connections", databaseMinimumConnections);
             connectionPoolProperties.setProperty("connection-pool-maximum-connections", databaseMaximumConnections);
             connectionPoolProperties.setProperty("connection-maximum-time-since-creation-minutes", databaseConnectionMaximumAgeDays);
             connectionPoolProperties.setProperty("connection-maximum-time-in-use-seconds", databaseConnectionMaximumIdleSeconds);
-
             logger.debug("connectionPoolProperties = " + connectionPoolProperties);
+            */
 
             try {
 
-                this.connectionPool = new ConnectionPool(connectionPoolProperties);
+                //this.connectionPool = new ConnectionPool(connectionPoolProperties);
+                this.connectionPool = new ConnectionPool(this.properties);
                 logger.debug("this.connectionPool = " + this.connectionPool);
 
                 servletContext.setAttribute("connectionPool", this.connectionPool);
