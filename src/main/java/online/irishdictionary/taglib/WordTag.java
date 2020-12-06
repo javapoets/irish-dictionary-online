@@ -85,22 +85,25 @@ public class WordTag implements Tag {
 
     public String createHtmlDefinition(Word word, String fromLanguage, String toLanguage) {
         //log.trace("createHtmlDefinition('"+word.getWord()+"', '"+fromLanguage+"', '"+toLanguage+"')");
+        log.trace("createHtmlDefinition('"+word+"', '"+fromLanguage+"', '"+toLanguage+"')");
+
+        log.debug("word.getDescription() = " + word.getDescription());
 
         StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
         List definitionList = word.getDefinitionList();
         List usageList = word.getUsageList();
 
         stringBuilder.append("<div class=\"definition\">");
-
         stringBuilder
-          .append("<div class=\"word-header\">")
-            .append("<span class=\"language-label\">")
-              .append("<span class=\"capitalize\">").append(fromLanguage).append("</span>")
-              .append(" word")
-            .append("</span>")
-          //.append(" word: ")
-            .append("<span class=\"word\">").append(word.getWord()).append("</span>")
-          .append("</div>");
+            .append("<div class=\"word-header\">")
+            .append(  "<span class=\"language-label\">")
+            .append(    "<span class=\"capitalize\">").append(fromLanguage).append("</span>").append(" word")
+            .append(  "</span>")
+            .append(  "<span class=\"word\">").append(word.getWord()).append("</span>");
+        if (word.getDescription() != null) {
+            stringBuilder.append(  "<span class=\"word-description\">").append(word.getDescription()).append("</span>");
+        }
+        stringBuilder.append("</div>");
 
         if ((definitionList != null) && definitionList.size() != 0) {
             log.debug("definitionList.size() = " + definitionList.size());

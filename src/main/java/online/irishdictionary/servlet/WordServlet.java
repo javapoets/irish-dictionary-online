@@ -155,7 +155,7 @@ public class WordServlet extends InitServlet {
             */
 
             try {
-                DictionaryDatabaseManager.selectWord(word, languageId, getConnectionPool());
+                DictionaryDatabaseManager.populateWord(word, languageId, getConnectionPool());
                 //DictionaryDatabaseManager.selectWord(word, language, getConnectionPool());
                 request.setAttribute("word", word);
             } catch (Exception e) {

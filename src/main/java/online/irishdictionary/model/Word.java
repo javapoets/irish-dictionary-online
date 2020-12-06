@@ -1,12 +1,16 @@
 package online.irishdictionary.model;
 
 import java.util.List;
-
 import online.irishdictionary.util.Text;
 
 public class Word {
 
+    private String EMPTY = "";
+    private int id = -1;
     private String word = null;
+    private String description = null;
+    private String type = null;           // n, adj, adv, vi, vt, npl
+    private String gender = null;         // m1. m2, m3, m4, f1, f2, f3, f4, mpl1, fpl2
     private List definitionList = null;
     private List usageList = null;
     private int startUsageIndex = 0;
@@ -18,15 +22,59 @@ public class Word {
         this.word = word;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
     public void setWord(String word) {
         this.word = word;
     }
 
     public String getWord() {
-        if ( word != null ) {
+        if (word != null) {
             return word;
         } else {
-            return "";
+            return EMPTY;
+        }
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        if (description != null) {
+            return description;
+        } else {
+            return EMPTY;
+        }
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        if (type != null) {
+            return type;
+        } else {
+            return EMPTY;
+        }
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGender() {
+        if (gender != null) {
+            return gender;
+        } else {
+            return EMPTY;
         }
     }
 
@@ -46,19 +94,19 @@ public class Word {
         return this.usageList;
     }
 
-    public void setStartUsageIndex(int startUsageIndex){
+    public void setStartUsageIndex(int startUsageIndex) {
         this.startUsageIndex = startUsageIndex;
     }
 
-    public int getStartUsageIndex(){
+    public int getStartUsageIndex() {
         return startUsageIndex;
     }
 
-    public void setEndUsageIndex(int endUsageIndex){
+    public void setEndUsageIndex(int endUsageIndex) {
         this.endUsageIndex = endUsageIndex;
     }
 
-    public int getEndUsageIndex(){
+    public int getEndUsageIndex() {
         return endUsageIndex;
     }
 
@@ -76,92 +124,87 @@ public class Word {
         return text;
     }
 
-    public String getWordWildCarded(){
-        if ( word != null ) {
+    public String getWordWildCarded() {
+        if (word != null) {
             StringBuffer sb = new StringBuffer();
-            for(int i=0; i < word.length(); i++){
+            for (int i = 0; i < word.length(); i++) {
                 sb.append("%");
                 sb.append(word.charAt(i));
             }
             return sb.toString();
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
     public String getWordWildCardedNoH(){
         if ( word != null ) {
             StringBuffer sb = new StringBuffer();
-            for(int i=0; i < word.length(); i++){
+            for (int i = 0; i < word.length(); i++) {
                 sb.append("%");
-                if(word.charAt(i) != 'h') {
+                if (word.charAt(i) != 'h') {
                     sb.append(word.charAt(i));
                 }
             }
             return sb.toString();
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
     public String getWordWildCardedEverSecondLetter(){
-        if ( word != null ) {
+        if (word != null) {
             StringBuffer sb = new StringBuffer();
-            for(int i=0; i < word.length(); i++){
+            for (int i=0; i < word.length(); i++) {
                 sb.append("%");
-                if((i % 2) == 0) {
+                if ((i % 2) == 0) {
                     sb.append(word.charAt(i));
                 }
             }
             return sb.toString();
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
     public String getWordWildCardedEverSecondLetter2(){
-        if ( word != null ) {
+        if (word != null) {
             StringBuffer sb = new StringBuffer();
-            for(int i=0; i < word.length(); i++){
+            for (int i = 0; i < word.length(); i++) {
                 sb.append("%");
-                if((i % 2) == 1) {
+                if ((i % 2) == 1) {
                     sb.append(word.charAt(i));
                 }
             }
             return sb.toString();
         } else {
-            return "";
+            return EMPTY;
         }
     }
 
-    public String getWhereWordLikeSQL(){
-
-        if(this.word.length() == 1) {
-        } else if(this.word.length() == 2) {
-        } else if(this.word.length() == 3) {
-        } else if(this.word.length() == 4) {
-        } else if(this.word.length() == 5) {
-        } else if(this.word.length() >= 6) {
+    public String getWhereWordLikeSQL() {
+        /*
+        if (this.word.length() == 1) {
+        } else if (this.word.length() == 2) {
+        } else if (this.word.length() == 3) {
+        } else if (this.word.length() == 4) {
+        } else if (this.word.length() == 5) {
+        } else if (this.word.length() >= 6) {
         }
-
-        StringBuffer sb = new StringBuffer();
-        sb.append("where word like '");
-        sb.append(getWordWildCarded());
-        sb.append("' ");
-        sb.append("or word like '");
-        sb.append(getWordWildCardedNoH());
-        sb.append("' ");
-        sb.append("or word like '");
-        sb.append(getWordWildCardedEverSecondLetter());
-        sb.append("' ");
-        //sb.append("or word like '");
-        //sb.append(getWordWildCardedEverSecondLetter2());
-        //sb.append("'");
-        return sb.toString();
+        */
+        StringBuilder stringBuilder = new StringBuilder()
+            .append("where word like '").append(getWordWildCarded()).append("' ")
+            .append("or word like '").append(getWordWildCardedNoH()).append("' ")
+            .append("or word like '").append(getWordWildCardedEverSecondLetter()).append("' ");
+            //sb.append("or word like '").append(getWordWildCardedEverSecondLetter2()).append("'");
+        return stringBuilder.toString();
     }
 
     public boolean resultsFound() {
         return ((definitionList != null) && definitionList.size() != 0) && ((usageList != null) && (usageList.size() > 0));
     }
 
+    public String toString() {
+        return this.getWord();
+    }
 }

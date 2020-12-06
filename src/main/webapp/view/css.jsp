@@ -462,6 +462,12 @@ div.definition div.word-header .word
   color: var(--darktext);
 }
 
+div.definition div.word-header .word-description
+{
+  color: #aaa;
+  padding-left: 10px;
+}
+
 div.definition > div
 {
   /*
