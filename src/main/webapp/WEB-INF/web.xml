@@ -61,6 +61,7 @@
     <url-pattern>/css</url-pattern>
   </servlet-mapping>
 
+<!--
   <servlet>
     <servlet-name>dictionary</servlet-name>
     <servlet-class>online.irishdictionary.servlet.DictionaryServlet</servlet-class>
@@ -70,7 +71,6 @@
     <url-pattern>/dictionary</url-pattern>
   </servlet-mapping>
 
-<!--
   <servlet>
     <servlet-name>irish</servlet-name>
     <servlet-class>online.irishdictionary.servlet.IrishServlet</servlet-class>
