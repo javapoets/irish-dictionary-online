@@ -19,10 +19,6 @@ public class VerbDatabaseManager {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private static final String className = VerbDatabaseManager.class.getName();
-<<<<<<< HEAD
-=======
-    private static final Logger log = LogManager.getLogger();
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
 
     public static void selectVerb(Verb verb, Object connectionPoolObject) throws SQLException, Exception {
         log.debug("selectVerb("+connectionPoolObject+")");
@@ -86,11 +82,7 @@ public class VerbDatabaseManager {
         preparedStatement.setInt(1, verbConjugation.getTenseId());
         preparedStatement.setString(2, verbConjugation.getVerb());
         ResultSet resultSet = preparedStatement.executeQuery();
-<<<<<<< HEAD
         while (resultSet.next()) {
-=======
-        while(resultSet.next()) {
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
             verbConjugation.setVerbConjugationId(resultSet.getInt(1));
             verbConjugation.setMe(resultSet.getString(2));
             verbConjugation.setYouSing(resultSet.getString(3));
@@ -119,11 +111,7 @@ public class VerbDatabaseManager {
             preparedStatement.setInt(1, verb.getLanguageId());
             preparedStatement.setString(2, verb.getVerb());
             ResultSet resultSet = preparedStatement.executeQuery();
-<<<<<<< HEAD
             while (resultSet.next()) {
-=======
-            while(resultSet.next()) {
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
                 verb.setStem(resultSet.getString(1));
                 verb.setVerbalNoun(resultSet.getString(2));
                 verb.setVerbalAdjective(resultSet.getString(3));
@@ -131,11 +119,7 @@ public class VerbDatabaseManager {
                 verb.setParticiple(resultSet.getString(5));
                 verb.setGerund(resultSet.getString(6));
                 //if(resultSet.getString(7).equals("regular")) {
-<<<<<<< HEAD
                 if (resultSet.getInt(7) == 1) {
-=======
-                if(resultSet.getInt(7) == 1) {
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
                     verb.setIsRegular(true);
                 }
                 verb.setConjugation(resultSet.getInt(8));
@@ -149,7 +133,6 @@ public class VerbDatabaseManager {
     }
 
     public static void selectAllVerbs(List<Verb> verbList, int languageId, Object connectionPoolObject) throws SQLException, Exception {
-<<<<<<< HEAD
         log.debug("selectAllVerbs(verbList, "+languageId +", "+connectionPoolObject+")");
         selectAllVerbs(verbList, languageId, (ConnectionPool) connectionPoolObject);
     }
@@ -196,32 +179,24 @@ public class VerbDatabaseManager {
         }
     }
 
-    public static void selectAllVerbs(List<Verb> verbList, String languageId, Object connectionPoolObject) throws SQLException, Exception {
-        log.debug("selectAllVerbs(verbList, "+languageId +", "+connectionPoolObject+")");
-=======
-        log.trace("selectAllVerbs(verbList, " + languageId + ", " + connectionPoolObject + ")");
-        String languageCode = "english";
-        selectAllVerbs(verbList, languageCode, (ConnectionPool) connectionPoolObject);
-    }
+    //public static void selectAllVerbs(List<Verb> verbList, String languageId, Object connectionPoolObject) throws SQLException, Exception {
+    //    log.trace("selectAllVerbs(verbList, " + languageId + ", " + connectionPoolObject + ")");
+    //    String languageCode = "english";
+    //    selectAllVerbs(verbList, languageCode, (ConnectionPool) connectionPoolObject);
+    //}
 
     public static void selectAllVerbs(List<Verb> verbList, String languageId, Object connectionPoolObject) throws SQLException, Exception {
         log.trace("selectAllVerbs(verbList, " + languageId + ", " + connectionPoolObject + ")");
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
         selectAllVerbs(verbList, languageId, (ConnectionPool) connectionPoolObject);
     }
 
     public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionPool connectionPool) throws SQLException, Exception {
-<<<<<<< HEAD
-        log.debug("selectAllVerbs(verbList, "+languageId +", "+connectionPool+")");
-=======
         log.trace("selectAllVerbs(verbList, " + languageId + ", " + connectionPool + ")");
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
         selectAllVerbs(verbList, languageId, new ConnectionManager(connectionPool));
     }
 
     public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionManager connectionManager) throws SQLException, Exception {
     //public static void selectAllVerbs(List<Verb> verbList, String languageId, ConnectionManager connectionManager) {
-<<<<<<< HEAD
         log.debug("selectAllVerbs(verbList, '" + languageId +"', " + connectionManager + ")");
         String statementName = "selectAllVerbs";
         String sql = new StringBuilder()
@@ -240,27 +215,6 @@ public class VerbDatabaseManager {
             if (resultSet.next()) {
                 Verb verb = new Verb();
                 do {
-=======
-        log.debug("selectAllVerbs(verbList, '" + languageId + "', " + connectionManager + ")");
-        try {
-            //String statementName = "selectAllVerbs";
-            String sql = new StringBuilder()
-                //.append("SELECT stem, verbal_noun, verbal_adjective, infinitive, participle, gerund, regular, conjugation, broad_slender")
-                .append("SELECT verb, regular, conjugation, broad_slender")
-                .append(" FROM verb")
-                .append(" WHERE language_id = ?")
-                .toString();
-            ResultSet resultSet = null;
-            PreparedStatement preparedStatement = null;
-            try {
-                //preparedStatement = connectionManager.loadStatement(statementName);
-                preparedStatement = connectionManager.prepareStatement(sql);
-                preparedStatement.setString(1, languageId);
-                log.debug("preparedStatement.setString(1, "+languageId+");");
-                resultSet = preparedStatement.executeQuery();
-                while(resultSet.next()){
-                    Verb verb = new Verb();
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
                     verb.setVerb(resultSet.getString(1));
                     if(resultSet.getString(2).equals("regular")) {
                         verb.setIsRegular(true);
@@ -268,17 +222,7 @@ public class VerbDatabaseManager {
                     verb.setConjugation(resultSet.getInt(3));
                     verb.setBroadOrSlender(resultSet.getString(4));
                     verbList.add(verb);
-<<<<<<< HEAD
                 } while(resultSet.next());
-=======
-                }
-            } catch(Exception e) {
-                e.printStackTrace(System.err);
-                //log.logMessage(e, statementName, LogUtil.SEVERE);
-            } finally {
-                // Free resources allocated.
-                connectionManager.commit();
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
             }
         } catch(Exception e) {
             e.printStackTrace(System.err);
@@ -290,11 +234,7 @@ public class VerbDatabaseManager {
     }
 
     public static void selectVerbMapByEnglishVerb(List<String> verbList, String englishVerb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
-<<<<<<< HEAD
-        log.debug("selectVerbMapByEnglishVerb(verbList, '"+englishVerb+"', connectionManager)");
-=======
         log.debug("selectVerbMapByEnglishVerb(verbList, '" + englishVerb + "', connectionManager)");
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
         PreparedStatement preparedStatement = connectionManager.loadStatement("selectVerbMapByEnglishVerb");
         preparedStatement.setString(1, englishVerb);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -302,11 +242,7 @@ public class VerbDatabaseManager {
     }
 
     public static void selectVerbMapByIrishVerb(List<String> verbList, String irishVerb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
-<<<<<<< HEAD
-        log.debug("selectVerbMapByIrishVerb(verbList, '"+irishVerb+"', connectionManager)");
-=======
         log.debug("selectVerbMapByIrishVerb(verbList, '" + irishVerb + "', connectionManager)");
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
         PreparedStatement preparedStatement = connectionManager.loadStatement("selectVerbMapByIrishVerb");
         preparedStatement.setString(1, irishVerb);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -315,11 +251,7 @@ public class VerbDatabaseManager {
 
     // SELECT vm.english,description,stem,verbal_noun,verbal_adjective,infinitive,participle,gerund,regular,conjugation,broad_slender FROM verb_map vm,verb v WHERE vm.irish=? AND vm.english=v.verb
     public static void selectMappedVerbsByVerb(List<Verb> verbList, Verb verb, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
-<<<<<<< HEAD
-        log.debug("selectMappedVerbsByVerb(verbList, '"+verb+"', connectionManager)");
-=======
         log.debug("selectMappedVerbsByVerb(verbList, '" + verb + "', connectionManager)");
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
         String statementName = null;
         //if(verb.getLanguageId().equals("irish")) {
         if(verb.getLanguageId() == 1) {
@@ -351,11 +283,7 @@ public class VerbDatabaseManager {
                 List<Integer> tenseIdArray = new ArrayList<Integer>();
                 selectTenseIds(tenseIdArray, connectionManager);
                 Map<String, VerbConjugation> verbConjugationMap = new HashMap<String, VerbConjugation>();
-<<<<<<< HEAD
                 for (int j = 0; j < tenseIdArray.size(); j++) {
-=======
-                for(int j = 0; j < tenseIdArray.size(); j++) {
->>>>>>> 8ee0df022e08b014015c29f699af93e4706b8d24
                     int tenseId = tenseIdArray.get(j);
                     VerbConjugation verbConjugation = new VerbConjugation(mappedVerb.getVerb(), tenseId);
                     selectVerbConjugationByTenseIdAndVerb(verbConjugation, connectionManager);
