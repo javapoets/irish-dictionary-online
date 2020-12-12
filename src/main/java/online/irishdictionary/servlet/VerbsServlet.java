@@ -75,7 +75,7 @@ public class VerbsServlet extends InitServlet {
             VerbDatabaseManager.selectAllVerbs(verbList, languageId, getConnectionPool());
             log.debug("verbList.size() " + verbList.size());
             request.setAttribute("verbList", verbList);
-            include(request, response, "verb/verbs.jsp");
+            include(request, response, "/view/verb/verbs.jsp");
         } catch(Exception e) {
             log.error(e.getMessage(), e);            
         }

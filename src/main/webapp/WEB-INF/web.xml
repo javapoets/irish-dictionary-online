@@ -90,7 +90,6 @@
     <url-pattern>/english</url-pattern>
     <url-pattern>/english/*</url-pattern>
   </servlet-mapping>
--->
 
   <servlet>
     <servlet-name>verb</servlet-name>
@@ -100,6 +99,7 @@
     <servlet-name>verb</servlet-name>
     <url-pattern>/verb</url-pattern>
   </servlet-mapping>
+-->
 
   <taglib>
     <taglib-uri>/WEB-INF/irishdictionary.tld</taglib-uri>
@@ -110,5 +110,16 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
+  <error-page>
+    <location>/error/default-error</location>
+  </error-page>
+
+  <!--
+  <filter-mapping>
+    <filter-name>errorFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  -->
 
 </web-app>

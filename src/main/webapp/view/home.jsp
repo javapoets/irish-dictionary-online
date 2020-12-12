@@ -13,6 +13,7 @@
     <div class="search-block">
       <%@ include file="/view/entryFormVariables.jsp" %>
       <%@ include file="/view/entry-form.jsp" %>
+      <%@ include file="/view/verb-entry-form.jsp" %>
     </div>
     <%@ include file="/view/word-count-statement.jsp" %>
   </div>
