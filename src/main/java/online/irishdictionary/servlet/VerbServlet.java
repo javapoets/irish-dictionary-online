@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import online.irishdictionary.database.VerbDatabaseManager;
 import online.irishdictionary.model.Verb;
 
-@WebServlet(name = "VerbsServlet", asyncSupported = false, urlPatterns = {
+@WebServlet(name = "VerbServlet", asyncSupported = false, urlPatterns = {
       "verb"
     //, "verb/*"
 })

@@ -721,3 +721,23 @@ div.usage li a:hover {
   */
   text-decoration:underline;
 }
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-flow: wrap column;
+  /* Limit height to whatever you need
+  height: 100vh;
+  max-height: 500px;
+  */
+  height: 100vh;
+}
+
+ul li
+{
+  text-align: left;
+}

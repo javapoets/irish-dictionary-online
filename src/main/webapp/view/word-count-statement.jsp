@@ -17,11 +17,11 @@
     </div>
   </div>
   <%--
+      1,400 English verbs and 768 Irish verbs conjugated and translated.
   --%>
   <div class="row">
     <div class="cell">
-      1,400 English verbs and 768 Irish verbs conjugated and translated.
-      <a href="verbs/english">1,400 English verbs</a> and <a href="verbs/irish" style="color:inherit">768 Irish verbs</a> conjugated and translated.
+      <a href="verbs/english" style="color:inherit">1,400 English verbs</a> and <a href="verbs/irish" style="color:inherit">768 Irish verbs</a> conjugated and translated.
     </div>
   </div>
 </div>

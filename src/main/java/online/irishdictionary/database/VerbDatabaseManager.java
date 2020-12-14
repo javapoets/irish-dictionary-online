@@ -159,8 +159,9 @@ public class VerbDatabaseManager {
             log.debug("preparedStatement.setString(1, "+languageId+");");
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                Verb verb = new Verb();
+                Verb verb = null;
                 do {
+                    verb = new Verb();
                     verb.setVerb(resultSet.getString(1));
                     if(resultSet.getString(2).equals("regular")) {
                         verb.setIsRegular(true);
