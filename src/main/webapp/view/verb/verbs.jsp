@@ -17,24 +17,25 @@
         <%@ include file="/view/topForm.jsp" %>
       </div>
     </div>
+<%--        
     <div class="yellow0" style="max-width:728px;">
       <div>
-<%--        
         <div class="definition red0" style="text-align:left;max-height:400px;overflow-y:auto;">
---%>          
         <div class="definition red">
-          <ul>
+--%>          
+    <div class="yellow0" style="max-width:728px;">
+      <div>
+          <div class="verbs-container">
             <%
                 if (verbList != null) {
                     for(Verb verb: verbList) {
             %>
-            <li><%= verb.getVerb() %></li>
+            <div><%= verb.getVerb() %></div>
             <%
                     }
                 }
             %>
-          </ul>
-        </div>
+          </div>
       </div>
     </div>
   </div>

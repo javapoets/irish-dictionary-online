@@ -741,3 +741,31 @@ ul li
 {
   text-align: left;
 }
+
+.verbs-container
+{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /*
+  justify-content: center;
+  align-items: center;  
+  */
+  border: red 1px solid;
+}
+
+.verbs-container > div
+{
+  border: blue 1px solid;
+  /*
+  flex-grow: 0;
+  flex: 1;
+  flex-shrink: 1;
+  width: 1%;
+  display: inline-block;
+  flex: 0 1 auto;
+  flex: 2 1 auto;
+  flex: 1 1 80px;
+  */
+  width: 100px;
+}
