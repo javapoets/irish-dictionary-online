@@ -1,34 +1,21 @@
 <%@ include file="/view/header.jsp" %>
-
 <%
-
     Verb verb = (Verb) request.getAttribute("verb");
     Map verbConjugationMap = verb.getVerbConjugationMap();
-    //log.debug("verbConjugationMap :"+verbConjugationMap.size());
-    //System.out.println("verbConjugationMap :"+verbConjugationMap.size());
+    log.debug("verbConjugationMap.size() = " + verbConjugationMap.size());
     System.out.println("verbConjugationMap = " + verbConjugationMap);
-
     String verbString = (String)request.getAttribute("verbString");
-    //SortableList verbList = (SortableList)verb.getVerbList();
-    //SortableList verbList = (SortableList) verb.getVerbSortableList();
     List<Verb> verbList = (List<Verb>) verb.getVerbList();
-
     int count = 0;
-    if(verbList != null) {
-        count = verbList.size();
-    }
-
+    if(verbList != null) count = verbList.size();
     String wordEnglish = null;
     String wordIrish = null;
     String verbEnglish = null;
     String verbIrish = null;
-
     String language = request.getParameter("language");
     String verbParam = request.getParameter("verb");
-
-    //System.out.println("results.jsp: language = "+language);
-    //System.out.println("results.jsp: verbParam = "+verbParam);
-
+    log.debug("language = " + language);
+    log.debug("verbParam = " + verbParam);
     if(language != null) {
         if(language.equals("english")) {
             if(verbParam != null) verbEnglish = verbParam;
@@ -36,17 +23,14 @@
             if(verbParam != null) verbIrish = verbParam;
         }
     }
-
     String fromLanguage = language;
     //String fromLanguage = request.getParameter("fromLanguage");
     //if(fromLanguage == null) fromLanguage = (String)request.getAttribute("fromLanguage");
     //if(fromLanguage == null) fromLanguage = language;
     String toLanguage = request.getParameter("toLanguage");
     if(toLanguage == null) toLanguage = (String)request.getAttribute("toLanguage");
-
-    //System.out.println("results.jsp: fromLanguage = "+fromLanguage);
-    //System.out.println("results.jsp: toLanguage = "+toLanguage);
-
+    log.debug("fromLanguage = " + fromLanguage);
+    log.debug("toLanguage = " + toLanguage);
     boolean isEnglish = language.equals("english");
     boolean isIrish = language.equals("irish");
 %>
@@ -71,7 +55,6 @@
 --%>
 <div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
   <div style="text-align:center;margin:auto;">
-
 <%--
     <div style="text-align:left;margin:0px auto 0xp 0px;">
                             
@@ -95,14 +78,9 @@
         <%@ include file="/view/topForm.jsp" %>
       </div>
     </div>
-
-
-
     <div class="yellow0" style="max-width:728px;">
-
       <div>
         <div class="definition red0" style="text-align:left;max-height:400px;overflow-y:auto;">
-
 <%--
           <div class="header blue" style="text-align:left;color:#6B6D6B;font-size:20px;font-weight:bold;padding:8px;">
 --%>
@@ -117,9 +95,9 @@
 <%
             Verb v0 = null;
             String verb0 = null;
-            if(verbList != null) {
+            if (verbList != null) {
                 int verbListSize = verbList.size();
-                for(int i = 0; i < verbListSize; i++) {
+                for (int i = 0; i < verbListSize; i++) {
                     v0 = (Verb)verbList.get(i);
                     verb0 = v0.getVerb();
 %>
@@ -132,19 +110,16 @@
             }
 %>
           </div>
-
           <div>
             <ol>
-
               <li>
-                <% if(isEnglish) { %>
+                <% if (isEnglish) { %>
                 <span style="font-size:12px;">(Definition<span style="font-size:10px;">/Sainmhíniú</span>)</span>
                 <% } else { %>
                 <span style="font-size:12px;">(Sainmhíniú<span style="font-size:10px;">/Definition</span>)</span>
                 <% } %>
-                <% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.get(i)).getVerb() %><% } } %>
+                <% if (verbList != null) { for (int i = 0; i < verbList.size(); i++) { %><% if (i>0) { %>, <% } %><%= ((Verb)verbList.get(i)).getVerb() %><% } } %>
               </li>
-
 <%--
               <% if(verb.getConjugation() > 0) { %>
               <li>
@@ -157,34 +132,31 @@
               </li>
               <% } %>
 --%>
-
-              <% if(verb.getVerbalAdjective() != null && !verb.getVerbalAdjective().equals("")) { %>
+              <% if (verb.getVerbalAdjective() != null && !verb.getVerbalAdjective().equals("")) { %>
               <li>
-                <% if(isEnglish) { %>
+                <% if (isEnglish) { %>
                 <span style="font-size:12px;">(Verbal Adjective<span style="font-size:10px;">/Aidiacht Briathartha</span>)</span>
                 <% } else { %>
                 <span style="font-size:12px;">(Aidiacht Briathartha<span style="font-size:10px;">/Verbal Adjective</span>)</span>
                 <% } %>
                 <%= verb.getVerbalAdjective() %>
-                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.get(i)).getParticiple() %><% } } %>)
+                (<% if (verbList != null) { for (int i = 0; i < verbList.size(); i++) { %><% if (i>0) { %>, <% } %><%= ((Verb)verbList.get(i)).getParticiple() %><% } } %>)
               </li>
               <% } %>
-
-              <% if(verb.getVerbalNoun() != null && !verb.getVerbalNoun().equals("")) { %>
+              <% if (verb.getVerbalNoun() != null && !verb.getVerbalNoun().equals("")) { %>
               <li>
-                <% if(isEnglish) { %>
+                <% if (isEnglish) { %>
                 <span style="font-size:12px;">(Verbal Noun<span style="font-size:10px;">/Ainm Briathartha</span>)</span>
                 <% } else { %>
                 <span style="font-size:12px;">(Ainm Briathartha<span style="font-size:10px;">/Verbal Noun</span>)</span>
                 <% } %>
-                <%= verb.getVerbalNoun() %>
-                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if(i > 0) { %>, <% } %><%= ((Verb)verbList.get(i)).getGerund() %><% } } %>)
+                ag <%= verb.getVerbalNoun() %>
+                (<% if (verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if(i > 0) { %>, <% } %><%= ((Verb)verbList.get(i)).getGerund() %><% } } %>)
               </li>
               <% } %>
-
-              <% if(verb.getParticiple() != null && !verb.getParticiple().equals("")) { %>
+              <% if (verb.getParticiple() != null && !verb.getParticiple().equals("")) { %>
               <li>
-                <% if(isEnglish) { %>
+                <% if (isEnglish) { %>
                 <span style="font-size:12px;">(Verbal Adjective<span style="font-size:10px;">/Aidiacht Briathartha</span>)</span>
                 <% } else { %>
                 <span style="font-size:12px;">(Aidiacht Briathartha</span><span style="font-size:10px;">/Verbal Adjective</span>)</span>
@@ -193,22 +165,17 @@
                 (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.get(i)).getVerbalAdjective() %><% } } %>)
               </li>
               <% } %>
-
-              <% if(verb.getGerund() != null && !verb.getGerund().equals("")) { %>
+              <% if (verb.getGerund() != null && !verb.getGerund().equals("")) { %>
               <li>
                 <span style="font-size:12px;">(Verb Gerund)</span>
                 <%= verb.getGerund() %>
-                (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= "ag " + ((Verb)verbList.get(i)).getVerbalNoun() %><% } } %>)
+                (<% if (verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if (i>0) { %>, <% } %><%= "ag " + ((Verb)verbList.get(i)).getVerbalNoun() %><% } } %>)
               </li>
               <% } %>
-
             </ol>
           </div>
-
         </div>
-
       </div>
-
       <div>
       <%--
           Set s = verbConjugationMap.keySet();
@@ -242,11 +209,8 @@
           }
       %>
       </div>
-
     </div>
-
   </div>
 </div>
-
 <%@ include file="/view/footer.jsp" %>
 
