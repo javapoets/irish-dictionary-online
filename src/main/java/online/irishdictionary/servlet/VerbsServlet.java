@@ -20,10 +20,15 @@ public class VerbsServlet extends InitServlet {
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private final String FORWARDSLASH = "/";
     private final String ENGLISH = "english";
-    //private final String IRISH = "irish";
+    private final String IRISH = "irish";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("doGet(request, response)");
+        log.debug("request.getServletPath() = " + request.getServletPath());
+        log.debug("request.getPathInfo() = " + request.getPathInfo());
+        log.debug("request.getRequestURI() = " + request.getRequestURI());
+        log.debug("request.getRequestURL() = " + request.getRequestURL());
+        log.debug("request.getPathTranslated() = " + request.getPathTranslated()); // Returns any extra path information after the servlet name but before the query string, and translates it to a real path.
         
         /*
         String languageId = request.getParameter("languageId");
@@ -48,8 +53,10 @@ public class VerbsServlet extends InitServlet {
         log.debug("toLanguage = " + toLanguage);
         */
         String language = pathInfoSplit[1];
+        request.setAttribute("language", language);
 
         int languageId = -1;
+        String toLanguage;
         /*
         if (languageIdParameter != null) {
             try {
@@ -61,10 +68,13 @@ public class VerbsServlet extends InitServlet {
         */
             if (ENGLISH.equals(language)) {
                 languageId = 1;
+                toLanguage = IRISH;
             } else {
                 languageId = 2;
+                toLanguage = ENGLISH;
             }
         //}
+        request.setAttribute("toLanguage", toLanguage);
 
         log.debug("languageId = " + languageId);
         //request.setAttribute("fromLanguage", fromLanguage);

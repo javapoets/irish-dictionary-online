@@ -25,7 +25,7 @@
 <div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
 <div style="padding-top:108px;padding-bottom:108px;text-align:center;margin:auto;">
 --%>  
-<div class="container" style=" border: blue 0px solid; height: 100%; text-align: center;  vertical-align: middle; margin: 0px; padding: 0px; ">
+<div class="flex-container" style=" border: blue 0px solid; height: 100%; text-align: center;  vertical-align: middle; margin: 0px; padding: 0px; ">
   <!--div style="text-align:center;margin:auto;"-->
 
     <%--

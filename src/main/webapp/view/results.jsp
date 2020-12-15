@@ -88,7 +88,7 @@
 
 %>
                       
-<div class="container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
+<div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
 
   <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
 

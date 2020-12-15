@@ -2,6 +2,8 @@
 <%
     List<Verb> verbList = (List<Verb>)request.getAttribute("verbList");
     log.debug("verbList.size() " + verbList.size());
+    String language = (String)request.getAttribute("language");
+    String toLanguage = (String)request.getAttribute("toLanguage");
     String wordEnglish = null;
     String wordIrish = null;
     String verbEnglish = null;
@@ -28,14 +30,30 @@
           <div class="verbs-container">
             <%
                 if (verbList != null) {
+                    int x = 1;
                     for(Verb verb: verbList) {
             %>
-            <div><%= verb.getVerb() %></div>
+            <div><span><%= x++ %>. </span><a href="/verb?language=<%= language %>&toLanguage=<%= toLanguage %>&verb=<%= verb.getVerb() %>"><%= verb.getVerb() %></a></div>
             <%
                     }
                 }
             %>
           </div>
+<%--        
+            http://dev.irishdictionary.online:8080/verb?language=english&toLanguage=irish&verb=get
+          <ul class="verbs-container">
+            <%
+                if (verbList != null) {
+                    for(Verb verb: verbList) {
+            %>
+            <li><%= verb.getVerb() %></li>
+            <%
+                    }
+                }
+            %>
+          </ul>
+--%>
+
       </div>
     </div>
   </div>

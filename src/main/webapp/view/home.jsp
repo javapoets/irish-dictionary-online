@@ -3,7 +3,7 @@
     List wordList = (List) request.getAttribute("wordList");
     List irishWordList = (List) request.getAttribute("irishWordList");
 %>
-<div class="container">
+<div class="flex-container">
   <div class="logo-offset">
     <div>
       <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>

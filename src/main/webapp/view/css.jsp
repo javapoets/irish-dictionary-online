@@ -18,6 +18,15 @@
   --search-block-width: 366px;
 }
 
+html
+,body
+{
+  height:100%;
+  background-color: #fff;
+  margin: 0px;
+  font-family: Arial;
+}
+
 .orange
 { 
   color: var(--orange);
@@ -39,15 +48,7 @@ div.cell
   display: table-cell;
 }
 
-html
-,body
-{
-  height:100%;
-  background-color: #fff;
-  margin: 0px;
-}
-
-.container
+.flex-container
 {
   display: flex;
   align-items: center;
@@ -744,20 +745,27 @@ ul li
 
 .verbs-container
 {
+  /*
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /*
   justify-content: center;
   align-items: center;  
-  */
   border: red 1px solid;
+  */
+  column-gap: 2em;
+  /*
+  column-rule: 1px solid #eee;
+  column-count: 2;
+  column-width: 20em;
+  */
+  column-width: 120px;
 }
 
 .verbs-container > div
 {
-  border: blue 1px solid;
   /*
+  border: blue 1px solid;
   flex-grow: 0;
   flex: 1;
   flex-shrink: 1;
@@ -766,6 +774,27 @@ ul li
   flex: 0 1 auto;
   flex: 2 1 auto;
   flex: 1 1 80px;
-  */
   width: 100px;
+  */
+  text-align: left;
+  font-size: 19px;
+  white-space: nowrap;
+  line-height: 22px;
+}
+
+.verbs-container > div > span
+{
+  color: #ccc;
+  font-size: 12px;
+}
+
+.verbs-container > div a
+{
+  text-decoration: none;
+  color: inherit;
+}
+
+.verbs-container > div a:hover
+{
+  text-decoration: underline;
 }
