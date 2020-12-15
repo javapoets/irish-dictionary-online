@@ -745,14 +745,6 @@ ul li
 
 .verbs-container
 {
-  /*
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;  
-  border: red 1px solid;
-  */
   column-gap: 2em;
   /*
   column-rule: 1px solid #eee;
@@ -764,18 +756,6 @@ ul li
 
 .verbs-container > div
 {
-  /*
-  border: blue 1px solid;
-  flex-grow: 0;
-  flex: 1;
-  flex-shrink: 1;
-  width: 1%;
-  display: inline-block;
-  flex: 0 1 auto;
-  flex: 2 1 auto;
-  flex: 1 1 80px;
-  width: 100px;
-  */
   text-align: left;
   font-size: 19px;
   white-space: nowrap;
