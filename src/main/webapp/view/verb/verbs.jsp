@@ -9,55 +9,22 @@
     String verbEnglish = null;
     String verbIrish = null;
 %>
-<div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
-  <div style="text-align:center;margin:auto;">
-    <div class="header">
-      <div>
-        <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
-      </div>
-      <div>
-        <%@ include file="/view/topForm.jsp" %>
-      </div>
-    </div>
-<%--        
-    <div class="yellow0" style="max-width:728px;">
-      <div>
-        <div class="definition red0" style="text-align:left;max-height:400px;overflow-y:auto;">
-        <div class="definition red">
---%>          
-    <div class="yellow0" style="max-width:728px;">
-      <div>
-          <div class="verbs-container">
-            <%
-                if (verbList != null) {
-                    int x = 1;
-                    for(Verb verb: verbList) {
-            %>
-            <div><span><%= x++ %>. </span><a href="/verb?language=<%= language %>&toLanguage=<%= toLanguage %>&verb=<%= verb.getVerb() %>"><%= verb.getVerb() %></a></div>
-            <%
-                    }
-                }
-            %>
+    <div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
+      <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
+        <div class="header">
+          <div style="padding: 13px 42px; width: 200px;">
+            <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
           </div>
-<%--        
-            http://dev.irishdictionary.online:8080/verb?language=english&toLanguage=irish&verb=get
-          <ul class="verbs-container">
-            <%
-                if (verbList != null) {
-                    for(Verb verb: verbList) {
-            %>
-            <li><%= verb.getVerb() %></li>
-            <%
-                    }
-                }
-            %>
-          </ul>
---%>
-
+          <div class="search-block">
+            <%@ include file="/view/topForm.jsp" %>
+            <%--@ include file="/view/entry-form.jsp" --%>
+          </div>
+        </div>
+        <div style="padding-bottom: 40px;">
+          <% if(verbList != null) { %>
+            <%@ include file="/view/verb/verbs-output.jsp" %>
+          <% } %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<%@ include file="/view/footer.jsp" %>
-
+    <%@ include file="/view/footer.jsp" %>

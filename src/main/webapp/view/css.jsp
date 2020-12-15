@@ -1,9 +1,9 @@
 /*
+*/
 *
 {
   border: red 1px solid;
 }
-*/
 
 :root {
   --orange: #FF8F00;

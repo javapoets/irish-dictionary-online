@@ -2,8 +2,7 @@
     language="java"
     contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"
-    session="false"
-%>
+    session="false" %>
 <%@ include file="/view/imports.jsp" %>
 <%@ include file="/view/log.jsp" %>
 <%@ include file="/view/variables.jsp" %>

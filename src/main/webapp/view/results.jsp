@@ -1,4 +1,3 @@
-<%--@ include file="/view/header.jsp" --%>
 <%@ page
     language="java"
     contentType="text/html;charset=UTF-8"
@@ -57,7 +56,6 @@
         /*border: blue 1px solid;*/
         padding: 9px;
       }
-
       @media (min-width: 670px) {
         body div.entry-form > div
         {
