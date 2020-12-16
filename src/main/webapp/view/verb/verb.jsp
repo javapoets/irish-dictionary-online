@@ -8,6 +8,7 @@
     List<Verb> verbList = (List<Verb>) verb.getVerbList();
     int count = 0;
     if(verbList != null) count = verbList.size();
+    String EMPTY = "";
     String wordEnglish = null;
     String wordIrish = null;
     String verbEnglish = null;

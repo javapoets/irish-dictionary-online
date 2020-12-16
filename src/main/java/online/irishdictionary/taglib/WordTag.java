@@ -172,7 +172,7 @@ public class WordTag implements Tag {
             //stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
             stringBuilder.append("<div class=\"word-header\">")
                 .append("<span class=\"language-label\">")
-                .append("Example usage:")
+                .append("Example usage")
                 .append("</span>")
                 .append("</div>");
             stringBuilder.append("<ol>");

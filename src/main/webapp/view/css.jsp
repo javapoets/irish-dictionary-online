@@ -575,7 +575,7 @@ div.definition li span.type {
   padding-left:5px;
 }
 
-div.definition li span.description
+div.definition span.description
 {
   /*
   color:#f7941d;
@@ -586,6 +586,10 @@ div.definition li span.description
   color: #999;
   font-size:12px;
   padding-left:5px;
+}
+div.definition span.description .smaller
+{
+  font-size: 11px;
 }
 
 div.definition li span.description a
@@ -769,12 +773,14 @@ ul li
 }
 
 .verbs-container > div a
+, .definition a
 {
   text-decoration: none;
   color: inherit;
 }
 
 .verbs-container > div a:hover
+, .definition a:hover
 {
   text-decoration: underline;
 }
