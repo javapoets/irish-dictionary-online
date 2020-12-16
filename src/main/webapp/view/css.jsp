@@ -738,8 +738,8 @@ ul {
   /* Limit height to whatever you need
   height: 100vh;
   max-height: 500px;
-  */
   height: 100vh;
+  */
 }
 
 ul li

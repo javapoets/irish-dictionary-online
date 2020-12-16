@@ -1,4 +1,4 @@
-<div class="definition" style="text-align:left;max-height:400px;overflow-y:auto;">
+<div class="definition">
   <div class="word-header">
     <span class="language-label"><span class="capitalize"><%= fromLanguage %></span> verb</span>
     <span class="word"><% if(verb != null) { %><%= verb.getVerb() %><% } %></span>
@@ -51,8 +51,9 @@
         <% } else { %>
           <span class="description">(Aidiacht Briathartha<span class="smaller">/Verbal Adjective</span>)</span>
         <% } %>
-        <%= verb.getVerbalAdjective() %>
-        (<% if (verbList != null) { for (int i = 0; i < verbList.size(); i++) { %><% if (i>0) { %>, <% } %><%= ((Verb)verbList.get(i)).getParticiple() %><% } } %>)
+        <%--= verb.getVerbalAdjective() --%>
+        <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalAdjective() %>"><%= verb.getVerbalAdjective() %></a>
+        (<% if (verbList != null) { for (int i = 0; i < verbList.size(); i++) { %><% if (i > 0) { %>, <% } %><a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getParticiple() %>"><%= ((Verb)verbList.get(i)).getParticiple() %></a><% } } %>)
       </li>
       <% } %>
       <% if (verb.getVerbalNoun() != null && !verb.getVerbalNoun().equals(EMPTY)) { %>
@@ -62,8 +63,8 @@
         <% } else { %>
           <span class="description">(Ainm Briathartha<span class="smaller">/Verbal Noun</span>)</span>
         <% } %>
-        ag <%= verb.getVerbalNoun() %>
-        (<% if (verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if(i > 0) { %>, <% } %><%= ((Verb)verbList.get(i)).getGerund() %><% } } %>)
+        ag <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalNoun() %>"><%= verb.getVerbalNoun() %></a>
+        (<% if (verbList != null) { for (int i = 0; i < verbList.size(); i++) { %><% if(i > 0) { %>, <% } %><a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getGerund() %>"><%= ((Verb)verbList.get(i)).getGerund() %></a><% } } %>)
       </li>
       <% } %>
       <% if (verb.getParticiple() != null && !verb.getParticiple().equals(EMPTY)) { %>
@@ -73,33 +74,36 @@
         <% } else { %>
           <span class="description">(Aidiacht Briathartha</span><span class="smaller">/Verbal Adjective</span>)</span>
         <% } %>
-        <%= verb.getParticiple() %>
-        (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <%}%><%= ((Verb)verbList.get(i)).getVerbalAdjective() %><% } } %>)
+        <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getParticiple() %>"><%= verb.getParticiple() %></a>
+        (<% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <% } %><a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getVerbalAdjective() %>"><%= ((Verb)verbList.get(i)).getVerbalAdjective() %></a><% } } %>)
       </li>
       <% } %>
       <% if (verb.getGerund() != null && !verb.getGerund().equals(EMPTY)) { %>
       <li>
         <span class="description">(Verbal Noun<span class="smaller">/Ainm Briathartha</span>)</span>
-        <%= verb.getGerund() %>
-        (<% if (verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if (i>0) { %>, <% } %><%= "ag " + ((Verb)verbList.get(i)).getVerbalNoun() %><% } } %>)
+        <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getGerund() %>"><%= verb.getGerund() %></a>
+        (<% if (verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if (i>0) { %>, <% } %>ag <a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getVerbalNoun() %>"><%= ((Verb)verbList.get(i)).getVerbalNoun() %></a><% } } %>)
       </li>
       <% } %>
     </ol>
   </div>
-</div>
-<div>
-  <%
-    VerbConjugation verbConjugation;
-    String tenseId;
-    for(int x = 1; x <= 7; x++) {
-        tenseId = String.valueOf(x);
-        System.out.println("tenseId = " + tenseId);
-        verbConjugation = (VerbConjugation) verbConjugationMap.get(tenseId);
-  %>
-    <div>
-      <%@ include file="/view/verb/verbConjugation.jsp" %>
+  <div class="usage">
+    <div class="word-header">
+      <span class="language-label">Conjugation</span>
     </div>
-  <%
-    }
-  %>
+    <%
+        VerbConjugation verbConjugation;
+        String tenseId;
+        for (int x = 1; x <= 7; x++) {
+            tenseId = String.valueOf(x);
+            log.debug("tenseId = " + tenseId);
+            verbConjugation = (VerbConjugation) verbConjugationMap.get(tenseId);
+    %>
+      <!--div-->
+        <%@ include file="/view/verb/verbConjugation.jsp" %>
+      <!--/div-->
+    <%
+      }
+    %>
+  </div>
 </div>

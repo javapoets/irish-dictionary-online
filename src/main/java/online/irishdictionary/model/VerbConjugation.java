@@ -6,14 +6,14 @@ public class VerbConjugation {
     private int verbId = 0;
     private String verb = "";
     private String me = "";
-    private String youSing = "";
+    private String youSingular = "";
     private String he = "";
     private String she = "";
     private String we = "";
-    private String youPlur = "";
+    private String youPlural = "";
     private String they = "";
-    private String aut = "";
-    private String neg = "";
+    private String autonomous = "";
+    private String negative = "";
     private String question = "";
     private int tenseId = 0;
     private String tenseIrish = "";
@@ -47,8 +47,8 @@ public class VerbConjugation {
         return me;
     }
 
-    public String getYouSing() {
-        return youSing;
+    public String getYouSingular() {
+        return youSingular;
     }
 
     public String getHe() {
@@ -63,20 +63,20 @@ public class VerbConjugation {
         return we;
     }
 
-    public String getYouPlur() {
-        return youPlur;
+    public String getYouPlural() {
+        return youPlural;
     }
 
     public String getThey() {
         return they;
     }
 
-    public String getAut() {
-        return (aut != null) ? aut : "";
+    public String getAutonomous() {
+        return (autonomous != null) ? autonomous : "";
     }
 
-    public String getNeg() {
-        return (neg != null) ? neg : "";
+    public String getNegative() {
+        return (negative != null) ? negative : "";
     }
 
     public String getQuestion() {
@@ -111,8 +111,8 @@ public class VerbConjugation {
         this.me = me;
     }
 
-    public void setYouSing(String youSing) {
-        this.youSing = youSing;
+    public void setYouSingular(String youSingular) {
+        this.youSingular = youSingular;
     }
 
     public void setHe(String he) {
@@ -127,20 +127,20 @@ public class VerbConjugation {
         this.we = we;
     }
 
-    public void setYouPlur(String youPlur) {
-        this.youPlur = youPlur;
+    public void setYouPlural(String youPlural) {
+        this.youPlural = youPlural;
     }
 
     public void setThey(String they) {
         this.they = they;
     }
 
-    public void setAut(String aut) {
-        this.aut = aut;
+    public void setAutonomous(String autonomous) {
+        this.autonomous = autonomous;
     }
 
-    public void setNeg(String neg) {
-        this.neg = neg;
+    public void setNegative(String negative) {
+        this.negative = negative;
     }
 
     public void setQuestion(String question) {
@@ -158,5 +158,4 @@ public class VerbConjugation {
     public void setTenseEnglish(String tenseEnglish) {
         this.tenseEnglish = tenseEnglish;
     }
-    
 }

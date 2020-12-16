@@ -85,14 +85,14 @@ public class VerbDatabaseManager {
         while (resultSet.next()) {
             verbConjugation.setVerbConjugationId(resultSet.getInt(1));
             verbConjugation.setMe(resultSet.getString(2));
-            verbConjugation.setYouSing(resultSet.getString(3));
+            verbConjugation.setYouSingular(resultSet.getString(3));
             verbConjugation.setHe(resultSet.getString(4));
             verbConjugation.setShe(resultSet.getString(5));
             verbConjugation.setWe(resultSet.getString(6));
-            verbConjugation.setYouPlur(resultSet.getString(7));
+            verbConjugation.setYouPlural(resultSet.getString(7));
             verbConjugation.setThey(resultSet.getString(8));
-            verbConjugation.setAut(resultSet.getString(9));
-            verbConjugation.setNeg(resultSet.getString(10));
+            verbConjugation.setAutonomous(resultSet.getString(9));
+            verbConjugation.setNegative(resultSet.getString(10));
             verbConjugation.setQuestion(resultSet.getString(11));
             verbConjugation.setTenseIrish(resultSet.getString(12));
             verbConjugation.setTenseEnglish(resultSet.getString(13));

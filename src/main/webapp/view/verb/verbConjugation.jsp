@@ -1,281 +1,253 @@
-
-<% if(isEnglish) { %>
-<div style="list-style:none;text-align:left;font-family:arial;border-bottom:#ccc 1px solid;"><%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %></div>
+<% if (isEnglish) { %>
+  <div style="list-style:none;text-align:left;font-family:arial;border-bottom:#ccc 1px solid;">
+    <%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %>
+  </div>
 <% } else { %>
-<div style="list-style:none;text-align:left;font-family:arial;border-bottom:#ccc 1px solid;"><%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %></div>
+  <div style="list-style:none;text-align:left;font-family:arial;border-bottom:#ccc 1px solid;">
+    <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
+  </div>
 <% } %>
-
-
 <ul style="list-style:none;text-align:left;font-family:arial;">
-
- <li>
-  <%= verbConjugation.getMe() %>
-<%--
-<%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getMe() %>; <% } %>
---%>
-<%
-    StringBuilder sb = new StringBuilder();
-    String me = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        me = vC.getMe();
-        if(me != null) {
-            if(i > 0)sb.append(", ");
-            sb.append(me);
+  <li>
+    <%= verbConjugation.getMe() %>
+    <%
+        StringBuilder stringBuilder = new StringBuilder();
+        String me = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            me = verbConjugationI.getMe();
+            if (me != null) {
+                if (i > 0) stringBuilder.append(", ");
+                stringBuilder.append(me);
+            }
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <%= verbConjugation.getYouSing() %>
-<%--
-<%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getYouSing() %>, <% } %>
---%>
-<%
-    sb = new StringBuilder();
-    String youSing = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        youSing = vC.getYouSing();
-        if(youSing != null) {
-            if(i > 0)sb.append(", ");
-            sb.append(youSing);
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color: #ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <%= verbConjugation.getHe() %>
-<%
-    sb = new StringBuilder();
-    String he = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        he = vC.getHe();
-        if(he != null) {
-            if(i > 0)sb.append(", ");
-            sb.append(he);
+    %>
+  </li>
+  <li>
+    <%= verbConjugation.getYouSingular() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String youSingular = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            youSingular = verbConjugationI.getYouSingular();
+            if (youSingular != null) {
+                if (i > 0) stringBuilder.append(", ");
+                stringBuilder.append(youSingular);
+            }
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <%= verbConjugation.getShe() %>
-<%
-    sb = new StringBuilder();
-    String she = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        she = vC.getShe();
-        if(she != null) {
-            if(i > 0)sb.append(", ");
-            sb.append(she);
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color: #ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <%= verbConjugation.getWe() %>
-<%
-    sb = new StringBuilder();
-    String we = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        we = vC.getWe();
-        if(we != null) {
-            if(i > 0)sb.append(", ");
-            sb.append(we);
+    %>
+  </li>
+  <li>
+    <%= verbConjugation.getHe() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String he = null;
+        for(int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            he = verbConjugationI.getHe();
+            if (he != null) {
+                if (i > 0) stringBuilder.append(", ");
+                stringBuilder.append(he);
+            }
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <%= verbConjugation.getYouPlur() %>
-<%
-    sb = new StringBuilder();
-    String youPlur = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        youPlur = vC.getYouPlur();
-        if(youPlur != null) {
-            if(i > 0)sb.append(", ");
-            sb.append(youPlur);
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color: #ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <%= verbConjugation.getThey() %>
-<%
-    sb = new StringBuilder();
-    String they = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        they = vC.getThey();
-        if(they != null) {
-            if(i > 0)sb.append(", ");
-            sb.append(they);
+    %>
+  </li>
+  <li>
+    <%= verbConjugation.getShe() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String she = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            she = verbConjugationI.getShe();
+            if (she != null) {
+                if (i > 0) stringBuilder.append(", ");
+                stringBuilder.append(she);
+            }
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <span style="font-size:12px">(Autonomous)</span>
-  <%= verbConjugation.getAut() %>
-<%--
-  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getAut() %>; <% } %>
---%>
-<%
-    sb = new StringBuilder();
-    String aut = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        aut = vC.getAut();
-        if(
-          aut != null
-          && !aut.equals("")
-        ) {
-            if(i > 0) sb.append(", ");
-            sb.append(aut);
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color: #ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-<%--
-  <span style="font-size:12px">Negative</span><span style="font-size:10px;padding-left:3px;">(Diúltach)</span>
---%>
-  <span style="font-size:12px">(Negative</span><span style="font-size:10px;">/Diúltach)</span>
-  <%= verbConjugation.getNeg() %>
-<%--
-  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getNeg() %>; <% } %>
---%>
-<%
-    sb = new StringBuilder();
-    String neg = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        neg = vC.getNeg();
-        if(
-          neg != null
-          && !neg.equals("")
-        ) {
-            if(i > 0) sb.append(", ");
-            sb.append(neg);
+    %>
+  </li>
+  <li>
+    <%= verbConjugation.getWe() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String we = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            we = verbConjugationI.getWe();
+            if (we != null) {
+                if (i > 0) stringBuilder.append(", ");
+                stringBuilder.append(we);
+            }
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
- <li>
-  <span style="font-size:12px">(Question</span><span style="font-size:10px;">/Ceisteach)</span>
-  <%= verbConjugation.getQuestion() %>
-<%--
-  <% for(int i = 0; i < verbList.size(); i++) { %><%= ((VerbConjugation)((Map)((Verb)verbList.get(i)).getVerbConjugationMap()).get(tenseId)).getQuestion() %>; <% } %>
---%>
-<%
-    sb = new StringBuilder();
-    String question = null;
-    for(int i = 0; i < verbList.size(); i++) {
-        Verb v = (Verb)verbList.get(i);
-        Map vCM = (Map)v.getVerbConjugationMap();
-        VerbConjugation vC = (VerbConjugation)vCM.get(tenseId);
-        question = vC.getQuestion();
-        if(
-          question != null
-          && !question.equals("")
-        ) {
-            if(i > 0) sb.append(", ");
-            sb.append(question);
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color: #ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
         }
-    }
-    if(sb.length() > 0) {
-%>
-  <span style="color:#ff8f00;">=</span>
-  <%= sb.toString() %>
-<%
-    }
-%>
- </li>
-
+    %>
+  </li>
+  <li>
+    <%= verbConjugation.getYouPlural() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String youPlural = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            youPlural = verbConjugationI.getYouPlural();
+            if (youPlural != null) {
+                if (i > 0) stringBuilder.append(", ");
+                stringBuilder.append(youPlural);
+            }
+        }
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color:#ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
+        }
+    %>
+  </li>
+  <li>
+    <%= verbConjugation.getThey() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String they = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            they = verbConjugationI.getThey();
+            if (they != null) {
+                if(i > 0) stringBuilder.append(", ");
+                stringBuilder.append(they);
+            }
+        }
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color:#ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
+        }
+    %>
+  </li>
+  <li>
+    <span style="font-size:12px">(Autonomous)</span>
+    <%= verbConjugation.getAutonomous() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String autonomous = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            autonomous = verbConjugationI.getAutonomous();
+            if (
+              autonomous != null
+              && !autonomous.equals("")
+            ) {
+                if(i > 0) stringBuilder.append(", ");
+                stringBuilder.append(autonomous);
+            }
+        }
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color:#ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
+        }
+    %>
+  </li>
+  <li>
+    <span style="font-size:12px">(Negative</span><span style="font-size:10px;">/Diúltach)</span>
+    <%= verbConjugation.getNegative() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String negative = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            negative = verbConjugationI.getNegative();
+            if(
+              negative != null
+              && !negative.equals("")
+            ) {
+                if(i > 0) stringBuilder.append(", ");
+                stringBuilder.append(negative);
+            }
+        }
+        if (stringBuilder.length() > 0) {
+    %>
+      <span style="color: #ff8f00;">=</span>
+      <%= stringBuilder.toString() %>
+    <%
+        }
+    %>
+  </li>
+  <li>
+    <span style="font-size:12px">(Question</span><span style="font-size:10px;">/Ceisteach)</span>
+    <%= verbConjugation.getQuestion() %>
+    <%
+        stringBuilder = new StringBuilder();
+        String question = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            question = verbConjugationI.getQuestion();
+            if (
+              question != null
+              && !question.equals("")
+            ) {
+                if(i > 0) stringBuilder.append(", ");
+                stringBuilder.append(question);
+            }
+        }
+        if(stringBuilder.length() > 0) {
+    %>
+    <span style="color: #ff8f00;">=</span>
+    <%= stringBuilder.toString() %>
+    <%
+        }
+    %>
+  </li>
 </ul>
