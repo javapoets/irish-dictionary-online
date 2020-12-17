@@ -7,10 +7,21 @@
     <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
   </div>
 <% } %>
-<ul style="list-style:none;text-align:left;font-family:arial;">
+<ol style="list-style:none;text-align:left;font-family:arial;">
   <li>
-    <%= verbConjugation.getMe() %>
-    <%
+<%--    
+    I/mé
+    You/tú (singular/uatha)
+    He/sé
+    She/sí
+    We/muid
+    You/sibh (plural/iolra)
+    They/siad
+--%>    
+    <div>
+      <span class="usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (I/Mé) </span>
+      <span class="usage"><%= verbConjugation.getMe() %></span>
+      <%
         StringBuilder stringBuilder = new StringBuilder();
         String me = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -24,16 +35,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color: #ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish"><%= isEnglish ? IRISH : ENGLISH %> (I/Mé) </span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <%= verbConjugation.getYouSingular() %>
-    <%
+    <div>
+      <span class="usage-label english">english (You/Tú) </span>
+      <span class="usage"><%= verbConjugation.getYouSingular() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String youSingular = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -47,16 +64,21 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color: #ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (You/Tú) </span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
   </li>
   <li>
-    <%= verbConjugation.getHe() %>
-    <%
+    <div>
+      <span class="usage-label english">english (He/Sé) </span>
+      <span class="usage"><%= verbConjugation.getHe() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String he = null;
         for(int i = 0; i < verbList.size(); i++) {
@@ -70,16 +92,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color: #ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (He/Sé) </span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <%= verbConjugation.getShe() %>
-    <%
+    <div>
+      <span class="usage-label english">english (She/Sí) </span>
+      <span class="usage"><%= verbConjugation.getShe() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String she = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -93,16 +121,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color: #ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (She/Sí) </span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <%= verbConjugation.getWe() %>
-    <%
+    <div>
+      <span class="usage-label english">english (We/Muid) </span>
+      <span class="usage"><%= verbConjugation.getWe() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String we = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -116,16 +150,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color: #ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (We/Muid) </span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <%= verbConjugation.getYouPlural() %>
-    <%
+    <div>
+      <span class="usage-label english">english (You/Sibh) </span>
+      <span class="usage"><%= verbConjugation.getYouPlural() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String youPlural = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -139,16 +179,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color:#ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (You/Sibh) </span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <%= verbConjugation.getThey() %>
-    <%
+    <div>
+      <span class="usage-label english">english (They/Siad) </span>
+      <span class="usage"><%= verbConjugation.getThey() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String they = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -162,17 +208,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color:#ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (They/Siad) </span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <span style="font-size:12px">(Autonomous)</span>
-    <%= verbConjugation.getAutonomous() %>
-    <%
+    <div>
+      <span class="usage-label english">english (Autonomous/Saorbhriathar) </span>
+      <span class="usage"><%= verbConjugation.getAutonomous() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String autonomous = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -189,17 +240,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color:#ff8f00;">=</span>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (Autonomous/Saorbhriathar)</span>
+      <span class="translated">
       <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <span style="font-size:12px">(Negative</span><span style="font-size:10px;">/Diúltach)</span>
-    <%= verbConjugation.getNegative() %>
-    <%
+    <div>
+      <span class="usage-label english">english (Negative/<span style="font-size:10px;">Diúltach</span>) </span>
+      <span class="usage"><%= verbConjugation.getNegative() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String negative = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -216,17 +272,22 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <span style="color: #ff8f00;">=</span>
-      <%= stringBuilder.toString() %>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (Negative/<span style="font-size:10px;">Diúltach</span>) </span>
+      <span class="translated">
+        <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
   <li>
-    <span style="font-size:12px">(Question</span><span style="font-size:10px;">/Ceisteach)</span>
-    <%= verbConjugation.getQuestion() %>
-    <%
+    <div>
+      <span class="usage-label english">english (Question/<span style="font-size:10px;">Ceisteach</span>) </span>
+      <span class="usage"><%= verbConjugation.getQuestion() %></span>
+      <%
         stringBuilder = new StringBuilder();
         String question = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -243,11 +304,15 @@
             }
         }
         if(stringBuilder.length() > 0) {
-    %>
-    <span style="color: #ff8f00;">=</span>
-    <%= stringBuilder.toString() %>
+      %>
+      <br/>
+      <span class="usage-label irish">irish (Question/<span style="font-size:10px;">Ceisteach</span>) </span>
+      <span class="translated">
+      <%= stringBuilder.toString() %>
+      </span>
     <%
         }
     %>
+    </div>
   </li>
-</ul>
+</ol>

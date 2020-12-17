@@ -9,6 +9,8 @@
     int count = 0;
     if(verbList != null) count = verbList.size();
     String EMPTY = "";
+    String ENGLISH = "english";
+    String IRISH = "irish";
     String wordEnglish = null;
     String wordIrish = null;
     String verbEnglish = null;
