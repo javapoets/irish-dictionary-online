@@ -123,7 +123,6 @@ body div.entry-form > div
 
 @media (max-width: 670px)
 {
-
   body div.header
   {
     /*
@@ -131,7 +130,6 @@ body div.entry-form > div
     */
     justify-content: center;
   }
-
   body div.entry-form > div
   {
     padding-left: 5px;
@@ -142,7 +140,6 @@ body div.entry-form > div
 <%--
 @media (min-width: 670px)
 {
-
   body div.entry-form > div
   {
     /*
@@ -151,7 +148,6 @@ body div.entry-form > div
     border: red 1px solid;
     */
   }
-
   /*
   .search-block
   {
@@ -160,7 +156,6 @@ body div.entry-form > div
     width: var(--search-block-width);
   }
   */
-
 }
 
 @media (min-width: var(--search-block-width))
@@ -191,7 +186,6 @@ body div.entry-form > div
   {
     margin-left: -95px;
   }
-
   /*
   .entry-form
   {
@@ -199,7 +193,6 @@ body div.entry-form > div
     padding-right: 20px;
   }
   */
-
 }
 
 div.bottombox {
@@ -293,9 +286,11 @@ span.link:hover {
   text-decoration:underline;
   cursor:pointer;
 }
+
 a.ad {
   text-decoration:none;
 }
+
 div.ad {
   border:#2C5A26 1px solid;
   border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;
@@ -308,12 +303,14 @@ div.ad {
   -webkit-box-shadow:0 0 3px #999;
 --%>
 }
+
 div.ad:hover {
   background-color:#B4CD8F;
   box-shadow:0 0 3px #999;
   -moz-box-shadow:0 0 3px #999;
   -webkit-box-shadow:0 0 3px #999;
 }
+
 div.ad-top {
   display:inline-table;
   white-space:nowrap;
@@ -324,6 +321,7 @@ div.ad-top {
   color:#6B6D6B;
   color:#295921;
 }
+
 div.ad-bottom {
   color:#FF8F00;
   font-weight:normal;
@@ -692,7 +690,7 @@ div.usage li > div .usage-label.irish
 
 div.usage li span.translated
 {
-  color:#2C5A26;
+  color: #2C5A26;
   font-style: italic;
   /*
   border-bottom: blue 1px solid;
@@ -783,4 +781,71 @@ ul li
 , .definition a:hover
 {
   text-decoration: underline;
+}
+
+div.verb-conjugation div.verb-tense-header
+{
+  list-style: none;
+  text-align: left;
+  font-family:arial;
+  line-height: 33px;
+  border: blue 1px solid;
+  border-bottom: #ccc 1px solid;
+  color: #888;
+}
+
+.verb-conjugation .usage-label
+{
+  color: #999;
+  font-size: 12px;
+  width: 1%;
+  /*
+  border: red 1px solid;
+  */
+  white-space: nowrap;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+.verb-conjugation .usage
+{
+  line-height: 25px;
+  /*
+  border: blue 1px solid;
+  */
+  padding-left: 5px;
+}
+
+.verb-conjugation .usage-label.underline
+,.verb-conjugation .translated.underline
+{
+  border-bottom: #ccc 1px solid;
+}
+
+.verb-conjugation .translated
+{
+  color: #2C5A26;
+  font-style: italic;
+  padding-left: 5px;
+  line-height: 25px;
+}
+
+/*
+.verb-conjugation .row:nth-child(2) .cell
+  background: red;
+*/
+.verb-conjugation .row:nth-child(odd) .cell
+{
+  padding-top: 7px;
+}
+
+/*
+.verb-conjugation div.row .cell:nth-child(2)
+{
+  background: green;
+}
+*/
+.verb-conjugation .row:nth-child(even) .cell
+{
+  padding-bottom: 7px;
 }

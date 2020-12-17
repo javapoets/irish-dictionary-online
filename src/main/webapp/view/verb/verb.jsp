@@ -40,8 +40,9 @@
 
 <%--
 <div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
---%>
     <div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
+--%>
+    <div class="flex-container">
       <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
         <div class="header">
           <div style="padding: 13px 42px; width: 200px;">

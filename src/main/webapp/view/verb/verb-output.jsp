@@ -87,9 +87,9 @@
       <% } %>
     </ol>
   </div>
-  <div class="usage">
+  <div class="verb-conjugation">
     <div class="word-header">
-      <span class="language-label">Conjugation</span>
+      <span class="language-label">Verb conjugation</span>
     </div>
     <%
         VerbConjugation verbConjugation;

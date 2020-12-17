@@ -1,5 +1,5 @@
 <% if (isEnglish) { %>
-  <div style="list-style:none;text-align:left;font-family:arial;border-bottom:#ccc 1px solid;">
+  <div class="verb-tense-header">
     <%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %>
   </div>
 <% } else { %>
@@ -7,9 +7,9 @@
     <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
   </div>
 <% } %>
+<%--    
 <ol style="list-style:none;text-align:left;font-family:arial;">
   <li>
-<%--    
     I/mé
     You/tú (singular/uatha)
     He/sé
@@ -18,9 +18,14 @@
     You/sibh (plural/iolra)
     They/siad
 --%>    
-    <div>
-      <span class="usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (I/Mé) </span>
-      <span class="usage"><%= verbConjugation.getMe() %></span>
+<div class="table">
+  <div class="row">
+    <div class="cell usage-label"><%= isEnglish ? ENGLISH : IRISH %> (I/Mé) </div>
+    <div class="cell usage"><%= verbConjugation.getMe() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (I/Mé) </div>
+    <div class="cell translated underline">
       <%
         StringBuilder stringBuilder = new StringBuilder();
         String me = null;
@@ -36,21 +41,20 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish"><%= isEnglish ? IRISH : ENGLISH %> (I/Mé) </span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
-    </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (You/Tú) </span>
-      <span class="usage"><%= verbConjugation.getYouSingular() %></span>
       <%
+        }
+      %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (You/Tú) </div>
+    <div class="cell usage"><%= verbConjugation.getYouSingular() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (You/Tú) </div>
+    <div class="cell translated underline">
+    <%
         stringBuilder = new StringBuilder();
         String youSingular = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -64,20 +68,20 @@
             }
         }
         if (stringBuilder.length() > 0) {
-      %>
-      <br/>
-      <span class="usage-label irish">irish (You/Tú) </span>
-      <span class="translated">
+    %>
       <%= stringBuilder.toString() %>
-      </span>
+    </div>
     <%
         }
     %>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (He/Sé) </span>
-      <span class="usage"><%= verbConjugation.getHe() %></span>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (He/Sé) </div>
+    <div class="cell usage"><%= verbConjugation.getHe() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (He/Sé) </div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String he = null;
@@ -93,20 +97,17 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (He/Sé) </span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
+      <% } %>
     </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (She/Sí) </span>
-      <span class="usage"><%= verbConjugation.getShe() %></span>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (She/Sí) </div>
+    <div class="usage"><%= verbConjugation.getShe() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (She/Sí) </div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String she = null;
@@ -122,20 +123,17 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (She/Sí) </span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
+      <% } %>
     </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (We/Muid) </span>
-      <span class="usage"><%= verbConjugation.getWe() %></span>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (We/Muid) </div>
+    <div class="cell usage"><%= verbConjugation.getWe() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (We/Muid) </div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String we = null;
@@ -151,20 +149,17 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (We/Muid) </span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
     </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (You/Sibh) </span>
-      <span class="usage"><%= verbConjugation.getYouPlural() %></span>
+    <% } %>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (You/Sibh) </div>
+    <div class="cell usage"><%= verbConjugation.getYouPlural() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (You/Sibh) </div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String youPlural = null;
@@ -180,20 +175,17 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (You/Sibh) </span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
+      <% } %>
     </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (They/Siad) </span>
-      <span class="usage"><%= verbConjugation.getThey() %></span>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (They/Siad) </div>
+    <div class="cell usage"><%= verbConjugation.getThey() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (They/Siad) </div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String they = null;
@@ -209,20 +201,17 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (They/Siad) </span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
+      <% } %>
     </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (Autonomous/Saorbhriathar) </span>
-      <span class="usage"><%= verbConjugation.getAutonomous() %></span>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (Autonomous) </div>
+    <div class="cell usage"><%= verbConjugation.getAutonomous() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (Saorbhriathar)</div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String autonomous = null;
@@ -241,20 +230,17 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (Autonomous/Saorbhriathar)</span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
+      <% } %>
     </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (Negative/<span style="font-size:10px;">Diúltach</span>) </span>
-      <span class="usage"><%= verbConjugation.getNegative() %></span>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (Negative/<span style="font-size:10px;">Diúltach</span>) </div>
+    <div class="cell usage"><%= verbConjugation.getNegative() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (Negative/<span style="font-size:10px;">Diúltach</span>) </div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String negative = null;
@@ -273,20 +259,17 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (Negative/<span style="font-size:10px;">Diúltach</span>) </span>
-      <span class="translated">
-        <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
+      <%= stringBuilder.toString() %>
+      <% } %>
     </div>
-  </li>
-  <li>
-    <div>
-      <span class="usage-label english">english (Question/<span style="font-size:10px;">Ceisteach</span>) </span>
-      <span class="usage"><%= verbConjugation.getQuestion() %></span>
+  </div>
+  <div class="row">
+    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (Question/<span style="font-size:10px;">Ceisteach</span>) </div>
+    <div class="cell usage"><%= verbConjugation.getQuestion() %></div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (Question/<span style="font-size:10px;">Ceisteach</span>) </div>
+    <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
         String question = null;
@@ -305,14 +288,8 @@
         }
         if(stringBuilder.length() > 0) {
       %>
-      <br/>
-      <span class="usage-label irish">irish (Question/<span style="font-size:10px;">Ceisteach</span>) </span>
-      <span class="translated">
       <%= stringBuilder.toString() %>
-      </span>
-    <%
-        }
-    %>
+      <% } %>
     </div>
-  </li>
-</ol>
+  </div>
+</div>
