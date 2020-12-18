@@ -1,30 +1,71 @@
+<%--div class="verb-tense-header">
 <% if (isEnglish) { %>
-  <div class="verb-tense-header">
-    <%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %>
-  </div>
+  <%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %>
 <% } else { %>
-  <div style="list-style:none;text-align:left;font-family:arial;border-bottom:#ccc 1px solid;">
-    <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
-  </div>
+  <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
 <% } %>
+</div--%>
 <%--    
 <ol style="list-style:none;text-align:left;font-family:arial;">
   <li>
-    I/mé
-    You/tú (singular/uatha)
-    He/sé
-    She/sí
-    We/muid
-    You/sibh (plural/iolra)
-    They/siad
---%>    
+    I/Mé
+    You/Tú (singular/uatha)
+    He/Sé
+    She/Sí
+    We/Muid
+    You/Sibh (plural/iolra)
+    They/Siad
+    Autonomous/Saorbhriathar
+    Negative/Diúltach
+    Question/Ceisteach
+--%>
+<%
+    String ENGLISH_PRONOUN_ME = "I";
+    String IRISH_PRONOUN_ME = "Mé";
+    String ENGLISH_PRONOUN_YOU = "You";
+    String IRISH_PRONOUN_YOU = "Tú";
+    String ENGLISH_PRONOUN_HE = "He";
+    String IRISH_PRONOUN_HE = "Sé";
+    String ENGLISH_PRONOUN_SHE = "She";
+    String IRISH_PRONOUN_SHE = "Sí";
+    String ENGLISH_PRONOUN_WE = "We";
+    String IRISH_PRONOUN_WE = "Muid";
+    String ENGLISH_PRONOUN_YOU_PLURAL = "You";
+    String IRISH_PRONOUN_YOU_PLURAL = "Sibh";
+    String ENGLISH_PRONOUN_THEY = "They";
+    String IRISH_PRONOUN_THEY = "Siad";
+    String ENGLISH_AUTONOMOUS = "Autonomous";
+    String IRISH_AUTONOMOUS = "Saorbhriathar";
+    String ENGLISH_NEGATIVE = "Negative";
+    String IRISH_NEGATIVE = "Diúltach";
+    String ENGLISH_QUESTION = "Question";
+    String IRISH_QUESTION = "Ceisteach";
+%>
 <div class="table">
   <div class="row">
-    <div class="cell usage-label"><%= isEnglish ? ENGLISH : IRISH %> (I/Mé) </div>
+    <div class="cell usage-label underline">&nbsp;</div>
+    <div class="cell verb-tense-header">
+      <% if (isEnglish) { %>
+        <%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %>
+      <% } else { %>
+        <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
+      <% } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell usage-label">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_ME))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_ME)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getMe() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (I/Mé) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_ME))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_ME)) %>
+    </div>
     <div class="cell translated underline">
       <%
         StringBuilder stringBuilder = new StringBuilder();
@@ -48,11 +89,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (You/Tú) </div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_YOU))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_YOU)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getYouSingular() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (You/Tú) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_YOU))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_YOU)) %>
+    </div>
     <div class="cell translated underline">
     <%
         stringBuilder = new StringBuilder();
@@ -76,11 +125,19 @@
     %>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (He/Sé) </div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_HE))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_HE)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getHe() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (He/Sé) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_HE))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_HE)) %>
+    </div>
     <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
@@ -102,11 +159,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (She/Sí) </div>
-    <div class="usage"><%= verbConjugation.getShe() %></div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_SHE))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_SHE)) %>
+    </div>
+    <div class="cell usage"><%= verbConjugation.getShe() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (She/Sí) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_SHE))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_SHE)) %>
+    </div>
     <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
@@ -128,11 +193,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (We/Muid) </div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_WE))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_WE)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getWe() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (We/Muid) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_WE))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_WE)) %>
+    </div>
     <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
@@ -154,11 +227,19 @@
     <% } %>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (You/Sibh) </div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_YOU_PLURAL))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_YOU_PLURAL)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getYouPlural() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (You/Sibh) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_YOU_PLURAL))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_YOU_PLURAL)) %>
+    </div>
     <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
@@ -180,11 +261,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (They/Siad) </div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_THEY))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_THEY)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getThey() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (They/Siad) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_THEY))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_THEY)) %>
+    </div>
     <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
@@ -206,11 +295,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (Autonomous) </div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_AUTONOMOUS))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_AUTONOMOUS)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getAutonomous() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (Saorbhriathar)</div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_AUTONOMOUS))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_AUTONOMOUS)) %>
+    </div>
     <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
@@ -235,11 +332,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (Negative/<span style="font-size:10px;">Diúltach</span>) </div>
+    <div class="cell usage-label english">
+      <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_NEGATIVE))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_NEGATIVE)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getNegative() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (Negative/<span style="font-size:10px;">Diúltach</span>) </div>
+    <div class="cell usage-label underline">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_NEGATIVE))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_NEGATIVE)) %>
+    </div>
     <div class="cell translated underline">
       <%
         stringBuilder = new StringBuilder();
@@ -264,12 +369,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="cell usage-label english"><%= isEnglish ? ENGLISH : IRISH %> (Question/<span style="font-size:10px;">Ceisteach</span>) </div>
+    <div class="cell usage-label english">
+        <%= isEnglish ?
+            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_QUESTION))
+          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_QUESTION)) %>
+    </div>
     <div class="cell usage"><%= verbConjugation.getQuestion() %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline"><%= isEnglish ? IRISH : ENGLISH %> (Question/<span style="font-size:10px;">Ceisteach</span>) </div>
-    <div class="cell translated underline">
+    <div class="cell usage-label">
+      <%= isEnglish ?
+            new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_QUESTION))
+          : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_QUESTION)) %>
+    </div>
+    <div class="cell translated">
       <%
         stringBuilder = new StringBuilder();
         String question = null;

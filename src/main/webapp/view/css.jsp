@@ -473,8 +473,8 @@ div.definition > div
   color: #6B6D6B;
   font-weight: bold;
   border: green 1x solid;
-  */
   text-align: left;
+  */
   font-size: 19px;
   padding: 10px 20px 10px 40px;
 }
@@ -783,15 +783,23 @@ ul li
   text-decoration: underline;
 }
 
+div.verb-conjugation div.table
+{
+  padding-bottom: 25px;
+  font-size: 19px;
+}
+
 div.verb-conjugation div.verb-tense-header
 {
+  /*
   list-style: none;
-  text-align: left;
   font-family:arial;
   line-height: 33px;
-  border: blue 1px solid;
+  */
+  text-align: left;
   border-bottom: #ccc 1px solid;
   color: #888;
+  padding-left: 10px;
 }
 
 .verb-conjugation .usage-label
@@ -813,7 +821,8 @@ div.verb-conjugation div.verb-tense-header
   /*
   border: blue 1px solid;
   */
-  padding-left: 5px;
+  padding-left: 10px;
+  text-align: left;
 }
 
 .verb-conjugation .usage-label.underline
@@ -826,8 +835,9 @@ div.verb-conjugation div.verb-tense-header
 {
   color: #2C5A26;
   font-style: italic;
-  padding-left: 5px;
+  padding-left: 10px;
   line-height: 25px;
+  text-align: left;
 }
 
 /*
@@ -836,7 +846,7 @@ div.verb-conjugation div.verb-tense-header
 */
 .verb-conjugation .row:nth-child(odd) .cell
 {
-  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 /*
@@ -845,7 +855,15 @@ div.verb-conjugation div.verb-tense-header
   background: green;
 }
 */
+
 .verb-conjugation .row:nth-child(even) .cell
 {
-  padding-bottom: 7px;
+  padding-top: 7px;
 }
+
+/*
+.verb-conjugation .row:last-child .cell
+{
+  padding-top: 7px;
+}
+*/

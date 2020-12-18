@@ -9,6 +9,7 @@
     int count = 0;
     if(verbList != null) count = verbList.size();
     String EMPTY = "";
+    String SPACE = " ";
     String ENGLISH = "english";
     String IRISH = "irish";
     String wordEnglish = null;
@@ -36,6 +37,13 @@
     log.debug("toLanguage = " + toLanguage);
     boolean isEnglish = language.equals("english");
     boolean isIrish = language.equals("irish");
+%>
+<%!
+    String LEFT_PARENTHESIS = "(";
+    String RIGHT_PARENTHESIS = ")";
+    public String parenthesis(String string) {
+        return new StringBuilder().append(LEFT_PARENTHESIS).append(string).append(RIGHT_PARENTHESIS).toString();
+    }
 %>
 
 <%--
