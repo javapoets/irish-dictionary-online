@@ -1,13 +1,4 @@
-<%--div class="verb-tense-header">
-<% if (isEnglish) { %>
-  <%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %>
-<% } else { %>
-  <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
-<% } %>
-</div--%>
 <%--    
-<ol style="list-style:none;text-align:left;font-family:arial;">
-  <li>
     I/Mé
     You/Tú (singular/uatha)
     He/Sé
@@ -58,7 +49,10 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_ME))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_ME)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getMe() %></div>
+    <%--div class="cell usage"><%= verbConjugation.getMe() %></div--%>
+    <%--div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getMe(), isEnglish ? toLanguage : fromLanguage, isEnglish ? fromLanguage : toLanguage) %></div--%>
+    <%--div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getMe(), isEnglish ? fromLanguage : toLanguage, isEnglish ? toLanguage : fromLanguage) %></div--%>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getMe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -82,10 +76,11 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
-      <%
-        }
-      %>
+        <%--= definitionOutput.linkizeWords(stringBuilder.toString(), isEnglish ? fromLanguage : toLanguage, isEnglish ? toLanguage : fromLanguage) --%>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
+      <% } %>
     </div>
   </div>
   <div class="row">
@@ -94,7 +89,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_YOU))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_YOU)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getYouSingular() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -103,7 +98,7 @@
           : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_YOU)) %>
     </div>
     <div class="cell translated underline">
-    <%
+      <%
         stringBuilder = new StringBuilder();
         String youSingular = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -117,12 +112,12 @@
             }
         }
         if (stringBuilder.length() > 0) {
-    %>
-      <%= stringBuilder.toString() %>
+      %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
+      <% } %>
     </div>
-    <%
-        }
-    %>
   </div>
   <div class="row">
     <div class="cell usage-label english">
@@ -130,7 +125,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_HE))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_HE)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getHe() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getHe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -142,7 +137,7 @@
       <%
         stringBuilder = new StringBuilder();
         String he = null;
-        for(int i = 0; i < verbList.size(); i++) {
+        for (int i = 0; i < verbList.size(); i++) {
             Verb verbI = (Verb)verbList.get(i);
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
@@ -154,7 +149,9 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
       <% } %>
     </div>
   </div>
@@ -164,7 +161,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_SHE))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_SHE)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getShe() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getShe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -188,7 +185,9 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
       <% } %>
     </div>
   </div>
@@ -198,7 +197,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_WE))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_WE)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getWe() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getWe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -222,9 +221,11 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
+      <% } %>
     </div>
-    <% } %>
   </div>
   <div class="row">
     <div class="cell usage-label english">
@@ -232,7 +233,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_YOU_PLURAL))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_YOU_PLURAL)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getYouPlural() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getYouPlural(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -256,7 +257,9 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
       <% } %>
     </div>
   </div>
@@ -266,7 +269,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_THEY))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_THEY)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getThey() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getThey(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -284,13 +287,15 @@
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             they = verbConjugationI.getThey();
             if (they != null) {
-                if(i > 0) stringBuilder.append(", ");
+                if (i > 0) stringBuilder.append(", ");
                 stringBuilder.append(they);
             }
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
       <% } %>
     </div>
   </div>
@@ -300,7 +305,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_AUTONOMOUS))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_AUTONOMOUS)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getAutonomous() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getAutonomous(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -321,13 +326,15 @@
               autonomous != null
               && !autonomous.equals("")
             ) {
-                if(i > 0) stringBuilder.append(", ");
+                if (i > 0) stringBuilder.append(", ");
                 stringBuilder.append(autonomous);
             }
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
       <% } %>
     </div>
   </div>
@@ -337,7 +344,7 @@
             new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_NEGATIVE))
           : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_NEGATIVE)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getNegative() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getNegative(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -354,7 +361,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             negative = verbConjugationI.getNegative();
-            if(
+            if (
               negative != null
               && !negative.equals("")
             ) {
@@ -364,17 +371,22 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
       <% } %>
     </div>
   </div>
+  <%
+      if (!EMPTY.equals(verbConjugation.getQuestion())) {
+  %>
   <div class="row">
     <div class="cell usage-label english">
-        <%= isEnglish ?
-            new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_QUESTION))
-          : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_QUESTION)) %>
+      <%= isEnglish ?
+          new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_QUESTION))
+        : new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_QUESTION)) %>
     </div>
-    <div class="cell usage"><%= verbConjugation.getQuestion() %></div>
+    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getQuestion(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label">
@@ -395,14 +407,17 @@
               question != null
               && !question.equals("")
             ) {
-                if(i > 0) stringBuilder.append(", ");
+                if (i > 0) stringBuilder.append(", ");
                 stringBuilder.append(question);
             }
         }
-        if(stringBuilder.length() > 0) {
+        if (stringBuilder.length() > 0) {
       %>
-      <%= stringBuilder.toString() %>
+        <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
+      <% } else { %>
+        &nbsp;
       <% } %>
     </div>
   </div>
+  <% } %>
 </div>

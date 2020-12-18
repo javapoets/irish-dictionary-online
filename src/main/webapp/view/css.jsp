@@ -745,44 +745,9 @@ ul li
   text-align: left;
 }
 
-.verbs-container
-{
-  column-gap: 2em;
-  /*
-  column-rule: 1px solid #eee;
-  column-count: 2;
-  column-width: 20em;
-  */
-  column-width: 120px;
-}
-
-.verbs-container > div
-{
-  text-align: left;
-  font-size: 19px;
-  white-space: nowrap;
-  line-height: 22px;
-}
-
-.verbs-container > div > span
-{
-  color: #ccc;
-  font-size: 12px;
-}
-
-.verbs-container > div a
-, .definition a
-{
-  text-decoration: none;
-  color: inherit;
-}
-
-.verbs-container > div a:hover
-, .definition a:hover
-{
-  text-decoration: underline;
-}
-
+<%--
+  Verb
+--%>
 div.verb-conjugation div.table
 {
   padding-bottom: 25px;
@@ -867,3 +832,61 @@ div.verb-conjugation div.verb-tense-header
   padding-top: 7px;
 }
 */
+
+<%--
+  Verbs
+--%>
+.verbs-container
+{
+  column-gap: 2em;
+  /*
+  column-rule: 1px solid #eee;
+  column-count: 2;
+  column-width: 20em;
+  */
+  column-width: 120px;
+}
+
+.verbs-container > div
+{
+  text-align: left;
+  font-size: 19px;
+  white-space: nowrap;
+  line-height: 22px;
+}
+
+.verbs-container > div > span
+{
+  color: #ccc;
+  font-size: 12px;
+}
+
+.verbs-container > div a
+, .definition a
+{
+  text-decoration: none;
+  color: inherit;
+}
+
+.verbs-container > div a:hover
+, .definition a:hover
+{
+  text-decoration: underline;
+}
+
+div.verbs-header
+{
+  /*
+  list-style: none;
+  font-family:arial;
+  line-height: 33px;
+  */
+  text-align: left;
+  border-bottom: #ccc 1px solid;
+  color: #888;
+  padding-left: 10px;
+  font-size: 22px;
+  line-height: 30px;
+  text-transform: capitalize;
+  margin-bottom: 8px;
+}

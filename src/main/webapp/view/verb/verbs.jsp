@@ -21,6 +21,12 @@
           </div>
         </div>
         <div style="padding-bottom: 40px;">
+          <!--div class="definition"-->
+            <div class="verbs-header">
+              <span class="language-label"><span class="capitalize"><%= language %></span> verbs</span>
+            </div>
+          <!--/div-->
+
           <% if(verbList != null) { %>
             <%@ include file="/view/verb/verbs-output.jsp" %>
           <% } %>

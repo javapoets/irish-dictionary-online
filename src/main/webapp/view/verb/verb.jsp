@@ -33,10 +33,16 @@
     //if(fromLanguage == null) fromLanguage = language;
     String toLanguage = request.getParameter("toLanguage");
     if(toLanguage == null) toLanguage = (String)request.getAttribute("toLanguage");
+    log.debug("language = " + language);
     log.debug("fromLanguage = " + fromLanguage);
     log.debug("toLanguage = " + toLanguage);
-    boolean isEnglish = language.equals("english");
+    boolean isEnglish = false;
+    if (ENGLISH.equals(language)) {
+        isEnglish = true;
+    }
     boolean isIrish = language.equals("irish");
+    log.debug("isEnglish = " + isEnglish);
+    DefinitionOutput definitionOutput = new DefinitionOutput();
 %>
 <%!
     String LEFT_PARENTHESIS = "(";

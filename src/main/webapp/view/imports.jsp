@@ -34,3 +34,4 @@
 <%@ page import="online.irishdictionary.model.Word" %>
 <%@ page import="online.irishdictionary.model.Verb" %>
 <%@ page import="online.irishdictionary.model.VerbConjugation" %>
+<%@ page import="online.irishdictionary.util.DefinitionOutput" %>
