@@ -26,8 +26,8 @@
     if(word != null) pageContext.setAttribute("word", word);
     String wordEnglish = null;
     String wordIrish = null;
-    //String verbEnglish = null;
-    //String verbIrish = null;
+    String verbEnglish = null;
+    String verbIrish = null;
     //String verbParam = request.getParameter("verb");
     //String wordParam = request.getParameter("word");
     //String language = request.getParameter("language");
@@ -50,24 +50,6 @@
 <html>
   <head>
     <%@ include file="/view/head.jsp" %>
-    <style type="text/css">
-      body div.entry-form > div
-      {
-        /*border: blue 1px solid;*/
-        padding: 9px;
-      }
-      @media (min-width: 670px) {
-        body div.entry-form > div
-        {
-          padding: 5px;
-          /*border: red 1px solid;*/
-        }
-        .search-block
-        {
-          margin-left: 0px;    
-        }
-      }
-    </style>
   </head>
   <body>              
     <div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
@@ -77,7 +59,8 @@
             <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
           </div>
           <div class="search-block">
-            <%@ include file="/view/entry-form.jsp" %>
+            <%--@ include file="/view/entry-form.jsp" --%>
+            <%@ include file="/view/top-form.jsp" %>
           </div>
         </div>
         <div style="padding-bottom: 40px;">

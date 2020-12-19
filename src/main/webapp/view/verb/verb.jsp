@@ -63,7 +63,7 @@
             <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
           </div>
           <div class="search-block">
-            <%@ include file="/view/topForm.jsp" %>
+            <%@ include file="/view/top-form.jsp" %>
             <%--@ include file="/view/entry-form.jsp" --%>
           </div>
         </div>
