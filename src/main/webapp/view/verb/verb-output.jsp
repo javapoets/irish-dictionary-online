@@ -99,11 +99,7 @@
             log.debug("tenseId = " + tenseId);
             verbConjugation = (VerbConjugation) verbConjugationMap.get(tenseId);
     %>
-      <!--div-->
-        <%@ include file="/view/verb/verbConjugation.jsp" %>
-      <!--/div-->
-    <%
-      }
-    %>
+      <%@ include file="/view/verb/verbConjugation.jsp" %>
+    <% } %>
   </div>
 </div>

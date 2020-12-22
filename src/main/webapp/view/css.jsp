@@ -15,7 +15,7 @@
   --dark-text: #322;
   --medium-text: #6B6D6B;
   --site-width: 900px;
-  --search-block-width: 366px;
+  --search-block-width: 400px;
 }
 
 html
@@ -72,6 +72,7 @@ body div.header
   flex-basis: 450px;
 
   /*
+  border: red 1px solid;
   align-items: stretch;
   align-items: flex-end;
   align-items: flex-start
@@ -111,14 +112,43 @@ body div.entry-form > div
   padding-bottom: 8px;
 }
 
+body div.entry-form > div
+,body div.entry-form > div.row > div.cell
+{
+  /*
+  border: blue 1px solid;
+  */
+  padding: 5px;
+}
+
+@media (min-width: 670px) {
+  body div.entry-form > div
+  {
+    padding: 5px;
+    /*
+    border: red 1px solid;
+    */
+  }
+  /*
+  .search-block
+  {
+    margin-left: 0px;    
+  }
+  */
+}
+
 .search-block
 {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  margin: auto;
   width: 100%;
   max-width: var(--search-block-width);
+  /*
+  border: red 1px solid;
+  margin: auto;
+  margin-left: 0px;    
+  */
 }
 
 @media (max-width: 670px)

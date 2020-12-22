@@ -16,7 +16,7 @@
                   class="text"
                   <% if(verbIrish != null) { %>value="<%= verbIrish %>"<% } %>
                   maxlength="200"
-                  placeholder="Irish verb(s)"
+                  placeholder="Irish verb"
                   style="width: 100%;" />
             </div>
             <div class="cell" style="margin-right: 0px; text-align: right; width: 60px;">
