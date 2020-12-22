@@ -255,7 +255,7 @@ public class VerbDatabaseManager {
         log.debug("selectMappedVerbsByVerb(verbList, '" + verb + "', connectionManager)");
         String statementName = null;
         //if(verb.getLanguageId().equals("irish")) {
-        if(verb.getLanguageId() == 1) {
+        if (verb.getLanguageId() == 1) {
             statementName = "selectIrishVerbsByEnglishVerb";
         } else {
             statementName = "selectEnglishVerbsByIrishVerb";
