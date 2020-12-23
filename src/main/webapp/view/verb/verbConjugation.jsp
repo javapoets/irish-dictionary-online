@@ -37,9 +37,10 @@
     <div class="cell usage-label underline">&nbsp;</div>
     <div class="cell verb-tense-header">
       <% if (isEnglish) { %>
-        <%= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() %>
+        <%--= verbConjugation.getTenseEnglish() %> - <%= verbConjugation.getTenseIrish() --%>
+        <div><%= verbConjugation.getTenseEnglish() %> - </div><div><%= verbConjugation.getTenseIrish() %></div>
       <% } else { %>
-        <%= verbConjugation.getTenseIrish() %> - <%= verbConjugation.getTenseEnglish() %>
+        <div><%= verbConjugation.getTenseIrish() %> - </div><div><%= verbConjugation.getTenseEnglish() %></div>
       <% } %>
     </div>
   </div>

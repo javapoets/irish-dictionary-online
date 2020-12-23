@@ -121,21 +121,6 @@ body div.entry-form > div
   padding: 5px;
 }
 
-@media (min-width: 670px) {
-  body div.entry-form > div
-  {
-    padding: 5px;
-    /*
-    border: red 1px solid;
-    */
-  }
-  /*
-  .search-block
-  {
-    margin-left: 0px;    
-  }
-  */
-}
 
 .search-block
 {
@@ -149,22 +134,6 @@ body div.entry-form > div
   margin: auto;
   margin-left: 0px;    
   */
-}
-
-@media (max-width: 670px)
-{
-  body div.header
-  {
-    /*
-    justify-content: flex-start;
-    */
-    justify-content: center;
-  }
-  body div.entry-form > div
-  {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
 }
 
 <%--
@@ -315,6 +284,11 @@ span.link {
 span.link:hover {
   text-decoration:underline;
   cursor:pointer;
+}
+
+.nowrap
+{
+  white-space:nowrap;
 }
 
 a.ad {
@@ -810,6 +784,11 @@ div.verb-conjugation div.verb-tense-header
   font-size: 1.33em;
 }
 
+div.verb-conjugation div.verb-tense-header > div
+{
+  display: inline-block;
+}
+
 .verb-conjugation .usage-label
 {
   color: #999;
@@ -937,4 +916,46 @@ div.verbs-header
   line-height: 30px;
   text-transform: capitalize;
   margin-bottom: 8px;
+}
+
+@media (min-width: 670px) {
+  body div.entry-form > div
+  {
+    padding: 5px;
+    /*
+    border: red 1px solid;
+    */
+  }
+  /*
+  .search-block
+  {
+    margin-left: 0px;    
+  }
+  div.verb-conjugation div.verb-tense-header
+  {
+    padding-left: 10px;
+    font-size: 1.1em;
+  }
+  */
+}
+
+@media (max-width: 670px)
+{
+  body div.header
+  {
+    /*
+    justify-content: flex-start;
+    */
+    justify-content: center;
+  }
+  body div.entry-form > div
+  {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  div.verb-conjugation div.verb-tense-header
+  {
+    padding-left: 10px;
+    font-size: 1.1em;
+  }
 }

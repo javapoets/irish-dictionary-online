@@ -34,7 +34,7 @@
         <% } else { %>
           <span class="usage-label irish">(Sainmhíniú<span class="smaller">/Definition</span>)</span>
         <% } %>
-        <span class="usage">
+        <span class="translated">
             <%
             Verb verb0 = null;
             String verbString0 = null;
