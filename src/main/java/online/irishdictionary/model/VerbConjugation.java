@@ -2,22 +2,26 @@ package online.irishdictionary.model;
 
 public class VerbConjugation {
 
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private int verbConjugationId = 0;
     private int verbId = 0;
-    private String verb = "";
-    private String me = "";
-    private String youSingular = "";
-    private String he = "";
-    private String she = "";
-    private String we = "";
-    private String youPlural = "";
-    private String they = "";
-    private String autonomous = "";
-    private String negative = "";
-    private String question = "";
+    //private int languageId = 0;
+    private int toLanguageId = 0;
+    private int fromLanguageId = 0;
+    private String verb = null;
+    private String me = null;
+    private String youSingular = null;
+    private String he = null;
+    private String she = null;
+    private String we = null;
+    private String youPlural = null;
+    private String they = null;
+    private String autonomous = null;
+    private String negative = null;
+    private String question = null;
     private int tenseId = 0;
-    private String tenseIrish = "";
-    private String tenseEnglish = "";
+    private String tenseIrish = null;
+    private String tenseEnglish = null;
 
     public VerbConjugation() {
     }
@@ -27,8 +31,24 @@ public class VerbConjugation {
     }
 
     public VerbConjugation(String verb, int tenseId) {
+        log.trace("('" + verb + "', tenseId:" + tenseId + ")");
         this.verb = verb;
         this.tenseId = tenseId;
+    }
+
+    public VerbConjugation(String verb, int tenseId, int toLanguageId) {
+        log.trace("('" + verb + "', tenseId:" + tenseId + ", toLanguageId:" + toLanguageId + ")");
+        this.verb = verb;
+        this.tenseId = tenseId;
+        this.toLanguageId = toLanguageId;
+    }
+
+    public VerbConjugation(String verb, int tenseId, int fromLanguageId, int toLanguageId) {
+        log.trace("('" + verb + "', tenseId:" + tenseId + ", fromLanguageId:" + fromLanguageId + ", toLanguageId:" + toLanguageId + ")");
+        this.verb = verb;
+        this.tenseId = tenseId;
+        this.fromLanguageId = fromLanguageId;
+        this.toLanguageId = toLanguageId;
     }
 
     public int getVerbConjugationId() {
@@ -38,6 +58,32 @@ public class VerbConjugation {
     public int getVerbId() {
         return verbId;
     }
+
+    /*
+    public int getLanguageId() {
+        return this.languageId;
+    }
+
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
+    }    
+    */
+
+    public int getFromLanguageId() {
+        return this.fromLanguageId;
+    }
+
+    public void setFromLanguageId(int fromLanguageId) {
+        this.fromLanguageId = fromLanguageId;
+    }    
+
+    public int getToLanguageId() {
+        return this.toLanguageId;
+    }
+
+    public void setToLanguageId(int toLanguageId) {
+        this.toLanguageId = toLanguageId;
+    }    
 
     public String getVerb() {
         return verb;
@@ -157,5 +203,9 @@ public class VerbConjugation {
 
     public void setTenseEnglish(String tenseEnglish) {
         this.tenseEnglish = tenseEnglish;
+    }
+
+    public String toString() {
+        return new StringBuilder().append(this.getClass().getSimpleName()).append("{").append(this.verb).append("}").toString();
     }
 }

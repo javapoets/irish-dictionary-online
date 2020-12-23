@@ -45,8 +45,7 @@
     DefinitionOutput definitionOutput = new DefinitionOutput();
 %>
 <%!
-    String LEFT_PARENTHESIS = "(";
-    String RIGHT_PARENTHESIS = ")";
+    String LEFT_PARENTHESIS = "(", RIGHT_PARENTHESIS = ")";
     public String parenthesis(String string) {
         return new StringBuilder().append(LEFT_PARENTHESIS).append(string).append(RIGHT_PARENTHESIS).toString();
     }

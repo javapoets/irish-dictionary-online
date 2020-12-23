@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Verb {
 
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private int id = -1;
     private String verb = null;
     private String description = null;
@@ -16,7 +17,8 @@ public class Verb {
     private String gerund = null;
     private boolean isRegular = false;
     private int conjugation = -1;
-    private int languageId = -1;
+    private int fromLanguageId = -1;
+    private int toLanguageId = -1;
     private String language = null;
     private String broadOrSlender = null;
     private Map<String, VerbConjugation> verbConjugationMap;
@@ -29,13 +31,22 @@ public class Verb {
     }
 
     public Verb(String verb, String language) {
+        log.trace("('" + verb + "', '" + language + "')");
         this.verb = verb;
         this.language = language;
     }
     
-    public Verb(String verb, int languageId) {
+    public Verb(String verb, int fromLanguageId) {
+        log.trace("('" + verb + "', " + fromLanguageId + ")");
         this.verb = verb;
-        this.languageId = languageId;
+        this.fromLanguageId = fromLanguageId;
+    }
+
+    public Verb(String verb, int fromLanguageId, int toLanguageId) {
+        log.trace("('" + verb + "', fromLanguageId:" + fromLanguageId + ", toLanguageId:" + toLanguageId + ")");
+        this.verb = verb;
+        this.fromLanguageId = fromLanguageId;
+        this.toLanguageId = toLanguageId;
     }
 
     public int getId() {
@@ -44,6 +55,30 @@ public class Verb {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getFromLanguageId() {
+        return this.fromLanguageId;
+    }
+
+    public void setFromLanguageId(int fromLanguageId) {
+        this.fromLanguageId = fromLanguageId;
+    }
+
+    public int getToLanguageId() {
+        return this.toLanguageId;
+    }
+
+    public void setToLanguageId(int toLanguageId) {
+        this.toLanguageId = toLanguageId;
+    }
+
+    public String getLanguage() {
+        return this.language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public String getVerb() {
@@ -124,22 +159,6 @@ public class Verb {
         this.conjugation = conjugation;
     }
 
-    public int getLanguageId() {
-        return this.languageId;
-    }
-
-    public void setLanguageId(int languageId) {
-        this.languageId = languageId;
-    }
-
-    public String getLanguage() {
-        return this.language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
     public String getBroadOrSlender() {
         return this.broadOrSlender;
     }
@@ -164,4 +183,8 @@ public class Verb {
         this.verbList = verbList;
     }
 
+    public String toString() {
+        //return this.getVerb();
+        return new StringBuilder().append("Verb{").append(this.verb).append("}").toString();
+    }
 }

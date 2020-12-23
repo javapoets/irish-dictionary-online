@@ -446,6 +446,7 @@ div.definition .language-label
   */
   color: #999;
   line-height: 28px;
+  text-transform: capitalize;
 }
 
 div.definition .language-label .capitalize
@@ -560,6 +561,12 @@ div.definition div:first-child a:hover
   text-decoration:underline;
 }
 
+div.definition span.definition
+{
+  line-height: 25px;
+  font-size: 19px;
+}
+
 div.definition span.definition a {
   /*
   color:#f7941d;
@@ -642,7 +649,8 @@ div.definition li span.description a:hover
 
 div.usage
 {
-  padding:0px;
+  padding: 0px;
+  text-align: left;
 }
 
 /*
@@ -689,6 +697,7 @@ div.usage li span.usage
   */
   padding-left: 5px;
   line-height: 25px;
+  font-size: 19px;
 }
 
 div.usage li > div .usage-label
@@ -728,6 +737,7 @@ div.usage li span.translated
   width: 100%;
   padding-left: 5px;
   line-height: 25px;
+  font-size: 19px;
 }
 
 div.usage li span.translated a {
@@ -781,6 +791,8 @@ ul li
 div.verb-conjugation div.table
 {
   padding-bottom: 25px;
+  /*
+  */
   font-size: 19px;
 }
 
@@ -795,6 +807,7 @@ div.verb-conjugation div.verb-tense-header
   border-bottom: #ccc 1px solid;
   color: #888;
   padding-left: 10px;
+  font-size: 1.33em;
 }
 
 .verb-conjugation .usage-label
@@ -808,6 +821,11 @@ div.verb-conjugation div.verb-tense-header
   white-space: nowrap;
   text-align: right;
   text-transform: capitalize;
+}
+
+.uppercase
+{
+  text-transform: uppercase;
 }
 
 .verb-conjugation .usage

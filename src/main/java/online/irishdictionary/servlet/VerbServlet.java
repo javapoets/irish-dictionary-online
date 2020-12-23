@@ -27,40 +27,45 @@ public class VerbServlet extends online.irishdictionary.servlet.InitServlet {
         java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
             String parameterName = (String)parameterNames.nextElement();
-            log.debug(parameterName+" = "+request.getParameter(parameterName));
+            log.debug("    " + parameterName + " = " + request.getParameter(parameterName));
             //log.debug("parameterName = "+parameterName);
         }
         //*/
-        String verbParam = (String)request.getParameter("verb");
-        if (verbParam == null) {
-            log.debug("verbParam = "+verbParam);
-            log.debug("doPost(request, response): verbParam is null");
+        String verbParameter = (String)request.getParameter("verb");
+        if (verbParameter == null) {
+            log.debug("verbParameter = " + verbParameter);
+            log.debug("doPost(request, response): verbParameter is null");
             include(request, response, "verb/verb.jsp");
             return;
         } else {
-            verbParam = verbParam.trim();
+            verbParameter = verbParameter.trim();
         }
-        String fromLanguage = null;
-        String toLanguage = null;
-        String language = request.getParameter("language");
-        if(language == null) language = "irish";
-        if(fromLanguage == null) fromLanguage = language;
-        //log.debug("language = "+language);
-        //log.debug("verbParam = "+verbParam);
-        log.info(language+"/"+verbParam);
-        int languageId = -1;
+        log.debug("verbParameter = " + verbParameter);
+        String fromLanguage = request.getParameter("language");
+        log.debug("fromLanguage = " + fromLanguage);
+        String toLanguage = request.getParameter("toLanguage");
+        log.debug("toLanguage = " + toLanguage);
+        //if(language == null) language = "irish";
+        log.info(new StringBuilder().append(fromLanguage).append("/").append(toLanguage).append("/").append(verbParameter));
+        int fromLanguageId = -1;
+        int toLanguageId = -1;
         if (fromLanguage.equals("english")) {
-            toLanguage = "irish";
-            languageId = 1;
+            if (toLanguage == null) toLanguage = "irish";
+            fromLanguageId = 1;
+            toLanguageId = 2;
         } else {
-            fromLanguage = "irish";
-            toLanguage = "english";
-            languageId = 2;
+            //fromLanguage = "irish";
+            if (toLanguage == null) toLanguage = "english";
+            fromLanguageId = 2;
+            toLanguageId = 1;
         }
+        log.debug("fromLanguageId = " + fromLanguageId);
+        log.debug("toLanguageId = " + toLanguageId);
         request.setAttribute("toLanguage", toLanguage);
         request.setAttribute("fromLanguage", fromLanguage);
-        //Verb verb = new Verb(verbParam, language);
-        Verb verb = new Verb(verbParam, languageId);
+        //Verb verb = new Verb(verbParameter, language);
+        //Verb verb = new Verb(verbParameter, languageId);
+        Verb verb = new Verb(verbParameter, fromLanguageId, toLanguageId);
         try {
             VerbDatabaseManager.selectVerb(verb, getConnectionPool());
         } catch (Exception e) {
