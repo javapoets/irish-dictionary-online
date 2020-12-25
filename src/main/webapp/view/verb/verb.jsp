@@ -1,13 +1,17 @@
 <%@ include file="/view/header.jsp" %>
 <%
     Verb verb = (Verb) request.getAttribute("verb");
-    Map verbConjugationMap = verb.getVerbConjugationMap();
-    log.debug("verbConjugationMap.size() = " + verbConjugationMap.size());
-    System.out.println("verbConjugationMap = " + verbConjugationMap);
-    String verbString = (String)request.getAttribute("verbString");
-    List<Verb> verbList = (List<Verb>) verb.getVerbList();
+    Map verbConjugationMap = null;
+    String verbString = null;
+    List<Verb> verbList = null;
     int count = 0;
-    if(verbList != null) count = verbList.size();
+    if (verb != null) {
+        verbConjugationMap = verb.getVerbConjugationMap();
+        log.debug("verbConjugationMap.size() = " + verbConjugationMap.size());
+        verbString = (String)request.getAttribute("verbString");
+        verbList = (List<Verb>) verb.getVerbList();
+        if(verbList != null) count = verbList.size();
+    }
     String EMPTY = "";
     String SPACE = " ";
     String ENGLISH = "english";
@@ -69,6 +73,14 @@
         <div style="padding-bottom: 40px;">
           <% if(verb != null) { %>
             <%@ include file="/view/verb/verb-output.jsp" %>
+          <% } else { %>
+            <div class="usage description definition">
+              <div class="word-header">
+                <span class="language-label"><%= fromLanguage %> verb</span>
+                <span class="word"><% if (verbParam != null) { %><%= verbParam %><% } %></span>
+                <span class="language-label" style="padding-left: 8px;">not found!</span>
+              </div>
+            </div>
           <% } %>
         </div>
       </div>

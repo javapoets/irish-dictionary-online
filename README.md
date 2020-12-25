@@ -17,3 +17,4 @@ gradle build -Papachejsp
 ```
 gradle buildName -PbuildName=devenglishirish
 ```
+gradle buildName -PbuildName=prodenglishirish

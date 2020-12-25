@@ -67,11 +67,14 @@ public class VerbServlet extends online.irishdictionary.servlet.InitServlet {
         //Verb verb = new Verb(verbParameter, languageId);
         Verb verb = new Verb(verbParameter, fromLanguageId, toLanguageId);
         try {
-            VerbDatabaseManager.selectVerb(verb, getConnectionPool());
+            boolean verbExists = VerbDatabaseManager.selectVerb(verb, getConnectionPool());
+            log.debug("verbExists = " + verbExists);
+            if (verbExists) {
+                request.setAttribute("verb", verb);
+            }
+            include(request, response, "/view/verb/verb.jsp");
         } catch (Exception e) {
             log.error(e);
         }
-        request.setAttribute("verb", verb);
-        include(request, response, "/view/verb/verb.jsp");
     }
 }

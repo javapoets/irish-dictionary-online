@@ -446,7 +446,7 @@ div.definition div.word-header
   padding-bottom: 0px;
   vertical-align: bottom;
   margin: 0px;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 div.definition div.word-header .word
@@ -682,7 +682,7 @@ div.usage li > div .usage-label
   padding-right: 5px;
   */
   color: #999;
-  font-size: 12px;
+  font-size: 13px;
 }
  
 /* 
