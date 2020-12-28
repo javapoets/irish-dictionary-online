@@ -1,9 +1,9 @@
 /*
-*/
 *
 {
   border: red 1px solid;
 }
+*/
 
 :root {
   --orange: #FF8F00;
@@ -14,7 +14,10 @@
   --medium-green: #4B8029;
   --dark-text: #322;
   --medium-text: #6B6D6B;
+  /*
   --site-width: 900px;
+  */
+  --site-width: 1140px;
   --search-block-width: 400px;
 }
 
@@ -36,6 +39,9 @@ div.table
 {
   display: table;
   width: 100%;
+  /*
+  border: blue 1px solid;
+  */
 }
 
 div.row
@@ -46,6 +52,21 @@ div.row
 div.cell
 {
   display: table-cell;
+  /*
+  border: red 1px solid;
+  */
+}
+
+body > div
+{
+  border: red 1px solid;
+  max-width: var(--site-width);
+  margin: auto;
+}
+
+body > div > div.table > div.row > div.cell
+{
+  border: red 1px solid;
 }
 
 .flex-container
@@ -63,7 +84,7 @@ div.cell
   height: 100%;
 }
 
-body div.header
+body div.flex-header
 {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -72,10 +93,10 @@ body div.header
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  flex-basis: 450px;
+  flex-basis: 550px;
 
+  border: green 1px solid;
   /*
-  border: red 1px solid;
   align-items: stretch;
   align-items: flex-end;
   align-items: flex-start
@@ -102,8 +123,8 @@ body div.entry-form
 {
   /*
   max-width: 428px;
-  */
   border: red 1px solid;
+  */
   width: 100%;
   text-align: center;
   margin: auto;
@@ -130,13 +151,13 @@ body div.entry-form > div
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  width: 100%;
-  border: red 1px solid;
   /*
   margin: auto;
   margin-left: 0px;    
-  max-width: var(--search-block-width);
+  max-width: var(--max-search-block-width);
+  width: 100%;
   */
+  border: blue 1px solid;
 }
 
 <%--

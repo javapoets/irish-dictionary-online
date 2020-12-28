@@ -576,10 +576,10 @@ public class DefinitionOutput {
                 stringBuilder.append("</li>");
             }
             stringBuilder.append("</ol>");
-            stringBuilder.append("</div>");
-            stringBuilder.append("</div>");
+            stringBuilder.append("</div>"); // <div class="usage">
+            //stringBuilder.append("</div>");
         }
-        stringBuilder.append("</div>");  // stringBuilder.append("<div class=\"definition\">");
+        stringBuilder.append("</div>");  // <div class="definition">
         return stringBuilder.toString();
     }
 
