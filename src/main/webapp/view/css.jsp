@@ -1,9 +1,9 @@
 /*
+*/
 *
 {
   border: red 1px solid;
 }
-*/
 
 :root {
   --orange: #FF8F00;
@@ -53,11 +53,14 @@ div.cell
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
   text-align: center;
   vertical-align: middle;
   margin: 0px;
   padding: 0px;
+  border: red 1px solid;
+  /*
+  */
+  height: 100%;
 }
 
 body div.header
@@ -99,8 +102,8 @@ body div.entry-form
 {
   /*
   max-width: 428px;
-  border: red 1px solid;
   */
+  border: red 1px solid;
   width: 100%;
   text-align: center;
   margin: auto;
@@ -128,11 +131,11 @@ body div.entry-form > div
   text-align: center;
   vertical-align: middle;
   width: 100%;
-  max-width: var(--search-block-width);
-  /*
   border: red 1px solid;
+  /*
   margin: auto;
   margin-left: 0px;    
+  max-width: var(--search-block-width);
   */
 }
 
@@ -958,4 +961,40 @@ div.verbs-header
     padding-left: 10px;
     font-size: 1.1em;
   }
+}
+
+div.table.copyright
+{
+  /*
+  border: green 1px solid;
+  */
+  padding-top: 33px;
+}
+
+.copyright {
+  /*
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  border: blue 1px solid;
+  */
+  font-size: 14px;
+  color: var(--darktext);
+  text-decoration: none;
+}
+
+div.table.copyright
+div.cell.copyright
+a
+{
+  /*
+  color: var(--darktext);
+  */
+  color: var(--dark-green);
+  text-decoration: none;
+}
+
+div.table.copyright
+div.cell.copyright
+a:hover
+{
+  text-decoration: underline;
 }

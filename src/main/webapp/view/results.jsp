@@ -51,23 +51,43 @@
   <head>
     <%@ include file="/view/head.jsp" %>
   </head>
-  <body>              
+  <body>
+<%--    
     <div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
       <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
         <div class="header">
-          <div style="padding: 13px 42px; width: 200px;">
-            <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+    <div class="flex-container">
+--%>
+    <div>
+      <div>
+        <div class="table">
+          <div class="row">
+            <div class="cell">
+              <div style="padding: 13px 42px; width: 200px;">
+                <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+              </div>
+              <div class="search-block">
+                <%@ include file="/view/top-form.jsp" %>
+              </div>
+            </div>
           </div>
-          <div class="search-block">
-            <%--@ include file="/view/entry-form.jsp" --%>
-            <%@ include file="/view/top-form.jsp" %>
+          <div class="row">
+            <div class="cell">
+              <div style="padding-bottom: 40px;">
+                <% if(word != null) { %>
+                  <irishdictionary:word />
+                <% } %>
+              </div>
+            </div>
           </div>
-        </div>
-        <div style="padding-bottom: 40px;">
-          <% if(word != null) { %>
-            <irishdictionary:word />
-          <% } %>
+          <div class="row">
+            <div class="cell">
+              <div>
+                <%@ include file="/view/footer/footer-copyright.jsp" %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <%@ include file="/view/footer.jsp" %>
+  <%@ include file="/view/footer.jsp" %>
