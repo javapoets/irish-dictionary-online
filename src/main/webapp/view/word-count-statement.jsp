@@ -21,7 +21,8 @@
   --%>
   <div class="row">
     <div class="cell">
-      <a href="verbs/english" style="color:inherit">1,425 English verbs</a> and <a href="verbs/irish" style="color:inherit">768 Irish verbs</a> conjugated and translated
+      <a href="verbs/english" style="color:inherit">1,425 English verbs</a> and <a href="verbs/irish" style="color:inherit">768 Irish verbs</a>
+      <span style="white-space: nowrap;">conjugated and translated</span>
     </div>
   </div>
 </div>

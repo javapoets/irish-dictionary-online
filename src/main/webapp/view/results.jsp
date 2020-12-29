@@ -59,39 +59,46 @@
     <div class="flex-container">
     <div>
 --%>
-      <div>
-        <div class="table">
-          <div class="row">
-            <div class="cell">
-              <div class="flex-header">
-                <div style="padding: 13px 42px; width: 200px;">
-                  <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
-                </div>
-                <div class="search-block">
-                  <%@ include file="/view/top-form.jsp" %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="cell">
-              <div style="padding-bottom: 40px;">
-                <% if(word != null) { %>
-                  <irishdictionary:word />
-                <% } %>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="cell">
+<%--
+<div class="flex-container">
+    <div
+      class="centering-flex-container"
+      style=""
+    >
+--%>
+    <div>
+      <div class="table">
+        <div class="row">
+          <div class="cell">
+            <div class="flex-header">
+              <!--div style="padding: 13px 42px; width: 200px;"-->
               <div>
-                <%@ include file="/view/footer/footer-copyright.jsp" %>
+                <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
+              </div>
+              <div class="search-block">
+                <%@ include file="/view/top-form.jsp" %>
               </div>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="cell">
+            <div style="padding-bottom: 40px;">
+              <% if(word != null) { %>
+                <irishdictionary:word />
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell">
+            <div>
+              <%@ include file="/view/footer/footer-copyright.jsp" %>
+            </div>
+          </div>
+        </div>
       </div>
-<%--    
     </div>
+<%--    
 --%>
-  <%@ include file="/view/footer.jsp" %>
+<%@ include file="/view/footer.jsp" %>
