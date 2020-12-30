@@ -10,8 +10,8 @@
   </div>
   <div class="row">
     <div class="cell copyright">
-      [<a href="<%= contextUrl %>terms-of-service">Terms</a>]
-      [<a href="<%= contextUrl %>privacy-policy">Privacy</a>]
+      [<a href="<%= contextUrl %>terms">Terms</a>]
+      [<a href="<%= contextUrl %>privacy">Privacy</a>]
 	</div>
   </div>
 </div>

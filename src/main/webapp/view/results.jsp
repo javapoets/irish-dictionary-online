@@ -66,7 +66,7 @@
       style=""
     >
 --%>
-    <div>
+    <div class="centering-container">
       <div class="table">
         <div class="row">
           <div class="cell">

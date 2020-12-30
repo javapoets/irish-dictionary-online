@@ -81,6 +81,20 @@ body > div > div.table > div.row > div.cell
   border: red 1px solid;
 }
 
+.centering-container
+{
+  /*
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 0px;
+  border: red 1px solid;
+  height: 100%;
+  */
+  max-width: var(--site-width);
+  margin: auto;
+}
+
 .centering-flex-container
 {
   display: flex;
@@ -1019,6 +1033,8 @@ div.table.copyright
   */
   border: green 1px solid;
   padding: 20px 0px;
+  margin: auto;
+  text-align: center;
 }
 
 .copyright {
