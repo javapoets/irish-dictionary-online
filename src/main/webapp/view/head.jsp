@@ -8,5 +8,5 @@
 <%--script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script--%>
 <%--@ include file="google-analytics-async.html" --%>
 <script type="text/javascript">
-<%@ include file="/view/inline-css.jsp" %>
+<%@ include file="/view/inline-javascript.jsp" %>
 </script>

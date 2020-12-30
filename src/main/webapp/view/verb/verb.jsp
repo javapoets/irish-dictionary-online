@@ -1,4 +1,3 @@
-<%--@ include file="/view/header.jsp" --%>
 <%@ page
     language="java"
     contentType="text/html;charset=UTF-8"
@@ -11,7 +10,6 @@
 <%@ page import="online.irishdictionary.model.Word" %>
 <%@ page import="online.irishdictionary.model.Verb" %>
 <%@ page import="online.irishdictionary.model.VerbConjugation" %>
-<%@ page import="online.irishdictionary.model.Word" %>
 <%@ page import="online.irishdictionary.util.DefinitionOutput" %>
 <%@ include file="/view/log.jsp" %>
 <%
@@ -66,6 +64,12 @@
     log.debug("isEnglish = " + isEnglish);
     DefinitionOutput definitionOutput = new DefinitionOutput();
 %>
+<%!
+    String LEFT_PARENTHESIS = "(", RIGHT_PARENTHESIS = ")";
+    public String parenthesis(String string) {
+        return new StringBuilder().append(LEFT_PARENTHESIS).append(string).append(RIGHT_PARENTHESIS).toString();
+    }
+%>
 <%@ taglib uri="/WEB-INF/irishdictionary.tld" prefix="irishdictionary" %>
 <%@ taglib prefix="javapoets" tagdir="/WEB-INF/tags" %>
 <!doctype html>
@@ -74,62 +78,9 @@
     <%@ include file="/view/head.jsp" %>
   </head>
   <body>
-
-
-<%!
-    String LEFT_PARENTHESIS = "(", RIGHT_PARENTHESIS = ")";
-    public String parenthesis(String string) {
-        return new StringBuilder().append(LEFT_PARENTHESIS).append(string).append(RIGHT_PARENTHESIS).toString();
-    }
-%>
-
-<%--
-<div style="padding-top:108px;padding-bottom:108px;max-width:728px;text-align:center;margin:auto;">
-    <div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
---%>
-<%--
-    <div class="flex-container">
-      <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
-        <div class="header">
-          <div style="padding: 13px 42px; width: 200px;">
-            <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
-          </div>
-          <div class="search-block">
-            <%@ include file="/view/top-form.jsp" %>
-          </div>
-        </div>
-        <div style="padding-bottom: 40px;">
-          <% if(verb != null) { %>
-            <%@ include file="/view/verb/verb-output.jsp" %>
-          <% } else { %>
-            <div class="usage description definition">
-              <div class="word-header">
-                <span class="language-label"><%= fromLanguage %> verb</span>
-                <span class="word"><% if (verbParam != null) { %><%= verbParam %><% } %></span>
-                <span class="language-label" style="padding-left: 8px;">not found!</span>
-              </div>
-            </div>
-          <% } %>
-        </div>
-      </div>
-    </div>
-    <%@ include file="/view/footer.jsp" %>
---%>
     <div class="centering-container">
       <div class="table">
-        <div class="row">
-          <div class="cell">
-            <div class="flex-header">
-              <!--div style="padding: 13px 42px; width: 200px;"-->
-              <div>
-                <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
-              </div>
-              <div class="search-block">
-                <%@ include file="/view/top-form.jsp" %>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%@ include file="/view/row-header.jsp" %>
         <div class="row">
           <div class="cell">
             <div style="padding-bottom: 40px;">
@@ -147,15 +98,8 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="cell">
-            <div>
-              <%@ include file="/view/footer/footer-copyright.jsp" %>
-            </div>
-          </div>
-        </div>
+        <%@ include file="/view/row-footer.jsp" %>
       </div>
     </div>
-<%--    
---%>
-<%@ include file="/view/footer.jsp" %>
+  </body>
+</html>

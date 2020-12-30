@@ -1,5 +1,19 @@
-<%@ include file="/view/header.jsp" %>
+<%@ page
+    language="java"
+    contentType="text/html;charset=UTF-8"
+    pageEncoding="UTF-8"
+    session="false" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="online.irishdictionary.model.Word" %>
+<%@ page import="online.irishdictionary.model.Verb" %>
+<%@ include file="/view/log.jsp" %>
 <%
+    String contextUrl = (String)application.getAttribute("contextUrl");
+    String imagesUrl = contextUrl + "view/images/";
+    log.debug("contextUrl = " + contextUrl);
     List<Verb> verbList = (List<Verb>)request.getAttribute("verbList");
     log.debug("verbList.size() " + verbList.size());
     String language = (String)request.getAttribute("language");
@@ -9,28 +23,29 @@
     String verbEnglish = null;
     String verbIrish = null;
 %>
-    <div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
-      <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
-        <div class="header">
-          <div style="padding: 13px 42px; width: 200px;">
-            <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
-          </div>
-          <div class="search-block">
-            <%@ include file="/view/topForm.jsp" %>
-            <%--@ include file="/view/entry-form.jsp" --%>
-          </div>
-        </div>
-        <div style="padding-bottom: 40px;">
-          <!--div class="definition"-->
-            <div class="verbs-header">
-              <span class="language-label"><span class="capitalize"><%= language %></span> verbs</span>
+<!doctype html>
+<html>
+  <head>
+    <%@ include file="/view/head.jsp" %>
+  </head>
+  <body>
+    <div class="centering-container">
+      <div class="table">
+        <%@ include file="/view/row-header.jsp" %>
+        <div class="row">
+          <div class="cell">
+            <div style="padding-bottom: 40px;">
+              <div class="verbs-header">
+                <span class="language-label"><span class="capitalize"><%= language %></span> verbs</span>
+              </div>
+              <% if(verbList != null) { %>
+                <%@ include file="/view/verb/verbs-output.jsp" %>
+              <% } %>
             </div>
-          <!--/div-->
-
-          <% if(verbList != null) { %>
-            <%@ include file="/view/verb/verbs-output.jsp" %>
-          <% } %>
+          </div>
         </div>
+        <%@ include file="/view/row-footer.jsp" %>
       </div>
     </div>
-    <%@ include file="/view/footer.jsp" %>
+  </body>
+</html>

@@ -11,7 +11,9 @@
   <div class="row">
     <div class="cell copyright">
       [<a href="<%= contextUrl %>terms">Terms</a>]
+      <%--
       [<a href="<%= contextUrl %>privacy">Privacy</a>]
+      --%>
 	</div>
   </div>
 </div>

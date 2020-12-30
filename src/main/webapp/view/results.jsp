@@ -68,19 +68,7 @@
 --%>
     <div class="centering-container">
       <div class="table">
-        <div class="row">
-          <div class="cell">
-            <div class="flex-header">
-              <!--div style="padding: 13px 42px; width: 200px;"-->
-              <div>
-                <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
-              </div>
-              <div class="search-block">
-                <%@ include file="/view/top-form.jsp" %>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%@ include file="/view/row-header.jsp" %>
         <div class="row">
           <div class="cell">
             <div style="padding-bottom: 40px;">
@@ -99,6 +87,5 @@
         </div>
       </div>
     </div>
-<%--    
---%>
-<%@ include file="/view/footer.jsp" %>
+  </body>
+</html>
