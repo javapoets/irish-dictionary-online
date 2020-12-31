@@ -52,20 +52,7 @@
     <%@ include file="/view/head.jsp" %>
   </head>
   <body>
-<%--    
-    <div class="flex-container" style="height: 100%; text-align: center; vertical-align: top; margin: auto; margin-top: 0px; padding: 0px;">
-      <div style="text-align: center; margin: auto; margin-top: 0px; width: 100%; max-width: var(--site-width);">
-        <div class="header">
-    <div class="flex-container">
-    <div>
---%>
-<%--
-<div class="flex-container">
-    <div
-      class="centering-flex-container"
-      style=""
-    >
---%>
+    <%@ include file="/view/ads-responsive.jsp" %>
     <div class="centering-container">
       <div class="table">
         <%@ include file="/view/row-header.jsp" %>

@@ -63,7 +63,12 @@ div.cell
 div.row.logo
 {
   text-align: left;
-  border: red 1px solid;
+}
+
+div.row.logo
+div.cell.logo
+{
+  padding-left: 13px;
 }
 
 /*
@@ -90,11 +95,12 @@ body > div > div.table > div.row > div.cell
   vertical-align: middle;
   margin: 0px;
   padding: 0px;
-  border: red 1px solid;
   height: 100%;
+  border: red 1px solid;
   */
   max-width: var(--site-width);
   margin: auto;
+  padding-top: 90px;
 }
 
 .centering-flex-container
@@ -769,7 +775,6 @@ div.usage li span.translated a {
   font-weight:normal;
 }
 
-
 div.usage li a {
 <%--
   color:#f7941d;
@@ -990,12 +995,21 @@ div.verbs-header
 
 @media (max-width: 670px)
 {
-  body div.header
+  body div.flex-header
   {
     /*
     justify-content: flex-start;
     */
     justify-content: center;
+  }
+  body div.row.logo
+  {
+    text-align: center;
+  }
+  div.row.logo
+  div.cell.logo
+  {
+    padding-left: 0px;
   }
   body div.entry-form > div
   {

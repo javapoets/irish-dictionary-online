@@ -29,6 +29,7 @@
     <%@ include file="/view/head.jsp" %>
   </head>
   <body>
+    <%@ include file="/view/ads-responsive.jsp" %>
     <div class="centering-container">
       <div class="table">
         <%@ include file="/view/row-header.jsp" %>
