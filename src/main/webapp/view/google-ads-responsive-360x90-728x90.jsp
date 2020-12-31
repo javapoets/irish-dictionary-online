@@ -17,11 +17,24 @@
         border: 0px solid;
         vertical-align: bottom;
       ">
-      <div
+      <%--
+      <div class="HideOnMobile"
+      --%>
+      <div id="adsbygoogle-728x90"
         style="
-          display: inline-table;
           box-shadow: 0px 3px 13px rgba(0,0,0,0.33);
           width: 728px;
+          height: 90px;
+        ">
+        <%@ include file="/view/adsbygoogle-fixed-728x90.jsp" %>
+      </div>
+      <%--
+      <div class="ShowOnMobile"
+      --%>
+      <div id="adsbygoogle-360x90"
+        style="
+          box-shadow: 0px 3px 13px rgba(0,0,0,0.33);
+          width: 360px;
           height: 90px;
         ">
         <%@ include file="/view/adsbygoogle-fixed-360x90.jsp" %>
@@ -29,3 +42,6 @@
     </div>
   </div>
 </div>
+<!--script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script-->

@@ -3,10 +3,7 @@
     List wordList = (List) request.getAttribute("wordList");
     List irishWordList = (List) request.getAttribute("irishWordList");
 %>
-<%--
-<div class="flex-container">
---%>
-<%@ include file="/view/ads-responsive.jsp" %>
+<%@ include file="/view/google-ads-responsive-360x90-728x90.jsp" %>
 <div class="centering-flex-container">
   <div>
     <div class="table">

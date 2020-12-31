@@ -89,3 +89,23 @@ function searchIrishVerb(form){
 
   window.location=url;
 }
+
+window.startAds = function() {
+    console.log('window.startAds()');
+    console.log('window.adsbygoogle = ' + window.adsbygoogle);
+    console.log('window.adsbygoogle.push = ' + window.adsbygoogle.push);
+    (adsbygoogle = window.adsbygoogle || []).push({});
+}
+
+console.log('window = ' + window);
+console.log('document = ' + document);
+//console.log('document.body = ' + document.body);
+//console.log('document[\'body\'] = ' + document['body']);
+//document.body.onload = fucstartAds;
+//document.body.onload = fucstartAds;
+//document['body'].onload = function() {
+window.onload = function() {
+  console.log('window.onload()');
+  //window.startAds();
+  window.setTimeout(window.startAds, 1000);
+}

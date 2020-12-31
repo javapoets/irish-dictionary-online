@@ -15,7 +15,7 @@ If you notice an error or typo in any of the entries available on Irish Dictiona
 <h2>Privacy</h2>
 <p>
 Irish Dictionary Online fully respects your right to privacy in relation to your interactions with this website.
-Irish Dictionary Online does not collect any personally identifiable information about users of this service nor does this website set any cookies or capture any data about users interactions with this website.
+Irish Dictionary Online does not collect any personally identifiable information about users of this service. A JSESSIONID Cookie ID is created on the server and stored on this client machine in the client browser although Irish Dictionary Online is not currenty using this identifier to identify or remember the user or record their activity.
 </p>
 <h2>Amendments</h2>
 Irish Dictionary Online reserves the right in its sole discretion to amend these terms and privacy statement at any time. If a change is made to these terms or privacy policy you will be notified of that change and your agreement and acceptance of that change will be requested.

@@ -7,14 +7,15 @@
 $ gradle clean build
 ```
 
-### To build with Apache JSP support
+### To perform a custom build based on a file in `/src/main/config`
+```
+dev.englishirishdictionary.com:
+gradle buildName -PbuildName=devenglishirish
+
+www.englishirishdictionary.com:
+gradle buildName -PbuildName=prodenglishirish
+
+### To add Apache JSP support for non Gretty builds
 ```
 gradle build -Papachejsp
 ```
-
-### To perform a custom build based on a file in `/src/main/config`
-
-```
-gradle buildName -PbuildName=devenglishirish
-```
-gradle buildName -PbuildName=prodenglishirish

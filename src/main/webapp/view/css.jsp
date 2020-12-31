@@ -191,38 +191,6 @@ body div.entry-form > div
   width: 100%;
 }
 
-<%--
-@media (min-width: 670px)
-{
-  body div.entry-form > div
-  {
-    /*
-    padding: 8px;
-    border: green 1px solid;
-    border: red 1px solid;
-    */
-  }
-  /*
-  .search-block
-  {
-    border: green 1px solid;
-    width: 366px;
-    width: var(--search-block-width);
-  }
-  */
-}
-
-@media (min-width: var(--search-block-width))
-@media (min-width: 366px)
-{
-  .search-block
-  {
-    border: green 2px solid;
-    width: 100%;
-  }
-}
---%>
-
 .logo-offset
 {
   position: absolute;
@@ -232,21 +200,6 @@ body div.entry-form > div
   margin: auto;
   margin-top: -250px;
   margin-left: -180px;
-}
-
-@media (max-width: 500px)
-{
-  .logo-offset
-  {
-    margin-left: -95px;
-  }
-  /*
-  .entry-form
-  {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  */
 }
 
 div.bottombox {
@@ -972,57 +925,6 @@ div.verbs-header
   margin-bottom: 8px;
 }
 
-@media (min-width: 670px) {
-  body div.entry-form > div
-  {
-    padding: 5px;
-    /*
-    border: red 1px solid;
-    */
-  }
-  /*
-  .search-block
-  {
-    margin-left: 0px;    
-  }
-  div.verb-conjugation div.verb-tense-header
-  {
-    padding-left: 10px;
-    font-size: 1.1em;
-  }
-  */
-}
-
-@media (max-width: 670px)
-{
-  body div.flex-header
-  {
-    /*
-    justify-content: flex-start;
-    */
-    justify-content: center;
-  }
-  body div.row.logo
-  {
-    text-align: center;
-  }
-  div.row.logo
-  div.cell.logo
-  {
-    padding-left: 0px;
-  }
-  body div.entry-form > div
-  {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  div.verb-conjugation div.verb-tense-header
-  {
-    padding-left: 10px;
-    font-size: 1.1em;
-  }
-}
-
 div.table.copyright
 {
   /*
@@ -1061,3 +963,5 @@ a:hover
 {
   text-decoration: underline;
 }
+
+<%@ include file="/view/css-media-queries.jsp" %>

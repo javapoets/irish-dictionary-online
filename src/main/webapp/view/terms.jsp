@@ -26,7 +26,7 @@
     <%@ include file="/view/head.jsp" %>
   </head>
   <body>
-    <%@ include file="/view/google-ads-fixed-728x90.jsp" %>
+    <%@ include file="/view/google-ads-responsive-360x90-728x90.jsp" %>
     <div class="centering-container">
       <div class="table">
         <%@ include file="/view/row-header.jsp" %>
