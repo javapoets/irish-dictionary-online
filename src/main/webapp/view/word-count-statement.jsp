@@ -13,10 +13,11 @@
 >
   <div class="row">
     <div class="cell" style="padding: 10px;">
-      Over 50,000 words translated and put to use
+      <%= resourceBundles.getString("Over 50,000 words translated and put to use") %>
     </div>
   </div>
   <%--
+      Over 50,000 words translated and put to use
       1,400 English verbs and 768 Irish verbs conjugated and translated.
   --%>
   <div class="row">

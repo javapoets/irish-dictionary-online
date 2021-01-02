@@ -62,7 +62,7 @@ div.cell
 
 div.row.menu
 {
-  text-align: left;
+  text-align: center;
 }
 
 div.row.menu
@@ -72,8 +72,20 @@ div.cell.menu
   padding-left: 13px;
   border: blue 1px solid;
   padding-top: 100px;
-  */
   padding: 10px 0px;;
+  */
+  padding: 10px 0px;
+}
+
+div.row.menu
+div.cell.menu
+> div
+{
+  /*
+  padding-top: 8px;
+  padding-bottom: 8px;
+  */
+  padding: 5px 0px;;
 }
 
 div.row.logo
@@ -85,6 +97,8 @@ div.row.logo
 div.cell.logo
 {
   padding-left: 13px;
+  text-align: left;
+  margin-left: 0px;
 }
 
 /*
@@ -136,28 +150,27 @@ body > div > div.table > div.row > div.cell
 
 body div.flex-header
 {
-  padding-top: 20px;
-  padding-bottom: 20px;
   margin: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   flex-basis: 550px;
   /*
-  border: green 1px solid;
   align-items: stretch;
   align-items: flex-end;
   align-items: flex-start
-  */
-  align-items: center;
-
-  /*
   justify-content: space-between;
   justify-content: space-around;
   justify-content: center;
   justify-content: space-evenly;
   */
+  align-items: center;
   justify-content: flex-start;
+  /*
+  border: green 1px solid;
+  padding-top: 20px;
+  */
+  padding-bottom: 20px;
 }
 
 /*
