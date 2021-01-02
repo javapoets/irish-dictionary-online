@@ -22,13 +22,13 @@
       <% if ("ga".equals(lang)) { %>
         Tá an suíomh gréasáin seo i <strong>nGaeilge</strong>.
       <% } else if ("es".equals(lang)) { %>
-        Esto sitio web es en <strong>Español</strong>.
+        Esté sitio está en <strong>Español</strong>.
       <% } else if ("en".equals(lang)) { %>
         The principal language of this website is <strong>English</strong>.
       <% } %>
     </div>
     <div style="display: inline-block;">
-      <%= resourceBundles.getString("Change it to") %>:
+      <%= resourceBundles.getString("Change it to") %>
       <select onchange="selectLanguage(this)">
         <option><%= resourceBundles.getString("Select") %></option>
         <% if ("es".equals(lang) || "en".equals(lang)) { %>

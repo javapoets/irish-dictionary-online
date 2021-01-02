@@ -15,7 +15,7 @@
                   class="text"
                   <% if (verbEnglish != null) { %>value="<%= verbEnglish %>"<% } %>
                   maxlength="200"
-                  placeholder="English verb"
+                  placeholder="<%= resourceBundles.getString("English verb") %>"
                   style="width: 100%;" />
             </div>
             <div class="cell" style="margin-right: 0px; text-align: right; width: 60px;">
