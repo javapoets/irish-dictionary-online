@@ -1,8 +1,4 @@
-<%@ page
-    language="java"
-    contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8"
-    session="false" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
@@ -81,6 +77,7 @@
     <%@ include file="/view/google-ads-responsive-360x90-728x90.jsp" %>
     <div class="centering-container">
       <div class="table">
+        <%@ include file="/view/row-menu.jsp" %>
         <%@ include file="/view/row-header.jsp" %>
         <div class="row">
           <div class="cell">

@@ -60,6 +60,22 @@ div.cell
   */
 }
 
+div.row.menu
+{
+  text-align: left;
+}
+
+div.row.menu
+div.cell.menu
+{
+  /*
+  padding-left: 13px;
+  border: blue 1px solid;
+  padding-top: 100px;
+  */
+  padding: 10px 0px;;
+}
+
 div.row.logo
 {
   text-align: left;
@@ -100,7 +116,7 @@ body > div > div.table > div.row > div.cell
   */
   max-width: var(--site-width);
   margin: auto;
-  padding-top: 90px;
+  padding-top: 100px;
 }
 
 .centering-flex-container
@@ -426,6 +442,7 @@ div.definition .language-label
   vertical-align: bottom;
   border: red 1px solid;
   */
+  display: inline-block;
   color: #999;
   line-height: 28px;
   text-transform: capitalize;
@@ -465,6 +482,7 @@ div.definition div.word-header .word
   border: red 1px solid;
   line-height: 20px;
   */
+  display: inline-block;
   padding: 0px;
   padding-left: 10px;
   font-size: 33px;

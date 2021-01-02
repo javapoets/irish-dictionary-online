@@ -109,3 +109,12 @@ window.onload = function() {
   //window.startAds();
   window.setTimeout(window.startAds, 1000);
 }
+
+function selectLanguage(selectElement) {
+  console.log('selectLanguage('+selectElement+')');
+  console.log('selectElement.selectedIndex = ' + selectElement.selectedIndex);
+  console.log('selectElement.options[selectElement.selectedIndex].value = ' + selectElement.options[selectElement.selectedIndex].value);
+  var value = selectElement.options[selectElement.selectedIndex].value;
+  console.log('value = ' + value);
+  window.location = '<%= contextUrl %>home?' + value;
+}

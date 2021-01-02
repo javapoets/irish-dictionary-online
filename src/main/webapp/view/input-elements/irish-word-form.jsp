@@ -14,7 +14,7 @@
                   class="text"
                   <% if(wordIrish != null) { %>value="<%= wordIrish %>"<% } %>
                   maxlength="200"
-                  placeholder="Irish word(s)"
+                  placeholder="<%= resourceBundles.getString("Irish word(s)") %>"
                   style="width: 100%;" />
             </div>
             <div class="cell" style="margin-right: 0px; text-align: right; width: 60px;">
