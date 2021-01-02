@@ -14,7 +14,7 @@
                   class="text"
                   <% if (wordEnglish != null) { %>value="<%= wordEnglish %>"<% } %>
                   maxlength="200"
-                  placeholder="English word(s)"
+                  placeholder="<%= resourceBundles.getString("English word(s)") %>"
                   style="width: 100%;" />
             </div>
             <div class="cell" style="margin-right: 0px; text-align: right; width: 60px;">

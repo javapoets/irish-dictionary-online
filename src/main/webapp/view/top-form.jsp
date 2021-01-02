@@ -1,7 +1,3 @@
-<%--
-<div class="entry-form">
-<div class="table blue0" style="text-align:right;margin:0px 0px 0px auto;vertical-align:middle;">
---%>  
 <div class="table entry-form">
   <div class="row">
     <div class="cell">
@@ -32,6 +28,3 @@
     </div>
   </div>
 </div>
-<%--
-</div>
---%>

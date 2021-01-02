@@ -70,6 +70,14 @@
     display: inline-table;
   }
 
+  div.row.logo
+  div.cell.logo
+  {
+    padding-left: 0px;
+    text-align: center;
+    margin: auto;
+  }
+
   body div.entry-form > div
   {
     padding: 5px;

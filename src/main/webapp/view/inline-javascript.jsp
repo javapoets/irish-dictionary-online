@@ -79,13 +79,17 @@ window.startAds = function() {
 
 console.log('window = ' + window);
 console.log('document = ' + document);
-//console.log('document.body = ' + document.body);
-//console.log('document[\'body\'] = ' + document['body']);
-//document.body.onload = fucstartAds;
-//document.body.onload = fucstartAds;
-//document['body'].onload = function() {
 window.onload = function() {
   console.log('window.onload()');
   //window.startAds();
   window.setTimeout(window.startAds, 1000);
+}
+
+function selectLanguage(selectElement) {
+  console.log('selectLanguage('+selectElement+')');
+  console.log('selectElement.selectedIndex = ' + selectElement.selectedIndex);
+  console.log('selectElement.options[selectElement.selectedIndex].value = ' + selectElement.options[selectElement.selectedIndex].value);
+  var value = selectElement.options[selectElement.selectedIndex].value;
+  console.log('value = ' + value);
+  window.location = '<%= contextUrl %>home?' + value;
 }

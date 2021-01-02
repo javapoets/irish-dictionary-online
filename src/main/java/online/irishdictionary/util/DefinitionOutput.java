@@ -437,10 +437,10 @@ public class DefinitionOutput {
         stringBuilder.append("<div class=\"definition\">");
         stringBuilder
             .append("<div class=\"word-header\">")
-            .append(  "<span class=\"language-label\">")
+            .append(  "<div class=\"language-label\">")
             .append(    "<span class=\"capitalize\">").append(fromLanguage).append("</span>").append(" word")
-            .append(  "</span>")
-            .append(  "<span class=\"word\">").append(word.getWord()).append("</span>");
+            .append(  "</div>")
+            .append(  "<div class=\"word\">").append(word.getWord()).append("</div>");
         if (word.getDescription() != null) {
             stringBuilder.append(  "<span class=\"word-description\">").append(word.getDescription()).append("</span>");
         }

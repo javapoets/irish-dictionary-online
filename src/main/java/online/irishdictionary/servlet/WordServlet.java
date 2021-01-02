@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import online.irishdictionary.model.Word;
 import online.irishdictionary.database.DictionaryDatabaseManager;
@@ -110,6 +111,15 @@ public class WordServlet extends InitServlet {
     ) throws ServletException, IOException {
         log.debug("displayWord(request, response, '"+wordParameter+"', '"+fromLanguage+"', '"+toLanguage+"')");
         //log.debug("displayWord(request, response, '"+wordParameter+"', '"+fromLanguage+"', '"+toLanguage+"', '"+languageIdParameter+"')");
+
+        String queryString  = request.getQueryString();
+        log.debug("queryString = " + queryString);
+        if(queryString != null) {
+            if(queryString.length() == 2) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("lang", queryString);
+            }
+        }
 
         int languageId = -1;
         /*
