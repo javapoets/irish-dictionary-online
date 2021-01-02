@@ -17,9 +17,6 @@
         border: 0px solid;
         vertical-align: bottom;
       ">
-      <%--
-      <div class="HideOnMobile"
-      --%>
       <div id="adsbygoogle-728x90"
         style="
           box-shadow: 0px 3px 13px rgba(0,0,0,0.33);
@@ -28,9 +25,6 @@
         ">
         <%@ include file="/view/adsbygoogle-fixed-728x90.jsp" %>
       </div>
-      <%--
-      <div class="ShowOnMobile"
-      --%>
       <div id="adsbygoogle-360x90"
         style="
           box-shadow: 0px 3px 13px rgba(0,0,0,0.33);

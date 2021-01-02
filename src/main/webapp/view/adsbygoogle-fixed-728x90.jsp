@@ -1,4 +1,3 @@
-<!-- Green White Orange -->
 <ins class="adsbygoogle"
     style="display:inline-block;width:728px;height:90px"
     data-ad-client="ca-pub-5611094585811186"

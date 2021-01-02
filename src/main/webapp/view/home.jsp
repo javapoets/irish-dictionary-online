@@ -9,7 +9,6 @@
     <div class="table">
       <div class="row logo">
         <div class="cell logo">
-        <%--div style="padding: 13px 42px; width: 200px;"--%>
           <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
         </div>
       </div>
@@ -20,13 +19,6 @@
         </div>
         <%@ include file="/view/word-count-statement.jsp" %>
       </div>
-      <%--
-      <%@ include file="/view/entryFormVariables.jsp" %>
-      <%@ include file="/view/row-header.jsp" %>
-      <div class="row">
-        <%@ include file="/view/word-count-statement.jsp" %>
-      </div>
-      --%>
       <div class="row">
         <div class="cell">
           <%@ include file="/view/footer/footer-copyright.jsp" %>
