@@ -101,6 +101,31 @@ div.cell.logo
   margin-left: 0px;
 }
 
+div.table.logo
+div.row.name
+div.cell.name
+{
+  padding: 8px;
+  text-align: center;
+  margin: auto;
+  font-size: 21px;
+  font-weight: bold;
+  /*
+  text-transform: uppercase;
+  */
+  text-decoration:none;
+  color: var(--darktext);
+  font-family: Times, serif;
+}
+
+div.table.logo
+div.row.name
+div.cell.name
+a
+{
+  text-decoration: none;
+}
+
 /*
 body > div
 {

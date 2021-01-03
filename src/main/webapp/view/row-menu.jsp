@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
-<%
+<%--
     String lang = null;
     lang = (String)request.getAttribute("lang");
     log.debug("lang = " + lang);
@@ -15,7 +15,7 @@
     }
     log.debug("lang = " + lang);
     final online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
-%>
+--%>
 <%--= resourceBundles.getString("English word(s)") --%>
 <div class="row menu">
   <div class="cell menu">
@@ -32,7 +32,7 @@
     <div style="display: inline-block;">
       <%= resourceBundles.getString("Change it to") %>
       <select onchange="selectLanguage(this)">
-        <option><%--= resourceBundles.getString("Select") %>/Select--%></option>
+        <option><%= resourceBundles.getString("Select") %></option>
         <% if ("es".equals(lang) || "en".equals(lang)) { %>
         <option value="ga" <% if (lang != null && lang.equals("ga")) { %>selected<% } %>><%= resourceBundles.getString("Irish") %>/Irish<%--Gaelige--%></option>
         <% } %>
