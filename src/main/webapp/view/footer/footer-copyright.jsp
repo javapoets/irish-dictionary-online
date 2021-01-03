@@ -8,8 +8,8 @@
       <%= resourceBundles.getString("Irish Dictionary Online") %>
     </div>
   </div>
-  <div class="row">
-    <div class="cell copyright">
+  <div class="row terms">
+    <div class="cell terms">
       [<a href="<%= contextUrl %>terms"><%= resourceBundles.getString("Terms of Service") %></a>]
       <%--[<a href="<%= contextUrl %>privacy">Privacy</a>]--%>
 	  </div>

@@ -959,10 +959,10 @@ div.verbs-header
 div.table.copyright
 {
   /*
-  border: green 1px solid;
   padding-top: 33px;
+  border: green 1px solid;
   */
-  padding: 20px 0px;
+  padding: 33px 0px;
   margin: auto;
   text-align: center;
 }
@@ -975,6 +975,7 @@ div.table.copyright
   font-size: 14px;
   color: var(--darktext);
   text-decoration: none;
+  padding: 4px 0px;
 }
 
 div.table.copyright
@@ -983,7 +984,30 @@ a
 {
   /*
   color: var(--darktext);
+  font-size: 15px;
   */
+  color: var(--dark-green);
+  text-decoration: none;
+}
+
+div.table.copyright
+div.row.terms
+div.cell.terms
+{
+  /*
+  color: var(--darktext);
+  */
+  font-size: 15px;
+}
+
+div.table.copyright
+div.row.terms
+a
+{
+  /*
+  color: var(--darktext);
+  */
+  font-size: 14px;
   color: var(--dark-green);
   text-decoration: none;
 }
