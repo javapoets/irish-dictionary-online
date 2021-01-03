@@ -19,8 +19,9 @@
     String verbEnglish = null;
     String verbIrish = null;
 %>
+<%@ include file="/view/lang-resource-bundle.jsp" %>
 <!doctype html>
-<html>
+<html lang="<%= lang %>">
   <head>
     <%@ include file="/view/head.jsp" %>
   </head>

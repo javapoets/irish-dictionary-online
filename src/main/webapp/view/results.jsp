@@ -42,8 +42,9 @@
 %>
 <%@ taglib uri="/WEB-INF/irishdictionary.tld" prefix="irishdictionary" %>
 <%@ taglib prefix="javapoets" tagdir="/WEB-INF/tags" %>
+<%@ include file="/view/lang-resource-bundle.jsp" %>
 <!doctype html>
-<html>
+<html lang="<%= lang %>">
   <head>
     <%@ include file="/view/head.jsp" %>
   </head>
