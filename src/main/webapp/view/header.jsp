@@ -1,5 +1,6 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" session="false" --%>
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/view/imports.jsp" %>
 <%@ include file="/view/log.jsp" %>
 <%@ include file="/view/variables.jsp" %>

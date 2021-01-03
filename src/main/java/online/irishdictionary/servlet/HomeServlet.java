@@ -28,7 +28,8 @@ public class HomeServlet extends InitServlet {
             }
         }
 
-        include(request, response, JSP_HOME);
+        //include(request, response, JSP_HOME);
+        super.includeUtf8(request, response, JSP_HOME);
         /*
         String requestURI = new StringBuilder().append(request.getContextPath()).append("/dictionary").append("?").append(locale).toString();
         logger.debug("requestURI = "+requestURI);

@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8"%>
 <%
     String lang = null;
     lang = (String)request.getAttribute("lang");
@@ -20,7 +21,8 @@
   <div class="cell menu">
     <div style="display: inline-block;">
       <% if ("ga".equals(lang)) { %>
-        Tá an suíomh gréasáin seo i <strong>nGaeilge</strong>.
+        <%-- Tá an suíomh gréasáin seo i <strong>nGaeilge</strong>. --%>
+        Tá an suíomh seo i <strong>nGaeilge</strong>.
       <% } else if ("es".equals(lang)) { %>
         Esté sitio está en <strong>Español</strong>.
       <% } else if ("en".equals(lang)) { %>

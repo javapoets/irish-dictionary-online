@@ -9,7 +9,8 @@ public class ResourceBundles {
     public ResourceBundles(String lang) {
         log.debug("('" + lang +"')");
         this.lang = lang;
-        this.resourceBundle = java.util.ResourceBundle.getBundle("irishdictionary", new java.util.Locale(lang));
+        //this.resourceBundle = java.util.ResourceBundle.getBundle("irishdictionary", new java.util.Locale(lang));
+        this.resourceBundle = java.util.ResourceBundle.getBundle("irishdictionary", new java.util.Locale(lang), new Utf8Control());
     }
 
     public String getString(String x) {

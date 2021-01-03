@@ -15,8 +15,8 @@
     String fromLanguage = (String)request.getAttribute("fromLanguage");
     String toLanguage = (String)request.getAttribute("toLanguage");
     log.debug("word = " + word);
-    log.debug("fromLanguage = "+fromLanguage);
-    log.debug("toLanguage = "+toLanguage);
+    log.debug("fromLanguage = " + fromLanguage);
+    log.debug("toLanguage = " + toLanguage);
     pageContext.setAttribute("fromLanguage", fromLanguage);
     pageContext.setAttribute("toLanguage", toLanguage);
     if(word != null) pageContext.setAttribute("word", word);
