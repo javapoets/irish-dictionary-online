@@ -9,6 +9,7 @@
     log.debug("fromLang = " + fromLang);
     log.debug("toLang = " + toLang);
     if (lang == null) {
+        log.debug("session = " + session);
         if (session != null) {
             lang = (String)session.getAttribute("lang");
             fromLang = (String)session.getAttribute("fromLang");
@@ -18,6 +19,7 @@
             log.debug("toLang = " + toLang);
         }
         if (lang == null) {
+            log.debug("application = " + application);
             lang = (String)application.getAttribute("lang");
             fromLang = (String)application.getAttribute("fromLang");
             toLang = (String)application.getAttribute("toLang");

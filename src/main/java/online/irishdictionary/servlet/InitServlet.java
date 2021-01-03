@@ -136,10 +136,7 @@ public class InitServlet extends HttpServlet {
                  */
                 this.configureCookies(properties);  // configure the javax.servlet.SessionCookieConfig
             } catch(Exception exception) {
-                StringWriter stringWriter = new StringWriter();
-                PrintWriter printWriter = new PrintWriter(stringWriter);
-                exception.printStackTrace(printWriter);
-                log.error(stringWriter.toString());
+                log.error(exception.getMessage(), exception);
             }
             servletContext.setAttribute("contextInitialized", "true");
         } else {

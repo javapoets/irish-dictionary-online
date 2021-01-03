@@ -1,8 +1,11 @@
 <h1><%= resourceBundles.getString("Terms of Service") %></h1>
 <p>
-Please read the following terms of service carefully. By using this website you are indicating that you are in agreement with these terms of service. Irish Dictionary Online reserves the right to modify, change or update these terms at any time. We ask that you refrain from using this website if you do not agree with the terms and conditions outlined below.
+<%= resourceBundles.getString("Please read the following terms of service carefully.") %>
+<%= resourceBundles.getString("By using this website you are indicating that you are in agreement with these terms of service.") %>
+<%= resourceBundles.getString("Irish Dictionary Online reserves the right to modify, change or update these terms at any time.") %>
+<%= resourceBundles.getString("We ask that you refrain from using this website if you do not agree with the terms and conditions outlined below.") %>
 </p>
-<h2>Disclaimer</h2>
+<h2><%= resourceBundles.getString("Disclaimer") %></h2>
 <p> 
 While great care has been taken to ensure the correctness of all the information available on this website, due to the manual nature of the data entry it is possible that typos or errors may be present. As such Irish Dictionary Online provides this website with no warranties of any kind, expressed or implied by statute, common usage or otherwise. Use of this website is at your own risk, at all times. In particular, Irish Dictionary Online disclaims any implied warranties of merchantability, fitness for purpose, or non-infringement. Irish Dictionary Online reserves the right to withdraw or modify any aspects of this website at its absolute discretion. Irish Dictionary Online does not warrant your use of this website will be always available and uninterrupted, error free or that it will meet your requirements, and Irish Dictionary Online denies liability for any loss or damage so caused.
 </p>

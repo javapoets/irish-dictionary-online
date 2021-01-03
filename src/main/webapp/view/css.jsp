@@ -108,14 +108,14 @@ div.cell.name
   padding: 8px;
   text-align: center;
   margin: auto;
-  font-size: 21px;
+  font-size: 28px;
   font-weight: bold;
   /*
   text-transform: uppercase;
+  font-family: Times, serif;
   */
   text-decoration:none;
-  color: var(--darktext);
-  font-family: Times, serif;
+  font-family: 'Averia Serif Libre', cursive;
 }
 
 div.table.logo
@@ -124,6 +124,7 @@ div.cell.name
 a
 {
   text-decoration: none;
+  color: var(--dark-green);
 }
 
 /*

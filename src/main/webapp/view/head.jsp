@@ -20,3 +20,6 @@
 <script type="text/javascript">
 <%@ include file="/view/inline-javascript.jsp" %>
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@700&display=swap');
+</style> 
