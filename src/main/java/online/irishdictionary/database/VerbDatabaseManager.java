@@ -80,7 +80,7 @@ public class VerbDatabaseManager {
         PreparedStatement preparedStatement = connectionManager.loadStatement(statementName);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            log.debug("tenseIdArray.add("+resultSet.getInt(1)+")");
+            //log.debug("tenseIdArray.add("+resultSet.getInt(1)+")");
             tenseIdArray.add(resultSet.getInt(1));
         }
     }

@@ -136,8 +136,12 @@ public class WordServlet extends InitServlet {
         */
             if (fromLanguage != null && fromLanguage.equals("english")) {
                 languageId = 1;
+                request.setAttribute("toLang", LANG_IRISH);
+                request.setAttribute("fromLang", LANG_ENGLISH);
             } else {
                 languageId = 2;
+                request.setAttribute("toLang", LANG_ENGLISH);
+                request.setAttribute("fromLang", LANG_IRISH);
             }
         //}
 

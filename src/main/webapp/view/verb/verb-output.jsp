@@ -1,11 +1,9 @@
 <div class="usage description definition">
   <div class="word-header">
     <span class="language-label"><%= resourceBundles.getString(fromLanguage + " verb") %></span>
-    <span class="word"
-      <% if (!lang.equals(fromLang)) { %>
-         lang="<%= fromLanguage %>"
-      <% } %>
-    ><% if (verb != null) { %><%= verb.getVerb() %><% } %></span>
+    <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
+        <% if (verb != null) { %><%= verb.getVerb() %><% } %>
+    </span>
     <%--
         if (word.getDescription() != null) {
             stringBuilder.append(  "<span class=\"word-description\">").append(word.getDescription()).append("</span>");
@@ -24,11 +22,7 @@
           <span class="description usage-label irish">
             <%= resourceBundles.getString("Definition") %>
           </span>
-          <span class="translated" lang="<%= toLanguage %>"
-            <% if (!lang.equals(toLang)) { %>
-            lang="<%= fromLanguage %>"
-            <% } %>
-          >
+          <span class="translated"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
             <%
                 Verb verb0 = null;
                 String verbString0 = null;
@@ -43,7 +37,7 @@
                     }
                 }
             %>
-        </span>
+          </span>
         </div>
       </li>
       <%--
@@ -64,12 +58,12 @@
         <%-- if (isEnglish) { --%>
           <span class="usage-label irish"><%= resourceBundles.getString("Verbal Adjective") %></span>
           <span class="usage">
-              <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalAdjective() %>"><%= verb.getVerbalAdjective() %></a>
+            <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalAdjective() %>"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= verb.getVerbalAdjective() %></a>
           </span>
         <%-- } else { --%>
           <br/>
           <%--<br/><span class="usage-label irish">(Aidiacht Briathartha)</span>--%>
-          <span class="translated">
+          <span class="translated"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
             <% if (verbList != null) { for (int i = 0; i < verbList.size(); i++) { %><% if (i > 0) { %>, <% } %><a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getParticiple() %>"><%= ((Verb)verbList.get(i)).getParticiple() %></a><% } } %>
           </span>
         <%-- } --%>
@@ -89,7 +83,7 @@
           <span class="usage-label irish">
             <%= resourceBundles.getString("Verbal Noun") %>
           </span>
-          <span class="usage">
+          <span class="usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
             ag <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalNoun() %>"><%= verb.getVerbalNoun() %></a>
           </span>
         <%-- } else { --%>
@@ -100,7 +94,7 @@
             (Ainm Briathartha)
           </span>
           --%>
-          <span class="translated">
+          <span class="translated"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
             <% if (verbList != null) { for (int i = 0; i < verbList.size(); i++) { %><% if(i > 0) { %>, <% } %><a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getGerund() %>"><%= ((Verb)verbList.get(i)).getGerund() %></a><% } } %>
           </span>
         </div>
@@ -113,14 +107,14 @@
           <span class="usage-label irish">
             <%= resourceBundles.getString("Verbal Adjective") %>
           </span>
-          <span class="usage">
+          <span class="usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
             <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getParticiple() %>"><%= verb.getParticiple() %></a>
           </span>
           <br/>
         <%-- } else { --%>
           <%--span class="usage-label irish">(Aidiacht Briathartha)</span--%>
         <%-- } --%>
-          <span class="translated">
+          <span class="translated"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
             <% if(verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><%if(i>0){ %>, <% } %><a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getVerbalAdjective() %>"><%= ((Verb)verbList.get(i)).getVerbalAdjective() %></a><% } } %>
           </span>
         </div>
@@ -129,17 +123,17 @@
       <% if (verb.getGerund() != null && !verb.getGerund().equals(EMPTY)) { %>
       <li>
         <div>
-        <span class="usage-label irish">
-          <%--(Verbal Noun)--%>
-          <%--= resourceBundles.getString("Verb Gerund") --%>
-          <%= resourceBundles.getString("Verbal Noun") %>
-        </span>
-          <span class="usage">
+          <span class="usage-label irish">
+            <%--(Verbal Noun)--%>
+            <%--= resourceBundles.getString("Verb Gerund") --%>
+            <%= resourceBundles.getString("Verbal Noun") %>
+          </span>
+          <span class="usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
             <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getGerund() %>"><%= verb.getGerund() %></a>
           </span>
           <br/>
           <%--span class="usage-label irish">(Ainm Briathartha)</span--%>
-          <span class="translated">
+          <span class="translated"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
             <% if (verbList != null) { for(int i = 0; i < verbList.size(); i++) { %><% if (i>0) { %>, <% } %>ag <a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getVerbalNoun() %>"><%= ((Verb)verbList.get(i)).getVerbalNoun() %></a><% } } %>
           </span>
         </div>
@@ -149,14 +143,14 @@
   <!--/div-->
   <div class="verb-conjugation">
     <div class="word-header">
-      <span class="language-label"><%= resourceBundles.getString("Verb conjugation") %></span>
+      <span class="language-label"><%= resourceBundles.getString("Verb Conjugation") %></span>
     </div>
     <%
         VerbConjugation verbConjugation;
         String tenseId;
         for (int x = 1; x <= 7; x++) {
             tenseId = String.valueOf(x);
-            log.debug("tenseId = " + tenseId);
+            //log.debug("tenseId = " + tenseId);
             verbConjugation = (VerbConjugation) verbConjugationMap.get(tenseId);
     %>
       <%@ include file="/view/verb/verbConjugation.jsp" %>

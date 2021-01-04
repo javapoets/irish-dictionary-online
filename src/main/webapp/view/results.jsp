@@ -43,6 +43,11 @@
 <%@ taglib uri="/WEB-INF/irishdictionary.tld" prefix="irishdictionary" %>
 <%@ taglib prefix="javapoets" tagdir="/WEB-INF/tags" %>
 <%@ include file="/view/lang-resource-bundle.jsp" %>
+<%
+    pageContext.setAttribute("lang", lang);
+    pageContext.setAttribute("fromLang", fromLang);
+    pageContext.setAttribute("toLang", toLang);
+%>
 <!doctype html>
 <html lang="<%= lang %>">
   <head>

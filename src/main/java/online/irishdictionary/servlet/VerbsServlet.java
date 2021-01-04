@@ -9,18 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import online.irishdictionary.database.VerbDatabaseManager;
 import online.irishdictionary.model.Verb;
-import online.irishdictionary.servlet.InitServlet;
 
 @WebServlet(name = "VerbsServlet", asyncSupported = false, urlPatterns = {
       "verbs"
     , "verbs/*"
 })
-public class VerbsServlet extends InitServlet {
+public class VerbsServlet extends online.irishdictionary.servlet.InitServlet {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private final String FORWARDSLASH = "/";
-    private final String ENGLISH = "english";
-    private final String IRISH = "irish";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("doGet(request, response)");

@@ -94,7 +94,7 @@
                         <%= resourceBundles.getString(fromLanguage +" verb") %>
                     </span>
                     <span class="word"><% if (verbParam != null) { %><%= verbParam %><% } %></span>
-                    <span class="language-label" style="padding-left: 8px;">not found!</span>
+                    <span class="language-label" style="padding-left: 8px;"><%= resourceBundles.getString("not found") %>!</span>
                   </div>
                 </div>
               <% } %>

@@ -14,20 +14,26 @@
   <%= resourceBundles.getString("Irish Dictionary Online reserves the right to withdraw or modify any aspects of this website at its absolute discretion.") %>
   <%= resourceBundles.getString("Irish Dictionary Online does not warrant your use of this website will be always available and uninterrupted, error free or that it will meet your requirements, and Irish Dictionary Online denies liability for any loss or damage so caused.") %>
 </p>
-<h2>Contributing</h2>
+<h2><%= resourceBundles.getString("Contributing") %></h2>
 <p>
-If you notice an error or typo in any of the entries available on Irish Dictionary Online we invite you to send an email to <a href="mailto:info@englishirishdictionary.com">info@englishirishdictionary.com</a> with a quick summary of the issue and a link to the page where you found the error.
+  <%= resourceBundles.getString("If you notice an error or typo in any of the entries available on Irish Dictionary Online we invite you to send an email to") %>
+   <a href="mailto:info@englishirishdictionary.com">info@englishirishdictionary.com</a>
+   <%= resourceBundles.getString("with a quick summary of the issue and a link to the page where you found the error.") %>
 </p>
-<h2>Privacy</h2>
+<h2><%= resourceBundles.getString("Privacy") %></h2>
 <p>
-Irish Dictionary Online fully respects your right to privacy in relation to your interactions with this website.
-Irish Dictionary Online does not collect any personally identifiable information about users of this service. A JSESSIONID Cookie ID is created on the server and stored on this client machine in the client browser although Irish Dictionary Online is not currenty using this identifier to identify or remember the user or record their activity.
+  <%= resourceBundles.getString("Irish Dictionary Online fully respects your right to privacy in relation to your interactions with this website.") %>
+  <%= resourceBundles.getString("Irish Dictionary Online does not collect any personally identifiable information about users of this service.") %>
+  <%= resourceBundles.getString("A JSESSIONID Cookie ID is created on the server and stored on this client machine in the client browser although Irish Dictionary Online is not currenty using this identifier to identify or remember the user or record their activity.") %>
 </p>
-<h2>Amendments</h2>
-Irish Dictionary Online reserves the right in its sole discretion to amend these terms and privacy statement at any time. If a change is made to these terms or privacy policy you will be notified of that change and your agreement and acceptance of that change will be requested.
+<h2><%= resourceBundles.getString("Amendments") %></h2>
+<p>
+  <%= resourceBundles.getString("Irish Dictionary Online reserves the right in its sole discretion to amend these terms and privacy statement at any time.") %>
+  <%= resourceBundles.getString("If a change is made to these terms or privacy policy you will be notified of that change and your agreement and acceptance of that change will be requested.") %>
+</p>
 <%--
-<h2>Right of Refusal</h2>
-Irish Dictionary shall have the right to prevent a person using this website if:
+<h2><%= resourceBundles.getString("Right of Refusal") %></h2>
+  <%= resourceBundles.getString("Irish Dictionary shall have the right to prevent a person using this website if:") %>
     1) The person abuses or wrongfully uses this website.
     2) An enterprise customer fails to pay the relevant subscription fee when so required.
 </p>

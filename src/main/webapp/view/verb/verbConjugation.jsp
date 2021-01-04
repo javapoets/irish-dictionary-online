@@ -59,7 +59,7 @@
     <%--div class="cell usage"><%= verbConjugation.getMe() %></div--%>
     <%--div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getMe(), isEnglish ? toLanguage : fromLanguage, isEnglish ? fromLanguage : toLanguage) %></div--%>
     <%--div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getMe(), isEnglish ? fromLanguage : toLanguage, isEnglish ? toLanguage : fromLanguage) %></div--%>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getMe(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getMe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -71,7 +71,7 @@
       <%--= resourceBundles.getString(ENGLISH_PRONOUN_ME) --%>
       (<%= isEnglish ? IRISH_PRONOUN_ME : ENGLISH_PRONOUN_ME %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         StringBuilder stringBuilder = new StringBuilder();
         String me = null;
@@ -104,7 +104,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_PRONOUN_YOU : IRISH_PRONOUN_YOU %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -114,7 +114,7 @@
       <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>
       (<%= isEnglish ? IRISH_PRONOUN_YOU : ENGLISH_PRONOUN_YOU %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String youSingular = null;
@@ -145,7 +145,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_PRONOUN_HE : IRISH_PRONOUN_HE %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getHe(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getHe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -156,7 +156,7 @@
       <%= resourceBundles.getString(toLanguage)  %>
       (<%= isEnglish ? IRISH_PRONOUN_HE : ENGLISH_PRONOUN_HE %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String he = null;
@@ -186,17 +186,17 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_PRONOUN_SHE : IRISH_PRONOUN_SHE %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getShe(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getShe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
-    <div class="cell usage-label underline">
+    <div class="cell usage-label underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%--= isEnglish ?
             new StringBuilder().append(IRISH).append(SPACE).append(parenthesis(IRISH_PRONOUN_SHE))
           : new StringBuilder().append(ENGLISH).append(SPACE).append(parenthesis(ENGLISH_PRONOUN_SHE)) --%>
       <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>
       (<%= isEnglish ? IRISH_PRONOUN_SHE : ENGLISH_PRONOUN_SHE %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String she = null;
@@ -226,7 +226,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_PRONOUN_WE : IRISH_PRONOUN_WE %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getWe(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getWe(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -236,7 +236,7 @@
       <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>
       (<%= isEnglish ? IRISH_PRONOUN_WE : ENGLISH_PRONOUN_WE %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String we = null;
@@ -266,7 +266,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_PRONOUN_YOU_PLURAL : IRISH_PRONOUN_YOU_PLURAL %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getYouPlural(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getYouPlural(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -276,7 +276,7 @@
       <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>
       (<%= isEnglish ? IRISH_PRONOUN_YOU_PLURAL : ENGLISH_PRONOUN_YOU_PLURAL %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String youPlural = null;
@@ -306,7 +306,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_PRONOUN_THEY : IRISH_PRONOUN_THEY %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getThey(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getThey(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -316,7 +316,7 @@
       <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>
       (<%= isEnglish ? IRISH_PRONOUN_THEY : ENGLISH_PRONOUN_THEY %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String they = null;
@@ -346,7 +346,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_AUTONOMOUS : IRISH_AUTONOMOUS %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getAutonomous(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getAutonomous(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -356,7 +356,7 @@
       <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>
       (<%= isEnglish ? IRISH_AUTONOMOUS : ENGLISH_AUTONOMOUS %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String autonomous = null;
@@ -389,7 +389,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_NEGATIVE : IRISH_NEGATIVE %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getNegative(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getNegative(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">
@@ -399,7 +399,7 @@
       <%= isEnglish ? resourceBundles.getString(IRISH) : resourceBundles.getString(ENGLISH) %>
       (<%= isEnglish ? IRISH_NEGATIVE : ENGLISH_NEGATIVE %>)
     </div>
-    <div class="cell translated underline">
+    <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String negative = null;
@@ -435,7 +435,7 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? IRISH_QUESTION : ENGLISH_QUESTION %>)
     </div>
-    <div class="cell usage"><%= definitionOutput.linkizeWords(verbConjugation.getQuestion(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getQuestion(), fromLanguage, toLanguage) %></div>
   </div>
   <div class="row">
     <div class="cell usage-label">
@@ -445,7 +445,7 @@
       <%= isEnglish ? resourceBundles.getString(IRISH) : resourceBundles.getString(ENGLISH) %>
       (<%= resourceBundles.getString(ENGLISH_QUESTION) %>)
     </div>
-    <div class="cell translated">
+    <div class="cell translated"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         stringBuilder = new StringBuilder();
         String question = null;

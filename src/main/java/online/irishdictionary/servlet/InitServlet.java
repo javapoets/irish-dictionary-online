@@ -30,6 +30,10 @@ public class InitServlet extends HttpServlet {
     public static final String COLON = ":";
     public static final String FORWARDSLASH = "/";
     private final String LANG = "lang";
+    protected final String IRISH = "irish";
+    protected final String ENGLISH = "english";
+    protected final String LANG_ENGLISH = "en";
+    protected final String LANG_IRISH = "ga";
     public ServletContext servletContext;
     public Properties properties = null;  // the init properties
     private ConnectionPool connectionPool;  // a database connection pool

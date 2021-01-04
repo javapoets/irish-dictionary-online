@@ -42,14 +42,21 @@ public class WordTag implements Tag {
         Word word = (Word) pageContext.getAttribute("word");
         String fromLanguage = (String) pageContext.getAttribute("fromLanguage");
         String toLanguage = (String) pageContext.getAttribute("toLanguage");
+        String fromLang = (String) pageContext.getAttribute("fromLang");
+        String toLang = (String) pageContext.getAttribute("toLang");
+        String lang = (String) pageContext.getAttribute("lang");
         log.debug("word.getWord() = " + word.getWord());
         log.debug("fromLanguage = " + fromLanguage);
         log.debug("toLanguage = " + toLanguage);
+        log.debug("fromLang = " + fromLang);
+        log.debug("toLang = " + toLang);
+        log.debug("lang = " + lang);
         try {
             if (word != null) {
-                DefinitionOutput definitionOutput = new DefinitionOutput();
-                jspWriter.print(definitionOutput.createHtml(word, fromLanguage, toLanguage));
-                //jspWriter.print(createHtmlDefinition(word, fromLanguage, toLanguage));
+                //DefinitionOutput definitionOutput = new DefinitionOutput();
+                //jspWriter.print(definitionOutput.createHtml(word, fromLanguage, toLanguage));
+                DefinitionOutput definitionOutput = new DefinitionOutput(word, fromLanguage, toLanguage, lang, fromLang, toLang);
+                jspWriter.print(definitionOutput.createHtml());
             }
         } catch (java.io.IOException e) {
             System.out.println("IO Error: " + e.getMessage());

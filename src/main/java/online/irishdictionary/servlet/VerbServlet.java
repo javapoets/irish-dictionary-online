@@ -56,11 +56,15 @@ public class VerbServlet extends online.irishdictionary.servlet.InitServlet {
             if (toLanguage == null) toLanguage = "irish";
             fromLanguageId = 1;
             toLanguageId = 2;
+            request.setAttribute("toLang", LANG_IRISH);
+            request.setAttribute("fromLang", LANG_ENGLISH);
         } else {
             //fromLanguage = "irish";
             if (toLanguage == null) toLanguage = "english";
             fromLanguageId = 2;
             toLanguageId = 1;
+            request.setAttribute("toLang", LANG_ENGLISH);
+            request.setAttribute("fromLang", LANG_IRISH);
         }
         log.debug("fromLanguageId = " + fromLanguageId);
         log.debug("toLanguageId = " + toLanguageId);
