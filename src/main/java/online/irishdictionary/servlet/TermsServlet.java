@@ -33,6 +33,7 @@ public class TermsServlet extends online.irishdictionary.servlet.InitServlet {
     public void termsRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.debug("termsRequest(request, response)");
         try {
+            super.checkForLangParameter(request, response);
             include(request, response, "/view/terms.jsp");
         } catch(Exception e) {
             log.error(e.getMessage(), e);

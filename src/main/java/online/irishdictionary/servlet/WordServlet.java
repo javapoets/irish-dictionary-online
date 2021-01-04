@@ -112,6 +112,7 @@ public class WordServlet extends InitServlet {
         log.debug("displayWord(request, response, '"+wordParameter+"', '"+fromLanguage+"', '"+toLanguage+"')");
         //log.debug("displayWord(request, response, '"+wordParameter+"', '"+fromLanguage+"', '"+toLanguage+"', '"+languageIdParameter+"')");
 
+        /*
         String queryString  = request.getQueryString();
         log.debug("queryString = " + queryString);
         if(queryString != null) {
@@ -120,6 +121,8 @@ public class WordServlet extends InitServlet {
                 session.setAttribute("lang", queryString);
             }
         }
+        */
+        super.checkForLangParameter(request, response);
 
         int languageId = -1;
         /*

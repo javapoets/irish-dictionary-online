@@ -4,7 +4,6 @@
       <input type="hidden" name="language" value="irish" />
       <input type="hidden" name="fromLanguage" value="irish" />
       <input type="hidden" name="toLanguage" value="english" />
-
       <div class="input">
         <div class="table">
           <div class="row">

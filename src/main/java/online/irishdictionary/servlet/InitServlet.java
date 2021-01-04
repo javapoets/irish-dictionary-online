@@ -8,6 +8,7 @@ import java.util.Properties;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,6 +29,7 @@ public class InitServlet extends HttpServlet {
     public static final String EIGHTY = "80";
     public static final String COLON = ":";
     public static final String FORWARDSLASH = "/";
+    private final String LANG = "lang";
     public ServletContext servletContext;
     public Properties properties = null;  // the init properties
     private ConnectionPool connectionPool;  // a database connection pool
@@ -42,7 +44,7 @@ public class InitServlet extends HttpServlet {
     public void init(ServletConfig servletConfig) throws ServletException {
         log.debug("init(" + servletConfig + ")");
         log.info("InitServlet.class.getName() = " + InitServlet.class.getName());
-        log.info("getClass().getName()        = " + getClass().getName());
+        log.info("getClass().getName() =        " + getClass().getName());
         servletContext = servletConfig.getServletContext();
         log.debug("servletContext = "+servletContext);
         // a boolean flag to make sure the init() method is only called once for this servlet.
@@ -101,14 +103,14 @@ public class InitServlet extends HttpServlet {
                 String emailAddressFromSupport = properties.getProperty("email.address.from.support");
                 String emailAddressToDevelopment = properties.getProperty("email.address.to.development");
                 String emailAddressToFeedback = properties.getProperty("email.address.to.feedback");
-                log.debug("smtpServer = "+smtpServer);
-                log.debug("smtpPort = "+smtpPort);
-                log.debug("smtpUser = "+smtpUser);
-                log.debug("smtpPass = "+smtpPass);
-                log.debug("emailAddressFromBlasts = "+emailAddressFromBlasts);
-                log.debug("emailAddressFromSupport = "+emailAddressFromSupport);
-                log.debug("emailAddressToDevelopment = "+emailAddressToDevelopment);
-                log.debug("emailAddressToFeedback = "+emailAddressToFeedback);
+                log.debug("smtpServer = " + smtpServer);
+                log.debug("smtpPort = " + smtpPort);
+                log.debug("smtpUser = " + smtpUser);
+                log.debug("smtpPass = " + smtpPass);
+                log.debug("emailAddressFromBlasts = " + emailAddressFromBlasts);
+                log.debug("emailAddressFromSupport = " + emailAddressFromSupport);
+                log.debug("emailAddressToDevelopment = " + emailAddressToDevelopment);
+                log.debug("emailAddressToFeedback = " + emailAddressToFeedback);
                 properties.setProperty("serverUrl", serverUrl);
                 properties.setProperty("contextUrl", contextUrl);
                 servletContext.setAttribute("serverUrl", serverUrl);
@@ -356,6 +358,20 @@ public class InitServlet extends HttpServlet {
         } catch(java.io.FileNotFoundException e) {
             log.error("FileNotFoundException: include(request, response, '"+path+"', '"+contentType+"'): e.getMessage() = "+e.getMessage());
             log.error(e);
+        }
+    }
+
+    protected void checkForLangParameter(HttpServletRequest request, HttpServletResponse response) {
+        log.debug("checkForLangParameter(request, response)");
+        String lang  = request.getParameter(LANG);
+        log.debug("lang = " + lang);
+        if (lang != null) {
+            if (lang.length() == 2) {
+                request.setAttribute("lang", lang);
+                HttpSession session = request.getSession(true);
+                log.debug("session = " + session);
+                session.setAttribute("lang", lang);
+            }
         }
     }
 }

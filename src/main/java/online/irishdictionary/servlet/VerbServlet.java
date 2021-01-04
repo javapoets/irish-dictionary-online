@@ -31,6 +31,9 @@ public class VerbServlet extends online.irishdictionary.servlet.InitServlet {
             //log.debug("parameterName = "+parameterName);
         }
         //*/
+
+        super.checkForLangParameter(request, response);  // check for the "lang" param
+
         String verbParameter = (String)request.getParameter("verb");
         if (verbParameter == null) {
             log.debug("verbParameter = " + verbParameter);
@@ -72,7 +75,7 @@ public class VerbServlet extends online.irishdictionary.servlet.InitServlet {
             if (verbExists) {
                 request.setAttribute("verb", verb);
             }
-            include(request, response, "/view/verb/verb.jsp");
+            includeUtf8(request, response, "/view/verb/verb.jsp");
         } catch (Exception e) {
             log.error(e);
         }

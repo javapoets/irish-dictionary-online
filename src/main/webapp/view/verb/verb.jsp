@@ -88,7 +88,11 @@
               <% } else { %>
                 <div class="usage description definition">
                   <div class="word-header">
-                    <span class="language-label"><%= fromLanguage %> verb</span>
+                    <%--<span class="language-label"><%= fromLanguage %> verb</span>--%>
+                    <%--<span class="language-label"><%= fromLanguage %> verb</span>--%>
+                    <span class="language-label">
+                        <%= resourceBundles.getString(fromLanguage +" verb") %>
+                    </span>
                     <span class="word"><% if (verbParam != null) { %><%= verbParam %><% } %></span>
                     <span class="language-label" style="padding-left: 8px;">not found!</span>
                   </div>

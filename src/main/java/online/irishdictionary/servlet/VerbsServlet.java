@@ -29,6 +29,8 @@ public class VerbsServlet extends InitServlet {
         log.debug("request.getRequestURI() = " + request.getRequestURI());
         log.debug("request.getRequestURL() = " + request.getRequestURL());
         log.debug("request.getPathTranslated() = " + request.getPathTranslated()); // Returns any extra path information after the servlet name but before the query string, and translates it to a real path.
+
+        super.checkForLangParameter(request, response);  // check for the "lang" param
         
         /*
         String languageId = request.getParameter("languageId");
@@ -85,7 +87,7 @@ public class VerbsServlet extends InitServlet {
             VerbDatabaseManager.selectAllVerbs(verbList, languageId, getConnectionPool());
             log.debug("verbList.size() " + verbList.size());
             request.setAttribute("verbList", verbList);
-            include(request, response, "/view/verb/verbs.jsp");
+            includeUtf8(request, response, "/view/verb/verbs.jsp");
         } catch(Exception e) {
             log.error(e.getMessage(), e);            
         }

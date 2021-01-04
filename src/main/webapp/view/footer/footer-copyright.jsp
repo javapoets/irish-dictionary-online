@@ -5,7 +5,8 @@
       <a href="<%= contextUrl %>">Copyright &copy; <%= new java.text.SimpleDateFormat("yyyy").format(new java.util.Date()) %> Irish Dictionary Online</a>
       --%>
       <%= resourceBundles.getString("Copyright") %> &copy; 2003-<%= new java.text.SimpleDateFormat("yyyy").format(new java.util.Date()) %>
-      <%= resourceBundles.getString("Irish Dictionary Online") %>
+      <%--= resourceBundles.getString("Irish Dictionary Online") --%>
+      Irish Dictionary Online
     </div>
   </div>
   <div class="row terms">

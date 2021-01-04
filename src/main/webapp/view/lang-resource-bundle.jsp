@@ -18,7 +18,7 @@
             log.debug("fromLang = " + fromLang);
             log.debug("toLang = " + toLang);
         }
-        if (lang == null) {
+        if (lang == null) { // The default application lang if none is set
             log.debug("application = " + application);
             lang = (String)application.getAttribute("lang");
             fromLang = (String)application.getAttribute("fromLang");

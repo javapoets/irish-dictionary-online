@@ -11,7 +11,7 @@
                 <input
                   type="text"
                   name="verb"
-                  id="irishVerb"
+                  id="englishVerb"
                   class="text"
                   <% if (verbEnglish != null) { %>value="<%= verbEnglish %>"<% } %>
                   maxlength="200"

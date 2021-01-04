@@ -19,6 +19,7 @@ public class HomeServlet extends InitServlet {
         String locale = (request.getLocale()).toString();
         log.debug("locale = "+locale);
 
+        /*
         String queryString  = request.getQueryString();
         log.debug("queryString = " + queryString);
         if(queryString != null) {
@@ -27,6 +28,16 @@ public class HomeServlet extends InitServlet {
                 session.setAttribute("lang", queryString);
             }
         }
+        String lang  = request.getParameter(LANG);
+        log.debug("lang = " + lang);
+        if (lang != null) {
+            if (lang.length() == 2) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("lang", lang);
+            }
+        }
+        */
+        super.checkForLangParameter(request, response);
 
         //include(request, response, JSP_HOME);
         super.includeUtf8(request, response, JSP_HOME);
