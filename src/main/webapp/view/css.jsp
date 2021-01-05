@@ -481,8 +481,8 @@ div.definition .language-label
   color: var(--lighttext);
   color: #aaa;
   vertical-align: bottom;
-  */
   border: red 1px solid;
+  */
   font-size: 1.33em;
   display: inline-block;
   color: #999;
@@ -565,11 +565,11 @@ div.definition div ol {
   padding: 10px 20px 10px 40px;
   padding: 0px;
   padding-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   */
   text-align: left;
   margin-left: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
 }
 
 div.definition li {
@@ -899,6 +899,8 @@ div.verb-conjugation div.verb-tense-header > div
   padding-left: 10px;
   line-height: 25px;
   text-align: left;
+  /*
+  */
 }
 
 /*

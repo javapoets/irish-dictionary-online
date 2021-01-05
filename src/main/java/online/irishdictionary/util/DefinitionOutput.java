@@ -132,7 +132,7 @@ public class DefinitionOutput {
         }
         if ((usageList != null) && (usageList.size() > 0)) {
 
-            //*
+            /*
             stringBuilder.append("<div class=\"row\">");
             stringBuilder.append("<div class=\"cell usage underline\">");
             //stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
@@ -142,14 +142,16 @@ public class DefinitionOutput {
             stringBuilder.append("</div>");
             //stringBuilder.append("<ol>");
             //*/
+
             stringBuilder.append("<div class=\"table\">");
             //stringBuilder.append("<div class=\"row\">");
             //stringBuilder.append("<div class=\"cell usage-label underline">&nbsp;</div>
             //stringBuilder.append("<div class=\"cell verb-tense-header\">
 
             stringBuilder.append("<div class=\"row\">");
-            stringBuilder.append("<div class=\"cell\"></div>");
-            stringBuilder.append("<div class=\"cell usage underline\">");
+            stringBuilder.append("<div class=\"cell usage-label underline\">&nbsp;</div>");
+            //stringBuilder.append("<div class=\"cell usage underline\">");
+            stringBuilder.append("<div class=\"cell verb-tense-header\">");
             //stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
             //stringBuilder.append("<span class=\"language-label\">");
             stringBuilder.append(resourceBundles.getString("Example Usage"));
