@@ -73,9 +73,9 @@ public class DefinitionOutput {
             List sortedList = definitionList;
             for(int i = 0; i < sortedList.size(); i++) {
                 Definition definition = (Definition) sortedList.get(i);
-                log.debug("definition.getType() = " + definition.getType());
-                log.debug("definition.getGender() = " + definition.getGender());
-                log.debug("definition.getDescription() = " + definition.getDescription());
+                //log.debug("definition.getType() = " + definition.getType());
+                //log.debug("definition.getGender() = " + definition.getGender());
+                //log.debug("definition.getDescription() = " + definition.getDescription());
                 type = definition.getType();
                 gender = definition.getGender();
                 description = definition.getDescription();
@@ -166,10 +166,10 @@ public class DefinitionOutput {
                 stringBuilder.append("<span class=\"usage-label "+fromLanguage+"\">").append(fromLanguage).append(" ").append("</span>");
                 //stringBuilder.append("<span class=\"description\">").append(fromLanguage).append(": ").append("</span>");
                 if (hasUsage) {
-                    stringBuilder.append("<span class=\"usage\"")
+                    stringBuilder.append("<span class=\"usage\"");
                     if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
                     stringBuilder.append(">");
-                    stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage))
+                    stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage));
                     stringBuilder.append("</span>");
                     if (hasDescription && ENGLISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                 }
@@ -294,7 +294,7 @@ public class DefinitionOutput {
     }
 
     private String linkizeUsage(String words, String searchWord, String fromLanguage, String toLanguage) {
-        log.trace("linkizeUsage('" + words + "', '" + searchWord + "', '" + fromLanguage + "', '" + toLanguage + "')");
+        //log.trace("linkizeUsage('" + words + "', '" + searchWord + "', '" + fromLanguage + "', '" + toLanguage + "')");
         StringBuilder stringBuilder = new StringBuilder();
         StringTokenizer st = new StringTokenizer(words);
         int tokens = st.countTokens();
