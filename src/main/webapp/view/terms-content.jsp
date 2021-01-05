@@ -24,12 +24,24 @@
 <p>
   <%= resourceBundles.getString("Irish Dictionary Online fully respects your right to privacy in relation to your interactions with this website.") %>
   <%= resourceBundles.getString("Irish Dictionary Online does not collect any personally identifiable information about users of this service.") %>
-  <%= resourceBundles.getString("A JSESSIONID Cookie ID is created on the server and stored on this client machine in the client browser although Irish Dictionary Online is not currenty using this identifier to identify or remember the user or record their activity.") %>
+</p>
+<h3>Cookie Policy</h3>
+<p>
+  <strong><%= resourceBundles.getString("What is a cookie?") %></strong>
+  <br/>
+  <%= resourceBundles.getString("A cookie is a small piece of code that allows us to identify a client browser when it visits this website.") %>
+  <%= resourceBundles.getString("As with all cookies they are harmless to your computer and can be deleted easily.") %>
+  <br/>
+  <strong><%= resourceBundles.getString("How and when do we use cookies?") %></strong>
+  <br/>
+  <%= resourceBundles.getString("Irish Dictionary Online creates a session cookie called 'JSESSIONID' when a user accesses this website.") %>
+  <%= resourceBundles.getString("This session cookie allows us to store the users language preference, if selected.") %>
+  <%= resourceBundles.getString("Irish Dictionary Online is not currenty using this cookie to personally identify the user or record their activity.") %>
 </p>
 <h2><%= resourceBundles.getString("Amendments") %></h2>
 <p>
   <%= resourceBundles.getString("Irish Dictionary Online reserves the right in its sole discretion to amend these terms and privacy statement at any time.") %>
-  <%= resourceBundles.getString("If a change is made to these terms or privacy policy you will be notified of that change and your agreement and acceptance of that change will be requested.") %>
+  <%--= resourceBundles.getString("If a change is made to these terms or privacy policy you will be notified of that change and your agreement and acceptance of that change will be requested.") --%>
 </p>
 <%--
 <h2><%= resourceBundles.getString("Right of Refusal") %></h2>
