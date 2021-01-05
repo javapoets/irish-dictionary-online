@@ -104,7 +104,9 @@
       <%= resourceBundles.getString(fromLanguage)  %>
       (<%= isEnglish ? ENGLISH_PRONOUN_YOU : IRISH_PRONOUN_YOU %>)
     </div>
-    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %></div>
+    <div class="cell usage"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
+      <%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %>
+    </div>
   </div>
   <div class="row">
     <div class="cell usage-label underline">

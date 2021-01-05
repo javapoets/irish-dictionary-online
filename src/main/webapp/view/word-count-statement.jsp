@@ -22,9 +22,9 @@
   --%>
   <div class="row">
     <div class="cell">
-      <a href="verbs/english" style="color:inherit">1,425 <%= resourceBundles.getString("English verbs") %></a>
+      <a href="verbs/english" style="color:inherit">1,436 <%= resourceBundles.getString("English verbs") %></a>
       <%= resourceBundles.getString("and") %>
-      <a href="verbs/irish" style="color:inherit">768 <%= resourceBundles.getString("Irish verbs") %></a>
+      <a href="verbs/irish" style="color:inherit">773 <%= resourceBundles.getString("Irish verbs") %></a>
       <span style="white-space: nowrap;"><%= resourceBundles.getString("conjugated and translated") %></span>
     </div>
   </div>

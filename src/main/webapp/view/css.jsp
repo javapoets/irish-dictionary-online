@@ -467,7 +467,10 @@ div.definition
   font-family: Arial;
 }
 
+/*
 div.definition .language-label
+*/
+.language-label
 {
   /*
   font-weight: bold;
@@ -478,13 +481,14 @@ div.definition .language-label
   color: var(--lighttext);
   color: #aaa;
   vertical-align: bottom;
-  vertical-align: bottom;
-  border: red 1px solid;
   */
+  border: red 1px solid;
+  font-size: 1.33em;
   display: inline-block;
   color: #999;
   line-height: 28px;
   text-transform: capitalize;
+  padding: 8px;
 }
 
 div.definition .language-label .capitalize
@@ -544,9 +548,9 @@ div.definition > div
   font-weight: bold;
   border: green 1x solid;
   text-align: left;
+  padding: 10px 20px 10px 40px;
   */
   font-size: 19px;
-  padding: 10px 20px 10px 40px;
 }
 
 div.definition div ol {
@@ -844,8 +848,9 @@ div.verb-conjugation div.verb-tense-header
   text-align: left;
   border-bottom: #ccc 1px solid;
   color: #888;
+  padding: 8px;
   padding-left: 10px;
-  font-size: 1.33em;
+  font-size: 1.22em;
 }
 
 div.verb-conjugation div.verb-tense-header > div
@@ -971,9 +976,9 @@ div.verbs-header
   list-style: none;
   font-family:arial;
   line-height: 33px;
+  border-bottom: #ccc 1px solid;
   */
   text-align: left;
-  border-bottom: #ccc 1px solid;
   color: #888;
   padding-left: 10px;
   font-size: 22px;

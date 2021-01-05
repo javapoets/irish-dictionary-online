@@ -50,7 +50,7 @@ public class DefinitionOutput {
         StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
         List definitionList = word.getDefinitionList();
         List usageList = word.getUsageList();
-        stringBuilder.append("<div class=\"definition\">");
+        stringBuilder.append("<div class=\"definition verb-conjugation\">");
         stringBuilder
             .append("<div class=\"word-header\">")
             .append(  "<div class=\"language-label\">")
@@ -59,11 +59,14 @@ public class DefinitionOutput {
             .append(  "</div>")
             .append(  "<div class=\"word\"");
             if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
-        stringBuilder.append(  ">").append(word.getWord()).append("</div>");
+        stringBuilder
+            .append(  ">")
+            .append(word.getWord())
+            .append("  </div>");
             
-        if (word.getDescription() != null) {
-            stringBuilder.append(  "<span class=\"word-description\">").append(word.getDescription()).append("</span>");
-        }
+        //if (word.getDescription() != null) {
+        //    stringBuilder.append(  "<span class=\"word-description\">").append(word.getDescription()).append("</span>");
+        //}
         stringBuilder.append("</div>");
         if ((definitionList != null) && definitionList.size() != 0) {
             log.debug("definitionList.size() = " + definitionList.size());
@@ -128,13 +131,32 @@ public class DefinitionOutput {
             stringBuilder.append("</div>");
         }
         if ((usageList != null) && (usageList.size() > 0)) {
-            stringBuilder.append("<div class=\"usage\">");
+
+            //*
+            stringBuilder.append("<div class=\"row\">");
+            stringBuilder.append("<div class=\"cell usage underline\">");
             //stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
-            stringBuilder.append("<div class=\"word-header\">")
-                .append("<span class=\"language-label\">");
+            stringBuilder.append("<span class=\"language-label\">");
             stringBuilder.append(resourceBundles.getString("Example Usage"));
             stringBuilder.append("</span>").append("</div>");
-            stringBuilder.append("<ol>");
+            stringBuilder.append("</div>");
+            //stringBuilder.append("<ol>");
+            //*/
+            stringBuilder.append("<div class=\"table\">");
+            //stringBuilder.append("<div class=\"row\">");
+            //stringBuilder.append("<div class=\"cell usage-label underline">&nbsp;</div>
+            //stringBuilder.append("<div class=\"cell verb-tense-header\">
+
+            stringBuilder.append("<div class=\"row\">");
+            stringBuilder.append("<div class=\"cell\"></div>");
+            stringBuilder.append("<div class=\"cell usage underline\">");
+            //stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
+            //stringBuilder.append("<span class=\"language-label\">");
+            stringBuilder.append(resourceBundles.getString("Example Usage"));
+            //stringBuilder.append("</span>")
+            stringBuilder.append("</div>");  // cell
+            stringBuilder.append("</div>");  //  roq
+
             //List sortedList = (List) usageList.getSortedList("usageLength");
             List sortedList = usageList;
             int start = word.getStartUsageIndex();
@@ -155,41 +177,60 @@ public class DefinitionOutput {
                 boolean hasType = !EMPTY.equals(type);
                 boolean hasDescription = !EMPTY.equals(description);
                 boolean hasSuffix = !EMPTY.equals(plusSuffix);
-                stringBuilder.append("<li>");
+                //stringBuilder.append("<li>");
                 //stringBuilder.append("<div style=\"padding-left:50px;\">");
-                stringBuilder.append("<div");
+                //stringBuilder.append("<div class=\"cell verb-tense-header\"");
+                
+                stringBuilder.append("<div class=\"row\">");
+                stringBuilder.append("<div class=\"cell usage-label\"");
                 //if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
                 stringBuilder.append(">");
 
                 //stringBuilder.append("<li>").append(fromLanguage).append(": ");
                 //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-33px;\">").append(fromLanguage).append(" ").append("</span>");
-                stringBuilder.append("<span class=\"usage-label "+fromLanguage+"\">").append(fromLanguage).append(" ").append("</span>");
+                //stringBuilder.append("<span class=\"usage-label "+fromLanguage+"\">").append(resourceBundles.getString(fromLanguage)).append(" ").append("</span>");
+                stringBuilder.append(resourceBundles.getString(fromLanguage));
                 //stringBuilder.append("<span class=\"description\">").append(fromLanguage).append(": ").append("</span>");
+                stringBuilder.append("</div>");
+
                 if (hasUsage) {
-                    stringBuilder.append("<span class=\"usage\"");
+                    stringBuilder.append("<div class=\"cell usage\"");
+                    //stringBuilder.append("<div class=\"cell verb-tense-header\"");
                     if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
                     stringBuilder.append(">");
                     stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage));
-                    stringBuilder.append("</span>");
                     if (hasDescription && ENGLISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                    stringBuilder.append("</div>");
                 }
                 //stringBuilder.append("<br/>");
-                stringBuilder.append("</div>");
+                stringBuilder.append("</div>");  // row
+
+                stringBuilder.append("<div class=\"row\">");
                 stringBuilder.append("<div");
+                //stringBuilder.append(" class=\"cell verb-tense-header\"");
+                stringBuilder.append(" class=\"cell usage-label underline\"");
                 //if (!lang.equals(toLang)) { stringBuilder.append(" lang=\"").append(toLang).append("\""); }
                 stringBuilder.append(">");
-                if (hasUsageTranslated) {
-                    //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-50px;\">").append(toLanguage).append(" ").append("</span>");
-                    //stringBuilder.append("<span class=\"description\" style=\"margin-left:-50px;\">").append(toLanguage).append(" ").append("</span>");
-                    stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(toLanguage).append(" ").append("</span>");
-                    //stringBuilder.append("<span class=\"description\">").append(toLanguage).append(": ").append("</span>");
-                    stringBuilder.append("<span class=\"translated\"");
+                //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");
+                stringBuilder.append(resourceBundles.getString(toLanguage)).append(" ");
+                stringBuilder.append("</div>");  // cell usage-label
+                //if (hasUsageTranslated) {
+                    //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");
+                    //stringBuilder.append("<span class=\"translated\"");
+                    stringBuilder.append("<div class=\"cell translated underline\"");
                     if (!lang.equals(toLang)) { stringBuilder.append(" lang=\"").append(toLang).append("\""); }
                     stringBuilder.append(">");
                     stringBuilder.append(linkizeWords(usageTranslated, toLanguage, fromLanguage));
-                    stringBuilder.append("</span>");
-                }
-                if (hasSuffix) stringBuilder.append("<span class=\"description\">").append(plusSuffix).append("</span>");
+                    //if (hasSuffix) stringBuilder.append("<span class=\"description\">").append(plusSuffix).append("</span>");
+                    if (hasSuffix && IRISH.equals(toLanguage)) {
+                        stringBuilder.append("<span class=\"description\">").append(plusSuffix).append("</span>");
+                    }
+                    if (hasDescription && IRISH.equals(fromLanguage)) {
+                        stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                    }
+                    stringBuilder.append("</div>");  // cell translated
+                    stringBuilder.append("</div>");  // row
+                //}
                 /*
                 if(
                     hasType
@@ -204,15 +245,16 @@ public class DefinitionOutput {
                 }
                 */
                 //if(hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
-                if (hasDescription && IRISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
-                stringBuilder.append("</div>");
-                stringBuilder.append("</li>");
+                //if (hasDescription && IRISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                //stringBuilder.append("</div>");
+                //stringBuilder.append("</li>");
             }
-            stringBuilder.append("</ol>");
-            stringBuilder.append("</div>"); // <div class="usage">
-            //stringBuilder.append("</div>");
+            //stringBuilder.append("</ol>");
+            //stringBuilder.append("</div>"); // cell
+            stringBuilder.append("</div>");  // table
         }
-        stringBuilder.append("</div>");  // <div class="definition">
+        //stringBuilder.append("</div>"); // row
+        stringBuilder.append("</div>"); // definition
         return stringBuilder.toString();
     }
 
