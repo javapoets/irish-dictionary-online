@@ -482,12 +482,12 @@ div.definition .language-label
   color: #aaa;
   vertical-align: bottom;
   border: red 1px solid;
+  text-transform: capitalize;
   */
   font-size: 1.33em;
   display: inline-block;
   color: #999;
   line-height: 28px;
-  text-transform: capitalize;
   padding: 8px;
 }
 
@@ -566,8 +566,8 @@ div.definition div ol {
   padding: 0px;
   padding-right: 20px;
   margin-top: 0px;
-  margin-bottom: 0px;
   */
+  margin-bottom: 0px;
   text-align: left;
   margin-left: 0px;
 }

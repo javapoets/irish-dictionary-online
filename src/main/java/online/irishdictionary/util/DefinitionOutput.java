@@ -143,7 +143,7 @@ public class DefinitionOutput {
             //stringBuilder.append("<ol>");
             //*/
 
-            stringBuilder.append("<div class=\"table\">");
+            stringBuilder.append("<div class=\"table\" style=\"padding: 10px 0px;\">");
             //stringBuilder.append("<div class=\"row\">");
             //stringBuilder.append("<div class=\"cell usage-label underline">&nbsp;</div>
             //stringBuilder.append("<div class=\"cell verb-tense-header\">
@@ -151,6 +151,7 @@ public class DefinitionOutput {
             stringBuilder.append("<div class=\"row\">");
             stringBuilder.append("<div class=\"cell usage-label underline\">&nbsp;</div>");
             //stringBuilder.append("<div class=\"cell usage underline\">");
+            //stringBuilder.append("<div class=\"verb-tense-header\" style=\"display: table-caption;\">");
             stringBuilder.append("<div class=\"cell verb-tense-header\">");
             //stringBuilder.append("<div class=\"word-header\">Example usage:</div>");
             //stringBuilder.append("<span class=\"language-label\">");

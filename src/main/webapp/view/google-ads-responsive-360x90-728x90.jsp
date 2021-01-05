@@ -1,3 +1,6 @@
+<%
+    if (!lang.equals("ga")) {
+%>
 <div
   style="
     position: fixed;
@@ -39,3 +42,6 @@
 <!--script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script-->
+<%
+    }
+%>
