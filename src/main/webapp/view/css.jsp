@@ -524,10 +524,11 @@ div.definition div.word-header .word
   vertical-align: middle;
   border: red 1px solid;
   line-height: 20px;
-  */
-  display: inline-block;
   padding: 0px;
   padding-left: 10px;
+  */
+  padding: 8px;
+  display: inline-block;
   font-size: 33px;
   vertical-align: bottom;
   font-weight: normal;
@@ -979,13 +980,13 @@ div.verbs-header
   font-family:arial;
   line-height: 33px;
   border-bottom: #ccc 1px solid;
+  text-transform: capitalize;
   */
   text-align: left;
   color: #888;
   padding-left: 10px;
   font-size: 22px;
   line-height: 30px;
-  text-transform: capitalize;
   margin-bottom: 8px;
 }
 

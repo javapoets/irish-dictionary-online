@@ -20,12 +20,12 @@
    <a href="mailto:info@englishirishdictionary.com">info@englishirishdictionary.com</a>
    <%= resourceBundles.getString("with a quick summary of the issue and a link to the page where you found the error.") %>
 </p>
-<h2><%= resourceBundles.getString("Privacy") %></h2>
+<h2><%= resourceBundles.getString("Privacy Policy") %></h2>
 <p>
   <%= resourceBundles.getString("Irish Dictionary Online fully respects your right to privacy in relation to your interactions with this website.") %>
   <%= resourceBundles.getString("Irish Dictionary Online does not collect any personally identifiable information about users of this service.") %>
 </p>
-<h3>Cookie Policy</h3>
+<h3><%= resourceBundles.getString("Cookie Policy") %></h3>
 <p>
   <strong><%= resourceBundles.getString("What is a cookie?") %></strong>
   <br/>
@@ -35,8 +35,8 @@
   <strong><%= resourceBundles.getString("How and when do we use cookies?") %></strong>
   <br/>
   <%= resourceBundles.getString("Irish Dictionary Online creates a session cookie called 'JSESSIONID' when a user accesses this website.") %>
-  <%= resourceBundles.getString("This session cookie allows us to store the users language preference, if selected.") %>
-  <%= resourceBundles.getString("Irish Dictionary Online is not currenty using this cookie to personally identify the user or record their activity.") %>
+  <%= resourceBundles.getString("This session cookie is used to remember the users language preference, if selected.") %>
+  <%= resourceBundles.getString("Irish Dictionary Online is not currently using this cookie to personally identify the user or record their activity.") %>
 </p>
 <h2><%= resourceBundles.getString("Amendments") %></h2>
 <p>

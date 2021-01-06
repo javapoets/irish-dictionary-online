@@ -7,9 +7,7 @@ function searchEnglishWord(form){
       '<%= contextUrl %>'
       ,'dictionary'
       ,'?language=english'
-      //,'&fromLanguage=english'
       ,'&toLanguage=irish'
-      //,'?languageId=',1
       ,'&word=',wordElement.value
     ].join('');
     console.debug(url);
@@ -25,9 +23,7 @@ function searchIrishWord(form){
       '<%= contextUrl %>'
       ,'dictionary'
       ,'?language=irish'
-      //,'&fromLanguage=irish'
       ,'&toLanguage=english'
-      //,'?languageId=',2
       ,'&word=',wordElement.value
     ].join('');
     console.debug(url);
@@ -43,9 +39,7 @@ function searchEnglishVerb(form){
       '<%= contextUrl %>'
       ,'verb'
       ,'?language=english'
-      //,'&fromLanguage=english'
       ,'&toLanguage=irish'
-      //,'?languageId=',1
       ,'&verb=',verbElement.value
     ].join('');
     console.debug(url);
@@ -61,9 +55,7 @@ function searchIrishVerb(form){
       '<%= contextUrl %>'
       ,'verb'
       ,'?language=irish'
-      //,'&fromLanguage=irish'
       ,'&toLanguage=english'
-      //,'?languageId=',2
       ,'&verb=',verbElement.value
     ].join('');
     console.trace(url);
@@ -73,7 +65,6 @@ function searchIrishVerb(form){
 window.startAds = function() {
     console.log('window.startAds()');
     console.log('window.adsbygoogle = ' + window.adsbygoogle);
-    console.log('window.adsbygoogle.push = ' + window.adsbygoogle.push);
     (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
@@ -93,7 +84,6 @@ function selectLanguage(selectElement) {
     let LANG = "lang";
     let LANG_EQUALS = "lang=";
     console.log('value = ' + value);
-    //window.location = '<%= contextUrl %>home?' + value;
     let windowLocation = window.location.href;
     console.log('windowLocation = ' + windowLocation);
     console.log('typeof windowLocation = ' + typeof windowLocation);
