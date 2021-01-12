@@ -8,9 +8,15 @@ public class Word {
     private String EMPTY = "";
     private int id = -1;
     private String word = null;
+    private String wordDescription = null;
     private String description = null;
     private String type = null;           // n, adj, adv, vi, vt, npl
     private String gender = null;         // m1. m2, m3, m4, f1, f2, f3, f4, mpl1, fpl2
+    private String declension = null;         // 1st, 2nd, 3rd, 4th
+    private String genitiveSingular = null;
+    private String genitivePlural = null;
+    private String nominativeSingular = null;
+    private String nominativePlural = null;
     private List definitionList = null;
     private List usageList = null;
     private int startUsageIndex = 0;
@@ -35,11 +41,19 @@ public class Word {
     }
 
     public String getWord() {
-        if (word != null) {
+        //if (word != null) {
             return word;
-        } else {
-            return EMPTY;
-        }
+        //} else {
+        //    return EMPTY;
+        //}
+    }
+
+    public void setWordDescription(String wordDescription) {
+        this.wordDescription = wordDescription;
+    }
+
+    public String getWordDescription() {
+        return wordDescription;
     }
 
     public void setDescription(String description) {
@@ -47,11 +61,43 @@ public class Word {
     }
 
     public String getDescription() {
-        if (description != null) {
+        //if (description != null) {
             return description;
-        } else {
-            return EMPTY;
-        }
+        //} else {
+        //    return EMPTY;
+        //}
+    }
+
+    public void setGenitiveSingular(String genitiveSingular) {
+        this.genitiveSingular = genitiveSingular;
+    }
+
+    public String getGenitiveSingular() {
+        return this.genitiveSingular;
+    }
+
+    public void setGenitivePlural(String genitivePlural) {
+        this.genitivePlural = genitivePlural;
+    }
+
+    public String getGenitivePlural() {
+        return this.genitivePlural;
+    }
+
+    public void setNominativeSingular(String nominativeSingular) {
+        this.nominativeSingular = nominativeSingular;
+    }
+
+    public String getNominativeSingular() {
+        return this.nominativeSingular;
+    }
+
+    public void setNominativePlural(String nominativePlural) {
+        this.nominativePlural = nominativePlural;
+    }
+
+    public String getNominativePlural() {
+        return this.genitivePlural;
     }
 
     public void setType(String type) {
@@ -59,11 +105,11 @@ public class Word {
     }
 
     public String getType() {
-        if (type != null) {
+        //if (type != null) {
             return type;
-        } else {
-            return EMPTY;
-        }
+        //} else {
+        //    return EMPTY;
+        //}
     }
 
     public void setGender(String gender) {
@@ -71,11 +117,19 @@ public class Word {
     }
 
     public String getGender() {
-        if (gender != null) {
+        //if (gender != null) {
             return gender;
-        } else {
-            return EMPTY;
-        }
+        //} else {
+        //    return EMPTY;
+        //}
+    }
+
+    public void setDeclension(String declension) {
+        this.declension = declension;
+    }
+
+    public String getDeclension() {
+        return declension;
     }
 
     public void setDefinitionList(List definitionList) {
@@ -138,7 +192,7 @@ public class Word {
     }
 
     public String getWordWildCardedNoH(){
-        if ( word != null ) {
+        if (word != null) {
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < word.length(); i++) {
                 sb.append("%");
@@ -155,7 +209,7 @@ public class Word {
     public String getWordWildCardedEverSecondLetter(){
         if (word != null) {
             StringBuffer sb = new StringBuffer();
-            for (int i=0; i < word.length(); i++) {
+            for (int i = 0; i < word.length(); i++) {
                 sb.append("%");
                 if ((i % 2) == 0) {
                     sb.append(word.charAt(i));

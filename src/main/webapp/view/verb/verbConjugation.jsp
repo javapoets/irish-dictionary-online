@@ -42,6 +42,9 @@
       <% } else { %>
         <div><%= verbConjugation.getTenseIrish() %> -</div> <div> <%= verbConjugation.getTenseEnglish() %></div>
       <% } --%>
+      <%
+          log.debug("verbConjugation.getTenseEnglish() = " + verbConjugation.getTenseEnglish());
+      %>  
       <div><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></div>
     </div>
   </div>

@@ -642,16 +642,20 @@ div.definition span.type {
   color:#f7941d;
   color:#6B6D6B;
   */
-  font-size:11px;
-  text-decoration:underline;
-  padding-left:5px;
+  font-size: 15px;
+  text-decoration: underline;
+  padding-left: 5px;
 }
 
 div.definition li span.type {
   color:#6B6D6B;
+  /*
   font-size:12px;
+  */
   text-decoration:none;
   padding-left:5px;
+  color: var(--dark-green);
+  font-style: italic;
 }
 
 div.definition span.description
@@ -661,9 +665,10 @@ div.definition span.description
   color:#6B6D6B;
   color: var(--darktext);
   color: var(--mediumtext);
-  */
   color: #999;
-  font-size:12px;
+  */
+  color:#6B6D6B;
+  font-size:15px;
   padding-left:5px;
 }
 div.definition span.description .smaller

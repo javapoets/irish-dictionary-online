@@ -64,11 +64,11 @@ public class DictionaryDatabaseManager {
     public static void selectWord(Word word, int languageId, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectWord('" + word + "', " + languageId + ", connectionManager)");
         String sql = new StringBuilder()
-            .append("SELECT id, word, word_ascii, definition, type, description, gender")
+            .append("SELECT id, word, word_ascii, word_description, definition, type, description, gender, declension, genitive_singular, nominative_singular, genitive_plural, nominative_plural")
             .append(" FROM word")
             .append(" WHERE word = ?")
             .append(" AND language_id = ?")
-            .append(" AND definition IS NULL")
+            //.append(" AND definition IS NULL")
             .toString();
         //PreparedStatement preparedStatement = connectionManager.loadStatement(SELECT_WORD_BY_LANGUAGE_ID);
         PreparedStatement preparedStatement = connectionManager.prepareStatement(sql);
@@ -81,11 +81,17 @@ public class DictionaryDatabaseManager {
             //word.setWordAscii(resultSet.getString(3));
             //word.setDefinition(resultSet.getString(4));
             //word.setType(resultSet.getString(5));
+            word.setWordDescription(resultSet.getString("word_description"));
             word.setType(resultSet.getString("type"));
             //word.setDescription(resultSet.getString(6));
             word.setDescription(resultSet.getString("description"));
             //word.setGender(resultSet.getString(7));
             word.setGender(resultSet.getString("gender"));
+            word.setDeclension(resultSet.getString("declension"));
+            word.setGenitiveSingular(resultSet.getString("genitive_singular"));
+            word.setGenitivePlural(resultSet.getString("genitive_plural"));
+            word.setNominativeSingular(resultSet.getString("nominative_singular"));
+            word.setNominativePlural(resultSet.getString("nominative_plural"));
         }
     }
 

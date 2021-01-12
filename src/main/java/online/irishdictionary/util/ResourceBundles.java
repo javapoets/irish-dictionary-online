@@ -1,16 +1,24 @@
 package online.irishdictionary.util;
 
+import java.util.ResourceBundle;
+
 public class ResourceBundles {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     String lang = null;
-    java.util.ResourceBundle resourceBundle = null;
+    ResourceBundle resourceBundle = null;
+    //private HashMap<String, ResourceBundle> resourceBundleMap;
+
+    public ResourceBundles() {
+        log.debug("()");
+        //resourceBundleMap = new HashMap<String, ResourceBundle>();
+    }
 
     public ResourceBundles(String lang) {
         log.debug("('" + lang +"')");
         this.lang = lang;
         //this.resourceBundle = java.util.ResourceBundle.getBundle("irishdictionary", new java.util.Locale(lang));
-        this.resourceBundle = java.util.ResourceBundle.getBundle("irishdictionary", new java.util.Locale(lang), new Utf8Control());
+        this.resourceBundle = ResourceBundle.getBundle("irishdictionary", new java.util.Locale(lang), new Utf8Control());
     }
 
     public String getString(String x) {
@@ -25,4 +33,13 @@ public class ResourceBundles {
         }
         return x;
     }
+
+    /*
+    public void setLang(String lang) {
+        log.trace("setLang('"+lang+"')");
+        this.lang = lang;
+        this.resourceBundle = ResourceBundle.getBundle("irishdictionary", new java.util.Locale(lang), new Utf8Control());
+        this.resourceBundleMap.put(lang, rb);
+    }
+    */
 }
