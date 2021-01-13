@@ -33,6 +33,8 @@ public class DefinitionOutput {
             put("adj", "adjective");
             put("adv", "adverb");
             put("num", "number");
+            put("conj", "conjunction");
+            put("pron", "pronoun");
         }
     };
 

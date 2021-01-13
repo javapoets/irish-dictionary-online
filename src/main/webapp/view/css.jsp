@@ -508,6 +508,27 @@ div.definition div.word-header .word
   text-align: left;
   color: var(--darktext);
 }
+
+div.definition div.word-header
+, div.usage div.word-header
+{
+  text-align: left;
+  /*
+  font-size: 20px;
+  color: #6B6D6B;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  padding-top: 0px;
+  padding-left: 0px;
+  margin: auto;
+  vertical-align: middle;
+  font-size: 18px;
+  */
+  padding-bottom: 0px;
+  vertical-align: bottom;
+  margin: 0px;
+}
 --%>
 
 div.definition div.word-header div.word-line
@@ -548,7 +569,7 @@ div.definition div.word-header div.word-line .type
   padding-left:5px;
   color: var(--dark-green);
   font-style: italic;
-  font-size: 1.0em;
+  font-size: .9em;
 }
 
 div.definition div.word-header ol {
@@ -598,28 +619,6 @@ div.definition .language-label .capitalize
 {
   text-transform: capitalize;
 }
-
-div.definition div.word-header
-, div.usage div.word-header
-{
-  text-align: left;
-  /*
-  font-size: 20px;
-  color: #6B6D6B;
-  padding-left: 20px;
-  padding-bottom: 20px;
-  font-weight: bold;
-  padding-top: 0px;
-  padding-left: 0px;
-  margin: auto;
-  vertical-align: middle;
-  */
-  padding-bottom: 0px;
-  vertical-align: bottom;
-  margin: 0px;
-  font-size: 18px;
-}
-
 
 div.definition div.word-header .word-description
 {
@@ -700,6 +699,7 @@ div.definition li span.type {
   padding-left:5px;
   color: var(--dark-green);
   font-style: italic;
+  font-size: .9em;
 }
 
 div.definition span.description
