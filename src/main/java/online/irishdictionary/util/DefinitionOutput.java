@@ -237,9 +237,9 @@ public class DefinitionOutput {
                     stringBuilder.append("<div class=\"word-line\">");
                     stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
                     stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>");
-                    if (ENGLISH.equals(toLanguage)) {
+                    //if (ENGLISH.equals(toLanguage)) {
                         stringBuilder.append("<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
-                    }
+                    //}
                     stringBuilder.append("</div>");
 
                     stringBuilder.append("<ol>");
@@ -269,7 +269,7 @@ public class DefinitionOutput {
                     if (hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                     //if (hasWordDescription) stringBuilder.append("<span class=\"description\">").append(wordDescription).append("</span>");
 
-                    if (IRISH.equals(toLanguage)) {
+                    //if (IRISH.equals(toLanguage)) {
                         if (hasType || hasGender) {
                             stringBuilder.append("<span class=\"type\">");
                             if (hasGender) {
@@ -290,7 +290,7 @@ public class DefinitionOutput {
                             }
                             stringBuilder.append("</span>");
                         }
-                    }
+                    //}
                     //*/
                     //stringBuilder.append("</div>");
                     stringBuilder.append("</li>");
