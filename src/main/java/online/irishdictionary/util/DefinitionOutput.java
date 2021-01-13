@@ -98,6 +98,8 @@ public class DefinitionOutput {
         List definitionList = word.getDefinitionList();
         List usageList = word.getUsageList();
         stringBuilder.append("<div class=\"definition verb-conjugation\">");
+
+        /*
         stringBuilder
             .append("<div class=\"word-header\">")
             .append(  "<div class=\"language-label\">")
@@ -132,9 +134,13 @@ public class DefinitionOutput {
             stringBuilder.append(  "<span class=\"word-description\">nominative_plural: ").append(word.getNominativePlural()).append("</span>");
         }
         stringBuilder.append("</div>");
-        if ((definitionList != null) && definitionList.size() != 0) {
+        */
+
+        if (definitionList != null && definitionList.size() != 0) {
             log.debug("definitionList.size() = " + definitionList.size());
-            stringBuilder.append("<div>");
+
+            //stringBuilder.append("<div>");
+            stringBuilder.append("<div class=\"word-header\">");
 
             /*
             if (hasType || hasGender) {
@@ -165,6 +171,7 @@ public class DefinitionOutput {
             //Map<String, 
             java.util.Set<String> typeSet = new java.util.HashSet();
             StringBuilder typeBuilder = new StringBuilder();
+            int definitionCount = 0;
             for (int i = 0; i < sortedList.size(); i++) {
                 Definition definition = (Definition) sortedList.get(i);
                 log.debug("definition.getType() = " + definition.getType());
@@ -216,12 +223,23 @@ public class DefinitionOutput {
                 }
 
                 if (!typeSet.contains(typeBuilder.toString())) {
+
+                    if (typeSet.size() > 0) stringBuilder.append("</ol>");
+
                     typeSet.add(typeBuilder.toString());
                     log.debug("typeSet.size() = " + typeSet.size());
-                    if (typeSet.size() > 0) stringBuilder.append("</ol>");
-                    stringBuilder.append("<div class=\"type\">");
-                    stringBuilder.append(typeBuilder.toString());
+
+                    //stringBuilder.append("<div class=\"word\"")
+                        //if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
+                    //    .append(">")
+                    stringBuilder.append("<div class=\"word-line\">");
+                    stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
+                    stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>");
+                    if (ENGLISH.equals(toLanguage)) {
+                        stringBuilder.append("<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
+                    }
                     stringBuilder.append("</div>");
+
                     stringBuilder.append("<ol>");
                 }
 
@@ -249,7 +267,7 @@ public class DefinitionOutput {
                     if (hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                     //if (hasWordDescription) stringBuilder.append("<span class=\"description\">").append(wordDescription).append("</span>");
 
-                    //if (IRISH.equals(toLanguage)) {
+                    if (IRISH.equals(toLanguage)) {
                         if (hasType || hasGender) {
                             stringBuilder.append("<span class=\"type\">");
                             if (hasGender) {
@@ -270,7 +288,7 @@ public class DefinitionOutput {
                             }
                             stringBuilder.append("</span>");
                         }
-                    //}
+                    }
                     //*/
                     //stringBuilder.append("</div>");
                     stringBuilder.append("</li>");

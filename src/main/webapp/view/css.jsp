@@ -463,8 +463,111 @@ div.definition
   padding-top: 20px;
   color: #6B6D6B;
   color: var(--darktext);
+  border: red 2px solid;
   */
   font-family: Arial;
+}
+
+<%--
+div.definition > div
+{
+  /*
+  color: #6B6D6B;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px 20px 10px 40px;
+  */
+  border: green 1px solid;
+  font-size: 19px;
+}
+--%>
+
+div.definition div.word-header
+{
+  /*
+  border: blue 2px solid;
+  */
+}
+
+<%--
+div.definition div.word-header .word
+{
+  /*
+  line-height: 30px;
+  vertical-align: middle;
+  border: red 1px solid;
+  line-height: 20px;
+  padding: 0px;
+  padding-left: 10px;
+  */
+  padding: 8px;
+  display: inline-block;
+  font-size: 33px;
+  vertical-align: bottom;
+  font-weight: normal;
+  text-align: left;
+  color: var(--darktext);
+}
+--%>
+
+div.definition div.word-header div.word-line
+{
+  /*
+  border: orange 2px solid;
+  */
+  color: var(--darktext);
+}
+
+div.definition div.word-header div.word-line .numbering
+{
+  /*
+  border: black 2px solid;
+  */
+  color:#6B6D6B;
+}
+
+div.definition div.word-header div.word-line .word
+{
+  /*
+  border: black 2px solid;
+  */
+  font-size: 1.33em;
+}
+
+div.definition div.word-header div.word-line .type
+{
+  /*
+  color:#f7941d;
+  color:#6B6D6B;
+  font-size: 15px;
+  text-decoration: underline;
+  padding-left: 5px;
+  border: black 2px solid;
+  */
+  text-decoration:none;
+  padding-left:5px;
+  color: var(--dark-green);
+  font-style: italic;
+  font-size: 1.0em;
+}
+
+div.definition div.word-header ol {
+  /*
+  color: #6B6D6B;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px;
+  padding-right: 20px;
+  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 10px 40px;
+  padding: 0px;
+  padding-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: left;
+  margin-left: 0px;
+  border: black 1px solid;
+  */
 }
 
 /*
@@ -517,60 +620,11 @@ div.definition div.word-header
   font-size: 18px;
 }
 
-div.definition div.word-header .word
-{
-  /*
-  line-height: 30px;
-  vertical-align: middle;
-  border: red 1px solid;
-  line-height: 20px;
-  padding: 0px;
-  padding-left: 10px;
-  */
-  padding: 8px;
-  display: inline-block;
-  font-size: 33px;
-  vertical-align: bottom;
-  font-weight: normal;
-  text-align: left;
-  color: var(--darktext);
-}
 
 div.definition div.word-header .word-description
 {
   color: #aaa;
   padding-left: 10px;
-}
-
-div.definition > div
-{
-  /*
-  color: #6B6D6B;
-  font-weight: bold;
-  border: green 1x solid;
-  text-align: left;
-  padding: 10px 20px 10px 40px;
-  */
-  font-size: 19px;
-}
-
-div.definition div ol {
-  /*
-  color: #6B6D6B;
-  font-size: 20px;
-  font-weight: bold;
-  border: black 1px solid;
-  margin: 0px;
-  padding-right: 20px;
-  padding: 10px 20px 10px 20px;
-  padding: 10px 20px 10px 40px;
-  padding: 0px;
-  padding-right: 20px;
-  margin-top: 0px;
-  */
-  margin-bottom: 0px;
-  text-align: left;
-  margin-left: 0px;
 }
 
 div.definition li {
@@ -635,16 +689,6 @@ div.definition span.description a {
   */
   font-size:11px;
   text-decoration:none;
-}
-
-div.definition span.type {
-  /*
-  color:#f7941d;
-  color:#6B6D6B;
-  */
-  font-size: 15px;
-  text-decoration: underline;
-  padding-left: 5px;
 }
 
 div.definition li span.type {
