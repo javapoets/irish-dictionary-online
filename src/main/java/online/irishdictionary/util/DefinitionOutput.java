@@ -23,6 +23,7 @@ public class DefinitionOutput {
     private String lang = null;
     private String fromLang = null;
     private String toLang = null;
+    
     private HashMap<String, String> partsOfSpeech = new HashMap<String, String>() {
         {
             put("n", "noun");
@@ -174,8 +175,9 @@ public class DefinitionOutput {
             java.util.Set<String> typeSet = new java.util.HashSet();
             StringBuilder typeBuilder = new StringBuilder();
             int definitionCount = 0;
+            Definition definition = null;
             for (int i = 0; i < sortedList.size(); i++) {
-                Definition definition = (Definition) sortedList.get(i);
+                definition = (Definition) sortedList.get(i);
                 log.debug("definition.getType() = " + definition.getType());
                 log.debug("definition.getGender() = " + definition.getGender());
                 //log.debug("definition.getDescription() = " + definition.getDescription());

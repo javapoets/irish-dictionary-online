@@ -1,11 +1,15 @@
 package online.irishdictionary.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import online.irishdictionary.util.Text;
 
 public class Word {
 
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private String EMPTY = "";
+    private String COMMA = ",";
     private int id = -1;
     private String word = null;
     private String wordDescription = null;
@@ -17,10 +21,40 @@ public class Word {
     private String genitivePlural = null;
     private String nominativeSingular = null;
     private String nominativePlural = null;
-    private List definitionList = null;
-    private List usageList = null;
+    private List<Definition> definitionList = null;
+    private List<Usage> usageList = null;
     private int startUsageIndex = 0;
     private int endUsageIndex = 40;
+
+    private HashMap<String, String> partsOfSpeech = new HashMap<String, String>() {
+        {
+            put("n", "noun");
+            put("v", "verb");
+            put("vt", "transitive verb");
+            put("vi", "intransitive verb");
+            put("vt, vi", "transitive and intransitive verb");
+            put("adj", "adjective");
+            put("adv", "adverb");
+            put("num", "number");
+            put("conj", "conjunction");
+            put("pron", "pronoun");
+        }
+    };
+
+    private HashMap<String, String> genderMap = new HashMap<String, String>() {
+        {
+            put("m", "masculine noun");
+            put("m1", "masculine noun, 1st declension");
+            put("m2", "masculine noun, 2nd declension");
+            put("m3", "masculine noun, 3rd declension");
+            put("m4", "masculine noun, 4th declension");
+            put("f", "feminine noun");
+            put("f1", "feminine noun, 1st declension");
+            put("f2", "feminine noun, 2nd declension");
+            put("f3", "feminine noun, 3rd declension");
+            put("f4", "feminine noun, 4th declension");
+        }
+    };
 
     public Word() {}
 
@@ -132,19 +166,19 @@ public class Word {
         return declension;
     }
 
-    public void setDefinitionList(List definitionList) {
+    public void setDefinitionList(List<Definition> definitionList) {
         this.definitionList = definitionList;
     }
 
-    public List getDefinitionList() {
+    public List<Definition> getDefinitionList() {
         return this.definitionList;
     }
 
-    public void setUsageList(List usageList) {
+    public void setUsageList(List<Usage> usageList) {
         this.usageList = usageList;
     }
 
-    public List getUsageList() {
+    public List<Usage> getUsageList() {
         return this.usageList;
     }
 
@@ -260,5 +294,100 @@ public class Word {
 
     public String toString() {
         return this.getWord();
+    }
+
+    public Map<String, List<Definition>> createDefinitionMap() {
+        log.trace("createDefinitionMap()");
+        Map<String, List<Definition>> definitionMap = new HashMap<String, List<Definition>>();
+        if (definitionList != null && definitionList.size() != 0) {
+            log.debug("definitionList.size() = " + definitionList.size());
+
+            Definition definition = null;
+            String type, gender, description;
+            java.util.Set<String> typeSet = new java.util.HashSet();
+            StringBuilder typeBuilder = new StringBuilder();
+            for (int i = 0; i < definitionList.size(); i++) {
+                definition = (Definition) definitionList.get(i);
+                log.debug("definition.getType() = " + definition.getType());
+                log.debug("definition.getGender() = " + definition.getGender());
+                //log.debug("definition.getDescription() = " + definition.getDescription());
+                type = definition.getType();
+                gender = definition.getGender();
+                description = definition.getDescription();
+                boolean hasType = type != null && !type.equals("");
+                boolean hasGender = gender != null && !gender.equals("");
+                //boolean hasDescription = description != null && !description.equals("");
+
+                if (hasType || hasGender) {
+                    if (type != null) {
+                        int indexOfComma = type.indexOf(COMMA);
+                        log.debug("indexOfComma = " + indexOfComma);
+                        if (indexOfComma != -1) {
+                            String[] types = type.split(COMMA);
+                            log.debug("types = " + types);
+                            log.debug("types.length = " + types.length);
+                            for (int j = 0; j < types.length; j++) {
+                                if (!typeSet.contains(types[j])) {
+                                    log.debug("typeSet.add("+types[j]+")");
+                                    typeSet.add(types[j]);
+                                    log.debug("typeSet.size() = " + typeSet.size());
+                                }
+                            }
+                        } else {
+                            if (!typeSet.contains(type)) {
+                                log.debug("typeSet.add("+type+")");
+                                typeSet.add(type);
+                                log.debug("typeSet.size() = " + typeSet.size());
+                            }
+                        }
+                    }
+                }
+                    /*
+                    typeBuilder = new StringBuilder();
+                    if (hasGender) {
+                        String genderExpanded = genderMap.get(gender);
+                        if (genderExpanded != null) {
+                            typeBuilder.append(genderExpanded);
+                        } else {    
+                            typeBuilder.append(gender);
+                        } 
+                    } else if (hasType) {
+                        String partOfSpeech = partsOfSpeech.get(type);
+                        if (partOfSpeech != null) {
+                            typeBuilder.append(partOfSpeech);
+                        } else {    
+                            typeBuilder.append(type);
+                        } 
+                    }
+                    */
+                    //if (!typeSet.contains(typeBuilder.toString())) {
+                    //    typeSet.add(typeBuilder.toString());
+                    //    log.debug("typeSet.size() = " + typeSet.size());
+                    //}
+                    //stringBuilder.append("</span>");
+                    //stringBuilder.append(typeBuilder.toString());
+                    //stringBuilder.append("</div>");
+
+                /*
+                if (!typeSet.contains(typeBuilder.toString())) {
+                    if (typeSet.size() > 0) stringBuilder.append("</ol>");
+                    typeSet.add(typeBuilder.toString());
+                    log.debug("typeSet.size() = " + typeSet.size());
+                    //stringBuilder.append("<div class=\"word\"")
+                        //if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
+                    //    .append(">")
+                    stringBuilder.append("<div class=\"word-line\">");
+                    stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
+                    stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>");
+                    //if (ENGLISH.equals(toLanguage)) {
+                        stringBuilder.append("<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
+                    //}
+                    stringBuilder.append("</div>");
+                    stringBuilder.append("<ol>");
+                }
+                */
+            }  // for (int i = 0; i < definitionList.size(); i++)
+        }
+        return definitionMap;
     }
 }

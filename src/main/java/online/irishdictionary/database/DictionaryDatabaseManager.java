@@ -45,11 +45,11 @@ public class DictionaryDatabaseManager {
         PreparedStatement preparedStatement = null;
         try {
             selectWord(word, languageId, connectionManager);
-            List definitionList = new ArrayList();
+            List<Definition> definitionList = new ArrayList<Definition>();
             selectDefinitions(word.getWord(), languageId, definitionList, connectionManager);
             word.setDefinitionList(definitionList);
             //log.debug("definitionList.size() = "+definitionList.size());
-            List usageList = new ArrayList();
+            List<Usage> usageList = new ArrayList<Usage>();
             if(languageId == 1) {
                 selectUsageByEnglishPhrase(word.getWord(), usageList, connectionManager);
             } else {
@@ -95,7 +95,7 @@ public class DictionaryDatabaseManager {
         }
     }
 
-    public static void selectDefinitions(String word, int languageId, List definitionList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectDefinitions(String word, int languageId, List<Definition> definitionList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectDefinition('" + word + "', " + languageId + ", definitionList, connectionManager)");
         PreparedStatement preparedStatement = connectionManager.loadStatement(SELECT_DEFINITION_BY_WORD_AND_LANGUAGE_ID);
         preparedStatement.setString(1, word);
@@ -203,7 +203,7 @@ public class DictionaryDatabaseManager {
  FROM word WHERE word=** NOT SPECIFIED **)
      SELECT id,word,definition,type,description,gender FROM word WHERE word='test';
      */
-    public static void selectDefinitions(String word, List definitionList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectDefinitions(String word, List<Definition> definitionList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectDefinition('" + word + "', definitionList, connectionManager)");
         //String statementName = "selectDefinition";
         PreparedStatement preparedStatement = connectionManager.loadStatement("selectWordByWord");
@@ -223,7 +223,7 @@ public class DictionaryDatabaseManager {
     }
 
     //public static void selectUsage(Word word){
-    public static void selectUsage(String word, List usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectUsage(String word, List<Usage> usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectUsage('" + word + "', usageList, connectionManager)");
         String statementName = "selectUsage";
         ResultSet resultSet = null;
@@ -291,7 +291,7 @@ public class DictionaryDatabaseManager {
     }
     */
 
-    public static void selectUsageByEnglishPhrase(String word, List usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectUsageByEnglishPhrase(String word, List<Usage> usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectUsageByEnglishPhrase('" + word + "', usageList)");
         String statementName = "selectUsageByEnglishPhrase";
         PreparedStatement preparedStatement = connectionManager.loadStatement(statementName);
@@ -327,10 +327,10 @@ public class DictionaryDatabaseManager {
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
         try {
-            List definitionList = new ArrayList();
+            List<Definition> definitionList = new ArrayList<Definition>();
             selectIrishDefinition(word, definitionList, connectionManager);
             word.setDefinitionList(definitionList);
-            List usageList = new ArrayList();
+            List<Usage> usageList = new ArrayList<Usage>();
             selectUsageByIrishPhrase(word.getWord(), usageList, connectionManager);
             word.setUsageList(usageList);
         } finally {
@@ -339,7 +339,7 @@ public class DictionaryDatabaseManager {
     }
 
     //public static void selectDefinition(Word word){
-    public static void selectIrishDefinition(Word word, List definitionList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectIrishDefinition(Word word, List<Definition> definitionList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectIrishDefinition(" + word + ", definitionList, connectionManager)");
         String statementName = "selectIrishDefinition";
         String irishWord = word.getWord();
@@ -362,7 +362,7 @@ public class DictionaryDatabaseManager {
     }
 
     //public static void selectUsage(Word word){
-    public static void selectIrishUsage(String word, List usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectIrishUsage(String word, List<Usage> usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectIrishUsage('" + word + "', usageList, connectionManager)");
         String statementName = "selectIrishUsage";
         ResultSet resultSet = null;
@@ -388,7 +388,7 @@ public class DictionaryDatabaseManager {
         }
     }
 
-    public static void selectUsageByIrishPhrase(String word, List usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static void selectUsageByIrishPhrase(String word, List<Usage> usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectUsageByIrishPhrase('" + word + "', usageList, connectionManager)");
         PreparedStatement preparedStatement = connectionManager.loadStatement("selectUsageByIrishPhrase");
         preparedStatement.setString(1, PERCENT_SIGN + word + PERCENT_SIGN);

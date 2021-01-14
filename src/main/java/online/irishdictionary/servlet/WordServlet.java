@@ -3,10 +3,13 @@ package online.irishdictionary.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
+import online.irishdictionary.model.Definition;
 import online.irishdictionary.model.Word;
 import online.irishdictionary.database.DictionaryDatabaseManager;
 import online.irishdictionary.servlet.InitServlet;
@@ -174,6 +177,9 @@ public class WordServlet extends InitServlet {
             try {
                 DictionaryDatabaseManager.populateWord(word, languageId, getConnectionPool());
                 //DictionaryDatabaseManager.selectWord(word, language, getConnectionPool());
+
+                Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
+
                 request.setAttribute("word", word);
             } catch (Exception e) {
                 log.error(e);
