@@ -156,4 +156,7 @@ public class Definition {
         return sb.toString();
     }
 
+    public String toString() {
+        return new StringBuilder().append("Definition{").append(this.word).append(":").append(this.definition).append("}").toString();
+    }
 }

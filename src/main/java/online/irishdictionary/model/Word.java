@@ -1,8 +1,11 @@
 package online.irishdictionary.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import online.irishdictionary.util.Text;
 
 public class Word {
@@ -53,6 +56,21 @@ public class Word {
             put("f2", "feminine noun, 2nd declension");
             put("f3", "feminine noun, 3rd declension");
             put("f4", "feminine noun, 4th declension");
+        }
+    };
+
+    private Set<String> genderSet = new HashSet<String>() {
+        {
+            add("m");
+            add("m1");
+            add("m2");
+            add("m3");
+            add("m4");
+            add("f");
+            add("f1");
+            add("f2");
+            add("f3");
+            add("f4");
         }
     };
 
@@ -292,24 +310,21 @@ public class Word {
         return ((definitionList != null) && definitionList.size() != 0) && ((usageList != null) && (usageList.size() > 0));
     }
 
-    public String toString() {
-        return this.getWord();
-    }
-
     public Map<String, List<Definition>> createDefinitionMap() {
         log.trace("createDefinitionMap()");
         Map<String, List<Definition>> definitionMap = new HashMap<String, List<Definition>>();
         if (definitionList != null && definitionList.size() != 0) {
             log.debug("definitionList.size() = " + definitionList.size());
 
+            String N = "n";
             Definition definition = null;
             String type, gender, description;
             java.util.Set<String> typeSet = new java.util.HashSet();
             StringBuilder typeBuilder = new StringBuilder();
             for (int i = 0; i < definitionList.size(); i++) {
                 definition = (Definition) definitionList.get(i);
-                log.debug("definition.getType() = " + definition.getType());
-                log.debug("definition.getGender() = " + definition.getGender());
+                //log.debug("definition.getType() = " + definition.getType());
+                //log.debug("definition.getGender() = " + definition.getGender());
                 //log.debug("definition.getDescription() = " + definition.getDescription());
                 type = definition.getType();
                 gender = definition.getGender();
@@ -318,76 +333,129 @@ public class Word {
                 boolean hasGender = gender != null && !gender.equals("");
                 //boolean hasDescription = description != null && !description.equals("");
 
-                if (hasType || hasGender) {
+                if (!hasType && hasGender) {
+                    if (genderSet.contains(gender)) {
+                        type = N;
+                    }
+                }
+
+                if (type != null) {
+                    int indexOfComma = type.indexOf(COMMA);
+                    //log.debug("indexOfComma = " + indexOfComma);
+                    if (indexOfComma != -1) {
+                        String[] types = type.split(COMMA);
+                        //log.debug("types = " + types);
+                        //log.debug("types.length = " + types.length);
+                        for (int j = 0; j < types.length; j++) {
+                            type = types[j].trim();
+                            //if (!typeSet.contains(types[j])) {
+                            List<Definition> definitionList = definitionMap.get(type);
+                            if (definitionList == null) {
+                                definitionList = new ArrayList<Definition>();
+                                log.debug("definitionMap.put("+type+", definitionList)");
+                                definitionMap.put(type, definitionList);
+                            }
+                            log.debug("definitionList.add("+definition+")");
+                            definitionList.add(definition);
+                        }
+                    } else {
+                        List<Definition> definitionList = definitionMap.get(type);
+                        if (definitionList == null) {
+                            definitionList = new ArrayList<Definition>();
+                            log.debug("definitionMap.put("+type+", definitionList)");
+                            definitionMap.put(type, definitionList);
+                        }
+                        log.debug("definitionList.add("+definition+")");
+                        definitionList.add(definition);
+                    }
+                } // if (type != null)
+                //}
+            }  // for (int i = 0; i < definitionList.size(); i++)
+            log.debug("definitionMap.size() = " + definitionMap.size());
+        }
+        return definitionMap;
+    }
+
+    public Map<String, List<Definition>> createDefinitionMapBak() {
+        log.trace("createDefinitionMap()");
+        Map<String, List<Definition>> definitionMap = new HashMap<String, List<Definition>>();
+        if (definitionList != null && definitionList.size() != 0) {
+            log.debug("definitionList.size() = " + definitionList.size());
+
+            String N = "n";
+            Definition definition = null;
+            String type, gender, description;
+            java.util.Set<String> typeSet = new java.util.HashSet();
+            StringBuilder typeBuilder = new StringBuilder();
+            for (int i = 0; i < definitionList.size(); i++) {
+                definition = (Definition) definitionList.get(i);
+                //log.debug("definition.getType() = " + definition.getType());
+                //log.debug("definition.getGender() = " + definition.getGender());
+                //log.debug("definition.getDescription() = " + definition.getDescription());
+                type = definition.getType();
+                gender = definition.getGender();
+                description = definition.getDescription();
+                boolean hasType = type != null && !type.equals("");
+                boolean hasGender = gender != null && !gender.equals("");
+                //boolean hasDescription = description != null && !description.equals("");
+
+                if (!hasType && hasGender) {
+                    if (genderSet.contains(gender)) {
+                        type = N;
+                    }
+                }
+
+                //if (hasType || hasGender) {
                     if (type != null) {
                         int indexOfComma = type.indexOf(COMMA);
-                        log.debug("indexOfComma = " + indexOfComma);
+                        //log.debug("indexOfComma = " + indexOfComma);
                         if (indexOfComma != -1) {
                             String[] types = type.split(COMMA);
-                            log.debug("types = " + types);
-                            log.debug("types.length = " + types.length);
+                            //log.debug("types = " + types);
+                            //log.debug("types.length = " + types.length);
                             for (int j = 0; j < types.length; j++) {
-                                if (!typeSet.contains(types[j])) {
-                                    log.debug("typeSet.add("+types[j]+")");
-                                    typeSet.add(types[j]);
-                                    log.debug("typeSet.size() = " + typeSet.size());
+                                type = types[j].trim();
+                                //if (!typeSet.contains(types[j])) {
+                                if (!typeSet.contains(type)) {
+                                    //log.debug("typeSet.add("+types[j]+")");
+                                    //log.debug("typeSet.add("+type+")");
+                                    //typeSet.add(types[j]);
+                                    typeSet.add(type);
+                                    //log.debug("typeSet.size() = " + typeSet.size());
+                                    List<Definition> definitionList = definitionMap.get(type);
+                                    if (definitionList == null) {
+                                        definitionList = new ArrayList<Definition>();
+                                        definitionMap.put(type, definitionList);
+                                    }
+                                    log.debug("definitionList.add("+definition+")");
+                                    definitionList.add(definition);
                                 }
                             }
                         } else {
                             if (!typeSet.contains(type)) {
-                                log.debug("typeSet.add("+type+")");
+                                //log.debug("typeSet.add("+type+")");
                                 typeSet.add(type);
-                                log.debug("typeSet.size() = " + typeSet.size());
+                                //log.debug("typeSet.size() = " + typeSet.size());
+                                List<Definition> definitionList = definitionMap.get(type);
+                                if (definitionList == null) {
+                                    definitionList = new ArrayList<Definition>();
+                                    definitionMap.put(type, definitionList);
+                                }
+                                log.debug("definitionList.add("+definition+")");
+                                definitionList.add(definition);
                             }
                         }
                     }
-                }
-                    /*
-                    typeBuilder = new StringBuilder();
-                    if (hasGender) {
-                        String genderExpanded = genderMap.get(gender);
-                        if (genderExpanded != null) {
-                            typeBuilder.append(genderExpanded);
-                        } else {    
-                            typeBuilder.append(gender);
-                        } 
-                    } else if (hasType) {
-                        String partOfSpeech = partsOfSpeech.get(type);
-                        if (partOfSpeech != null) {
-                            typeBuilder.append(partOfSpeech);
-                        } else {    
-                            typeBuilder.append(type);
-                        } 
-                    }
-                    */
-                    //if (!typeSet.contains(typeBuilder.toString())) {
-                    //    typeSet.add(typeBuilder.toString());
-                    //    log.debug("typeSet.size() = " + typeSet.size());
-                    //}
-                    //stringBuilder.append("</span>");
-                    //stringBuilder.append(typeBuilder.toString());
-                    //stringBuilder.append("</div>");
-
-                /*
-                if (!typeSet.contains(typeBuilder.toString())) {
-                    if (typeSet.size() > 0) stringBuilder.append("</ol>");
-                    typeSet.add(typeBuilder.toString());
-                    log.debug("typeSet.size() = " + typeSet.size());
-                    //stringBuilder.append("<div class=\"word\"")
-                        //if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
-                    //    .append(">")
-                    stringBuilder.append("<div class=\"word-line\">");
-                    stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
-                    stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>");
-                    //if (ENGLISH.equals(toLanguage)) {
-                        stringBuilder.append("<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
-                    //}
-                    stringBuilder.append("</div>");
-                    stringBuilder.append("<ol>");
-                }
-                */
+                //}
             }  // for (int i = 0; i < definitionList.size(); i++)
+            log.debug("definitionMap.size() = " + definitionMap.size());
+            log.debug("typeSet.size() = " + typeSet.size());
         }
         return definitionMap;
     }
+
+    public String toString() {
+        return new StringBuilder().append("Word{").append(this.word).append("}").toString();
+    }
+
 }
