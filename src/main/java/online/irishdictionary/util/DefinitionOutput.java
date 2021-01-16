@@ -2,10 +2,12 @@ package online.irishdictionary.util;
 
 import java.util.List;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 import online.irishdictionary.model.Definition;
 import online.irishdictionary.model.Usage;
 import online.irishdictionary.model.Word;
+import online.irishdictionary.model.WordType;
 import online.irishdictionary.util.Text;
 import online.irishdictionary.util.Validator;
 
@@ -71,9 +73,262 @@ public class DefinitionOutput {
         this.toLang = toLang;
     }
 
+    public String createHtml() {
+        log.trace("createHtml()");
+
+        online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
+        //Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
+        Map<WordType, List<Definition>> definitionMap = word.createDefinitionMap();
+        List<Definition> definitionList = null;
+        StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
+        int definitionCount = 0;
+
+        if (definitionMap != null && definitionMap.size() != 0) {
+            log.debug("definitionMap.size() = " + definitionMap.size());
+
+            StringBuilder typeBuilder = new StringBuilder();
+
+            stringBuilder.append("<div class=\"definition verb-conjugation\">");
+            stringBuilder.append("\n  <ol>");
+
+            //for (Map.Entry<String, List<Definition>> mapEntry : definitionMap.entrySet()) {
+            for (Map.Entry<WordType, List<Definition>> mapEntry : definitionMap.entrySet()) {
+                log.debug(mapEntry.getKey() + "/" + mapEntry.getValue());
+                //String type = mapEntry.getKey();
+                WordType wordType = mapEntry.getKey();
+                String type = wordType.getType();
+                String gender = wordType.getGender();
+                definitionList = mapEntry.getValue();
+                log.debug("type = " + type);
+                log.debug("gender = " + gender);
+                log.debug("definitionList.size() = " + definitionList.size());
+
+                boolean hasType = type != null && !type.equals("");
+                boolean hasGender = gender != null && !gender.equals("");
+
+                if (hasType || hasGender) {
+                    typeBuilder = new StringBuilder();
+                    if (hasGender) {
+                        String genderExpanded = genderMap.get(gender);
+                        if (genderExpanded != null) {
+                            typeBuilder.append(genderExpanded);
+                        } else {    
+                            typeBuilder.append(gender);
+                        } 
+                    } else if (hasType) {
+                        String partOfSpeech = partsOfSpeech.get(type);
+                        if (partOfSpeech != null) {
+                            typeBuilder.append(partOfSpeech);
+                        } else {    
+                            typeBuilder.append(type);
+                        } 
+                    }
+                }
+
+                //stringBuilder.append("\n<div class=\"word-header\">");
+                //stringBuilder.append("\n<ol class=\"word-header\">");
+                stringBuilder.append("\n    <li>");
+                //stringBuilder.append(word.getWord());
+                //stringBuilder.append(" (").append(type).append(" : ").append(gender).append(")");
+
+                stringBuilder.append("<div class=\"word-line\">");
+                //stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
+                stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>");
+                //if (ENGLISH.equals(toLanguage)) {
+                    stringBuilder.append("<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
+                //}
+                stringBuilder.append("</div>");
+
+                if (definitionList != null && definitionList.size() != 0) {
+                    log.debug("definitionList.size() = " + definitionList.size());
+
+                    stringBuilder.append("\n<ol>");
+
+                    //String type, gender, description, wordDescription;
+                    //String gender, description, wordDescription;
+                    String description, wordDescription;
+                    //StringBuilder typeBuilder = new StringBuilder();
+                    typeBuilder = new StringBuilder();
+                    //int definitionCount = 0;
+                    Definition definition = null;
+                    for (int i = 0; i < definitionList.size(); i++) {
+                        definition = (Definition) definitionList.get(i);
+                        log.debug("definition.getType() = " + definition.getType());
+                        log.debug("definition.getGender() = " + definition.getGender());
+                        //log.debug("definition.getDescription() = " + definition.getDescription());
+                        type = definition.getType();
+                        gender = definition.getGender();
+                        description = definition.getDescription();
+                        //boolean hasType = type != null && !type.equals("");
+                        hasType = type != null && !type.equals("");
+                        //boolean hasGender = gender != null && !gender.equals("");
+                        hasGender = gender != null && !gender.equals("");
+                        boolean hasDescription = description != null && !description.equals("");
+                        //boolean hasWordDescription = wordDescription != null && !wordDescription.equals("");
+
+                        /*
+                        if (hasType || hasGender) {
+                            typeBuilder = new StringBuilder();
+                            if (hasGender) {
+                                String genderExpanded = genderMap.get(gender);
+                                if (genderExpanded != null) {
+                                    typeBuilder.append(genderExpanded);
+                                } else {    
+                                    typeBuilder.append(gender);
+                                } 
+                            } else if (hasType) {
+                                String partOfSpeech = partsOfSpeech.get(type);
+                                if (partOfSpeech != null) {
+                                    typeBuilder.append(partOfSpeech);
+                                } else {    
+                                    typeBuilder.append(type);
+                                } 
+                            }
+                        }
+                        //*/
+
+                        if ((definition.getDefinition() != null) && !(definition.getDefinition().trim().equals(""))) {
+                            stringBuilder.append("<li>");
+                            //stringBuilder.append(definition.getDefinition());
+                            //stringBuilder.append(" (").append(definition.getType()).append(" : ").append(definition.getGender()).append(")");
+                            stringBuilder.append("&nbsp;<span class=\"definition\">");
+                            stringBuilder.append(linkizeWords(definition.getDefinition(), toLanguage, fromLanguage));
+                            stringBuilder.append("</span>");
+                            stringBuilder.append("<span>").append(definition.getType()).append(" : ").append(definition.getGender()).append("</span>");
+                            //*
+                            if (hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                            if (hasType || hasGender) {
+                            stringBuilder.append("<span class=\"type\">");
+                            if (hasGender) {
+                                if (hasType) stringBuilder.append(" ");
+                                String genderExpanded = genderMap.get(gender);
+                                if (genderExpanded != null) {
+                                    stringBuilder.append(genderExpanded);
+                                } else {    
+                                    stringBuilder.append(gender);
+                                } 
+                            } else if (hasType) {
+                                String partOfSpeech = partsOfSpeech.get(type);
+                                if (partOfSpeech != null) {
+                                    stringBuilder.append(partOfSpeech);
+                                } else {    
+                                    stringBuilder.append(type);
+                                } 
+                            }
+                            stringBuilder.append("</span>");
+                        }
+                            stringBuilder.append("</li>");
+                        }
+                    }  // for (int i = 0; i < definitionList.size(); i++) {
+                    stringBuilder.append("</ol>");
+                }  // if (definitionList != null && definitionList.size() != 0) {
+                //stringBuilder.append("</div>");
+                stringBuilder.append("\n    </li>");
+            }  // for (Map.Entry<String, String> entry : map.entrySet()) {
+            stringBuilder.append("\n  </ol>");
+            stringBuilder.append("</div>"); // definition
+        }  // if (definitionMap != null && definitionMap.size() != 0) {
+        return stringBuilder.toString();
+    }
+
+    public String createHtmlRaw() {
+        log.trace("createHtml()");
+
+        online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
+        //Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
+        Map<WordType, List<Definition>> definitionMap = word.createDefinitionMap();
+        List<Definition> definitionList = null;
+        StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
+        int definitionCount = 0;
+
+        if (definitionMap != null && definitionMap.size() != 0) {
+            log.debug("definitionMap.size() = " + definitionMap.size());
+
+            stringBuilder.append("<div class=\"definition verb-conjugation\">");
+            stringBuilder.append("\n  <ol>");
+
+            //for (Map.Entry<String, List<Definition>> mapEntry : definitionMap.entrySet()) {
+            for (Map.Entry<WordType, List<Definition>> mapEntry : definitionMap.entrySet()) {
+                log.debug(mapEntry.getKey() + "/" + mapEntry.getValue());
+                //String type = mapEntry.getKey();
+                WordType wordType = mapEntry.getKey();
+                String type = wordType.getType();
+                String gender = wordType.getGender();
+                definitionList = mapEntry.getValue();
+                log.debug("type = " + type);
+                log.debug("gender = " + gender);
+                log.debug("definitionList.size() = " + definitionList.size());
+
+                //stringBuilder.append("\n<div class=\"word-header\">");
+                //stringBuilder.append("\n<ol class=\"word-header\">");
+                stringBuilder.append("\n    <li>");
+                stringBuilder.append(word.getWord());
+                stringBuilder.append(" (").append(type).append(" : ").append(gender).append(")");
+
+                if (definitionList != null && definitionList.size() != 0) {
+                    log.debug("definitionList.size() = " + definitionList.size());
+
+                    stringBuilder.append("\n<ol>");
+
+                    //String type, gender, description, wordDescription;
+                    //String gender, description, wordDescription;
+                    String description, wordDescription;
+                    StringBuilder typeBuilder = new StringBuilder();
+                    //int definitionCount = 0;
+                    Definition definition = null;
+                    for (int i = 0; i < definitionList.size(); i++) {
+                        definition = (Definition) definitionList.get(i);
+                        log.debug("definition.getType() = " + definition.getType());
+                        log.debug("definition.getGender() = " + definition.getGender());
+                        //log.debug("definition.getDescription() = " + definition.getDescription());
+                        type = definition.getType();
+                        gender = definition.getGender();
+                        description = definition.getDescription();
+                        boolean hasType = type != null && !type.equals("");
+                        boolean hasGender = gender != null && !gender.equals("");
+                        boolean hasDescription = description != null && !description.equals("");
+                        //boolean hasWordDescription = wordDescription != null && !wordDescription.equals("");
+
+                        if (hasType || hasGender) {
+                            typeBuilder = new StringBuilder();
+                            if (hasGender) {
+                                String genderExpanded = genderMap.get(gender);
+                                if (genderExpanded != null) {
+                                    typeBuilder.append(genderExpanded);
+                                } else {    
+                                    typeBuilder.append(gender);
+                                } 
+                            } else if (hasType) {
+                                String partOfSpeech = partsOfSpeech.get(type);
+                                if (partOfSpeech != null) {
+                                    typeBuilder.append(partOfSpeech);
+                                } else {    
+                                    typeBuilder.append(type);
+                                } 
+                            }
+                        }
+
+                        if ((definition.getDefinition() != null) && !(definition.getDefinition().trim().equals(""))) {
+                            stringBuilder.append("<li>");
+                            stringBuilder.append(definition.getDefinition());
+                            stringBuilder.append(" (").append(definition.getType()).append(" : ").append(definition.getGender()).append(")");
+                            stringBuilder.append("</li>");
+                        }
+                    }  // for (int i = 0; i < definitionList.size(); i++) {
+                    stringBuilder.append("</ol>");
+                }  // if (definitionList != null && definitionList.size() != 0) {
+                //stringBuilder.append("</div>");
+                stringBuilder.append("\n    </li>");
+            }  // for (Map.Entry<String, String> entry : map.entrySet()) {
+            stringBuilder.append("\n  </ol>");
+            stringBuilder.append("</div>"); // definition
+        }  // if (definitionMap != null && definitionMap.size() != 0) {
+        return stringBuilder.toString();
+    }
+
     //public String createHtml(Word word, String fromLanguage, String toLanguage) {
         //log.trace("createHtml('" + word + "', '" + fromLanguage + "', '" + toLanguage +"')");
-    public String createHtml() {
+    public String createHtmlBak() {
         log.trace("createHtml()");
 
         online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
@@ -100,6 +355,7 @@ public class DefinitionOutput {
         StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
         List definitionList = word.getDefinitionList();
         List usageList = word.getUsageList();
+
         stringBuilder.append("<div class=\"definition verb-conjugation\">");
 
         /*

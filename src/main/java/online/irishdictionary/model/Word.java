@@ -310,60 +310,119 @@ public class Word {
         return ((definitionList != null) && definitionList.size() != 0) && ((usageList != null) && (usageList.size() > 0));
     }
 
-    public Map<String, List<Definition>> createDefinitionMap() {
+    //public Map<String, List<Definition>> createDefinitionMap() {
+    public Map<WordType, List<Definition>> createDefinitionMap() {
         log.trace("createDefinitionMap()");
-        Map<String, List<Definition>> definitionMap = new HashMap<String, List<Definition>>();
+        //Map<String, List<Definition>> definitionMap = new HashMap<String, List<Definition>>();
+        Map<WordType, List<Definition>> definitionMap = new HashMap<WordType, List<Definition>>();
         if (definitionList != null && definitionList.size() != 0) {
             log.debug("definitionList.size() = " + definitionList.size());
 
             String N = "n";
             Definition definition = null;
-            String type, gender, description;
-            java.util.Set<String> typeSet = new java.util.HashSet();
+            String gender, description;
+            String type = null;
+            String wordType = null;
             StringBuilder typeBuilder = new StringBuilder();
+            java.util.Map<String, WordType> typeMap = new java.util.HashMap<String, WordType>();
             for (int i = 0; i < definitionList.size(); i++) {
                 definition = (Definition) definitionList.get(i);
-                //log.debug("definition.getType() = " + definition.getType());
-                //log.debug("definition.getGender() = " + definition.getGender());
+                log.debug("definition.getWord() = " + definition.getWord());
+                log.debug("definition.getDefinition() = " + definition.getDefinition());
+                log.debug("definition.getType() = " + definition.getType());
+                log.debug("definition.getGender() = " + definition.getGender());
                 //log.debug("definition.getDescription() = " + definition.getDescription());
-                type = definition.getType();
+                wordType = definition.getType();
                 gender = definition.getGender();
                 description = definition.getDescription();
-                boolean hasType = type != null && !type.equals("");
+                boolean hasType = wordType != null && !wordType.equals("");
                 boolean hasGender = gender != null && !gender.equals("");
                 //boolean hasDescription = description != null && !description.equals("");
-
                 if (!hasType && hasGender) {
                     if (genderSet.contains(gender)) {
-                        type = N;
+                        wordType = N;
                     }
                 }
+                if (wordType != null && (wordType.equals("vt") || wordType.equals("vi"))) {
+                    type = "v";
+                    gender = null;
+                } else {
+                    type = wordType;
+                }
 
-                if (type != null) {
-                    int indexOfComma = type.indexOf(COMMA);
+                if (type == null) {
+                    type = "other";
+                    wordType = "other";
+                }
+
+                //java.util.Set<String> typeSet = new java.util.HashSet<String>();
+                //if (!typeSet.contains(type)) {
+                //    log.debug("typeSet.add("+type+")");
+                //    typeSet.add(type);
+
+                WordType wordTypeObject = typeMap.get(type);
+                if (wordTypeObject == null) {
+                    wordTypeObject = new WordType(wordType, gender);
+                    log.debug("typeMap.add("+type+", "+wordTypeObject+")");
+                    typeMap.put(type, wordTypeObject);
+                    log.debug("typeMap.size() = " + typeMap.size());
+                }
+                log.debug("wordTypeObject = " + wordTypeObject);
+
+                //WordType wordTypeObject = new WordType(type, gender);
+
+                if (wordType != null) {
+                    int indexOfComma = wordType.indexOf(COMMA);
                     //log.debug("indexOfComma = " + indexOfComma);
                     if (indexOfComma != -1) {
-                        String[] types = type.split(COMMA);
+                        String[] definitionTypes = type.split(COMMA);
                         //log.debug("types = " + types);
                         //log.debug("types.length = " + types.length);
-                        for (int j = 0; j < types.length; j++) {
-                            type = types[j].trim();
+                        String definitionType = null;
+                        for (int j = 0; j < definitionTypes.length; j++) {
+                            definitionType = definitionTypes[j].trim();
                             //if (!typeSet.contains(types[j])) {
-                            List<Definition> definitionList = definitionMap.get(type);
+                            //List<Definition> definitionList = definitionMap.get(type);
+                            type = definitionType;
+                            if (definitionType != null && (definitionType.equals("vt") || definitionType.equals("vi"))) {
+                                type = "v";
+                                gender = null;
+                            }
+                            wordTypeObject = typeMap.get(type);
+                            if (wordTypeObject == null) {
+                                wordTypeObject = new WordType(definitionType, gender);
+                                log.debug("typeMap.add("+type+", "+wordTypeObject+")");
+                                typeMap.put(type, wordTypeObject);
+                                log.debug("typeMap.size() = " + typeMap.size());
+                            }
+                            log.debug("wordTypeObject = " + wordTypeObject);
+                            List<Definition> definitionList = definitionMap.get(wordTypeObject);
                             if (definitionList == null) {
                                 definitionList = new ArrayList<Definition>();
                                 log.debug("definitionMap.put("+type+", definitionList)");
-                                definitionMap.put(type, definitionList);
+                                //definitionMap.put(type, definitionList);
+                                definitionMap.put(wordTypeObject, definitionList);
                             }
-                            log.debug("definitionList.add("+definition+")");
-                            definitionList.add(definition);
+                            if (j > 0) {
+                                Definition definitionClone = (Definition) definition.clone();
+                                definitionClone.setType(definitionType); // reset the definition type
+                                definitionClone.setGender(gender); // reset the gender
+                                definitionList.add(definitionClone);
+                            } else {
+                                log.debug("definitionList.add("+definition+")");
+                                definition.setType(definitionType); // reset the definition type
+                                definitionList.add(definition);
+                            }
                         }
                     } else {
-                        List<Definition> definitionList = definitionMap.get(type);
+                        //List<Definition> definitionList = definitionMap.get(type);
+                        List<Definition> definitionList = definitionMap.get(wordTypeObject);
                         if (definitionList == null) {
                             definitionList = new ArrayList<Definition>();
-                            log.debug("definitionMap.put("+type+", definitionList)");
-                            definitionMap.put(type, definitionList);
+                            //log.debug("definitionMap.put("+type+", definitionList)");
+                            //definitionMap.put(type, definitionList);
+                            log.debug("definitionMap.put("+wordTypeObject+", definitionList)");
+                            definitionMap.put(wordTypeObject, definitionList);
                         }
                         log.debug("definitionList.add("+definition+")");
                         definitionList.add(definition);

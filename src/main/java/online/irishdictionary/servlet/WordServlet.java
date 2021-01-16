@@ -177,9 +177,7 @@ public class WordServlet extends InitServlet {
             try {
                 DictionaryDatabaseManager.populateWord(word, languageId, getConnectionPool());
                 //DictionaryDatabaseManager.selectWord(word, language, getConnectionPool());
-
-                Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
-
+                //Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
                 request.setAttribute("word", word);
             } catch (Exception e) {
                 log.error(e);

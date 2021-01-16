@@ -1,7 +1,9 @@
 package online.irishdictionary.model;
 
-public class Definition {
+//public class Definition {
+public class Definition implements Cloneable {
 
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private int id = -1;
     private String word = null;
     private String wordAscii = null;
@@ -14,6 +16,17 @@ public class Definition {
     
     public Definition(String definition) {
         this.definition = definition;
+    }
+
+    @Override
+    public Object clone() {
+        try {
+            return (Definition) super.clone();
+        } catch (CloneNotSupportedException e) {
+            //return new Definition(this.definition);
+            log.error(e.getMessage(), e);
+            return null;
+        }
     }
 
     public void setId(int id) {

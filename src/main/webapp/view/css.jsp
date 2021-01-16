@@ -626,12 +626,14 @@ div.definition div.word-header .word-description
   padding-left: 10px;
 }
 
+<%--
 div.definition li {
   list-style:none;
   /*
   padding-left: 30px;
   */
 }
+--%>
 
 /*
 div.definition div:first-child
@@ -856,6 +858,13 @@ div.usage li a:hover {
   */
   text-decoration:underline;
 }
+
+<%--
+ol {
+    counter-reset: item;
+    padding-left: 10px;
+}
+--%>
 
 ul {
   padding: 0;
