@@ -25,7 +25,7 @@ public class Definition implements Cloneable {
         } catch (CloneNotSupportedException e) {
             //return new Definition(this.definition);
             log.error(e.getMessage(), e);
-            return null;
+            return null;F
         }
     }
 
