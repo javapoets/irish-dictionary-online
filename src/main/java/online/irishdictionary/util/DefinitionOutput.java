@@ -127,10 +127,15 @@ public class DefinitionOutput {
 
                 //stringBuilder.append("\n<div class=\"word-header\">");
                 //stringBuilder.append("\n<ol class=\"word-header\">");
+
                 stringBuilder.append("\n    <li>");
+
+                // Raw
                 //stringBuilder.append(word.getWord());
                 //stringBuilder.append(" (").append(type).append(" : ").append(gender).append(")");
 
+                //*
+                // Formatted
                 stringBuilder.append("<div class=\"word-line\">");
                 //stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
                 stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>");
@@ -138,6 +143,7 @@ public class DefinitionOutput {
                     stringBuilder.append("<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
                 //}
                 stringBuilder.append("</div>");
+                //*/
 
                 if (definitionList != null && definitionList.size() != 0) {
                     log.debug("definitionList.size() = " + definitionList.size());
@@ -188,35 +194,41 @@ public class DefinitionOutput {
                         //*/
 
                         if ((definition.getDefinition() != null) && !(definition.getDefinition().trim().equals(""))) {
+
                             stringBuilder.append("<li>");
+
+                            // Raw
                             //stringBuilder.append(definition.getDefinition());
                             //stringBuilder.append(" (").append(definition.getType()).append(" : ").append(definition.getGender()).append(")");
+
+                            //*
                             stringBuilder.append("&nbsp;<span class=\"definition\">");
                             stringBuilder.append(linkizeWords(definition.getDefinition(), toLanguage, fromLanguage));
                             stringBuilder.append("</span>");
-                            stringBuilder.append("<span>").append(definition.getType()).append(" : ").append(definition.getGender()).append("</span>");
+                            //*/
                             //*
                             if (hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
                             if (hasType || hasGender) {
-                            stringBuilder.append("<span class=\"type\">");
-                            if (hasGender) {
-                                if (hasType) stringBuilder.append(" ");
-                                String genderExpanded = genderMap.get(gender);
-                                if (genderExpanded != null) {
-                                    stringBuilder.append(genderExpanded);
-                                } else {    
-                                    stringBuilder.append(gender);
-                                } 
-                            } else if (hasType) {
-                                String partOfSpeech = partsOfSpeech.get(type);
-                                if (partOfSpeech != null) {
-                                    stringBuilder.append(partOfSpeech);
-                                } else {    
-                                    stringBuilder.append(type);
-                                } 
+                                stringBuilder.append("<span class=\"type\">");
+                                if (hasGender) {
+                                    if (hasType) stringBuilder.append(" ");
+                                    String genderExpanded = genderMap.get(gender);
+                                    if (genderExpanded != null) {
+                                        stringBuilder.append(genderExpanded);
+                                    } else {    
+                                        stringBuilder.append(gender);
+                                    } 
+                                } else if (hasType) {
+                                    String partOfSpeech = partsOfSpeech.get(type);
+                                    if (partOfSpeech != null) {
+                                        stringBuilder.append(partOfSpeech);
+                                    } else {    
+                                        stringBuilder.append(type);
+                                    } 
+                                }
+                                stringBuilder.append("</span>");
                             }
-                            stringBuilder.append("</span>");
-                        }
+                            //*/
                             stringBuilder.append("</li>");
                         }
                     }  // for (int i = 0; i < definitionList.size(); i++) {

@@ -153,7 +153,8 @@ public class WordServlet extends InitServlet {
         request.setAttribute("toLanguage", toLanguage);
 
         if (!EMPTY.equals(wordParameter)) {
-            Word word = new Word(wordParameter.trim());
+            //Word word = new Word(wordParameter.trim());
+            Word word = new Word(wordParameter.trim(), fromLanguage, toLanguage);
             /*
             //user.setWord(word);
             if (language.equals("english")) {

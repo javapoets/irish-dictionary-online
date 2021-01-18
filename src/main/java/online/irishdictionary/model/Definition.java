@@ -62,6 +62,7 @@ public class Definition implements Cloneable {
     }
 
     public void setType(String type) {
+        log.debug(this + ".setType("+type+")");
         this.type = type;
     }
 
