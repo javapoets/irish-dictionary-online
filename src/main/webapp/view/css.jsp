@@ -531,7 +531,7 @@ div.definition div.word-header
 }
 --%>
 
-div.definition div.word-header div.word-line
+div.definition ol div.word-line
 {
   /*
   border: orange 2px solid;
@@ -539,15 +539,44 @@ div.definition div.word-header div.word-line
   color: var(--darktext);
 }
 
-div.definition div.word-header div.word-line .numbering
+/*
+div.definition ol
+{
+  background: #ff9999;
+  padding: 20px;
+}
+*/
+div.definition > ol
+,div.definition > ol ol
+{
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+
+div.definition ol li
+{
+  color: #999;
+  font-size: 1.0em;
+}
+
+<%--
+div.definition ol div.word-line .numbering
+, div.definition ol li:before
+--%>
+div.definition ol li span
 {
   /*
   border: black 2px solid;
-  */
   color:#6B6D6B;
+  color: var(--darktext);
+  color:red;
+  */
+  color: #333;
+  font-size: 1.33em;
 }
 
-div.definition div.word-header div.word-line .word
+div.definition ol div.word-line .word
 {
   /*
   border: black 2px solid;
@@ -569,7 +598,7 @@ div.definition div.word-header div.word-line .type
   padding-left:5px;
   color: var(--dark-green);
   font-style: italic;
-  font-size: .9em;
+  font-size: 1.0em;
 }
 
 div.definition div.word-header ol {

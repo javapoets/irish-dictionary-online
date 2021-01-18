@@ -14,6 +14,7 @@ public class Word {
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private String EMPTY = "";
     private String COMMA = ",";
+    private String ENGLISH = "english";
     private int id = -1;
     private String word = null;
     private String fromLanguage = null;
@@ -362,6 +363,13 @@ public class Word {
                 } else {
                     type = wordType;
                 }
+
+                if (this.fromLanguage != null && this.fromLanguage.equals(ENGLISH)) {
+                    if (wordType != null && wordType.equals(N)) gender = null;
+                }
+                    //    type = wordType;
+                    //}
+                //}
                 if (type == null) {
                     type = "other";
                     wordType = "other";
@@ -498,7 +506,13 @@ public class Word {
                         }
                         wordTypeObject = typeMap.get(type);
                         if (wordTypeObject == null) {
-                            wordTypeObject = new WordType(wordType, gender);
+                            //wordTypeObject = new WordType(wordType, gender);
+                            //if (toLanguage.equals(IRISH)) {
+                            if (this.fromLanguage.equals(ENGLISH)) {
+                                wordTypeObject = new WordType(type, gender);
+                            } else {
+                                wordTypeObject = new WordType(wordType, gender);
+                            }
                             log.debug("typeMap.add('"+type+"', "+wordTypeObject+")");
                             typeMap.put(type, wordTypeObject);
                             log.debug("typeMap.size() = " + typeMap.size());
@@ -513,6 +527,16 @@ public class Word {
                             definitionMap.put(wordTypeObject, definitionList);
                         }
                         log.debug("definitionList.add("+definition+")");
+
+                        //if (toLanguage.equals(IRISH)) {
+                        //if (this.fromLanguage.equals(IRISH)) {
+                        if (this.toLanguage.equals(ENGLISH)) {
+                            definition.setGender(null);
+                            definition.setType(type);
+                        //} else {
+                        //    definition.setType(type);
+                        }
+
                         definitionList.add(definition);
                     }
                 } // if (type != null)
