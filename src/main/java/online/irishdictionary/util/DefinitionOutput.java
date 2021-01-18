@@ -48,11 +48,13 @@ public class DefinitionOutput {
             put("m2", "masculine noun, 2nd declension");
             put("m3", "masculine noun, 3rd declension");
             put("m4", "masculine noun, 4th declension");
+            put("m5", "masculine noun, 5th declension");
             put("f", "feminine noun");
             put("f1", "feminine noun, 1st declension");
             put("f2", "feminine noun, 2nd declension");
             put("f3", "feminine noun, 3rd declension");
             put("f4", "feminine noun, 4th declension");
+            put("f5", "feminine noun, 5th declension");
         }
     };
 
