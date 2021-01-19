@@ -466,6 +466,7 @@ div.definition
   border: red 2px solid;
   */
   font-family: Arial;
+  font-size: 1.0em;
 }
 
 <%--
@@ -545,20 +546,31 @@ div.definition ol
   background: #ff9999;
   padding: 20px;
 }
-*/
 div.definition > ol
-,div.definition > ol ol
+*/
+div.definition > ol ol
 {
-  padding-top: 10px;
+  padding-top: 8px;
   padding-left: 20px;
+  padding-bottom: 20px;
 }
 
-
-div.definition ol li
+div.definition > ol > li
 {
   color: #999;
+  /*
   font-size: 1.0em;
+  font-size: 0.77em;
+  */
+  font-size: 0.9em;
 }
+
+<%--
+div.definition > ol li:before
+{
+  font-size: 0.77em;
+}
+--%>
 
 <%--
 div.definition ol div.word-line .numbering
@@ -573,7 +585,7 @@ div.definition ol li span
   color:red;
   */
   color: #333;
-  font-size: 1.33em;
+  font-size: 1.5em;
 }
 
 div.definition ol div.word-line .word
@@ -581,7 +593,7 @@ div.definition ol div.word-line .word
   /*
   border: black 2px solid;
   */
-  font-size: 1.33em;
+  font-size: 1.5em;
 }
 
 div.definition div.word-header div.word-line .type
@@ -741,15 +753,19 @@ div.definition span.description
   color: var(--darktext);
   color: var(--mediumtext);
   color: #999;
+  font-size:15px;
   */
   color:#6B6D6B;
-  font-size:15px;
+  font-size: 1.0em;
   padding-left:5px;
 }
+
+<%--
 div.definition span.description .smaller
 {
   font-size: 11px;
 }
+--%>
 
 div.definition li span.description a
 {
