@@ -100,6 +100,10 @@ public class WordType {
         this.type = type;
     }
 
+    public void addType(String type) {
+        this.type = new StringBuilder().append(this.getType()).append(", ").append(type).toString();
+    }
+
     public String getType() {
         return type;
     }

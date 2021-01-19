@@ -17,15 +17,15 @@
 <title>Irish Dictionary Online, Irish Gaelic dictionary, Irish Dictionary, Gaelic Dictionary, Foclóir Gaeilge, Translate Irish, Irish language dictionary</title>
 <!--link rel="stylesheet" type="text/css" href="<%= contextUrl %>css" /-->
 <link rel="stylesheet" type="text/css" href="<%= contextUrl %>css?<%= new java.util.Date().getTime() %>">
-<% if (!lang.equals("ga")) { %>
 <%--
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script data-ad-client="ca-pub-5611094585811186" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 --%>
-<script data-ad-client="ca-pub-5611094585811186" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <%--@ include file="google-analytics-async.html" --%>
-<% } %>
+<%-- if (!lang.equals("ga")) { %>
+<script data-ad-client="ca-pub-5611094585811186" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<% } --%>
 <script type="text/javascript">
 <%@ include file="/view/inline-javascript.jsp" %>
 </script>

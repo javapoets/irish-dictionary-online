@@ -153,10 +153,10 @@ body > div > div.table > div.row > div.cell
   padding: 0px;
   height: 100%;
   border: red 1px solid;
+  padding-top: 100px;
   */
   max-width: var(--site-width);
   margin: auto;
-  padding-top: 100px;
 }
 
 .centering-flex-container
@@ -548,6 +548,7 @@ div.definition ol
 }
 div.definition > ol
 */
+
 div.definition > ol ol
 {
   padding-top: 8px;
@@ -559,10 +560,10 @@ div.definition > ol > li
 {
   color: #999;
   /*
-  font-size: 1.0em;
   font-size: 0.77em;
-  */
   font-size: 0.9em;
+  */
+  font-size: 1.0em;
 }
 
 <%--

@@ -15,6 +15,7 @@ public class Word {
     private String EMPTY = "";
     private String COMMA = ",";
     private String ENGLISH = "english";
+    private String IRISH = "irish";
     private int id = -1;
     private String word = null;
     private String fromLanguage = null;
@@ -407,6 +408,7 @@ public class Word {
 
                         for (int j = 0; j < definitionTypes.length; j++) {
                             definitionType = definitionTypes[j].trim();
+                            log.debug(j + ": definitionType = " + definitionType);
 
                             //if (!typeSet.contains(types[j])) {
                             //List<Definition> definitionList = definitionMap.get(type);
@@ -420,25 +422,55 @@ public class Word {
                                 type = "other";
                                 wordType = "other";
                             }
+
                             wordTypeObject = typeMap.get(type);
+                            log.debug(j + ": wordTypeObject = " + wordTypeObject);
                             if (wordTypeObject == null) {
                                 wordTypeObject = new WordType(definitionType, gender);
-                                log.debug("typeMap.add('"+type+"', "+wordTypeObject+")");
+                                log.debug(j + ": typeMap.add('"+type+"', "+wordTypeObject+")");
                                 typeMap.put(type, wordTypeObject);
-                                log.debug("typeMap.size() = " + typeMap.size());
+                                log.debug(j + ": typeMap.size() = " + typeMap.size());
+                                if (j > 0) { // clone every other instance of the Word object for each list
+                            //} else {
+                                definition = (Definition) definition.clone();
+                                definition.setType(definitionType); // reset the definition type
+                                definition.setGender(gender); // reset the gender
+                                //definitionList.add(definitionClone);
+                                }
                             }
-                            log.debug("wordTypeObject = " + wordTypeObject);
+                            log.debug(j + ": wordTypeObject = " + wordTypeObject);
 
                             List<Definition> definitionList = definitionMap.get(wordTypeObject);
+                            log.debug(j + ": definitionList = " + definitionList);
                             if (definitionList == null) {
                                 definitionList = new ArrayList<Definition>();
-                                log.debug("definitionMap.put('"+type+"', definitionList)");
-                                //definitionMap.put(type, definitionList);
+                                log.debug(j + ": definitionMap.put(" + wordTypeObject + ", definitionList)");
                                 definitionMap.put(wordTypeObject, definitionList);
                             }
 
-                            if (j > 0) { // clone every other instance of the Word object for each list
+                            if (definitionList.contains(definition)) {
+                                //String newType = new StringBuilder().append(definition.getType()).append(", ").append(definitionType).toString();
+                                //wordTypeObject.setType(newType);
+                                wordTypeObject.addType(definitionType);
+                                if (this.toLanguage.equals(IRISH)) {
+                                    definition.setType(wordTypeObject.getType());
+                                } else{
+                                    definition.setType(type);
+                                    definition.setGender(null);
+                                }
+                            } else {
+                                log.debug(j + ": definitionList.add(" + definition + ")");
+                                if (this.toLanguage.equals(ENGLISH)) {
+                                    definition.setGender(null);
+                                    definition.setType(type);
+                                //} else {
+                                    //definition.setType(type);
+                                }
+                                definitionList.add(definition);
+                            }
 
+                            //if (j > 0) { // clone every other instance of the Word object for each list
+                                /*
                                 if (!definitionList.contains(definitionClone)) {
                                 //if (definitionList.contains(definition)) {
                                     definitionClone = (Definition) definition.clone();
@@ -446,17 +478,19 @@ public class Word {
                                     definitionClone.setGender(gender); // reset the gender
                                     definitionList.add(definitionClone);
                                 } else {
+                                */    
                                 //if (definitionList.contains(definition)) {
                                     //definition.setGender(gender); // reset the gender
-                                    //*
+                                    /*
                                     //WordType wordTypeObjectLookup = typeMap.get(type);
-                                    String newType = new StringBuilder()
-                                        .append(definitionClone.getType())
-                                        .append(", ")
-                                        .append(definitionType)
-                                        .toString();
+                                    String newType = new StringBuilder().append(definitionClone.getType()).append(", ").append(definitionType).toString();
                                     wordTypeObject.setType(newType);
-                                    definitionClone.setType(newType);
+                                    if (this.toLanguage.equals(IRISH)) {
+                                        definitionClone.setType(newType);
+                                    } else{
+                                        definitionClone.setType(type);
+                                        definition.setGender(null);
+                                    }
                                     /*
                                     definition.setType(new StringBuilder()
                                         .append(definition.getType())
@@ -465,17 +499,25 @@ public class Word {
                                         .toString()
                                     );
                                     //*/
-                                }
+                                //}
                                 //definitionClone = (Definition) definition.clone();
                                 //definitionClone.setType(definitionType); // reset the definition type
                                 //definitionClone.setGender(gender); // reset the gender
                                 //definitionList.add(definitionClone);
 
-                            } else {
+                            //} else {
+                                /*
                                 log.debug("definitionList.add("+definition+")");
                                 definition.setType(definitionType); // reset the definition type
+                                if (this.toLanguage.equals(ENGLISH)) {
+                                    definition.setGender(null);
+                                    //definition.setType(type);
+                                //} else {
+                                    //definition.setType(type);
+                                }
                                 definitionList.add(definition);
-                            }
+                                */
+                            //}
 
                             /*
                             boolean hasMultipleOfThisType = 
@@ -491,7 +533,7 @@ public class Word {
                                 definitionList.add(definition);
                             }
                             */
-                        }
+                        }  // for (int j = 0; j < definitionTypes.length; j++)
                     } else {
                         //List<Definition> definitionList = definitionMap.get(type);
                         if (wordType != null && (wordType.equals("vt") || wordType.equals("vi"))) {
