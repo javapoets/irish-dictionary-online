@@ -25,6 +25,7 @@ public class DefinitionOutput {
     private String lang = null;
     private String fromLang = null;
     private String toLang = null;
+    private online.irishdictionary.util.ResourceBundles resourceBundles = null;
     
     private HashMap<String, String> partsOfSpeech = new HashMap<String, String>() {
         {
@@ -38,6 +39,7 @@ public class DefinitionOutput {
             put("num", "number");
             put("conj", "conjunction");
             put("pron", "pronoun");
+            put("prep", "preposition");
         }
     };
 
@@ -49,6 +51,8 @@ public class DefinitionOutput {
             put("m3", "masculine noun, 3rd declension");
             put("m4", "masculine noun, 4th declension");
             put("m5", "masculine noun, 5th declension");
+            put("pl", "plural noun");
+            put("mpl1", "masculine plural noun, 1st declension");
             put("f", "feminine noun");
             put("f1", "feminine noun, 1st declension");
             put("f2", "feminine noun, 2nd declension");
@@ -63,6 +67,7 @@ public class DefinitionOutput {
     public DefinitionOutput(String fromLanguage, String toLanguage) {
         this.fromLanguage = fromLanguage;
         this.toLanguage = toLanguage;
+        this.resourceBundles = new online.irishdictionary.util.ResourceBundles();
     }
 
     public DefinitionOutput(Word word, String fromLanguage, String toLanguage, String lang, String fromLang, String toLang) {
@@ -73,24 +78,27 @@ public class DefinitionOutput {
         this.lang = lang;
         this.fromLang = fromLang;
         this.toLang = toLang;
+        //online.irishdictionary.util.ResourceBundles resourceBundles
+        this.resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
     }
 
     public String createHtml() {
         log.trace("createHtml()");
 
-        online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
+        //online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
         //Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
         Map<WordType, List<Definition>> definitionMap = word.createDefinitionMap();
         List<Definition> definitionList = null;
         StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
         int definitionCount = 0;
 
+        stringBuilder.append("<div class=\"definition verb-conjugation\">");
+
         if (definitionMap != null && definitionMap.size() != 0) {
             log.debug("definitionMap.size() = " + definitionMap.size());
 
             StringBuilder typeBuilder = new StringBuilder();
 
-            stringBuilder.append("<div class=\"definition verb-conjugation\">");
             stringBuilder.append("\n  <ol>");
 
             //for (Map.Entry<String, List<Definition>> mapEntry : definitionMap.entrySet()) {
@@ -99,16 +107,20 @@ public class DefinitionOutput {
                 //String type = mapEntry.getKey();
                 WordType wordType = mapEntry.getKey();
                 String type = wordType.getType();
+                String fromType = wordType.getFromType();
                 String gender = wordType.getGender();
                 definitionList = mapEntry.getValue();
                 log.debug("type = " + type);
+                log.debug("fromType = " + fromType);
                 log.debug("gender = " + gender);
                 log.debug("definitionList.size() = " + definitionList.size());
 
                 boolean hasType = type != null && !type.equals("");
+                boolean hasFromType = fromType != null && !fromType.equals("");
                 boolean hasGender = gender != null && !gender.equals("");
 
-                if (hasType || hasGender) {
+                //if (hasType || hasGender) {
+                if (hasFromType || hasGender) {
                     typeBuilder = new StringBuilder();
                     if (hasGender) {
                         String genderExpanded = genderMap.get(gender);
@@ -117,12 +129,15 @@ public class DefinitionOutput {
                         } else {    
                             typeBuilder.append(gender);
                         } 
-                    } else if (hasType) {
-                        String partOfSpeech = partsOfSpeech.get(type);
+                    //} else if (hasType) {
+                    } else if (hasFromType) {
+                        //String partOfSpeech = partsOfSpeech.get(type);
+                        String partOfSpeech = partsOfSpeech.get(fromType);
                         if (partOfSpeech != null) {
                             typeBuilder.append(partOfSpeech);
                         } else {    
-                            typeBuilder.append(type);
+                            //typeBuilder.append(type);
+                            typeBuilder.append(fromType);
                         } 
                     }
                 }
@@ -233,22 +248,26 @@ public class DefinitionOutput {
                             //*/
                             stringBuilder.append("</li>");
                         }
-                    }  // for (int i = 0; i < definitionList.size(); i++) {
+                    }  // for (int i = 0; i < definitionList.size(); i++)
                     stringBuilder.append("</ol>");
-                }  // if (definitionList != null && definitionList.size() != 0) {
+                }  // if (definitionList != null && definitionList.size() != 0)
                 //stringBuilder.append("</div>");
                 stringBuilder.append("\n    </li>");
-            }  // for (Map.Entry<String, String> entry : map.entrySet()) {
+            }  // for (Map.Entry<String, String> entry : map.entrySet())
             stringBuilder.append("\n  </ol>");
-            stringBuilder.append("</div>"); // definition
-        }  // if (definitionMap != null && definitionMap.size() != 0) {
+        }  // if (definitionMap != null && definitionMap.size() != 0)
+        String usage = this.createUsage();
+        if (usage != null) {
+            stringBuilder.append(usage);
+        }
+        stringBuilder.append("</div>"); // definition
         return stringBuilder.toString();
     }
 
     public String createHtmlRaw() {
         log.trace("createHtml()");
 
-        online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
+        //online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
         //Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
         Map<WordType, List<Definition>> definitionMap = word.createDefinitionMap();
         List<Definition> definitionList = null;
@@ -345,7 +364,7 @@ public class DefinitionOutput {
     public String createHtmlBak() {
         log.trace("createHtml()");
 
-        online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
+        //online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
 
         log.debug("word.getType() = " + word.getType());
         log.debug("word.getDescription() = " + word.getDescription());
@@ -867,5 +886,116 @@ public class DefinitionOutput {
         }
         stringBuilder.append(">").append(word).append("</a>");
         return stringBuilder.toString();
+    }
+
+    private String createUsage() {
+        List usageList = word.getUsageList();
+        if ((usageList != null) && (usageList.size() > 0)) {
+            StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
+            stringBuilder.append("<div class=\"table\" style=\"padding: 10px 0px;\">");
+            stringBuilder.append("<div class=\"row\">");
+            stringBuilder.append("<div class=\"cell usage-label underline\">&nbsp;</div>");
+            stringBuilder.append("<div class=\"cell verb-tense-header\">");
+            stringBuilder.append(resourceBundles.getString("Example Usage"));
+            stringBuilder.append("</div>");  // cell
+            stringBuilder.append("</div>");  //  row
+            //List sortedList = (List) usageList.getSortedList("usageLength");
+            List sortedList = usageList;
+            int start = word.getStartUsageIndex();
+            int end = sortedList.size();
+            if (usageList.size() > word.getEndUsageIndex()) {
+                end = word.getEndUsageIndex();
+            }
+            String type, usage, usageTranslated, description, plusSuffix;
+            for (int i = start; i < end; i++) {
+                Usage usageObject = (Usage)sortedList.get(i);
+                usage           = usageObject.getUsage();
+                usageTranslated = usageObject.getUsageTranslated();
+                type            = usageObject.getType();
+                description     = usageObject.getDescription();
+                plusSuffix      = usageObject.getPlusSuffix();
+                boolean hasUsage = !EMPTY.equals(usage);
+                boolean hasUsageTranslated = !EMPTY.equals(usageTranslated);
+                boolean hasType = !EMPTY.equals(type);
+                boolean hasDescription = !EMPTY.equals(description);
+                boolean hasSuffix = !EMPTY.equals(plusSuffix);
+                //stringBuilder.append("<li>");
+                //stringBuilder.append("<div style=\"padding-left:50px;\">");
+                //stringBuilder.append("<div class=\"cell verb-tense-header\"");
+                
+                stringBuilder.append("<div class=\"row\">");
+                stringBuilder.append("<div class=\"cell usage-label\"");
+                //if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
+                stringBuilder.append(">");
+
+                //stringBuilder.append("<li>").append(fromLanguage).append(": ");
+                //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-33px;\">").append(fromLanguage).append(" ").append("</span>");
+                //stringBuilder.append("<span class=\"usage-label "+fromLanguage+"\">").append(resourceBundles.getString(fromLanguage)).append(" ").append("</span>");
+                stringBuilder.append(resourceBundles.getString(fromLanguage));
+                //stringBuilder.append("<span class=\"description\">").append(fromLanguage).append(": ").append("</span>");
+                stringBuilder.append("</div>");
+
+                if (hasUsage) {
+                    stringBuilder.append("<div class=\"cell usage\"");
+                    //stringBuilder.append("<div class=\"cell verb-tense-header\"");
+                    if (!lang.equals(fromLang)) { stringBuilder.append(" lang=\"").append(fromLang).append("\""); }
+                    stringBuilder.append(">");
+                    stringBuilder.append(linkizeUsage(usage, word.getWord(), fromLanguage, toLanguage));
+                    if (hasDescription && ENGLISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                    stringBuilder.append("</div>");
+                }
+                //stringBuilder.append("<br/>");
+                stringBuilder.append("</div>");  // row
+
+                stringBuilder.append("<div class=\"row\">");
+                stringBuilder.append("<div");
+                //stringBuilder.append(" class=\"cell verb-tense-header\"");
+                stringBuilder.append(" class=\"cell usage-label underline\"");
+                //if (!lang.equals(toLang)) { stringBuilder.append(" lang=\"").append(toLang).append("\""); }
+                stringBuilder.append(">");
+                //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");
+                stringBuilder.append(resourceBundles.getString(toLanguage)).append(" ");
+                stringBuilder.append("</div>");  // cell usage-label
+                //if (hasUsageTranslated) {
+                    //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");
+                    //stringBuilder.append("<span class=\"translated\"");
+                    stringBuilder.append("<div class=\"cell translated underline\"");
+                    if (!lang.equals(toLang)) { stringBuilder.append(" lang=\"").append(toLang).append("\""); }
+                    stringBuilder.append(">");
+                    stringBuilder.append(linkizeWords(usageTranslated, toLanguage, fromLanguage));
+                    //if (hasSuffix) stringBuilder.append("<span class=\"description\">").append(plusSuffix).append("</span>");
+                    if (hasSuffix && IRISH.equals(toLanguage)) {
+                        stringBuilder.append("<span class=\"description\">").append(plusSuffix).append("</span>");
+                    }
+                    if (hasDescription && IRISH.equals(fromLanguage)) {
+                        stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                    }
+                    stringBuilder.append("</div>");  // cell translated
+                    stringBuilder.append("</div>");  // row
+                //}
+                /*
+                if(
+                    hasType
+                    //|| hasDescription
+                ) {
+                    stringBuilder.append("<span class=\"type\">(");
+                    if(hasType) stringBuilder.append(type);
+                    stringBuilder.append(")</span>");
+                }
+                if(hasDescription) {
+                    stringBuilder.append("<span class=\"description\">").append(linkize(description, fromLanguage, toLanguage)).append("</span>");
+                }
+                */
+                //if(hasDescription) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                //if (hasDescription && IRISH.equals(fromLanguage)) stringBuilder.append("<span class=\"description\">").append(description).append("</span>");
+                //stringBuilder.append("</div>");
+                //stringBuilder.append("</li>");
+            }
+            //stringBuilder.append("</ol>");
+            //stringBuilder.append("</div>"); // cell
+            stringBuilder.append("</div>");  // table
+            return stringBuilder.toString();
+        } // if ((usageList != null) && (usageList.size() > 0))
+        return null;
     }
 }

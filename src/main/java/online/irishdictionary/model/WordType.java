@@ -16,6 +16,7 @@ public class WordType {
     private int id = -1;
     private String word = null;
     private String description = null;
+    private String fromType = null;           // n, adj, adv, vi, vt, npl
     private String type = null;           // n, adj, adv, vi, vt, npl
     private String gender = null;         // m1. m2, m3, m4, f1, f2, f3, f4, mpl1, fpl2
     private String declension = null;         // 1st, 2nd, 3rd, 4th
@@ -69,6 +70,7 @@ public class WordType {
 
     public WordType(String type, String gender) {
         this.type = type;
+        this.fromType = type;
         this.gender = gender;
     }
 
@@ -106,6 +108,18 @@ public class WordType {
 
     public String getType() {
         return type;
+    }
+
+    public void setFromType(String fromType) {
+        this.fromType = fromType;
+    }
+
+    public void addFromType(String fromType) {
+        this.fromType = new StringBuilder().append(this.getFromType()).append(", ").append(fromType).toString();
+    }
+
+    public String getFromType() {
+        return fromType;
     }
 
     public void setGender(String gender) {

@@ -69,6 +69,10 @@ public class Definition implements Cloneable {
     public String getType() {
         return this.type;
     }
+
+    public void addType(String type) {
+        this.type = new StringBuilder().append(this.getType()).append(", ").append(type).toString();
+    }
     
     public void setDescription(String description) {
         this.description = description;
