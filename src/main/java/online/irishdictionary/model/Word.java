@@ -420,7 +420,7 @@ public class Word {
                             } else {
                                 type = definitionType;
                                 if (this.fromLanguage.equals(ENGLISH)) {
-                                    if (gender.equals("mpl1")) gender = "pl";
+                                    if (gender != null && gender.equals("mpl1")) gender = "pl";
                                 }
                             }
                             if (type == null) {
