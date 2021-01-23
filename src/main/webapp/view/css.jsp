@@ -757,7 +757,7 @@ div.definition span.description
   font-size:15px;
   */
   color:#6B6D6B;
-  font-size: 1.0em;
+  font-size: 0.8em;
   padding-left:5px;
 }
 
