@@ -1,9 +1,12 @@
-/*
+<%--
 *
 {
-  border: red 1px solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: black 1px solid;
 }
-*/
+--%>
 
 :root {
   --orange: #FF8F00;
@@ -93,12 +96,35 @@ div.row.logo
   text-align: left;
 }
 
-div.row.logo
-div.cell.logo
+div.row.logo div.cell.logo
 {
   padding-left: 13px;
   text-align: left;
   margin-left: 0px;
+  margin: 0px;
+  vertical-align: bottom;
+  /*
+  background-color: red;
+  */
+  padding-top: 10px;
+}
+
+div.row.logo div.cell.logo a
+{
+  margin: 0px;
+  vertical-align: bottom;
+  /*
+  border: red 1px solid;
+  */
+}
+
+div.row.logo div.cell.logo a img
+{
+  margin: 0px;
+  vertical-align: bottom;
+  /*
+  border: blue 1px solid;
+  */
 }
 
 div.table.logo
@@ -187,17 +213,54 @@ body div.flex-header
   align-items: flex-start
   justify-content: space-between;
   justify-content: space-around;
-  justify-content: center;
   justify-content: space-evenly;
-  */
-  align-items: center;
   justify-content: flex-start;
+  */
+  justify-content: center;
+  align-items: center;
   /*
   border: green 1px solid;
   padding-top: 20px;
-  */
   padding-bottom: 20px;
+  */
+  padding: 10px;
 }
+
+body div.flex-header > div:first-child
+{
+  /*
+  width: 200px;
+  padding: 0px 42px;
+  vertical-align: bottom;
+  text-align: left;
+  margin-left: 0px;
+  */
+}
+
+body div.flex-header > div:first-child a
+{
+  /*
+  border: red 1px solid;
+  margin: 0px;
+  text-align: left;
+  margin-left: 0px;
+  */
+  vertical-align: bottom;
+}
+
+<%--
+body div.flex-header > div:first-child a img
+{
+  border: blue 1px solid;
+  margin: 0px;
+  vertical-align: bottom;
+  /*
+  text-align: left;
+  margin-left: 0px;
+  */
+}
+--%>
+
 
 /*
 body div.header > div
@@ -245,6 +308,28 @@ body div.entry-form > div
   max-width: var(--max-search-block-width);
   width: 100%;
 }
+
+div.input
+{
+  background-color: #B4CD8F;
+  border: #2C5A26 2px solid;
+  border-radius: 25px;
+  padding: 0px;
+  margin: 0px;
+  padding: 5px;
+}
+
+<%--
+.flex-header
+  .search-block
+    div.input
+{
+  padding: 3px;
+  /*
+  border: red 2px solid;
+  */
+}
+--%>
 
 .logo-offset
 {
@@ -398,7 +483,9 @@ div.ad-bottom {
   font-size:13px;
 }
 
-div.input {
+<%--
+div.input
+{
   background-color: #B4CD8F;
   border: #2C5A26 2px solid;
   border-radius: 25px;
@@ -415,6 +502,7 @@ div.input {
   box-shadow:inset 0px -10px 20px 0px rgba(0,0,0,0.13),0 0 3px #999;
   */
 }
+--%>
 
 div.input div.table div.cell
 {
@@ -548,12 +636,26 @@ div.definition ol
 }
 div.definition > ol
 */
+div.definition > ol
+{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
 
 div.definition > ol ol
 {
+  <%--
   padding-top: 8px;
   padding-left: 20px;
   padding-bottom: 20px;
+  padding-top: 0px;
+  margin-top: 0px;
+  --%>
+  padding-top: 6px;
+  margin-top: 6px;
+  padding-bottom: 0px;
+  margin-bottom 0px;
 }
 
 div.definition > ol > li
@@ -564,6 +666,8 @@ div.definition > ol > li
   font-size: 0.9em;
   */
   font-size: 1.0em;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 <%--
@@ -739,8 +843,8 @@ div.definition li span.type {
   /*
   font-size:12px;
   */
-  text-decoration:none;
-  padding-left:5px;
+  text-decoration: none;
+  padding-left: 5px;
   color: var(--dark-green);
   font-style: italic;
   font-size: .9em;
@@ -1156,5 +1260,51 @@ a:hover
 {
   text-decoration: underline;
 }
+
+div.row.nav div.cell.nav
+{
+  padding: 8px;
+  margin: auto;
+  text-align: center;
+  /*
+  border: red 1px solid;
+  */
+}
+
+div.row.nav div.cell.nav nav
+{
+  margin: auto;
+  text-align: center;
+  /*
+  border: red 1px solid;
+  */
+}
+
+nav a
+{
+  background-color: #B4CD8F;
+  background-color: var(--orange);
+  background-color: #fff;
+  border: #2C5A26 1px solid;
+  border-radius: 15px;
+  padding: 0px;
+  margin: 0px;
+  margin-left: 3px;
+  margin-right: 3px;
+  text-decoration: none;
+  color: #2C5A26;
+  padding: 5px 10px;
+  /*
+  display:inline-table;
+  border: 0px;
+  outline: #2C5A26 2px solid;
+  margin-left:5px;
+  margin-right:5px;
+  padding:5px;
+  box-shadow:inset 0px -10px 20px 0px rgba(0,0,0,0.13),0 0 3px #999;
+  */
+  box-shadow:inset 0px -10px 20px 0px rgba(0,0,0,0.13),0 0 3px #999;
+}
+
 
 <%@ include file="/view/css-media-queries.jsp" %>

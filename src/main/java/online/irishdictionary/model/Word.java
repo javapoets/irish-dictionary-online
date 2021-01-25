@@ -61,6 +61,10 @@ public class Word {
             put("f2", "feminine noun, 2nd declension");
             put("f3", "feminine noun, 3rd declension");
             put("f4", "feminine noun, 4th declension");
+            put("fpl1", "feminine plural noun, 1th declension");
+            put("fpl2", "feminine plural noun, 2th declension");
+            put("fpl3", "feminine plural noun, 3th declension");
+            put("fpl4", "feminine plural noun, 4th declension");
         }
     };
 

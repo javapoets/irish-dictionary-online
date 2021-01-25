@@ -133,6 +133,12 @@
     justify-content: flex-start;
     */
     justify-content: center;
+    justify-content: flex-start;
+  }
+
+  body div.flex-header > div:first-child
+  {
+    padding-right: 33px;
   }
 
   /*

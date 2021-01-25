@@ -59,6 +59,10 @@ public class DefinitionOutput {
             put("f3", "feminine noun, 3rd declension");
             put("f4", "feminine noun, 4th declension");
             put("f5", "feminine noun, 5th declension");
+            put("fpl1", "feminine plural noun, 1th declension");
+            put("fpl2", "feminine plural noun, 2th declension");
+            put("fpl3", "feminine plural noun, 3th declension");
+            put("fpl4", "feminine plural noun, 4th declension");
         }
     };
 
@@ -155,9 +159,9 @@ public class DefinitionOutput {
                 // Formatted
                 stringBuilder.append("<div class=\"word-line\">");
                 //stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
-                stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>");
+                stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>&nbsp");
                 //if (ENGLISH.equals(toLanguage)) {
-                    stringBuilder.append("<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
+                    stringBuilder.append("&nbsp<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
                 //}
                 stringBuilder.append("</div>");
                 //*/
