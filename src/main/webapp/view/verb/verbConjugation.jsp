@@ -77,6 +77,9 @@
     <div class="cell translated underline"<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
       <%
         StringBuilder stringBuilder = new StringBuilder();
+      %>
+      <%--
+        StringBuilder stringBuilder = new StringBuilder();
         String me = null;
         for (int i = 0; i < verbList.size(); i++) {
             Verb verbI = (Verb)verbList.get(i);
@@ -90,11 +93,29 @@
         }
         if (stringBuilder.length() > 0) {
       %>
-        <%--= definitionOutput.linkizeWords(stringBuilder.toString(), isEnglish ? fromLanguage : toLanguage, isEnglish ? toLanguage : fromLanguage) --%>
         <%= definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage) %>
       <% } else { %>
         &nbsp;
-      <% } %>
+      <% } --%>
+        <%--= definitionOutput.linkizeWords(stringBuilder.toString(), isEnglish ? fromLanguage : toLanguage, isEnglish ? toLanguage : fromLanguage) --%>
+      <ol>
+      <%
+        String me = null;
+        for (int i = 0; i < verbList.size(); i++) {
+            Verb verbI = (Verb)verbList.get(i);
+            Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
+            VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
+            me = verbConjugationI.getMe();
+            if (me != null) {
+            //definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage)
+      %>            
+        <%--li><%= me %></li--%>
+        <li><%= definitionOutput.linkizeWords(me, toLanguage, fromLanguage) %></li>
+      <%  
+            }
+        }
+      %>
+      </ol>
     </div>
   </div>
   <div class="row">
