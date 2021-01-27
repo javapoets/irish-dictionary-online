@@ -176,11 +176,14 @@
     padding-left: 5px;
     padding-right: 5px;
   }
+
+  <%--
   div.verb-conjugation div.verb-tense-header
   {
     padding-left: 10px;
     font-size: 1.1em;
   }
+  --%>
 
   div.input
   {

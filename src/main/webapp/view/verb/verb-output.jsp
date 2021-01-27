@@ -3,7 +3,7 @@
     <li>
       <div class="word-line">
         <span class="word"><%= verb.getVerb() %></span>
-        <span class="type">verb</span>
+        <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("verb") %></span>
       </div>
       <ol>
         <%
@@ -25,7 +25,7 @@
             <a href="verb?verb=<%= verbString0 %>&language=<%= toLanguage %>&toLanguage=<%= fromLanguage %>" style="color: inherit;"><%= verbString0 %></a>            
           </span>
           <% if (hasDescription) { %><span class="description"><%= description %></span><% } %>
-          <span class="type">verb</span>
+          <%--span class="type">verb</span--%>
         </li>
         <%
                 }

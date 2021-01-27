@@ -1120,6 +1120,7 @@ div.verb-conjugation div.verb-tense-header
   padding: 8px;
   padding-left: 10px;
   font-size: 1.22em;
+  text-transform: capitalize;
 }
 
 div.verb-conjugation div.verb-tense-header > div
