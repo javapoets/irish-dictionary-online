@@ -25,6 +25,7 @@
         </span>
         <span class="type">
           <%= resourceBundles.getString(ENGLISH_PRONOUN_ME)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
           <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
