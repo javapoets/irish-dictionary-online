@@ -1,10 +1,17 @@
 <%--
 *
 {
+  /*
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  */
   border: black 1px solid;
+}
+
+ol
+{
+  border: red 1px solid;
 }
 --%>
 
@@ -552,9 +559,9 @@ div.definition
   color: #6B6D6B;
   color: var(--darktext);
   border: red 2px solid;
+  font-size: 1.0em;
   */
   font-family: Arial;
-  font-size: 1.0em;
 }
 
 <%--
@@ -628,6 +635,7 @@ div.definition ol div.word-line
   color: var(--darktext);
 }
 
+<%--
 /*
 div.definition ol
 {
@@ -638,10 +646,10 @@ div.definition > ol
 */
 div.definition > ol
 {
-  padding-bottom: 0px;
   margin-bottom: 0px;
   margin-top: 10px;
 }
+--%>
 
 div.definition > ol ol
 {
@@ -663,19 +671,22 @@ div.definition > ol > li
   color: #999;
   /*
   font-size: 0.77em;
-  font-size: 0.9em;
-  */
   font-size: 1.0em;
+  font-size: 0.9em;
+  font-size: 1.0em;
+  */
   margin-top: 10px;
   margin-bottom: 10px;
+  list-style-type: none;
 }
 
 <%--
-div.definition > ol li:before
+--%>
+div.definition ol ol li:before
 {
   font-size: 0.77em;
+  border: black 1px solid;
 }
---%>
 
 <%--
 div.definition ol div.word-line .numbering
@@ -688,18 +699,28 @@ div.definition ol li span
   color:#6B6D6B;
   color: var(--darktext);
   color:red;
+  font-size: 1.5em;
   */
   color: #333;
-  font-size: 1.5em;
 }
 
 div.definition ol div.word-line .word
 {
   /*
-  border: black 2px solid;
   */
-  font-size: 1.5em;
+  font-size: 1.23em;
+  border: red 1px solid;
 }
+
+div.definition ol ol li .word
+{
+  border: black 2px solid;
+  /*
+  font-size: 1.0em;
+  */
+  font-size: 1.23em;
+}
+
 
 div.definition div.word-header div.word-line .type
 {
@@ -806,10 +827,35 @@ div.definition div:first-child a:hover
   text-decoration:underline;
 }
 
-div.definition span.definition
+div.definition > ol > li > span.definition
 {
+<%--
   line-height: 25px;
   font-size: 19px;
+  line-height: 25px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 0.9em;
+--%>
+  line-height: 25px;
+  padding-left: 5px;
+}
+
+div.definition > ol ol > li
+{
+  border: green 1px solid;
+  line-height: 25px;
+  font-size: 0.8em;
+}
+
+<%--
+  font-size: 0.9em;
+--%>
+div.definition > ol ol > li span.definition
+{
+  border: red 1px solid;
+  font-size: 1.33em;
+  vertical-align: bottom;
 }
 
 div.definition span.definition a {
@@ -939,10 +985,10 @@ div.usage li span.usage
 {
   /*
   border-bottom: blue 1px solid;
+  font-size: 19px;
   */
   padding-left: 5px;
   line-height: 25px;
-  font-size: 19px;
 }
 
 div.usage li > div .usage-label
@@ -978,11 +1024,11 @@ div.usage li span.translated
   font-style: italic;
   /*
   border-bottom: blue 1px solid;
+  font-size: 19px;
+  line-height: 25px;
   */
   width: 100%;
   padding-left: 5px;
-  line-height: 25px;
-  font-size: 19px;
 }
 
 div.usage li span.translated a {
@@ -1039,13 +1085,16 @@ ul li
 <%--
   Verb
 --%>
+
+<%--
 div.verb-conjugation div.table
 {
-  padding-bottom: 25px;
   /*
+  padding-bottom: 25px;
   */
   font-size: 19px;
 }
+--%>
 
 div.verb-conjugation div.verb-tense-header
 {
@@ -1157,7 +1206,9 @@ div.verb-conjugation div.verb-tense-header > div
 .verbs-container > div
 {
   text-align: left;
+  /*
   font-size: 19px;
+  */
   white-space: nowrap;
   line-height: 22px;
 }

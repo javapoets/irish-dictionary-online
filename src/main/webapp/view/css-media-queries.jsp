@@ -100,6 +100,16 @@
   }
   */
 
+  div.input
+  {
+    background-color: red;
+    border: #2C5A26 2px solid;
+    border-radius: 25px;
+    padding: 0px;
+    margin: 0px;
+    padding: 4px;
+  }
+
   /*
   .search-block
   {
@@ -171,6 +181,19 @@
     padding-left: 10px;
     font-size: 1.1em;
   }
+
+  div.input
+  {
+    /*
+    background-color: green;
+    */
+    border: #2C5A26 1px solid;
+    border-radius: 25px;
+    padding: 0px;
+    margin: 0px;
+    padding: 3px;
+  }
+
 }
 
 
