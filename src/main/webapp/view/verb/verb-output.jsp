@@ -1,29 +1,8 @@
-<%--
-<div class="usage description definition verb-conjugation">
---%>
 <div class="definition verb-conjugation">
-  <%--
-  <div class="word-header">
-    <span class="language-label"><%= resourceBundles.getString(fromLanguage + " verb") %></span>
-    <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-        <% if (verb != null) { %><%= verb.getVerb() %><% } %>
-    </span>
-    <%
-        if (word.getDescription() != null) {
-            stringBuilder.append(  "<span class=\"word-description\">").append(word.getDescription()).append("</span>");
-        }
-    %>
-  </div>
-  --%>
-
-  <%--
-      StringBuilder typeBuilder = new StringBuilder().append(verb.getType());
-  --%>
   <ol>
     <li>
       <div class="word-line">
         <span class="word"><%= verb.getVerb() %></span>
-        <%--&nbsp<span class="type"><%= typeBuilder.toString() %></span>--%>
         <span class="type">verb</span>
       </div>
       <ol>
@@ -66,9 +45,7 @@
                 for (int i = 0; i < verbList.size(); i++) {
         %>
         <li>
-          <span class="definition">
-          <a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getParticiple() %>"><%= ((Verb)verbList.get(i)).getParticiple() %></a>
-          </span>
+          <span class="definition"><a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getParticiple() %>"><%= ((Verb)verbList.get(i)).getParticiple() %></a></span>
         </li>
         <%
                 }
@@ -135,9 +112,7 @@
                 for (int i = 0; i < verbList.size(); i++) {
         %>
         <li>
-          <span class="definition">
-            ag <a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getVerbalNoun() %>"><%= ((Verb)verbList.get(i)).getVerbalNoun() %></a>
-          </span>
+          <span class="definition">ag <a href="<%= toLanguage %>/<%= fromLanguage %>/<%= ((Verb)verbList.get(i)).getVerbalNoun() %>"><%= ((Verb)verbList.get(i)).getVerbalNoun() %></a></span>
         </li>
         <%
                 }
@@ -147,23 +122,14 @@
     </li>
     <% } %>
   </ol>
-  <%--
-  <div class="verb-conjugation">
-    <div class="word-header">
-      <span class="language-label"><%= resourceBundles.getString("Verb Conjugation") %></span>
-    </div>
-  --%>    
-    <%
-        VerbConjugation verbConjugation;
-        String tenseId;
-        for (int x = 1; x <= 7; x++) {
-            tenseId = String.valueOf(x);
-            //log.debug("tenseId = " + tenseId);
-            verbConjugation = (VerbConjugation) verbConjugationMap.get(tenseId);
-    %>
-      <%@ include file="/view/verb/verbConjugation.jsp" %>
-    <% } %>
-  <%--
-  </div>
-  --%>    
+  <%
+      VerbConjugation verbConjugation;
+      String tenseId;
+      for (int x = 1; x <= 7; x++) {
+          tenseId = String.valueOf(x);
+          //log.debug("tenseId = " + tenseId);
+          verbConjugation = (VerbConjugation) verbConjugationMap.get(tenseId);
+  %>
+    <%@ include file="/view/verb/verbConjugation.jsp" %>
+  <% } %>
 </div>

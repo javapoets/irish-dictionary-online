@@ -147,6 +147,8 @@ public class VerbDatabaseManager {
             verbConjugation.setQuestion(resultSet.getString(11));
             verbConjugation.setTenseIrish(resultSet.getString(12));
             verbConjugation.setTenseEnglish(resultSet.getString(13));
+            verbConjugation.setWeAlternative(resultSet.getString(14));
+            verbConjugation.setTheyAlternative(resultSet.getString(15));
             //verbConjugationMap.put("verbIrishConditionalBean", verbConjugation);
         }
     }

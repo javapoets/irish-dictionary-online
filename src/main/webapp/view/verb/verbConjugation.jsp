@@ -1,7 +1,4 @@
 <%
-  StringBuilder stringBuilder = new StringBuilder();
-%>
-<%
     String ENGLISH_PRONOUN_ME = "me";
     String ENGLISH_PRONOUN_YOU = "you";
     String ENGLISH_PRONOUN_HE = "he";
@@ -16,21 +13,20 @@
   <div class="table">
     <div class="row">
       <div class="cell verb-tense-header">
-      <%
-          log.debug("verbConjugation.getTenseEnglish() = " + verbConjugation.getTenseEnglish());
-      %>  
         <div><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></div>
       </div>
     </div>
   </div>
-
   <ol style="list-style-type: none;">
     <li>
       <div class="word-line">
         <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
           <%= definitionOutput.linkizeWords(verbConjugation.getMe(), fromLanguage, toLanguage) %>
         </span>
-        <span class="type"><%= resourceBundles.getString(ENGLISH_PRONOUN_ME)  %> <%= resourceBundles.getString(toLanguage)  %></span>
+        <span class="type">
+          <%= resourceBundles.getString(ENGLISH_PRONOUN_ME)  %>
+          <%= resourceBundles.getString(fromLanguage)  %>
+        </span>
       </div>
       <ol>
       <%
@@ -40,8 +36,8 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             me = verbConjugationI.getMe();
+            log.debug("me = " + me);
             if (me != null) {
-            //definitionOutput.linkizeWords(stringBuilder.toString(), toLanguage, fromLanguage)
       %>            
         <li><span class="definition"><%= definitionOutput.linkizeWords(me, toLanguage, fromLanguage) %></span></li>
       <%  
@@ -52,12 +48,13 @@
     </li>
     <li>
       <div class="word-line">
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-          <%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %>
-        </span>
+        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %></span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_PRONOUN_YOU)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_PRONOUN_YOU)  %>
+          <%--= resourceBundles.getString(fromLanguage)  --%>
+          <%--= isEnglish ? resourceBundles.getString(IRISH) : resourceBundles.getString(ENGLISH) --%> 
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -68,6 +65,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             youSingular = verbConjugationI.getYouSingular();
+            log.debug("youSingular = " + youSingular);
             if (youSingular != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(youSingular, toLanguage, fromLanguage) %></span></li>
@@ -80,12 +78,14 @@
     </li>
     <li>
       <div class="word-line">
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-          <%= definitionOutput.linkizeWords(verbConjugation.getHe(), fromLanguage, toLanguage) %>
-        </span>
+        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getHe(), fromLanguage, toLanguage) %></span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_PRONOUN_HE)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_PRONOUN_HE)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%--= resourceBundles.getString(toLanguage)  %>
+          <%= resourceBundles.getString(fromLanguage)  --%>
+          <%= resourceBundles.getString(fromLanguage)  %>
+          <%--= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) --%>  
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -96,6 +96,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             he = verbConjugationI.getHe();
+            log.debug("he = " + he);
             if (he != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(he, toLanguage, fromLanguage) %></span></li>
@@ -107,12 +108,11 @@
     </li>
     <li>
       <div class="word-line">
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-          <%= definitionOutput.linkizeWords(verbConjugation.getShe(), fromLanguage, toLanguage) %>
-        </span>
+        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getShe(), fromLanguage, toLanguage) %></span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_PRONOUN_SHE)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_PRONOUN_SHE)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -123,6 +123,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             she = verbConjugationI.getShe();
+            log.debug("she = " + she);
             if (she != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(she, toLanguage, fromLanguage) %></span></li>
@@ -134,12 +135,11 @@
     </li>
     <li>
       <div class="word-line">
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-          <%= definitionOutput.linkizeWords(verbConjugation.getWe(), fromLanguage, toLanguage) %>
-        </span>
+        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getWe(), fromLanguage, toLanguage) %></span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_PRONOUN_WE)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_PRONOUN_WE)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -150,6 +150,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             we = verbConjugationI.getWe();
+            log.debug("we = " + we);
             if (we != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(we, toLanguage, fromLanguage) %></span></li>
@@ -161,12 +162,11 @@
     </li>
     <li>
       <div class="word-line">
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-          <%= definitionOutput.linkizeWords(verbConjugation.getYouPlural(), fromLanguage, toLanguage) %>
-        </span>
+        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getYouPlural(), fromLanguage, toLanguage) %></span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_PRONOUN_YOU_PLURAL)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_PRONOUN_YOU_PLURAL)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -177,6 +177,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             youPlural = verbConjugationI.getYouPlural();
+            log.debug("youPlural = " + youPlural);
             if (youPlural != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(youPlural, toLanguage, fromLanguage) %></span></li>
@@ -188,12 +189,20 @@
     </li>
     <li>
       <div class="word-line">
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
+        <%--
+        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getThey(), fromLanguage, toLanguage) %></span>
+        --%>
+        <span class="word">
+          <%
+            log.debug("verbConjugation = " + verbConjugation);
+            log.debug("verbConjugation.getThey() = " + verbConjugation.getThey());
+          %>
           <%= definitionOutput.linkizeWords(verbConjugation.getThey(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_PRONOUN_THEY)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_PRONOUN_THEY)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -204,6 +213,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             they = verbConjugationI.getThey();
+            log.debug("they = " + they);
             if (they != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(they, toLanguage, fromLanguage) %></span></li>
@@ -215,12 +225,11 @@
     </li>
     <li>
       <div class="word-line">
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-          <%= definitionOutput.linkizeWords(verbConjugation.getAutonomous(), fromLanguage, toLanguage) %>
-        </span>
+        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= definitionOutput.linkizeWords(verbConjugation.getAutonomous(), fromLanguage, toLanguage) %></span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_AUTONOMOUS)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_AUTONOMOUS)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -231,6 +240,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             autonomous = verbConjugationI.getAutonomous();
+            log.debug("autonomous = " + autonomous);
             if (
               autonomous != null
               && !autonomous.equals("")
@@ -250,8 +260,9 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getNegative(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_NEGATIVE)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_NEGATIVE)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
@@ -284,8 +295,9 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getQuestion(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
-          <%= resourceBundles.getString(ENGLISH_QUESTION)  %> <%= resourceBundles.getString(toLanguage)  %> <%= resourceBundles.getString(fromLanguage)  %>
-          <%= isEnglish ? resourceBundles.getString(IRISH): resourceBundles.getString(ENGLISH) %>            
+          <%= resourceBundles.getString(ENGLISH_QUESTION)  %>
+          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+          <%= resourceBundles.getString(fromLanguage)  %>
         </span>
       </div>
       <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>

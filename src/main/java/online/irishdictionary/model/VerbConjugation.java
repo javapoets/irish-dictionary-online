@@ -14,8 +14,10 @@ public class VerbConjugation {
     private String he = null;
     private String she = null;
     private String we = null;
+    private String weAlternative = null;
     private String youPlural = null;
     private String they = null;
+    private String theyAlternative = null;
     private String autonomous = null;
     private String negative = null;
     private String question = null;
@@ -109,12 +111,18 @@ public class VerbConjugation {
         return we;
     }
 
+    public String getWeAlternative() {
+        return weAlternative;
+    }
+
     public String getYouPlural() {
         return youPlural;
     }
 
     public String getThey() {
-        return they;
+        //return they;
+        if (they != null) return they;
+        return theyAlternative;
     }
 
     public String getAutonomous() {
@@ -173,12 +181,20 @@ public class VerbConjugation {
         this.we = we;
     }
 
+    public void setWeAlternative(String weAlternative) {
+        this.weAlternative = weAlternative;
+    }
+
     public void setYouPlural(String youPlural) {
         this.youPlural = youPlural;
     }
 
     public void setThey(String they) {
         this.they = they;
+    }
+
+    public void setTheyAlternative(String theyAlternative) {
+        this.theyAlternative = theyAlternative;
     }
 
     public void setAutonomous(String autonomous) {
