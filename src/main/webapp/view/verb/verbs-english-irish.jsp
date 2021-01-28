@@ -10,8 +10,10 @@
     String contextUrl = (String)application.getAttribute("contextUrl");
     String imagesUrl = contextUrl + "view/images/";
     log.debug("contextUrl = " + contextUrl);
-    List<Verb> verbList = (List<Verb>)request.getAttribute("verbList");
-    log.debug("verbList.size() " + verbList.size());
+    List<Verb> englishVerbList = (List<Verb>)request.getAttribute("englishVerbList");
+    log.debug("englishVerbList.size() " + englishVerbList.size());
+    List<Verb> irishVerbList = (List<Verb>)request.getAttribute("irishVerbList");
+    log.debug("irishVerbList.size() " + irishVerbList.size());
     String language = (String)request.getAttribute("language");
     String toLanguage = (String)request.getAttribute("toLanguage");
     String wordEnglish = null;
@@ -34,17 +36,15 @@
         <%@ include file="/view/row-header-verbs.jsp" %>
         <div class="row">
           <div class="cell">
-            <div style="padding-bottom: 40px;">
-              <div class="verbs-header">
-                <%--span class="language-label"><span class="capitalize"><%= language %></span> verbs</span--%>
-                <span class="language-label">
-                  <%= resourceBundles.getString(language +" verbs") %>
-                </span>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; ">
+              <div style="flex-grow: 1;">
+                <%@ include file="/view/verb/verbs-output-english-irish.jsp" %>
               </div>
-              <% if(verbList != null) { %>
-                <%@ include file="/view/verb/verbs-output.jsp" %>
-              <% } %>
+              <div style="flex-grow: 1;">
+                <%@ include file="/view/verb/verbs-output-irish.jsp" %>
+              </div>
             </div>
+
           </div>
         </div>
         <%@ include file="/view/row-footer.jsp" %>

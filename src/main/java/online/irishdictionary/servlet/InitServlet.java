@@ -35,6 +35,8 @@ public class InitServlet extends HttpServlet {
     protected final String ENGLISH = "english";
     protected final String LANG_ENGLISH = "en";
     protected final String LANG_IRISH = "ga";
+    protected final int IRISH_LANGUAGE_ID = 2;
+    protected final int ENGLISH_LANGUAGE_ID = 1;
     public ServletContext servletContext;
     public Properties properties = null;  // the init properties
     private ConnectionPool connectionPool;  // a database connection pool

@@ -166,6 +166,9 @@
         <% if (verbConjugation.getWe() != null) { %>
         <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
           <%= definitionOutput.linkizeWords(verbConjugation.getWe(), fromLanguage, toLanguage) %>
+          <% if (verbConjugation.getWeAlternative() != null) { %>
+            <small> or </small><span class="definition"><%= definitionOutput.linkizeWords(verbConjugation.getWeAlternative(), fromLanguage, toLanguage) %></span>
+          <% } %>
         </span>
         <span class="type">
           <%= resourceBundles.getString(ENGLISH_PRONOUN_WE)  %>
@@ -241,6 +244,9 @@
         <% if (verbConjugation.getThey() != null) { %>
         <span class="word">
           <%= definitionOutput.linkizeWords(verbConjugation.getThey(), fromLanguage, toLanguage) %>
+          <% if (verbConjugation.getTheyAlternative() != null) { %>
+            <small> or </small><span class="definition"><%= definitionOutput.linkizeWords(verbConjugation.getTheyAlternative(), fromLanguage, toLanguage) %></span>
+          <% } %>
         </span>
         <span class="type">
           <%= resourceBundles.getString(ENGLISH_PRONOUN_THEY)  %>

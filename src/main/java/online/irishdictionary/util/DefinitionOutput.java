@@ -905,12 +905,16 @@ public class DefinitionOutput {
         if ((usageList != null) && (usageList.size() > 0)) {
             StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
             stringBuilder.append("<div class=\"table usage-container\" style=\"padding: 10px 0px;\">");
+
+            /*
             stringBuilder.append("<div class=\"row\">");
             stringBuilder.append("<div class=\"cell usage-label underline\">&nbsp;</div>");
             stringBuilder.append("<div class=\"cell verb-tense-header\">");
             stringBuilder.append(resourceBundles.getString("Example Usage"));
             stringBuilder.append("</div>");  // cell
             stringBuilder.append("</div>");  //  row
+            */
+            
             //List sortedList = (List) usageList.getSortedList("usageLength");
             List sortedList = usageList;
             int start = word.getStartUsageIndex();

@@ -102,7 +102,9 @@
 
   div.input
   {
+    /*
     background-color: red;
+    */
     border: #2C5A26 2px solid;
     border-radius: 25px;
     padding: 0px;

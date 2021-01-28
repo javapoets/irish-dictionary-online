@@ -34,7 +34,27 @@ public class VerbsServlet extends online.irishdictionary.servlet.InitServlet {
         if(languageId == null) languageId = "irish";
         */
         String pathInfo = request.getPathInfo();
-        log.debug("pathInfo = '"+pathInfo+"'");
+        log.debug("pathInfo =  " + pathInfo);
+        if (pathInfo == null) {
+
+            try {
+                List<Verb> englishVerbList = new ArrayList<Verb>();
+                VerbDatabaseManager.selectAllVerbs(englishVerbList, ENGLISH_LANGUAGE_ID, getConnectionPool());
+                log.debug("englishVerbList.size() " + englishVerbList.size());
+                request.setAttribute("englishVerbList", englishVerbList);
+
+                List<Verb> irishVerbList = new ArrayList<Verb>();
+                VerbDatabaseManager.selectAllVerbs(irishVerbList, IRISH_LANGUAGE_ID, getConnectionPool());
+                log.debug("irishVerbList.size() " + irishVerbList.size());
+                request.setAttribute("irishVerbList", irishVerbList);
+
+                includeUtf8(request, response, "/view/verb/verbs-english-irish.jsp");
+                return;
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+            }
+        }
+
         String[] pathInfoSplit = pathInfo.split(FORWARDSLASH);
         log.debug("pathInfoSplit.length = " + pathInfoSplit.length);
         for (String pathElement: pathInfoSplit) log.debug("pathElement = " + pathElement);
