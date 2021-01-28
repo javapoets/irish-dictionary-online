@@ -681,9 +681,14 @@ div.definition > ol > li
   font-size: 1.0em;
   font-size: 0.9em;
   font-size: 1.0em;
+  list-style-type: none;
   */
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+div.definition.verb-conjugation > ol > li
+{
   list-style-type: none;
 }
 
@@ -1128,7 +1133,10 @@ div.verb-conjugation div.verb-tense-header > div
   display: inline-block;
 }
 
+<%--
 .verb-conjugation .usage-label
+--%>
+.usage-container .usage-label
 {
   color: #999;
   font-size: 12px;
@@ -1146,7 +1154,10 @@ div.verb-conjugation div.verb-tense-header > div
   text-transform: uppercase;
 }
 
+<%--
 .verb-conjugation .usage
+--%>
+.usage-container .usage
 {
   line-height: 25px;
   /*
@@ -1156,13 +1167,20 @@ div.verb-conjugation div.verb-tense-header > div
   text-align: left;
 }
 
+<%--
 .verb-conjugation .usage-label.underline
 ,.verb-conjugation .translated.underline
+--%>
+.usage-container .usage-label.underline
+,.usage-container .translated.underline
 {
   border-bottom: #ccc 1px solid;
 }
 
+<%--
 .verb-conjugation .translated
+--%>
+.usage-container .translated
 {
   color: #2C5A26;
   font-style: italic;
@@ -1177,7 +1195,10 @@ div.verb-conjugation div.verb-tense-header > div
 .verb-conjugation .row:nth-child(2) .cell
   background: red;
 */
+<%--
 .verb-conjugation .row:nth-child(odd) .cell
+--%>
+.usage-container .row:nth-child(odd) .cell
 {
   padding-bottom: 7px;
 }
@@ -1189,7 +1210,10 @@ div.verb-conjugation div.verb-tense-header > div
 }
 */
 
+<%--
 .verb-conjugation .row:nth-child(even) .cell
+--%>
+.usage-container .row:nth-child(even) .cell
 {
   padding-top: 7px;
 }

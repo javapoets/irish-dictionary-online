@@ -40,6 +40,7 @@ public class DefinitionOutput {
             put("conj", "conjunction");
             put("pron", "pronoun");
             put("prep", "preposition");
+            put("npl", "plural noun");
         }
     };
 
@@ -52,6 +53,7 @@ public class DefinitionOutput {
             put("m4", "masculine noun, 4th declension");
             put("m5", "masculine noun, 5th declension");
             put("pl", "plural noun");
+            put("npl", "plural noun");
             put("mpl", "masculine plural noun");
             put("mpl1", "masculine plural noun, 1st declension");
             put("mpl2", "masculine plural noun, 2nd declension");
@@ -101,7 +103,8 @@ public class DefinitionOutput {
         StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
         int definitionCount = 0;
 
-        stringBuilder.append("<div class=\"definition verb-conjugation\">");
+        //stringBuilder.append("<div class=\"definition verb-conjugation\">");
+        stringBuilder.append("<div class=\"definition\">");
 
         if (definitionMap != null && definitionMap.size() != 0) {
             log.debug("definitionMap.size() = " + definitionMap.size());
@@ -901,7 +904,7 @@ public class DefinitionOutput {
         List usageList = word.getUsageList();
         if ((usageList != null) && (usageList.size() > 0)) {
             StringBuilder stringBuilder = new StringBuilder();  // to hold the message body
-            stringBuilder.append("<div class=\"table\" style=\"padding: 10px 0px;\">");
+            stringBuilder.append("<div class=\"table usage-container\" style=\"padding: 10px 0px;\">");
             stringBuilder.append("<div class=\"row\">");
             stringBuilder.append("<div class=\"cell usage-label underline\">&nbsp;</div>");
             stringBuilder.append("<div class=\"cell verb-tense-header\">");

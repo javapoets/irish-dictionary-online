@@ -88,65 +88,68 @@ public class VerbConjugation {
     }    
 
     public String getVerb() {
-        return verb;
+        return this.verb;
     }
 
     public String getMe() {
-        return me;
+        return this.me;
     }
 
     public String getYouSingular() {
-        return youSingular;
+        return this.youSingular;
     }
 
     public String getHe() {
-        return he;
+        return this.he;
     }
 
     public String getShe() {
-        return she;
+        return this.she;
     }
 
     public String getWe() {
-        return we;
+        return this.we;
     }
 
     public String getWeAlternative() {
-        return weAlternative;
+        return this.weAlternative;
     }
 
     public String getYouPlural() {
-        return youPlural;
+        return this.youPlural;
     }
 
     public String getThey() {
         //return they;
         if (they != null) return they;
-        return theyAlternative;
+        return this.theyAlternative;
     }
 
     public String getAutonomous() {
-        return (autonomous != null) ? autonomous : "";
+        //return (autonomous != null) ? autonomous : "";
+        return this.autonomous;
     }
 
     public String getNegative() {
-        return (negative != null) ? negative : "";
+        //return (negative != null) ? negative : "";
+        return this.negative;
     }
 
     public String getQuestion() {
-        return (question != null) ? question : "";
+        //return (question != null) ? question : "";
+        return this.question;
     }
 
     public int getTenseId() {
-        return tenseId;
+        return this.tenseId;
     }
 
     public String getTenseIrish() {
-        return tenseIrish;
+        return this.tenseIrish;
     }
 
     public String getTenseEnglish() {
-        return tenseEnglish;
+        return this.tenseEnglish;
     }
 
     public void setVerbConjugationId(int verbConjugationId) {

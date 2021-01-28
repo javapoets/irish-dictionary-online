@@ -24,12 +24,14 @@ public class ResourceBundles {
     public String getString(String x) {
         //log.trace("getString('" + x +"')");
         String s = null;
-        try {
-            s = this.resourceBundle.getString(x);
-            //if(s != null) return s;
-            return s;
-        } catch(java.util.MissingResourceException e) {
-            log.warn("getString('" + x + "'): Missing!");
+        if (x != null) {
+            try {
+                s = this.resourceBundle.getString(x);
+                //if(s != null) return s;
+                return s;
+            } catch(java.util.MissingResourceException e) {
+                log.warn("getString('" + x + "'): Missing!");
+            }
         }
         return x;
     }
