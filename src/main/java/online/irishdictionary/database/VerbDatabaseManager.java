@@ -241,6 +241,43 @@ public class VerbDatabaseManager {
     //    selectAllVerbs(verbList, languageCode, (ConnectionPool) connectionPoolObject);
     //}
 
+    public static int selectVerbCount(int languageId, Object connectionPoolObject) throws SQLException, Exception {
+        log.trace("selectVerbCount(" + languageId + ", " + connectionPoolObject + ")");
+        return selectVerbCount(languageId, (ConnectionPool) connectionPoolObject);
+    }
+
+    public static int selectVerbCount(int languageId, ConnectionPool connectionPool) throws SQLException, Exception {
+        log.trace("selectVerbCount(" + languageId + ", " + connectionPool + ")");
+        return selectVerbCount(languageId, new ConnectionManager(connectionPool));
+    }
+
+    public static int selectVerbCount(int languageId, ConnectionManager connectionManager) throws SQLException, Exception {
+        String sql = new StringBuilder()
+            .append("SELECT count(verb)")
+            .append(" FROM verb")
+            .append(" WHERE language_id = ?")
+            .toString();
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connectionManager.prepareStatement(sql);
+            preparedStatement.setInt(1, languageId);
+            log.debug("preparedStatement.setInt(1, "+languageId+");");
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            //log.logMessage(e, statementName, LogUtil.SEVERE);
+        } finally {
+            // Free resources allocated.
+            connectionManager.commit();
+        }
+        return -1;
+    }
+
+
     public static void selectAllVerbs(List<Verb> verbList, String languageId, Object connectionPoolObject) throws SQLException, Exception {
         log.trace("selectAllVerbs(verbList, " + languageId + ", " + connectionPoolObject + ")");
         selectAllVerbs(verbList, languageId, (ConnectionPool) connectionPoolObject);

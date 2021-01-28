@@ -16,6 +16,7 @@ import org.apache.commons.lang.time.StopWatch;
 import javapoets.dbcp.ConnectionPool;
 import javapoets.dbcp.ConnectionManager;
 import online.irishdictionary.util.PropertiesUtil;
+import online.irishdictionary.database.VerbDatabaseManager;
 
 public class InitServlet extends HttpServlet {
 
@@ -209,9 +210,20 @@ public class InitServlet extends HttpServlet {
             */
 
             try {
+
                 this.connectionPool = new ConnectionPool(this.properties);
                 log.debug("this.connectionPool = " + this.connectionPool);
                 servletContext.setAttribute("connectionPool", this.connectionPool);
+
+                try {
+                    int irishVerbsCount = VerbDatabaseManager.selectVerbCount(2, this.connectionPool);
+                    servletContext.setAttribute("irishVerbsCount", irishVerbsCount);
+                    int englishVerbsCount = VerbDatabaseManager.selectVerbCount(1, this.connectionPool);
+                    servletContext.setAttribute("englishVerbsCount", englishVerbsCount);
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+
             } catch (java.io.IOException ioException) {
                 StringWriter stringWriter = new StringWriter();
                 PrintWriter printWriter = new PrintWriter(stringWriter);

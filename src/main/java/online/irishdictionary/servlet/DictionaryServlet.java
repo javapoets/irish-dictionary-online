@@ -14,6 +14,7 @@ import online.irishdictionary.servlet.InitServlet;
 @WebServlet(name = "DictionaryServlet", asyncSupported = false, urlPatterns = {
       "dictionary"
     , "dictionary/*"
+    , "null/*"
 })
 public class DictionaryServlet extends InitServlet {
 

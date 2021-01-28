@@ -24,7 +24,7 @@
           <%@ include file="/view/entryFormVariables.jsp" %>
           <%@ include file="/view/top-form-dictionary-only.jsp" %>
         </div>
-        <%@ include file="/view/word-count-statement.jsp" %>
+        <%@ include file="/view/dictionary-statement.jsp" %>
       </div>
       <div class="row">
         <div class="cell">
