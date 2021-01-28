@@ -61,6 +61,16 @@ public class DictionaryDatabaseManager {
         }
     }
 
+    public static void selectWord(Word word, int languageId, Object connectionPoolObject) throws SQLException, Exception {
+        log.debug("selectWord(" + word + ", languageId, " + connectionPoolObject + ")");
+        selectWord(word, languageId, (ConnectionPool) connectionPoolObject);
+    }
+
+    public static void selectWord(Word word, int languageId, ConnectionPool connectionPool) throws SQLException, Exception {
+        log.debug("selectWord(" + word + ", languageId, " + connectionPool + ")");
+        selectWord(word, languageId, new ConnectionManager(connectionPool));
+    }
+
     public static void selectWord(Word word, int languageId, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectWord('" + word + "', " + languageId + ", connectionManager)");
         String sql = new StringBuilder()
