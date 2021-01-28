@@ -16,13 +16,15 @@
     Map verbConjugationMap = null;
     String verbString = null;
     List<Verb> verbList = null;
-    int count = 0;
+    int verbListSize = 0;
     if (verb != null) {
         verbConjugationMap = verb.getVerbConjugationMap();
         log.debug("verbConjugationMap.size() = " + verbConjugationMap.size());
         verbString = (String)request.getAttribute("verbString");
         verbList = (List<Verb>) verb.getVerbList();
-        if(verbList != null) count = verbList.size();
+        if(verbList != null) {
+            verbListSize = verbList.size();
+        }
     }
     String EMPTY = "";
     String SPACE = " ";

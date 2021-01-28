@@ -5,13 +5,14 @@
         <span class="word"><%= verb.getVerb() %></span>
         <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("verb") %></span>
       </div>
-      <ol>
+      <ol
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>  
+      >
         <%
             Verb verb0 = null;
             String verbString0 = null;
             String description;
             if (verbList != null) {
-                int verbListSize = verbList.size();
                 for (int i = 0; i < verbListSize; i++) {
                     verb0 = (Verb)verbList.get(i);
                     verbString0 = verb0.getVerb();
@@ -39,7 +40,9 @@
         <span class="word"><a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalAdjective() %>"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= verb.getVerbalAdjective() %></a></span>
         <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Adjective") %></span>
       </div>
-      <ol>
+      <ol
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
         <%
             if (verbList != null) {
                 for (int i = 0; i < verbList.size(); i++) {
@@ -60,7 +63,9 @@
         <span class="word">ag <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalNoun() %>"><%= verb.getVerbalNoun() %></a></span>
         <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Noun") %></span>
       </div>
-      <ol>
+      <ol
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
         <%
             if (verbList != null) {
                 for (int i = 0; i < verbList.size(); i++) {
@@ -83,7 +88,9 @@
         <span class="word"><a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getParticiple() %>"><%= verb.getParticiple() %></a></span>
         <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Adjective") %></span>
       </div>
-      <ol>
+      <ol
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
         <%
             if (verbList != null) {
                 for (int i = 0; i < verbList.size(); i++) {
@@ -106,7 +113,9 @@
         <span class="word"><a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getGerund() %>"><%= verb.getGerund() %></a></span>
         <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Noun") %></span>
       </div>
-      <ol>
+      <ol
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
         <%
             if (verbList != null) {
                 for (int i = 0; i < verbList.size(); i++) {

@@ -125,6 +125,10 @@ public class VerbConjugation {
         return this.theyAlternative;
     }
 
+   public String getTheyAlternative() {
+        return this.theyAlternative;
+    }
+
     public String getAutonomous() {
         //return (autonomous != null) ? autonomous : "";
         return this.autonomous;

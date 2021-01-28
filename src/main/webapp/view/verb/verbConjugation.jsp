@@ -25,21 +25,23 @@
     <li>
       <div class="word-line">
         <% if (verbConjugation.getMe() != null) { %>
-        <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
-          <%= definitionOutput.linkizeWords(verbConjugation.getMe(), fromLanguage, toLanguage) %>
-        </span>
-        <span class="type">
-          <%= resourceBundles.getString(ENGLISH_PRONOUN_ME)  %>
-          <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
-          <%= resourceBundles.getString(fromLanguage)  %>
-        </span>
+          <span class="word"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>>
+            <%= definitionOutput.linkizeWords(verbConjugation.getMe(), fromLanguage, toLanguage) %>
+          </span>
+          <span class="type">
+            <%= resourceBundles.getString(ENGLISH_PRONOUN_ME)  %>
+            <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
+            <%= resourceBundles.getString(fromLanguage)  %>
+          </span>
         <% } %>
       </div>
-      <ol>
+      <ol
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String me = null;
         for (int i = 0; i < verbList.size(); i++) {
-            Verb verbI = (Verb)verbList.get(i);
+            Verb verbI = (Verb) verbList.get(i);
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             me = verbConjugationI.getMe();
@@ -61,14 +63,15 @@
         </span>
         <span class="type">
           <%= resourceBundles.getString(ENGLISH_PRONOUN_YOU)  %>
-          <%--= resourceBundles.getString(fromLanguage)  --%>
-          <%--= isEnglish ? resourceBundles.getString(IRISH) : resourceBundles.getString(ENGLISH) --%> 
           <%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %>
           <%= resourceBundles.getString(fromLanguage)  %>
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String youSingular = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -103,7 +106,10 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String he = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -134,7 +140,10 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String she = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -165,18 +174,28 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String we = null;
+        String weAlternative = null;
         for (int i = 0; i < verbList.size(); i++) {
             Verb verbI = (Verb)verbList.get(i);
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             we = verbConjugationI.getWe();
-            log.debug("we = " + we);
+            weAlternative = verbConjugationI.getWeAlternative();
+            //log.debug("we = " + we);
             if (we != null) {
       %>
-        <li><span class="definition"><%= definitionOutput.linkizeWords(we, toLanguage, fromLanguage) %></span></li>
+        <li>
+          <span class="definition"><%= definitionOutput.linkizeWords(we, toLanguage, fromLanguage) %></span>
+          <% if (weAlternative != null) { %>
+            <small> or </small><span class="definition"><%= definitionOutput.linkizeWords(weAlternative, toLanguage, fromLanguage) %></span>
+          <% } %>
+        </li>
       <%
             }
         }
@@ -196,7 +215,10 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String youPlural = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -227,18 +249,31 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String they = null;
+        String theyAlternative = null;
         for (int i = 0; i < verbList.size(); i++) {
             Verb verbI = (Verb)verbList.get(i);
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             they = verbConjugationI.getThey();
-            log.debug("they = " + they);
+            theyAlternative = verbConjugationI.getTheyAlternative();
+            //log.debug("they = " + they);
+            //log.debug("theyAlternative = " + theyAlternative);
             if (they != null) {
       %>
-        <li><span class="definition"><%= definitionOutput.linkizeWords(they, toLanguage, fromLanguage) %></span></li>
+        <li>
+          <span class="definition"><%= definitionOutput.linkizeWords(they, toLanguage, fromLanguage) %></span>
+          <%-- if (theyAlternative != null) { --%>
+          <% if (theyAlternative != null &&!theyAlternative.equals(they)) { %>
+            <small> or </small>
+            <span class="definition"> <%= definitionOutput.linkizeWords(theyAlternative, toLanguage, fromLanguage) %></span>
+          <% } %>
+        </li>
       <%
             }
         }
@@ -258,7 +293,10 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String autonomous = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -293,7 +331,10 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String negative = null;
         for (int i = 0; i < verbList.size(); i++) {
@@ -330,7 +371,10 @@
         </span>
         <% } %>
       </div>
-      <ol<% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>>
+      <ol
+        <% if (!lang.equals(toLang)) { %> lang="<%= toLang %>"<% } %>
+        <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
+      >
       <%
         String question = null;
         for (int i = 0; i < verbList.size(); i++) {

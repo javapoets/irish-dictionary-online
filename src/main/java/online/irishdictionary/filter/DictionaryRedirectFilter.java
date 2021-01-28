@@ -97,20 +97,35 @@ public class DictionaryRedirectFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest)servletRequest;
 
-        java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
+        String wordParameter = request.getParameter("word");
+        if (wordParameter == null) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
+        /* Debugging
         log.debug("Parameters:");
+        java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
             String parameterName = (String)parameterNames.nextElement();
             log.debug(parameterName+" = "+request.getParameter(parameterName));
         }
+        // A bypass of this filter for the Dictionary link.
+        if (parameterNames == null || Collections.list(parameterNames).size() = 0) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+        */
 
         //String wordParameter = request.getParameter("word");
+        /*
         String wordParameter = null;
         try {
             wordParameter = request.getParameter("word");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
         String language = request.getParameter("language");
         String languageIdParam = request.getParameter("languageId");
         String fromLanguage = request.getParameter("fromLanguage");
