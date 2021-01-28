@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
     //urlPatterns = { "/dictionary/*" }
 
 @WebFilter(
-    urlPatterns = { "/dictionary" }
+      urlPatterns = { "/dictionary" }
     , dispatcherTypes = { DispatcherType.REQUEST }
     , asyncSupported = false
 )
@@ -100,6 +100,7 @@ public class DictionaryRedirectFilter implements Filter {
         String wordParameter = request.getParameter("word");
         if (wordParameter == null) {
             filterChain.doFilter(servletRequest, servletResponse);
+            log.info("Bypassing...");
             return;
         }
 
