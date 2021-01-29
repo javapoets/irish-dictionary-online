@@ -37,10 +37,10 @@
         <div class="row">
           <div class="cell">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; ">
-              <div style="flex-grow: 1;">
+              <div style="flex-grow: 1;; padding-left :8px;">
                 <%@ include file="/view/verb/verbs-output-english-irish.jsp" %>
               </div>
-              <div style="flex-grow: 1;">
+              <div style="flex-grow: 1; border-left: #ccc 1px solid; padding-left :8px;">
                 <%@ include file="/view/verb/verbs-output-irish.jsp" %>
               </div>
             </div>

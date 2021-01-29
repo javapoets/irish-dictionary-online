@@ -29,7 +29,7 @@ ol
   --site-width: 1000px;
   --search-block-width: 400px;
   */
-  --site-width: 900px;
+  --site-width: 911px;
   --max-search-block-width: 550px;
 }
 

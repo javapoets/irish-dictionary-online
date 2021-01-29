@@ -99,8 +99,8 @@ public class DictionaryRedirectFilter implements Filter {
 
         String wordParameter = request.getParameter("word");
         if (wordParameter == null) {
-            filterChain.doFilter(servletRequest, servletResponse);
             log.info("Bypassing...");
+            filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
 

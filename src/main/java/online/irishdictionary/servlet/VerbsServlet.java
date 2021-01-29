@@ -36,7 +36,6 @@ public class VerbsServlet extends online.irishdictionary.servlet.InitServlet {
         String pathInfo = request.getPathInfo();
         log.debug("pathInfo =  " + pathInfo);
         if (pathInfo == null) {
-
             try {
                 List<Verb> englishVerbList = new ArrayList<Verb>();
                 VerbDatabaseManager.selectAllVerbs(englishVerbList, ENGLISH_LANGUAGE_ID, getConnectionPool());

@@ -58,6 +58,7 @@ public class IrishServlet extends WordServlet {
         log.debug("toLanguage = " + toLanguage);
 
         super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+        //super.displayWord(request, response, wordParameter.toLowerCase(), fromLanguage, toLanguage);
 
         /*
         String letter;

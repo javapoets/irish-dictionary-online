@@ -31,6 +31,7 @@ public class DefinitionOutput {
         {
             put("n", "noun");
             put("v", "verb");
+            put("s", "substantive");
             put("vt", "transitive verb");
             put("vi", "intransitive verb");
             put("vt, vi", "transitive and intransitive verb");
@@ -41,6 +42,7 @@ public class DefinitionOutput {
             put("pron", "pronoun");
             put("prep", "preposition");
             put("npl", "plural noun");
+            put("excl", "exclamation");
         }
     };
 
@@ -914,7 +916,7 @@ public class DefinitionOutput {
             stringBuilder.append("</div>");  // cell
             stringBuilder.append("</div>");  //  row
             */
-            
+
             //List sortedList = (List) usageList.getSortedList("usageLength");
             List sortedList = usageList;
             int start = word.getStartUsageIndex();
