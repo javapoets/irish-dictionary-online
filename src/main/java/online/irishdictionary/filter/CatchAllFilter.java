@@ -20,13 +20,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-    //urlPatterns = { "/dictionary/*" }
-
+/*
 @WebFilter(
       urlPatterns = { "*", "/*" }
     , dispatcherTypes = { DispatcherType.REQUEST }
     , asyncSupported = false
 )
+*/
 public class CatchAllFilter implements Filter {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
