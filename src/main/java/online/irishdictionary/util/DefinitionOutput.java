@@ -41,6 +41,7 @@ public class DefinitionOutput {
             put("conj", "conjunction");
             put("pron", "pronoun");
             put("prep", "preposition");
+            put("pref", "prefix");
             put("npl", "plural noun");
             put("excl", "exclamation");
         }

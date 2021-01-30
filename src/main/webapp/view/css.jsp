@@ -1389,5 +1389,72 @@ nav a
   box-shadow:inset 0px -10px 20px 0px rgba(0,0,0,0.13),0 0 3px #999;
 }
 
+<%--
+.tag-language
+{
+  /*
+  background-color: green;
+  background-color: lightgreen;
+  color: #fff;
+  border: var(--darkgreen) 1px solid;
+  #B4CD8F
+  font-family: verdana;
+  font-size: .9em;
+  */
+  background-color: #B4CD8F;
+  color: var(--dark-green);
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 5px;
+  line-height: 20px;
+  font-weight: 600;
+}
+--%>
+
+div.definition ol li span.type .tag
+{
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 5px;
+  font-size: .9em;
+  /*
+  background-color: #B4CD8F;
+  background-color: rgb(240, 240, 240);
+  background-color: rgb(222, 222, 222);
+  font-weight: bold;
+  */
+  background-color: rgba(108, 108, 108, 0.33);
+}
+
+<%--
+div.definition ol li span .tag-pronoun
+{
+  /*
+  border: var(--dark-green) 1px solid;
+  */
+  background-color: #B4CD8F;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 5px;
+  font-weight: bold;
+}
+
+div.definition ol li span .tag-tense
+{
+  /*
+  border: var(--dark-green) 1px solid;
+  */
+  background-color: #B4CD8F;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 5px;
+  font-weight: 600;
+}
+
+div.definition ol li span .tag-language
+{
+  color: #fff;
+}
+--%>
 
 <%@ include file="/view/css-media-queries.jsp" %>

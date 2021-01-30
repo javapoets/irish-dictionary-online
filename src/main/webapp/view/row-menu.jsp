@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8"%>
+<%--@ page pageEncoding="UTF-8"--%>
 <%--
     String lang = null;
     lang = (String)request.getAttribute("lang");
