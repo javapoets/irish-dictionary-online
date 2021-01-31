@@ -172,8 +172,8 @@
         </span>
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_WE)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <%--span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
+          <%--span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
+          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -294,8 +294,8 @@
         </span>
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_AUTONOMOUS)  %></span>
-          <%--span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
+          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
+          <%--span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
