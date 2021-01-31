@@ -11,6 +11,7 @@
     String ENGLISH_AUTONOMOUS = "autonomous";
     String ENGLISH_NEGATIVE = "negative";
     String ENGLISH_QUESTION = "question";
+    String IMPERATIVE = "imperative";
 %>
   <div class="table">
     <div class="row">
@@ -31,8 +32,8 @@
             <%= definitionOutput.linkizeWords(verbConjugation.getMe(), fromLanguage, toLanguage) %>
           </span>
           <span class="type">
-            <span class="tag tag-language"><%= resourceBundles.getString(fromLanguage)  %></span>
             <span class="tag tag-pronoun"><%= resourceBundles.getString(ENGLISH_PRONOUN_ME)  %></span>
+            <span class="tag tag-language"><%= resourceBundles.getString(fromLanguage)  %></span>
             <span class="tag tag-tense"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
           </span>
         <% } %>
@@ -64,9 +65,9 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
-          <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_YOU)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <small class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_YOU)  %></small>
+          <%--small class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></small--%>
+          <%--small class="tag"><%= resourceBundles.getString(fromLanguage)  %></small--%>
         </span>
         <% } %>
       </div>
@@ -100,8 +101,8 @@
         </span>
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_HE)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
+          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -134,8 +135,8 @@
         </span>
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_SHE)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
+          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -172,7 +173,7 @@
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_WE)  %></span>
           <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -212,8 +213,8 @@
         </span>
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_YOU_PLURAL)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
+          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -249,8 +250,8 @@
         </span>
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_THEY)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
+          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -293,8 +294,8 @@
         </span>
         <span class="type">
           <span class="tag"><%= resourceBundles.getString(ENGLISH_AUTONOMOUS)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
+          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -330,9 +331,12 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getNegative(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
+          <% if (!verbConjugation.getTenseEnglish().equals(IMPERATIVE)) { %>
+          <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_HE)  %></span>
+          <% } %>
           <span class="tag"><%= resourceBundles.getString(ENGLISH_NEGATIVE)  %></span>
           <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -370,9 +374,12 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getQuestion(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
+          <% if (!verbConjugation.getTenseEnglish().equals(IMPERATIVE)) { %>
+          <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_HE)  %></span>
+          <% } %>
           <span class="tag"><%= resourceBundles.getString(ENGLISH_QUESTION)  %></span>
           <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span>
+          <%--span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>

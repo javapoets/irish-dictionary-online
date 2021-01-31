@@ -1415,15 +1415,16 @@ div.definition ol li span.type .tag
 {
   color: #fff;
   border-radius: 10px;
-  padding: 1px 5px;
+  padding: 2px 7px;
   font-size: .9em;
   /*
-  background-color: #B4CD8F;
   background-color: rgb(240, 240, 240);
   background-color: rgb(222, 222, 222);
-  font-weight: bold;
-  */
   background-color: rgba(108, 108, 108, 0.33);
+  background-color: #B4CD8F;
+  */
+  background-color: #ccc;
+  font-weight: bold;
 }
 
 <%--
