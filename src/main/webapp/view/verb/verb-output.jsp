@@ -17,9 +17,9 @@
                     verb0 = (Verb)verbList.get(i);
                     verbString0 = verb0.getVerb();
                     description = verb0.getDescription();
-                    //hasType = type != null && !type.equals("");
-                    //hasGender = gender != null && !gender.equals("");
-                    boolean hasDescription = description != null && !description.equals("");
+                    //hasType = type != null && !type.equals(EMPTY);
+                    //hasGender = gender != null && !gender.equals(EMPTY);
+                    boolean hasDescription = description != null && !description.equals(EMPTY);
         %>
         <li>
           <span class="definition">

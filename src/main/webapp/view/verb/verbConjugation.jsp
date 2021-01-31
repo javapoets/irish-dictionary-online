@@ -48,7 +48,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             me = verbConjugationI.getMe();
-            log.debug("me = " + me);
+            //log.debug("me = " + me);
             if (me != null) {
       %>            
         <li><span class="definition"><%= definitionOutput.linkizeWords(me, toLanguage, fromLanguage) %></span></li>
@@ -82,7 +82,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             youSingular = verbConjugationI.getYouSingular();
-            log.debug("youSingular = " + youSingular);
+            //log.debug("youSingular = " + youSingular);
             if (youSingular != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(youSingular, toLanguage, fromLanguage) %></span></li>
@@ -117,7 +117,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             he = verbConjugationI.getHe();
-            log.debug("he = " + he);
+            //log.debug("he = " + he);
             if (he != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(he, toLanguage, fromLanguage) %></span></li>
@@ -151,7 +151,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             she = verbConjugationI.getShe();
-            log.debug("she = " + she);
+            //log.debug("she = " + she);
             if (she != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(she, toLanguage, fromLanguage) %></span></li>
@@ -229,7 +229,7 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             youPlural = verbConjugationI.getYouPlural();
-            log.debug("youPlural = " + youPlural);
+            //log.debug("youPlural = " + youPlural);
             if (youPlural != null) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(youPlural, toLanguage, fromLanguage) %></span></li>
@@ -310,10 +310,10 @@
             Map verbConjugationMapI = (Map)verbI.getVerbConjugationMap();
             VerbConjugation verbConjugationI = (VerbConjugation)verbConjugationMapI.get(tenseId);
             autonomous = verbConjugationI.getAutonomous();
-            log.debug("autonomous = " + autonomous);
+            //log.debug("autonomous = " + autonomous);
             if (
               autonomous != null
-              && !autonomous.equals("")
+              && !autonomous.equals(EMPTY)
             ) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(autonomous, toLanguage, fromLanguage) %></span></li>
@@ -331,12 +331,11 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getNegative(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
+          <span class="tag"><%= resourceBundles.getString(ENGLISH_NEGATIVE)  %></span>
+          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
           <% if (!verbConjugation.getTenseEnglish().equals(IMPERATIVE)) { %>
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_HE)  %></span>
           <% } %>
-          <span class="tag"><%= resourceBundles.getString(ENGLISH_NEGATIVE)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <%--span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -353,7 +352,7 @@
             negative = verbConjugationI.getNegative();
             if (
               negative != null
-              && !negative.equals("")
+              && !negative.equals(EMPTY)
             ) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(negative, toLanguage, fromLanguage) %></span></li>
@@ -374,12 +373,11 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getQuestion(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
+          <span class="tag"><%= resourceBundles.getString(ENGLISH_QUESTION)  %></span>
+          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
           <% if (!verbConjugation.getTenseEnglish().equals(IMPERATIVE)) { %>
           <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_HE)  %></span>
           <% } %>
-          <span class="tag"><%= resourceBundles.getString(ENGLISH_QUESTION)  %></span>
-          <span class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></span>
-          <%--span class="tag"><%= resourceBundles.getString(fromLanguage)  %></span--%>
         </span>
         <% } %>
       </div>
@@ -396,7 +394,7 @@
             question = verbConjugationI.getQuestion();
             if (
               question != null
-              && !question.equals("")
+              && !question.equals(EMPTY)
             ) {
       %>
         <li><span class="definition"><%= definitionOutput.linkizeWords(question, toLanguage, fromLanguage) %></span></li>
