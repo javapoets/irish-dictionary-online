@@ -667,7 +667,9 @@ public class DefinitionOutput {
                 //stringBuilder.append("<li>").append(fromLanguage).append(": ");
                 //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-33px;\">").append(fromLanguage).append(" ").append("</span>");
                 //stringBuilder.append("<span class=\"usage-label "+fromLanguage+"\">").append(resourceBundles.getString(fromLanguage)).append(" ").append("</span>");
+                stringBuilder.append("<span class=\"tag\"");
                 stringBuilder.append(resourceBundles.getString(fromLanguage));
+                stringBuilder.append("</span>");
                 //stringBuilder.append("<span class=\"description\">").append(fromLanguage).append(": ").append("</span>");
                 stringBuilder.append("</div>");
 
@@ -690,7 +692,9 @@ public class DefinitionOutput {
                 //if (!lang.equals(toLang)) { stringBuilder.append(" lang=\"").append(toLang).append("\""); }
                 stringBuilder.append(">");
                 //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");
+                stringBuilder.append("<span class=\"tag\"");
                 stringBuilder.append(resourceBundles.getString(toLanguage)).append(" ");
+                stringBuilder.append("</span>");
                 stringBuilder.append("</div>");  // cell usage-label
                 //if (hasUsageTranslated) {
                     //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");
@@ -950,7 +954,9 @@ public class DefinitionOutput {
                 //stringBuilder.append("<li>").append(fromLanguage).append(": ");
                 //stringBuilder.append("<span class=\"description\" style=\"color:#aaa;margin-left:-33px;\">").append(fromLanguage).append(" ").append("</span>");
                 //stringBuilder.append("<span class=\"usage-label "+fromLanguage+"\">").append(resourceBundles.getString(fromLanguage)).append(" ").append("</span>");
+                stringBuilder.append("<span class=\"tag\"");
                 stringBuilder.append(resourceBundles.getString(fromLanguage));
+                stringBuilder.append("</span>");
                 //stringBuilder.append("<span class=\"description\">").append(fromLanguage).append(": ").append("</span>");
                 stringBuilder.append("</div>");
 
@@ -973,7 +979,9 @@ public class DefinitionOutput {
                 //if (!lang.equals(toLang)) { stringBuilder.append(" lang=\"").append(toLang).append("\""); }
                 stringBuilder.append(">");
                 //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");
+                stringBuilder.append("<span class=\"tag\"");
                 stringBuilder.append(resourceBundles.getString(toLanguage)).append(" ");
+                stringBuilder.append("</span>");
                 stringBuilder.append("</div>");  // cell usage-label
                 //if (hasUsageTranslated) {
                     //stringBuilder.append("<span class=\"usage-label "+toLanguage+"\">").append(resourceBundles.getString(toLanguage)).append(" ").append("</span>");

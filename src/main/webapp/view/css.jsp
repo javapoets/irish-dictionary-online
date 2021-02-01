@@ -1014,6 +1014,7 @@ div.usage li > div .usage-label
   padding-left: 5px;
   padding-right: 5px;
   */
+  border: blue 1px solid;
   color: #999;
   font-size: 13px;
 }
@@ -1171,8 +1172,10 @@ div.verb-conjugation div.verb-tense-header > div
 .verb-conjugation .usage-label.underline
 ,.verb-conjugation .translated.underline
 --%>
+<%--
 .usage-container .usage-label.underline
-,.usage-container .translated.underline
+--%>
+.usage-container .translated.underline
 {
   border-bottom: #ccc 1px solid;
 }
@@ -1412,6 +1415,7 @@ nav a
 --%>
 
 div.definition ol li span.type .tag
+,.usage-container .usage-label .tag
 {
   color: #fff;
   border-radius: 10px;
