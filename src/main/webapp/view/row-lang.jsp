@@ -1,25 +1,7 @@
 <%--@ page pageEncoding="UTF-8"--%>
-<%--
-    String lang = null;
-    lang = (String)request.getAttribute("lang");
-    log.debug("lang = " + lang);
-    if (lang == null) {
-        if (session != null) lang = (String)session.getAttribute("lang");
-        log.debug("lang = " + lang);
-        if (lang == null) {
-            lang = (String)application.getAttribute("lang");
-            log.debug("lang = " + lang);
-            if(lang == null) lang = "en";
-            //if(lang == null) lang = java.util.Locale.getDefault().getLanguage();
-        }
-    }
-    log.debug("lang = " + lang);
-    final online.irishdictionary.util.ResourceBundles resourceBundles = new online.irishdictionary.util.ResourceBundles(lang);
---%>
-<%--= resourceBundles.getString("English word(s)") --%>
 <div class="row menu">
   <div class="cell menu">
-    <div style="display: inline-block;">
+    <div>
       <% if ("ga".equals(lang)) { %>
         <%-- Tá an suíomh gréasáin seo i <strong>nGaeilge</strong><strong>nGaeilge</strong>. --%>
         Tá an suíomh seo i <strong>nGaeilge</strong>.
@@ -29,8 +11,9 @@
         The principal language of this website is <strong>English</strong>.
       <% } %>
     </div>
-    <div style="display: inline-block;">
-      <%= resourceBundles.getString("Change it to") %>
+    <div>
+      <%--= resourceBundles.getString("Change it to") --%>
+      <%= resourceBundles.getString("It is also available in") %>
       <select onchange="selectLanguage(this)">
         <option><%= resourceBundles.getString("Select") %></option>
         <% if ("es".equals(lang) || "en".equals(lang)) { %>

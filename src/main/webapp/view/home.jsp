@@ -7,7 +7,8 @@
 <div class="centering-flex-container">
   <div>
     <div class="table logo">
-      <%@ include file="/view/row-select-language.jsp" %>
+      <%--@ include file="/view/row-select-language.jsp" --%>
+      <%@ include file="/view/row-lang.jsp" %>
       <%@ include file="/view/row-nav.jsp" %>
       <div class="row logo">
         <div class="cell logo">
