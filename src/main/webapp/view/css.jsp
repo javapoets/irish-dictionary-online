@@ -722,6 +722,7 @@ div.definition ol div.word-line .word
   border: red 1px solid;
   */
   font-size: 1.23em;
+  line-height: 30px;
 }
 
 div.definition ol ol li .word
@@ -904,13 +905,22 @@ div.definition li span.type {
   color:#6B6D6B;
   /*
   font-size:12px;
+  border: blue 1px solid;
   */
   text-decoration: none;
   padding-left: 5px;
   color: var(--dark-green);
   font-style: italic;
   font-size: .9em;
+  line-height: 24px;
 }
+
+/*
+div.verb-conjugation li span.type {
+  border: green 1px solid;
+  border: 0px;
+}
+*/
 
 div.definition span.description
 {
@@ -1145,6 +1155,7 @@ div.verb-conjugation div.verb-tense-header > div
   /*
   border: red 1px solid;
   */
+  padding-right: 5px;
   white-space: nowrap;
   text-align: right;
   text-transform: capitalize;
@@ -1163,9 +1174,10 @@ div.verb-conjugation div.verb-tense-header > div
   line-height: 25px;
   /*
   border: blue 1px solid;
-  */
   padding-left: 10px;
+  */
   text-align: left;
+  padding-left: 5px;
 }
 
 <%--
@@ -1187,11 +1199,12 @@ div.verb-conjugation div.verb-tense-header > div
 {
   color: #2C5A26;
   font-style: italic;
-  padding-left: 10px;
   line-height: 25px;
   text-align: left;
   /*
+  padding-left: 10px;
   */
+  padding-left: 5px;
 }
 
 <%--
@@ -1418,17 +1431,25 @@ div.definition ol li span.type .tag
 ,.usage-container .usage-label .tag
 {
   color: #fff;
-  border-radius: 10px;
-  padding: 2px 7px;
-  font-size: .9em;
   /*
+  font-size: .9em;
   background-color: rgb(240, 240, 240);
   background-color: rgb(222, 222, 222);
   background-color: rgba(108, 108, 108, 0.33);
   background-color: #B4CD8F;
-  */
   background-color: #ccc;
+  border: var(--dark-green) 1px solid;
   font-weight: bold;
+  border: 0px;
+  border-radius: 11px;
+  border-radius: 12px/50%;
+  padding: 2px 7px;
+  */
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: #aaa;
+  border: #B4CD8F 1px solid;
+  line-height: 20px;
 }
 
 <%--
