@@ -9,8 +9,7 @@
     font-size: 14px;
     text-transform: uppercase;
     line-height: 21px;
-"
->
+">
   <div class="row">
     <div class="cell" style="padding: 10px;">
       <%= resourceBundles.getString("Over 50,000 words translated and put to use") %>

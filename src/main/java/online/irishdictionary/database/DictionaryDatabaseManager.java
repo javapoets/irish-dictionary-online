@@ -87,7 +87,7 @@ public class DictionaryDatabaseManager {
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             word.setId(resultSet.getInt(1));
-            //word.setWord(resultSet.getString(2));
+            word.setWord(resultSet.getString(2));
             //word.setWordAscii(resultSet.getString(3));
             //word.setDefinition(resultSet.getString(4));
             //word.setType(resultSet.getString(5));

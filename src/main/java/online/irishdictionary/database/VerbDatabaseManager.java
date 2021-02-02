@@ -165,18 +165,19 @@ public class VerbDatabaseManager {
             preparedStatement.setString(2, verb.getVerb());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                verb.setStem(resultSet.getString(1));
-                verb.setVerbalNoun(resultSet.getString(2));
-                verb.setVerbalAdjective(resultSet.getString(3));
-                verb.setInfinitive(resultSet.getString(4));
-                verb.setParticiple(resultSet.getString(5));
-                verb.setGerund(resultSet.getString(6));
+                verb.setVerb(resultSet.getString(1));
+                verb.setStem(resultSet.getString(2));
+                verb.setVerbalNoun(resultSet.getString(3));
+                verb.setVerbalAdjective(resultSet.getString(4));
+                verb.setInfinitive(resultSet.getString(5));
+                verb.setParticiple(resultSet.getString(6));
+                verb.setGerund(resultSet.getString(7));
                 //if(resultSet.getString(7).equals("regular")) {
-                if (resultSet.getInt(7) == 1) {
+                if (resultSet.getInt(8) == 1) {
                     verb.setIsRegular(true);
                 }
-                verb.setConjugation(resultSet.getInt(8));
-                verb.setBroadOrSlender(resultSet.getString(9));
+                verb.setConjugation(resultSet.getInt(9));
+                verb.setBroadOrSlender(resultSet.getString(10));
                 return true;
             }
             log.debug("verb.getParticiple() = " + verb.getParticiple());

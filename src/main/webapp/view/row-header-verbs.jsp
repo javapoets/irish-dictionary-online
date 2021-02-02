@@ -6,6 +6,7 @@
       </div>
       <div class="search-block">
         <%@ include file="/view/top-form-verbs-only.jsp" %>
+        <%@ include file="/view/verbs-statement.jsp" %>
       </div>
     </div>
   </div>
