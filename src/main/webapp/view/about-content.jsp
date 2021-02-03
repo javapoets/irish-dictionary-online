@@ -12,19 +12,15 @@
   <%--= resourceBundles.getString("The Irish Dictionary Online is a projecct by Diarmuid O'Dochartaigh as Dun na nGall.") --%>
 <p>
   <%= resourceBundles.getString("The Irish Dictionary Online is a project by Diarmuid O'Dochartaigh from Carndonagh, Co. Donegal.") %>
-  <%= resourceBundles.getString("It has been in development since the winter of 2001 after I returned to Ireland from Silicon Valley where I was working as a software engineer.") %>
-  <%= resourceBundles.getString("I was online looking for the Irish word for wine for a wine bottle design I was working on when I realized that there was no searchable database of Irish terms on the Internet.") %>
+  <%= resourceBundles.getString("It started when I was online looking for the Irish word for wine for a wine bottle design I was working on, and realized that there was no searchable database of Irish terms on the Internet at that time.") %>
   <%--= resourceBundles.getString("I went online and after an hour of looking around was surprised that there was no searchable database of Irish terms on the Internet at that time.") --%>
-  <%= resourceBundles.getString("I did eventually find the word for wine 'fion' but it was on a page with a list of words relating to food.") %>
-  <%= resourceBundles.getString("So that evening I bought the domain englishirishdictionary.com, emailed all the lists I found online, told them I was building a searchable database of irish terms, and the Irish Dictionary Online was born.") %>
+  <%= resourceBundles.getString("I did eventually find the word for wine 'fion' but spent the next 2 years typing Irish words and their English translations into the database along with any usage examples of thse words I could find.") %>
 </p>
 <p>
-  <%= resourceBundles.getString("I spent the next 2 years typing words I found on the Internet and in Irish dictionaries into the database along with usage examples of thse words.") %>
-  <%= resourceBundles.getString("Once I had completed the dictionary I realized that understanding verbs and their tenses was a big part of any language.") %>
-  <%= resourceBundles.getString("I decided to create a database of all the Irish verbs in the dictionary and to conjugate those and translate them to their English counterparts.") %>
+  <%= resourceBundles.getString("After completing phase 1 the dictionary itself, I decided to conjugate all the Irish verbs in the dictionary and translate those to their English counterparts.") %>
 </p>
 <p>
-  <%= resourceBundles.getString("In 2020 I was able to complete the work to make the site responsive and usable on smaller phone screens in portrait mode screen layout.") %>
+  <%= resourceBundles.getString("After a brief period being offline, in 2020 I was able to complete the work to make the site usable on mobile phones.") %>
   <%= resourceBundles.getString("In 2020 several new words and verbs were added in 2020 and I just reached the milestone of 800 Irish verbs on January 25th 2021. The output screens for both verbs and word definitions were updated for better readability especially on mobile screens.") %>
   <%= resourceBundles.getString("The latest effort endeavour is to merge the verb output screen with the word output screen providing a broader range of search results.") %>
 </p>
