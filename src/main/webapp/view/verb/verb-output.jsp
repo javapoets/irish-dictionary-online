@@ -2,7 +2,8 @@
   <ol>
     <li>
       <div class="word-line">
-        <span class="word"><%= verb.getVerb() %></span>
+        <%--span class="word"><%= verb.getVerb() %></span--%>
+        <span class="word"><a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerb() %>"><%= verb.getVerb() %></a></span>
         <span class="type" style="text-transform: lowercase;"><span class="tag"><%= resourceBundles.getString("verb") %></span></span>
       </div>
       <ol
