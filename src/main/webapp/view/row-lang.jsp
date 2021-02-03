@@ -1,9 +1,7 @@
-<%--@ page pageEncoding="UTF-8"--%>
 <div class="row menu">
   <div class="cell menu">
     <div>
       <% if ("ga".equals(lang)) { %>
-        <%-- Tá an suíomh gréasáin seo i <strong>nGaeilge</strong><strong>nGaeilge</strong>. --%>
         Tá an suíomh seo i <strong>nGaeilge</strong>.
       <% } else if ("es".equals(lang)) { %>
         Esté sitio está en <strong>Español</strong>.

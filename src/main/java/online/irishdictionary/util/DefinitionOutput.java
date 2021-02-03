@@ -18,6 +18,8 @@ public class DefinitionOutput {
     private static final String COMMA = ",";
     private static final String ENGLISH = "english";
     private static final String IRISH = "irish";
+    private static final String VI = "vi";
+    private static final String VT = "vt";
     private String invalidChars = "_-!@#$%^&*()+[]=\\|?/'\",.<>`~:; ";
     private Word word = null;
     private String fromLanguage = null;
@@ -55,8 +57,6 @@ public class DefinitionOutput {
             put("m3", "masculine noun, 3rd declension");
             put("m4", "masculine noun, 4th declension");
             put("m5", "masculine noun, 5th declension");
-            put("pl", "plural noun");
-            put("npl", "plural noun");
             put("mpl", "masculine plural noun");
             put("mpl1", "masculine plural noun, 1st declension");
             put("mpl2", "masculine plural noun, 2nd declension");
@@ -73,6 +73,8 @@ public class DefinitionOutput {
             put("fpl2", "feminine plural noun, 2th declension");
             put("fpl3", "feminine plural noun, 3th declension");
             put("fpl4", "feminine plural noun, 4th declension");
+            //put("pl", "plural noun");
+            //put("npl", "plural noun");
         }
     };
 
@@ -112,10 +114,9 @@ public class DefinitionOutput {
         if (definitionMap != null && definitionMap.size() != 0) {
             log.debug("definitionMap.size() = " + definitionMap.size());
 
+            boolean isVerb = false;
             StringBuilder typeBuilder = new StringBuilder();
-
             stringBuilder.append("\n  <ol>");
-
             //for (Map.Entry<String, List<Definition>> mapEntry : definitionMap.entrySet()) {
             for (Map.Entry<WordType, List<Definition>> mapEntry : definitionMap.entrySet()) {
                 log.debug(mapEntry.getKey() + "/" + mapEntry.getValue());
@@ -129,10 +130,11 @@ public class DefinitionOutput {
                 log.debug("fromType = " + fromType);
                 log.debug("gender = " + gender);
                 log.debug("definitionList.size() = " + definitionList.size());
-
                 boolean hasType = type != null && !type.equals("");
                 boolean hasFromType = fromType != null && !fromType.equals("");
                 boolean hasGender = gender != null && !gender.equals("");
+                isVerb = hasType && (type.contains(VI) || type.contains(VT));
+                log.debug("isVerb = " + isVerb);
 
                 //if (hasType || hasGender) {
                 if (hasFromType || hasGender) {
@@ -170,9 +172,19 @@ public class DefinitionOutput {
                 // Formatted
                 stringBuilder.append("<div class=\"word-line\">");
                 //stringBuilder.append("<span class=\"numbering\">").append((++definitionCount)).append(". ").append("</span>");
-                stringBuilder.append("<span class=\"word\">").append(word.getWord()).append("</span>&nbsp");
+                stringBuilder.append("<span class=\"word\">");
+                if (isVerb) {
+                    stringBuilder
+                        .append("<a href=\"verb/").append(fromLanguage).append("/").append(toLanguage).append("/").append(word.getWord()).append("\">")
+                        .append(word.getWord())
+                        .append("</a>");
+                } else {
+                    stringBuilder.append(word.getWord());
+                }
+                stringBuilder.append("</span>&nbsp");
                 //if (ENGLISH.equals(toLanguage)) {
-                    stringBuilder.append("&nbsp<span class=\"type\">").append(typeBuilder.toString()).append("</span>");
+                    //stringBuilder.append("&nbsp<span class=\"type\"><span class=\"tag\">").append(typeBuilder.toString()).append("</span></span>");
+                    stringBuilder.append("&nbsp<span class=\"type\"><span class=\"tag\">").append(resourceBundles.getString(typeBuilder.toString())).append("</span></span>");
                 //}
                 stringBuilder.append("</div>");
                 //*/
@@ -246,14 +258,16 @@ public class DefinitionOutput {
                                     if (hasType) stringBuilder.append(" ");
                                     String genderExpanded = genderMap.get(gender);
                                     if (genderExpanded != null) {
-                                        stringBuilder.append(genderExpanded);
+                                        //stringBuilder.append(genderExpanded);
+                                        stringBuilder.append(resourceBundles.getString(genderExpanded));
                                     } else {    
                                         stringBuilder.append(gender);
                                     } 
                                 } else if (hasType) {
                                     String partOfSpeech = partsOfSpeech.get(type);
                                     if (partOfSpeech != null) {
-                                        stringBuilder.append(partOfSpeech);
+                                        //stringBuilder.append(partOfSpeech);
+                                        stringBuilder.append(resourceBundles.getString(partOfSpeech));
                                     } else {    
                                         stringBuilder.append(type);
                                     } 

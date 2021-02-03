@@ -34,32 +34,34 @@
     String wordIrish = null;
     String verbEnglish = null;
     String verbIrish = null;
-    String language = request.getParameter("language");
-    String verbParam = request.getParameter("verb");
-    log.debug("language = " + language);
+
+    //String language = request.getParameter("language");
+    String fromLanguage = (String)request.getAttribute("fromLanguage");
+    //String verbParam = request.getParameter("verb");
+    String verbParam = request.getParameter("verbParam");
+    log.debug("fromLanguage = " + fromLanguage);
     log.debug("verbParam = " + verbParam);
-    if(language != null) {
-        if(language.equals("english")) {
+    if(fromLanguage != null) {
+        if(fromLanguage.equals(ENGLISH)) {
             if(verbParam != null) verbEnglish = verbParam;
-        } else if(language.equals("irish")) {
+        } else if(fromLanguage.equals(IRISH)) {
             if(verbParam != null) verbIrish = verbParam;
         }
     }
-    String fromLanguage = language;
     //String fromLanguage = request.getParameter("fromLanguage");
     //if(fromLanguage == null) fromLanguage = (String)request.getAttribute("fromLanguage");
     //if(fromLanguage == null) fromLanguage = language;
     String toLanguage = request.getParameter("toLanguage");
     if(toLanguage == null) toLanguage = (String)request.getAttribute("toLanguage");
-    log.debug("language = " + language);
     log.debug("fromLanguage = " + fromLanguage);
     log.debug("toLanguage = " + toLanguage);
     boolean isEnglish = false;
-    if (ENGLISH.equals(language)) {
+    if (ENGLISH.equals(fromLanguage)) {
         isEnglish = true;
     }
-    boolean isIrish = language.equals("irish");
+    boolean isIrish = fromLanguage.equals("irish");
     log.debug("isEnglish = " + isEnglish);
+    log.debug("isIrish = " + isIrish);
     DefinitionOutput definitionOutput = new DefinitionOutput();
 %>
 <%!

@@ -26,8 +26,8 @@
     <%--@ include file="/view/google-ads-responsive-360x90-728x90.jsp" --%>
     <div class="centering-container">
       <div class="table">
-        <%--@ include file="/view/row-select-language.jsp" --%>
-        <%@ include file="/view/row-lang.jsp" %>
+        <%@ include file="/view/row-select-language.jsp" %>
+        <%--@ include file="/view/row-lang.jsp" --%>
         <%@ include file="/view/row-nav.jsp" %>
         <%@ include file="/view/row-header.jsp" %>
         <div class="row">

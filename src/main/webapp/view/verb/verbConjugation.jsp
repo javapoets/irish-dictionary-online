@@ -65,7 +65,7 @@
           <%= definitionOutput.linkizeWords(verbConjugation.getYouSingular(), fromLanguage, toLanguage) %>
         </span>
         <span class="type">
-          <small class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_YOU)  %></small>
+          <span class="tag"><%= resourceBundles.getString(ENGLISH_PRONOUN_YOU)  %></span>
           <%--small class="tag"><%= resourceBundles.getString(verbConjugation.getTenseEnglish()) %></small--%>
           <%--small class="tag"><%= resourceBundles.getString(fromLanguage)  %></small--%>
         </span>

@@ -3,7 +3,7 @@
     <li>
       <div class="word-line">
         <span class="word"><%= verb.getVerb() %></span>
-        <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("verb") %></span>
+        <span class="type" style="text-transform: lowercase;"><span class="tag"><%= resourceBundles.getString("verb") %></span></span>
       </div>
       <ol
         <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>  
@@ -38,7 +38,7 @@
     <li>
       <div class="word-line">
         <span class="word"><a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalAdjective() %>"<% if (!lang.equals(fromLang)) { %> lang="<%= fromLang %>"<% } %>><%= verb.getVerbalAdjective() %></a></span>
-        <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Adjective") %></span>
+        <span class="type" style="text-transform: lowercase;"><span class="tag"><%= resourceBundles.getString("Verbal Adjective") %></span></span>
       </div>
       <ol
         <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
@@ -61,7 +61,7 @@
     <li>
       <div class="word-line">
         <span class="word">ag <a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getVerbalNoun() %>"><%= verb.getVerbalNoun() %></a></span>
-        <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Noun") %></span>
+        <span class="type" style="text-transform: lowercase;"><span class="tag"><%= resourceBundles.getString("Verbal Noun") %></span></span>
       </div>
       <ol
         <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
@@ -86,7 +86,7 @@
     <li>
       <div class="word-line">
         <span class="word"><a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getParticiple() %>"><%= verb.getParticiple() %></a></span>
-        <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Adjective") %></span>
+        <span class="type" style="text-transform: lowercase;"><span class="tag"><%= resourceBundles.getString("Verbal Adjective") %></span></span>
       </div>
       <ol
         <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>
@@ -111,7 +111,7 @@
     <li>
       <div class="word-line">
         <span class="word"><a href="<%= fromLanguage %>/<%= toLanguage %>/<%= verb.getGerund() %>"><%= verb.getGerund() %></a></span>
-        <span class="type" style="text-transform: lowercase;"><%= resourceBundles.getString("Verbal Noun") %></span>
+        <span class="type" style="text-transform: lowercase;"><span class="tag"><%= resourceBundles.getString("Verbal Noun") %></span></span>
       </div>
       <ol
         <% if (verbListSize == 1) { %> style="list-style-type: none;"<% } %>

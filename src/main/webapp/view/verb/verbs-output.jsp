@@ -1,3 +1,13 @@
+<div class="verbs-header">
+  <span class="language-label">
+    <%--= resourceBundles.getString("Irish Verbs") --%>
+    <%
+        String key = new StringBuilder().append(language).append(" ").append("verbs").toString();
+    %>
+    <%--= resourceBundles.getString("Irish Verbs") --%>
+    <%= resourceBundles.getString(key) %>
+  </span>
+</div>
 <div class="verbs-container">
   <%
       if (verbList != null) {

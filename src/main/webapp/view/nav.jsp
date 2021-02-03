@@ -4,7 +4,7 @@
   <a href="verbs"><%= resourceBundles.getString("Verbs") %></a>
   <a href="about"><%= resourceBundles.getString("About") %></a>
   <a href="contact"><%= resourceBundles.getString("Contact") %></a>
-  <a href="contact"><%= resourceBundles.getString("Dark Mode") %></a>
   <%--
+  <a href="contact"><%= resourceBundles.getString("Dark Mode") %></a>
   --%>
 </nav>
