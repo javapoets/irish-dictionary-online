@@ -21,6 +21,7 @@ public class ContactServlet extends online.irishdictionary.servlet.InitServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("doGet(request, response)");
+        super.checkForLangParameter(request, response);
         includeUtf8(request, response, "/view/contact.jsp");
     }
 

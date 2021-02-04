@@ -1543,7 +1543,10 @@ input:focus, textarea:focus, select:focus{
     outline: none;
 }
 
+<%--
 div.contact-content > div > form button
+--%>
+div.contact-content > div > form input[type=submit]
 {
   border: #d5d5d5 1px solid;
   background-color: #e2e2e2;
