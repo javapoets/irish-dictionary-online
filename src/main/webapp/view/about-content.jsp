@@ -20,7 +20,7 @@
   <ul>
     <li>
       <strong>Irish Thesaurus</strong>
-      <br/><%= resourceBundles.getString("Work is underway to add an Irish Theaurus to this service based on the work of Seamus. The data entry has been completed and the next step is to add the ability to reference the thesaurus.") %>
+      <br/><%= resourceBundles.getString("Work is underway to add an Irish Theaurus to this service. The data entry has been completed and the next step is to add the ability to reference the thesaurus.") %>
     </li>
     <li style="padding-top: 10px;">
       <strong>Merging word and verb definitions</strong>
