@@ -26,6 +26,7 @@ public class ContactServlet extends online.irishdictionary.servlet.InitServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("doPost(request, response)");
+        super.checkForLangParameter(request, response);
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String message = request.getParameter("message");

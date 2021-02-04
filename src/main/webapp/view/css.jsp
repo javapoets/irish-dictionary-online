@@ -186,8 +186,8 @@ body > div > div.table > div.row > div.cell
   padding: 0px;
   height: 100%;
   padding-top: 100px;
-  */
   border: red 1px solid;
+  */
   max-width: var(--site-width);
   margin: auto;
 }

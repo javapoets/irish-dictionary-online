@@ -41,6 +41,7 @@ public class AboutServlet extends online.irishdictionary.servlet.InitServlet {
         log.debug("request.getRemoteUser()     = " + request.getRemoteUser());
         log.debug("request.getContentLength()  = " + request.getContentLength());
         log.debug("request.getContentLength()  = " + request.getContentLength());
+        super.checkForLangParameter(request, response);
         try {
             aboutRequest(request, response);  // Non-async request
         } catch(Exception e) {
