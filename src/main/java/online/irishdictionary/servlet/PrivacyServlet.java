@@ -54,7 +54,7 @@ public class PrivacyServlet extends online.irishdictionary.servlet.InitServlet {
             } catch (Exception e) {
                 log.error(e);
             }
-        } // public void run()
+        }
     }
     */
 

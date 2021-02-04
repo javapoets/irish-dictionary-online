@@ -29,24 +29,18 @@ public class VerbsServlet extends online.irishdictionary.servlet.InitServlet {
 
         super.checkForLangParameter(request, response);  // check for the "lang" param
         
-        /*
-        String languageId = request.getParameter("languageId");
-        if(languageId == null) languageId = "irish";
-        */
         String pathInfo = request.getPathInfo();
         log.debug("pathInfo =  " + pathInfo);
         if (pathInfo == null) {
             try {
-                List<Verb> englishVerbList = new ArrayList<Verb>();
+                List<Verb> englishVerbList = new ArrayList<Verb>();  // English verbs
                 VerbDatabaseManager.selectAllVerbs(englishVerbList, ENGLISH_LANGUAGE_ID, getConnectionPool());
                 log.debug("englishVerbList.size() " + englishVerbList.size());
                 request.setAttribute("englishVerbList", englishVerbList);
-
-                List<Verb> irishVerbList = new ArrayList<Verb>();
+                List<Verb> irishVerbList = new ArrayList<Verb>();  // Irish verbs
                 VerbDatabaseManager.selectAllVerbs(irishVerbList, IRISH_LANGUAGE_ID, getConnectionPool());
                 log.debug("irishVerbList.size() " + irishVerbList.size());
                 request.setAttribute("irishVerbList", irishVerbList);
-
                 includeUtf8(request, response, "/view/verb/verbs-english-irish.jsp");
                 return;
             } catch (Exception e) {
@@ -57,46 +51,19 @@ public class VerbsServlet extends online.irishdictionary.servlet.InitServlet {
         String[] pathInfoSplit = pathInfo.split(FORWARDSLASH);
         log.debug("pathInfoSplit.length = " + pathInfoSplit.length);
         for (String pathElement: pathInfoSplit) log.debug("pathElement = " + pathElement);
-
-        /*
-        //String language = request.getParameter("language");
-        //String wordParam = request.getParameter("word");
-        //String language = split[0];
-        //String wordParam = pathInfo.substring(1);
-        String fromLanguage = "english";
-        String toLanguage = split[1];
-        String wordParameter = split[2];
-        log.debug("wordParameter = " + wordParameter);
-        log.debug("fromLanguage = " + fromLanguage);
-        log.debug("toLanguage = " + toLanguage);
-        */
         String language = pathInfoSplit[1];
         request.setAttribute("language", language);
-
         int languageId = -1;
         String toLanguage;
-        /*
-        if (languageIdParameter != null) {
-            try {
-                languageId = Integer.parseInt(languageIdParam);
-            } catch (Exception e) {
-                log.error(e);
-            }
+        if (ENGLISH.equals(language)) {
+            languageId = 1;
+            toLanguage = IRISH;
         } else {
-        */
-            if (ENGLISH.equals(language)) {
-                languageId = 1;
-                toLanguage = IRISH;
-            } else {
-                languageId = 2;
-                toLanguage = ENGLISH;
-            }
-        //}
+            languageId = 2;
+            toLanguage = ENGLISH;
+        }
         request.setAttribute("toLanguage", toLanguage);
-
         log.debug("languageId = " + languageId);
-        //request.setAttribute("fromLanguage", fromLanguage);
-        //request.setAttribute("toLanguage", toLanguage);
 
         try {
             List<Verb> verbList = new ArrayList<Verb>();
@@ -107,6 +74,5 @@ public class VerbsServlet extends online.irishdictionary.servlet.InitServlet {
         } catch(Exception e) {
             log.error(e.getMessage(), e);            
         }
-
     }
 }

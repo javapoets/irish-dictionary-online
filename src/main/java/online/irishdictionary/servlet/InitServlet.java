@@ -159,64 +159,10 @@ public class InitServlet extends HttpServlet {
         log.debug("this.connectionPool = "+this.connectionPool);
 
         if(this.connectionPool == null) {
-
-            /*
-            String jdbcDriver = properties.getProperty("database-driver");
-            String databaseUrl = properties.getProperty("database-url");
-            String databaseUsername = properties.getProperty("database-username");
-            String databasePassword = properties.getProperty("database-password");
-            String databaseMinimumConnections = properties.getProperty("database-mininimum-connections");
-            String databaseMaximumConnections = properties.getProperty("database-maximum-connections");
-            String databaseConnectionMaximumAgeDays = properties.getProperty("database-connection-maximum-age-days");
-            String databaseConnectionMaximumIdleSeconds = properties.getProperty("database-connection-maximum-idle-seconds");            
-
-            log.debug("jdbcDriver = " + jdbcDriver);
-            log.debug("databaseUrl = " + databaseUrl);
-            log.debug("databaseUsername = " + databaseUsername);
-            log.debug("databasePassword = " + databasePassword);
-            log.debug("databaseMinimumConnections = " + databaseMinimumConnections);
-            log.debug("databaseMinimumConnections = " + databaseMinimumConnections);
-            log.debug("databaseConnectionMaximumAgeDays = " + databaseConnectionMaximumAgeDays);
-            log.debug("databaseConnectionMaximumIdleSeconds = " + databaseConnectionMaximumIdleSeconds);
-
-            properties.setProperty("databaseUrl", databaseUrl);
-            servletContext.setAttribute("databaseUrl", databaseUrl);
-            properties.setProperty("jdbcDriver", jdbcDriver);
-            servletContext.setAttribute("jdbcDriver", jdbcDriver);
-            properties.setProperty("databaseUsername", databaseUsername);
-            servletContext.setAttribute("databaseUsername", databaseUsername);
-            properties.setProperty("databasePassword", databasePassword);
-            servletContext.setAttribute("databasePassword", databasePassword);
-
-            properties.setProperty("databaseMinimumConnections", databaseMinimumConnections);
-            //servletContext.setAttribute("databaseMinimumConnections", databaseMinimumConnections);
-            properties.setProperty("databaseMaximumConnections", databaseMaximumConnections);
-            properties.setProperty("databaseConnectionMaximumAgeDays", databaseConnectionMaximumAgeDays);
-            properties.setProperty("databaseConnectionMaximumIdleSeconds", databaseConnectionMaximumIdleSeconds);
-
-            java.util.Properties connectionPoolProperties = new java.util.Properties();
-            //connectionPoolProperties.setProperty("id", "-1");
-            connectionPoolProperties.setProperty("database-url", databaseUrl);
-            connectionPoolProperties.setProperty("database-driver", jdbcDriver);
-            connectionPoolProperties.setProperty("database-username", databaseUsername);
-            connectionPoolProperties.setProperty("database-password", databasePassword);
-            //connectionPoolProperties.setProperty("database-mininimum-connections", databaseMinimumConnections);
-            //connectionPoolProperties.setProperty("database-maximum-connections", databaseMaximumConnections);
-            //connectionPoolProperties.setProperty("database-connection-maximum-age-days", databaseConnectionMaximumAgeDays);
-            //connectionPoolProperties.setProperty("database-connection-maximum-idle-seconds", databaseConnectionMaximumIdleSeconds);
-            connectionPoolProperties.setProperty("connection-pool-minimum-connections", databaseMinimumConnections);
-            connectionPoolProperties.setProperty("connection-pool-maximum-connections", databaseMaximumConnections);
-            connectionPoolProperties.setProperty("connection-maximum-time-since-creation-minutes", databaseConnectionMaximumAgeDays);
-            connectionPoolProperties.setProperty("connection-maximum-time-in-use-seconds", databaseConnectionMaximumIdleSeconds);
-            log.debug("connectionPoolProperties = " + connectionPoolProperties);
-            */
-
             try {
-
                 this.connectionPool = new ConnectionPool(this.properties);
                 log.debug("this.connectionPool = " + this.connectionPool);
                 servletContext.setAttribute("connectionPool", this.connectionPool);
-
                 try {
                     int irishVerbsCount = VerbDatabaseManager.selectVerbCount(2, this.connectionPool);
                     servletContext.setAttribute("irishVerbsCount", irishVerbsCount);
@@ -225,21 +171,18 @@ public class InitServlet extends HttpServlet {
                 } catch (Exception e) {
                     log.error(e.getMessage(), e);
                 }
-
             } catch (java.io.IOException ioException) {
                 StringWriter stringWriter = new StringWriter();
                 PrintWriter printWriter = new PrintWriter(stringWriter);
                 ioException.printStackTrace(printWriter);
                 log.error(stringWriter.toString());
             }
-
         }
         super.init(servletConfig);
     }
 
     public Properties getProperties() {
         log.debug("getProperties()");
-
         log.debug("this.properties = "+this.properties);
         log.debug("this.properties.size() = "+this.properties.size());
         return this.properties;
@@ -286,14 +229,6 @@ public class InitServlet extends HttpServlet {
         log.debug("sessionCookieConfig.isSecure() = "+sessionCookieConfig.isSecure()); // checks if the session tracking cookies created on behalf of the application represented by the ServletContext from which this SessionCookieConfig was acquired will be marked as secure even if the request that initiated the corresponding session is using plain HTTP instead of HTTPS.
     }
 
-    /*
-            StopWatch sw = new StopWatch(); sw.start(); // Timing
-
-            log.warn("APPLICATION \""+config.getServletContext().getServletContextName()+"\" starting...");
-            log.warn("Servlet container's API version : \""+config.getServletContext().getMajorVersion()+"."+config.getServletContext().getMinorVersion()+"\"");
-            log.warn("Server Info : \""+config.getServletContext().getServerInfo()+"\"");
-    */
-
     protected void include(HttpServletRequest request, HttpServletResponse response, String path) throws IOException, ServletException {
         include(request, response, path, TEXT_HTML_UTF8);
     }
@@ -317,12 +252,7 @@ public class InitServlet extends HttpServlet {
 
     protected void includeUtf8(HttpServletRequest request, HttpServletResponse response, String path) throws IOException, ServletException {
         log.debug("includeUtf8(request, response, '"+path+"')");
-        includeUtf8(
-            request
-          , response
-          , path
-          , TEXT_HTML_UTF8
-        );
+        includeUtf8(request, response, path, TEXT_HTML_UTF8);
     }
 
     /**
@@ -373,9 +303,8 @@ public class InitServlet extends HttpServlet {
                 log.error(sr.toString());
             }
             */
-        } catch(java.io.FileNotFoundException e) {
-            log.error("FileNotFoundException: include(request, response, '"+path+"', '"+contentType+"'): e.getMessage() = "+e.getMessage());
-            log.error(e);
+        } catch (java.io.FileNotFoundException e) {
+            log.error(e.getMessage(), e);
         }
     }
 

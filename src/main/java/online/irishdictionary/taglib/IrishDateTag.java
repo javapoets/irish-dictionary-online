@@ -1,7 +1,6 @@
 package online.irishdictionary.taglib;
 
 import java.util.Calendar;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
@@ -26,14 +25,11 @@ public class IrishDateTag implements Tag {
     }
 
     public int doStartTag() throws JspException {
-
         JspWriter out = this.pageContext.getOut();
         Calendar calendar = Calendar.getInstance();
-
         try {
-                IrishDate irishDate = new IrishDate(calendar);
-                out.print(irishDate.getIrishDate());
-
+            IrishDate irishDate = new IrishDate(calendar);
+            out.print(irishDate.getIrishDate());
         } catch(java.io.IOException e) {
             throw new JspTagException("IO Error: " + e.getMessage());
         }
@@ -48,9 +44,6 @@ public class IrishDateTag implements Tag {
     public void release() {
     }
     
-    //
-    // Accessor methods
-    //
     // Attribute: type
     protected String linked;
 

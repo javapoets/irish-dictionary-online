@@ -21,16 +21,12 @@ public class DefaultErrorServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("doGet(request, response)");
-
         Exception exception = (Exception)request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-        //Throwable throwable = (Throwable)request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
         PrintWriter printWriter = response.getWriter();
         Integer errorStatusCode = (Integer)request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         String requestUri = (String)request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI);
-        
         log.debug("exception.getMessage() = " + exception.getMessage());
         log.error(exception.getMessage(), exception);
-
         printWriter.println("Default Error Servlet:");
         printWriter.printf("Exception: %s%n", exception.toString());
         printWriter.printf("Dispatcher Type: %s%n", request.getDispatcherType());

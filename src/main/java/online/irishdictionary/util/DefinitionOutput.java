@@ -8,8 +8,6 @@ import online.irishdictionary.model.Definition;
 import online.irishdictionary.model.Usage;
 import online.irishdictionary.model.Word;
 import online.irishdictionary.model.WordType;
-import online.irishdictionary.util.Text;
-import online.irishdictionary.util.Validator;
 
 public class DefinitionOutput {
 
@@ -20,7 +18,7 @@ public class DefinitionOutput {
     private static final String IRISH = "irish";
     private static final String VI = "vi";
     private static final String VT = "vt";
-    private String invalidChars = "_-!@#$%^&*()+[]=\\|?/'\",.<>`~:; ";
+    private String invalidCharacters = "_-!@#$%^&*()+[]=\\|?/'\",.<>`~:; ";
     private Word word = null;
     private String fromLanguage = null;
     private String toLanguage = null;
@@ -763,11 +761,11 @@ public class DefinitionOutput {
         while (st.hasMoreTokens()) {
             x++;
             String token = st.nextToken();
-            if (Text.containsInvalidChars(token, invalidChars)) {
+            if (stringContainsCharacters(token, invalidCharacters)) {
                 StringBuilder invalid = new StringBuilder();
                 StringBuilder valid = new StringBuilder();
                 for (int i = 0; i < token.length(); i++) {
-                    if (Validator.inValidChar(token.charAt(i), invalidChars)) {
+                    if (validCharacter(token.charAt(i), invalidCharacters)) {
                         if (valid.length() >= 1) {
                             String newWord = addHref(valid.toString(), fromLanguage, toLanguage);
                             stringBuilder.append(newWord);
@@ -840,11 +838,11 @@ public class DefinitionOutput {
         while (st.hasMoreTokens()) {
             x++;
             String token = st.nextToken();
-            if (Text.containsInvalidChars(token, invalidChars)) {
+            if (stringContainsCharacters(token, invalidCharacters)) {
                 StringBuilder invalid = new StringBuilder();
                 StringBuilder valid = new StringBuilder();
                 for (int i=0; i < token.length(); i++) {
-                    if (Validator.inValidChar(token.charAt(i), invalidChars)) {
+                    if (validCharacter(token.charAt(i), invalidCharacters)) {
                         if (valid.length() >= 1) {
                             String newWord = addHrefUsage(valid.toString(), searchWord, fromLanguage, toLanguage);
                             stringBuilder.append(newWord);
@@ -1039,4 +1037,19 @@ public class DefinitionOutput {
         } // if ((usageList != null) && (usageList.size() > 0))
         return null;
     }
+
+    public static boolean stringContainsCharacters(String string, String characters) {
+        for (int i = 0; i < string.length(); i++) {
+            if (!validCharacter(string.charAt(i), characters)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean validCharacter(char character, String characterList) {
+        if (characterList.toLowerCase().indexOf(Character.toLowerCase(character)) > -1) return true;
+        return false;
+    }
+
 }

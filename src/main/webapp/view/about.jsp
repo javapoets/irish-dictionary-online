@@ -32,7 +32,7 @@
         <%@ include file="/view/row-header.jsp" %>
         <div class="row">
           <div class="cell">
-            <div style="padding: 0px 40px 40px 40px;">
+            <div style="padding: 0px 40px 40px 40px; line-height: 22px;">
               <%@ include file="/view/about-content.jsp" %>
             </div>
           </div>

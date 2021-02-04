@@ -1,23 +1,13 @@
 package online.irishdictionary.taglib;
 
-import java.util.List;
-import java.util.StringTokenizer;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.Tag;
-import online.irishdictionary.model.Definition;
-import online.irishdictionary.model.Usage;
 import online.irishdictionary.model.Word;
-import online.irishdictionary.util.Text;
-import online.irishdictionary.util.Validator;
 import online.irishdictionary.util.DefinitionOutput;
 
-/**
- * @author  Dermot Doherty
- * @version 1.0 - 4/18/2011 11:32PM
- */
 public class WordTag implements Tag {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
@@ -53,8 +43,6 @@ public class WordTag implements Tag {
         log.debug("lang = " + lang);
         try {
             if (word != null) {
-                //DefinitionOutput definitionOutput = new DefinitionOutput();
-                //jspWriter.print(definitionOutput.createHtml(word, fromLanguage, toLanguage));
                 DefinitionOutput definitionOutput = new DefinitionOutput(word, fromLanguage, toLanguage, lang, fromLang, toLang);
                 jspWriter.print(definitionOutput.createHtml());
             }

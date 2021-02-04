@@ -25,13 +25,13 @@ public class AboutServlet extends online.irishdictionary.servlet.InitServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.debug("doGet(request, response)");
-        log.debug("request.getScheme()         = "  +request.getScheme());
+        log.debug("request.getScheme()         = " + request.getScheme());
         log.debug("request.getLocalAddr()      = " + request.getLocalAddr());
         log.debug("request.getLocalName()      = " + request.getLocalName());
         log.debug("request.getServerName()     = " + request.getServerName());
         log.debug("request.getServerPort()     = " + request.getServerPort());
         log.debug("request.getContextPath()    = " + request.getContextPath());
-        log.debug("request.getHeader(\"Host\") = " + request.getHeader("Host"));
+        log.debug("request.getHeader('Host')   = " + request.getHeader("Host"));
         log.debug("request.getPathInfo()       = " + request.getPathInfo());
         log.debug("request.getRequestURI()     = " + request.getRequestURI());
         log.debug("request.getLocale()         = " + request.getLocale());

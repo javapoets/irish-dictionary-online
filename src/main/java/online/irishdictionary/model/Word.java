@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import online.irishdictionary.util.Text;
 
 public class Word {
 
@@ -233,17 +232,33 @@ public class Word {
     }
 
     public String getTextNoFadas(String text) {
-        text = Text.replaceCharactersInString(text, 'á', "a");
-        text = Text.replaceCharactersInString(text, 'é', "e");
-        text = Text.replaceCharactersInString(text, 'í', "i");
-        text = Text.replaceCharactersInString(text, 'ó', "o");
-        text = Text.replaceCharactersInString(text, 'ú', "u");
-        text = Text.replaceCharactersInString(text, 'Á', "A");
-        text = Text.replaceCharactersInString(text, 'É', "E");
-        text = Text.replaceCharactersInString(text, 'Í', "I");
-        text = Text.replaceCharactersInString(text, 'Ó', "O");
-        text = Text.replaceCharactersInString(text, 'Ú', "U");
+        text = replaceCharactersInString(text, 'á', "a");
+        text = replaceCharactersInString(text, 'é', "e");
+        text = replaceCharactersInString(text, 'í', "i");
+        text = replaceCharactersInString(text, 'ó', "o");
+        text = replaceCharactersInString(text, 'ú', "u");
+        text = replaceCharactersInString(text, 'Á', "A");
+        text = replaceCharactersInString(text, 'É', "E");
+        text = replaceCharactersInString(text, 'Í', "I");
+        text = replaceCharactersInString(text, 'Ó', "O");
+        text = replaceCharactersInString(text, 'Ú', "U");
         return text;
+    }
+
+    public static String replaceCharactersInString(String string, char characterToReplace, String replaceString) {
+        if(string.indexOf(characterToReplace) != -1) {
+            if(string == null || replaceString == null) return null;
+                StringBuilder stringBuilder = new StringBuilder();
+                for(int i = 0; i < string.length(); i++){
+                    if(string.charAt(i) == characterToReplace){
+                    stringBuilder.append(replaceString);
+                } else {
+                    stringBuilder.append(string.charAt(i));
+                }
+            }
+            return stringBuilder.toString();
+        }
+        return string;
     }
 
     public String getWordWildCarded() {
