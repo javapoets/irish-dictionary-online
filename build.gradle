@@ -24,16 +24,7 @@ gretty {
     httpPort = project.hasProperty("port") ? port.toInteger() : 8080
     println "httpPort = " + httpPort
 
-    // HTTPS
-    //httpsEnabled = true
-    //sslKeyStorePath = './bin/mykeystore'
-    //sslKeyStorePassword = '50m05D105'
-
-    //servletContainer = 'jetty9.4'
     contextPath = '/'
-    //loggingLevel = 'DEBUG'
-
-    //jvmArg '-Dorg.eclipse.jetty.annotations.maxWait=120'
 }
 
 List compileList =  [

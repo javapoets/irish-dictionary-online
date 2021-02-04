@@ -12,7 +12,7 @@
         <textarea cols="40" rows="6" name="message" tabindex="3" placeholder="Your message..."></textarea>
       </div>
       <div style="margin: 10px;">
-        <button type="submit" tabindex="4">Send</button>
+        <button type="submit" tabindex="4" formmethod="post">Send</button>
       </div>
     </form>
   </div>
