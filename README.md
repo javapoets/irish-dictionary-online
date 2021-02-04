@@ -5,7 +5,7 @@
 $ gradle clean build
 ```
 
-### To perform a custom build based on a file in `/src/main/config`
+### To perform a custom build based on a configuration file in `/src/main/config`
 ```
 dev.englishirishdictionary.com:
 gradle buildName -PbuildName=devenglishirish

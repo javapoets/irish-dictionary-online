@@ -87,6 +87,11 @@
     */
   }
 
+  div.contact-content > div
+  {
+    margin: 0px;
+  }
+
   /*
   #adsbygoogle-728x90 {
     display: none;

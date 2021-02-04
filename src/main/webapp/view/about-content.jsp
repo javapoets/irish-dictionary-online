@@ -17,13 +17,13 @@
 <p style="font-style: italic;">
   <%= resourceBundles.getString("\"It started in 2001 when I was online looking for the Irish word for wine for a wine bottle label design I was working on and realized that there was no searchable database of Irish terms on the Internet at that time.") %>
   <%--= resourceBundles.getString("I went online and after an hour of looking around was surprised that there was no searchable database of Irish terms on the Internet at that time.") --%>
-  <%= resourceBundles.getString("I did eventually find the word for wine 'fion' but spent the next 2 years researching and assembling a database of Irish words and their English translations along with real world use examples of those words.\"") %>
+  <%= resourceBundles.getString("I did eventually find the Irish word for wine 'fion' but spent the next 2 years researching and assembling a database of Irish words and their English translations along with real world usage examples of those words.\"") %>
 </p>
 <p>
-  <%= resourceBundles.getString("After the dictionary was completed and put online in 2003, 750 Irish verbs were conjugated into their various tenses and translated into English.") %>
+  <%= resourceBundles.getString("After the dictionary was completed and put online in 2003, 750 Irish verbs were conjugated into their various tenses, translated into English and added to the site.") %>
 </p>
 <p>
-  <%= resourceBundles.getString("In 2020 work was done to make the site usable on mobile phones, several new words and verbs were added and some typos fixed.") %>
+  <%= resourceBundles.getString("In 2020 work was done to make the site usable on mobile phones and several new words and verbs were added, and some typos fixed.") %>
   <%= resourceBundles.getString("The milestone of 800 Irish verbs was reached on January 25th 2021 and the output screens for both verbs and word definitions were updated and restyled for better readability.") %>
 </p>
 <h2><%= resourceBundles.getString("Upcoming Developments") %></h2>

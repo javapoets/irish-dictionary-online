@@ -185,9 +185,9 @@ body > div > div.table > div.row > div.cell
   margin: 0px;
   padding: 0px;
   height: 100%;
-  border: red 1px solid;
   padding-top: 100px;
   */
+  border: red 1px solid;
   max-width: var(--site-width);
   margin: auto;
 }
@@ -1482,5 +1482,76 @@ div.definition ol li span .tag-language
   color: #fff;
 }
 --%>
+
+<%--  
+div.contact-content
+{
+  border: red 1px solid;
+}
+--%>
+
+div.contact-content > div
+{
+  background-color: #F5F5F5;
+  padding: 33px;
+  margin: 33px;
+  border-radius: 3px;
+  border: #e2e2e2 1px solid;
+  <%--  
+  border: blue 1px solid;
+  --%>
+}
+
+<%--
+div.contact-content > div > form
+{
+  font-size: 16px;
+}
+--%>
+
+div.contact-content > div > form > div.input
+{
+  font-size: 16px;
+  border: #d5d5d5 1px solid;
+  border-radius: 0px;
+  margin: 10px;
+  padding: 5px 5px;
+  background-color: #fff;
+}
+
+div.contact-content > div > form > div.input input
+{
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  font-size: 16px;
+}
+
+div.contact-content > div > form > div.input textarea
+{
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  font-size: 16px;
+  resize: none;
+  font-family: arial;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+div.contact-content > div > form button
+{
+  border: #d5d5d5 1px solid;
+  background-color: #e2e2e2;
+  color: #2d2d2d;
+  padding: 5px 25px;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: arial;
+}
 
 <%@ include file="/view/css-media-queries.jsp" %>

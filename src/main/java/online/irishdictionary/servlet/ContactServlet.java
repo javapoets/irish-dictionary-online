@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletConfig;
 import online.irishdictionary.database.VerbDatabaseManager;
 import online.irishdictionary.model.Verb;
+import online.irishdictionary.database.ContactDatabaseManager;
+import online.irishdictionary.model.ContactForm;
 
 @WebServlet(name = "ContactServlet", asyncSupported = false, urlPatterns = {
     "contact"
@@ -23,26 +25,21 @@ public class ContactServlet extends online.irishdictionary.servlet.InitServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        /*
-        if  ((contactBean.getQuery() != null) && !(contactBean.getQuery().equals(""))) {
-            try {
-                ContactManager.insertFeedback(contactBean);
-                ContactMailer.send(contactBean);
-                displayJsp(request, response, dir + "contactConfirm.jsp");
-            } catch(Exception e){
-                e.printStackTrace();
-                errorBean.setMainErrorMessage(e.getMessage());
-                request.setAttribute("errorBean", errorBean);
-                contact(request, response);
-            }
-        }else{
-            // Word lookup failed.  Redisplay the search Page
-            errorBean.setMainErrorMessage("The query field is required!");
-            request.setAttribute("errorBean", errorBean);
-            contact(request, response);
+        log.debug("doPost(request, response)");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String message = request.getParameter("message");
+        log.debug("name = " + name);
+        log.debug("email = " + email);
+        log.debug("message = " + message);
+        ContactForm contactForm = new ContactForm(name, email, message);
+        try {
+            ContactDatabaseManager.insert(contactForm, getConnectionPool());
+            includeUtf8(request, response, "/view/contact-confirmation.jsp");
+            return;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
-        */
-        includeUtf8(request, response, "/view/contact-confirmation.jsp");
+        includeUtf8(request, response, "/view/contact.jsp");
     }
 }
