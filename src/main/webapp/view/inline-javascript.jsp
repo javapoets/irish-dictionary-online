@@ -62,12 +62,12 @@ function searchIrishVerb(form){
     window.location=url;
 }
 
+<%--
 window.startAds = function() {
     console.log('window.startAds()');
     console.log('window.adsbygoogle = ' + window.adsbygoogle);
     (adsbygoogle = window.adsbygoogle || []).push({});
 }
-
 console.log('window = ' + window);
 console.log('document = ' + document);
 window.onload = function() {
@@ -75,6 +75,7 @@ window.onload = function() {
     //window.startAds();
     window.setTimeout(window.startAds, 1000);
 }
+--%>
 
 function selectLanguage(selectElement) {
     console.log('selectLanguage('+selectElement+')');
