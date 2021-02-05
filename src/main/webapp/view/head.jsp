@@ -29,6 +29,14 @@
     <% if (!lang.equals("ga")) { %>
       <script data-ad-client="ca-pub-5611094585811186" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <% } %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX20JP7DTG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DX20JP7DTG');
+    </script>
     <script type="text/javascript">
       <%@ include file="/view/inline-javascript.jsp" %>
     </script>
