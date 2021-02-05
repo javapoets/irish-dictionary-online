@@ -8,20 +8,27 @@
 <%@ page import="online.irishdictionary.model.VerbConjugation" %>
 <%@ include file="/view/log.jsp" %>
 <%
+    String EMPTY = "";
+    String SPACE = " ";
+    String ENGLISH = "english";
+    String IRISH = "irish";
     String contextUrl = (String)application.getAttribute("contextUrl");
     String imagesUrl = contextUrl + "view/images/";
-    log.debug("contextUrl = " + contextUrl);
     Word word = (Word) request.getAttribute("word");
     String fromLanguage = (String)request.getAttribute("fromLanguage");
     String toLanguage = (String)request.getAttribute("toLanguage");
+    log.debug("contextUrl = " + contextUrl);
     log.debug("word = " + word);
     log.debug("fromLanguage = " + fromLanguage);
     log.debug("toLanguage = " + toLanguage);
     pageContext.setAttribute("fromLanguage", fromLanguage);
     pageContext.setAttribute("toLanguage", toLanguage);
     if(word != null) pageContext.setAttribute("word", word);
+    String wordParameter = request.getParameter("word");
+    if (wordParameter == null) wordParameter = (String)request.getAttribute("wordParameter");
     String wordEnglish = null;
     String wordIrish = null;
+    //String verbParameter = null;
     String verbEnglish = null;
     String verbIrish = null;
     //String verbParam = request.getParameter("verb");
@@ -30,13 +37,15 @@
     //log.debug("verbParam = " + verbParam);
     //log.debug("wordParam = " + wordParam);
     //log.debug("language = " + language);
-    if(fromLanguage != null) {
-        if(fromLanguage.equals("english")) {
-            if(word != null) wordEnglish = word.getWord();
+    if (fromLanguage != null) {
+        if (fromLanguage.equals(ENGLISH)) {
             //if(verbParam != null) verbEnglish = verbParam;
-        } else if(fromLanguage.equals("irish")) {
-            if(word != null) wordIrish = word.getWord();
+            //if (word != null) wordEnglish = word.getWord();
+            if(wordParameter != null) wordEnglish = wordParameter;
+        } else if (fromLanguage.equals(IRISH)) {
             //if(verbParam != null) verbIrish = verbParam;
+            //if (word != null) wordIrish = word.getWord();
+            if(wordParameter != null) wordIrish = wordParameter;
         }
     }
 %>

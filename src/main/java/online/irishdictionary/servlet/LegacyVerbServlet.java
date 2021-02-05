@@ -51,8 +51,6 @@ public class LegacyVerbServlet extends online.irishdictionary.servlet.InitServle
         displayVerb(request, response, verbParameter, fromLanguage, toLanguage);
     }
 
-    //public void displayVerb(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //    log.debug("displayVerb(request, response)");
     public void displayVerb(
           HttpServletRequest request
         , HttpServletResponse response
@@ -81,7 +79,7 @@ public class LegacyVerbServlet extends online.irishdictionary.servlet.InitServle
         log.debug("toLanguageId = " + toLanguageId);
         request.setAttribute("toLanguage", toLanguage);
         request.setAttribute("fromLanguage", fromLanguage);
-        request.setAttribute("verbParam", verbParameter);
+        request.setAttribute("verbParameter", verbParameter);
         Verb verb = new Verb(verbParameter, fromLanguageId, toLanguageId);
         try {
             boolean verbExists = VerbDatabaseManager.selectVerb(verb, getConnectionPool());

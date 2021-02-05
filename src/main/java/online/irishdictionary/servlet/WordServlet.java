@@ -74,15 +74,10 @@ public class WordServlet extends InitServlet {
             || language.equals("null")
         ) {
             language = "irish";
-            stringBuilder = new StringBuilder()
-                .append(locale)
-                .append("/")
-                .append(remoteAddr)
-                .append(": ")
-                .append(language)
-                .append("/")
-                .append(wordParameter);
-            log.info(stringBuilder.toString());
+            //stringBuilder = new StringBuilder()
+            //    .append(locale).append("/").append(remoteAddr).append(": ")
+            //    .append(language).append("/").append(wordParameter);
+            //log.info(stringBuilder.toString());
         }
 
         if (fromLanguage == null) {
@@ -124,6 +119,7 @@ public class WordServlet extends InitServlet {
         log.debug("languageId = " + languageId);
         request.setAttribute("fromLanguage", fromLanguage);
         request.setAttribute("toLanguage", toLanguage);
+        request.setAttribute("wordParameter", wordParameter);
 
         if (!EMPTY.equals(wordParameter)) {
             Word word = new Word(wordParameter.trim(), fromLanguage, toLanguage);

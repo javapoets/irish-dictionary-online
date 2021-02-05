@@ -9,6 +9,10 @@
 <%@ page import="online.irishdictionary.util.DefinitionOutput" %>
 <%@ include file="/view/log.jsp" %>
 <%
+    String EMPTY = "";
+    String SPACE = " ";
+    String ENGLISH = "english";
+    String IRISH = "irish";
     String contextUrl = (String)application.getAttribute("contextUrl");
     String imagesUrl = contextUrl + "view/images/";
     log.debug("contextUrl = " + contextUrl);
@@ -26,10 +30,6 @@
             verbListSize = verbList.size();
         }
     }
-    String EMPTY = "";
-    String SPACE = " ";
-    String ENGLISH = "english";
-    String IRISH = "irish";
     String wordEnglish = null;
     String wordIrish = null;
     String verbEnglish = null;
@@ -38,14 +38,15 @@
     //String language = request.getParameter("language");
     String fromLanguage = (String)request.getAttribute("fromLanguage");
     //String verbParam = request.getParameter("verb");
-    String verbParam = request.getParameter("verbParam");
+    String verbParameter = request.getParameter("verb");
+    if (verbParameter == null) verbParameter = (String)request.getAttribute("verbParameter");
     log.debug("fromLanguage = " + fromLanguage);
-    log.debug("verbParam = " + verbParam);
+    log.debug("verbParameter = " + verbParameter);
     if(fromLanguage != null) {
         if(fromLanguage.equals(ENGLISH)) {
-            if(verbParam != null) verbEnglish = verbParam;
+            if(verbParameter != null) verbEnglish = verbParameter;
         } else if(fromLanguage.equals(IRISH)) {
-            if(verbParam != null) verbIrish = verbParam;
+            if(verbParameter != null) verbIrish = verbParameter;
         }
     }
     //String fromLanguage = request.getParameter("fromLanguage");
@@ -96,7 +97,7 @@
                     <%--<span class="language-label"><%= fromLanguage %> verb</span>--%>
                     <%--<span class="language-label"><%= fromLanguage %> verb</span>--%>
                     <span class="language-label">
-                        <%= resourceBundles.getString(fromLanguage +" verb") %>
+                      <%= resourceBundles.getString(fromLanguage +" verb") %>
                     </span>
                     <%--span class="word"><% if (verbParam != null) { %><%= verbParam %><% } %></span--%>
                     <span class="word"><% if (request.getParameter("verb") != null) { %><%= request.getParameter("verb") %><% } %></span>

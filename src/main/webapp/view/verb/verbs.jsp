@@ -35,14 +35,7 @@
         <div class="row">
           <div class="cell">
             <div style="padding-bottom: 40px;">
-              <!--div class="verbs-header">
-                <%--span class="language-label"><span class="capitalize"><%= language %></span> verbs</span--%>
-                <span class="language-label">
-                  <%= resourceBundles.getString(language +" verbs") %>
-                </span>
-              </div-->
               <% if(verbList != null) { %>
-                <%--@ include file="/view/verb/verbs-output.jsp" --%>
                 <%@ include file="/view/verb/verbs-output.jsp" %>
               <% } %>
             </div>
