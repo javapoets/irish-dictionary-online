@@ -21,6 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /*
+ * The Filter is used to catch all traffic when performing a significant update that requires downtime.
+  * It is disabled by default and can be enabled by commenting out the WebFilter annotation below.
+ */
+/*
 @WebFilter(
       urlPatterns = { "*", "/*" }
     , dispatcherTypes = { DispatcherType.REQUEST }
@@ -101,22 +105,21 @@ public class CatchAllFilter implements Filter {
         log.debug("request.getRequestURI() = " + request.getRequestURI());
         log.debug("request.getRequestURL() = " + request.getRequestURL());
         log.debug("request.getPathTranslated() = " + request.getPathTranslated()); // Returns any extra path information after the servlet name but before the query string, and translates it to a real path.
-
         String servletPath = request.getServletPath();
         log.debug("servletPath = " + servletPath);
         if (servletPath != null) {
             log.debug("servletPath.startsWith(\"/css\") = " + servletPath.startsWith("/css"));
             log.debug("servletPath.startsWith(\"/view/images\") = " + servletPath.startsWith("/view/images"));
             if (
-                (servletPath.startsWith("/css"))
+                   (servletPath.startsWith("/css"))
                 || (servletPath.startsWith("/view/images"))
             ) {
-                log.info("Bypassing...");
+                //log.info("Bypassing...");
+                log.info(new StringBuilder().append("Bypassing ").append(getClass().getSimpleName()).append("...").toString());
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;
             }
         }
-
         try {
             servletContext.getRequestDispatcher("/view/system-down.jsp").include((HttpServletRequest)servletRequest, (HttpServletResponse)servletResponse);
         } catch(java.io.FileNotFoundException e) {
