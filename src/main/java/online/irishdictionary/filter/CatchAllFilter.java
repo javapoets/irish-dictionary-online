@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /*
  * The Filter is used to catch all traffic when performing a significant update that requires downtime.
-  * It is disabled by default and can be enabled by commenting out the WebFilter annotation below.
+ * It is disabled by default and can be enabled by commenting out the WebFilter annotation below.
  */
 /*
 @WebFilter(
