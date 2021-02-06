@@ -1,7 +1,7 @@
 <h1><%= resourceBundles.getString("About Irish Dictionary Online") %></h1>
 <p>
   <%= resourceBundles.getString("Irish Dictionary Online is a project by") %>
-  <a href="https://www.linkedin.com/in/dermotdoherty/">Diarmuid O'Dochartaigh</a>
+  <a href="https://www.linkedin.com/in/dermotdoherty/"><%= resourceBundles.getString("Dermot Doherty") %></a>
   <%= resourceBundles.getString("from Carndonagh, Co. Donegal.") %>
 </p>
 <p style="font-style: italic;">
