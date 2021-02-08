@@ -60,6 +60,7 @@ public class DefinitionOutput {
             put("mpl2", "masculine plural noun, 2nd declension");
             put("mpl3", "masculine plural noun, 3rd declension");
             put("mpl4", "masculine plural noun, 4th declension");
+            put("msg", "masculine singular");
             put("msg1", "masculine singular, 1st declension");
             put("msg2", "masculine singular, 2nd declension");
             put("msg3", "masculine singular, 3rd declension");
@@ -76,6 +77,7 @@ public class DefinitionOutput {
             put("fpl2", "feminine plural noun, 2th declension");
             put("fpl3", "feminine plural noun, 3th declension");
             put("fpl4", "feminine plural noun, 4th declension");
+            put("fsg", "feminine singular");
             put("fsg1", "feminine singular, 1th declension");
             put("fsg2", "feminine singular, 2th declension");
             put("fsg3", "feminine singular, 3th declension");

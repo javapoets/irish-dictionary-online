@@ -1,21 +1,21 @@
 # Irish Dictionary Online
 ## Build Instructions
-(Quick) For development: `localhost:8080`
+(Quick) For development: localhost:8080
 ```
 $ gradle clean build
 ```
-For production: `[irishdictionary.online](http://irishdictionary.online)`
+For production: [irishdictionary.online](http://irishdictionary.online)
 ```
 $ gradle prod
 or (the default)
 $ gradle custombuild -PbuildName=irishdictionary.online
 ```
 ### To perform a "custom build" based on a configuration file in: `/src/main/config`
-For development: `dev.englishirishdictionary.com:8080`
+For development: dev.englishirishdictionary.com:8080
 ```
 $ gradle custombuild -PbuildName=dev.englishirishdictionary.com
 ```
-For production: `[englishirishdictionary.com](http://englishirishdictionary.com)`
+For production: [englishirishdictionary.com](http://englishirishdictionary.com)
 ```
 $ gradle custombuild -PbuildName=englishirishdictionary.com
 ```
