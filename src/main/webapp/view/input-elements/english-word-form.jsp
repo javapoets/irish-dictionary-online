@@ -7,15 +7,7 @@
     <div class="table">
       <div class="row">
         <div class="cell">
-            <input
-              type="text"
-              name="word"
-              id="englishWord"
-              class="text"
-              <% if (wordEnglish != null) { %>value="<%= wordEnglish %>"<% } %>
-              maxlength="200"
-              placeholder="<%= resourceBundles.getString("English word(s)") %>"
-              style="width: 100%;" />
+          <input type="text" name="word" id="englishWord" class="text" maxlength="200" placeholder="<%= resourceBundles.getString("English word(s)") %>"<% if (wordEnglish != null) { %> value="<%= wordEnglish %>"<% } %> />
         </div>
         <div class="cell" style="margin-right: 0px; text-align: right; width: 60px;">
           <input type="button" value="go" class="orangebutton3" onclick="searchEnglishWord(this.form)" />

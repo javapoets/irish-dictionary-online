@@ -85,7 +85,8 @@
       <div class="table">
         <%@ include file="/view/row-select-language.jsp" %>
         <%@ include file="/view/row-nav.jsp" %>
-        <%@ include file="/view/row-header.jsp" %>
+        <%--@ include file="/view/row-header.jsp" --%>
+        <%@ include file="/view/row-header-verbs.jsp" %>
         <div class="row">
           <div class="cell">
             <div style="padding-bottom: 40px;">

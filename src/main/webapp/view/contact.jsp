@@ -25,11 +25,17 @@
   <body>
     <%--@ include file="/view/google-ads-responsive-360x90-728x90.jsp" --%>
     <div class="centering-container">
-      <div class="table">
+      <div class="table about logo">
         <%@ include file="/view/row-select-language.jsp" %>
         <%--@ include file="/view/row-lang.jsp" --%>
         <%@ include file="/view/row-nav.jsp" %>
-        <%@ include file="/view/row-header.jsp" %>
+        <%--@ include file="/view/row-header.jsp" --%>
+        <%@ include file="/view/row-logo.jsp" %>
+        <div class="row name">
+          <div class="cell name">
+            <a href="<%= contextUrl %>"><%= resourceBundles.getString("Contact Irish Dictionary Online") %></a>
+          </div>
+        </div>
         <div class="row">
           <div class="cell">
             <div style="padding: 0px 40px 40px 40px;">

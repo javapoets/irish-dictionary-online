@@ -4,22 +4,22 @@
 ```
 $ gradle clean build
 ```
-For production: `irishdictionary.online`
+For production: `[irishdictionary.online](http://irishdictionary.online)`
 ```
 $ gradle prod
 or (the default)
 $ gradle custombuild -PbuildName=irishdictionary.online
 ```
-### To perform a custom build based on a configuration file in: `/src/main/config`
+### To perform a "custom build" based on a configuration file in: `/src/main/config`
 For development: `dev.englishirishdictionary.com:8080`
 ```
 $ gradle custombuild -PbuildName=dev.englishirishdictionary.com
 ```
-For production: `www.englishirishdictionary.com`
+For production: `[englishirishdictionary.com](http://englishirishdictionary.com)`
 ```
-$ gradle custombuild -PbuildName=www.englishirishdictionary.com
+$ gradle custombuild -PbuildName=englishirishdictionary.com
 ```
-### To add Apache JSP support to the build for non-Gretty deployments:
+### To add Apache JSP support to the build output for non-Gretty deployments:
 ```
 $ gradle build -Papachejsp
 ```

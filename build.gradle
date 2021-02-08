@@ -11,31 +11,24 @@ repositories {
 }
 
 gretty {
-
     classPath 'build/resources/main'
-
     if(project.hasProperty('hostName')) {
         host = hostName
     } else {
         host = 'dev.irishdictionary.online'
     }
     println "host = " + host
-
     httpPort = project.hasProperty("port") ? port.toInteger() : 8080
     println "httpPort = " + httpPort
-
     contextPath = '/'
 }
 
 List compileList =  [
-
       "javax.servlet:javax.servlet-api:${project.property('servlet.version')}"
     , "javax.servlet.jsp:javax.servlet.jsp-api:${ project.property('jsp.version') }"
     , 'org.gretty:gretty:3.0.2'
-
     , "org.apache.logging.log4j:log4j-core:${ project.property('log4j.version') }"
     , "org.apache.logging.log4j:log4j-api:${ project.property('log4j.version') }"
-
     //, "commons-lang:commons-lang:2.6"
     //, "commons-net:commons-net:3.5"
     , "org.json:json:20140107"
@@ -43,7 +36,6 @@ List compileList =  [
     //, "com.sun.mail:mailapi:${project.property('javamail.version')}"
     //, "com.sun.mail:smtp:${project.property('javamail.version')}"
     , "mysql:mysql-connector-java:8.0.11"
-
     // Jetty
     , "org.eclipse.jetty:jetty-annotations:${project.property('jetty.version')}"
     , "org.eclipse.jetty:jetty-server:${project.property('jetty.version')}"
@@ -55,36 +47,27 @@ List compileList =  [
     , "org.eclipse.jetty:jetty-webapp:${project.property('jetty.version')}"
     , "org.eclipse.jetty:jetty-util:${project.property('jetty.version')}"
     //, "com.atlassian.commonmark:commonmark:0.10.0"
-
     , fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: '*.jar')  // local libs
 ]
 
 dependencies {
-
     if (project.hasProperty("apachejsp")) compileList << "org.eclipse.jetty:apache-jsp:${project.property('jetty.version')}"  // Apache JSP
-
     //compile compileList
     implementation compileList
-
     runtime files('src/main/resources')
 }
 
 task dev {
     println 'dev()'
-
    def buildProperties = new Properties()
-
     doFirst {
         //def buildProperties = new Properties()
         file("src/main/config/dev.properties").withInputStream {
             stream -> buildProperties.load(stream)
         }
-
         println buildProperties.getProperty("protocol") + "://" + buildProperties.getProperty("server") + ":" + buildProperties.getProperty("port")
-
         def server = buildProperties.getProperty("server")
         println "server = " + server
-
     }
     doLast {
         println 'dev.copy()'
@@ -101,9 +84,7 @@ task dev {
 
 task prod {
     println 'prod()'
-
    def buildProperties = new Properties()
-
     doFirst {
         file("src/main/config/prod.properties").withInputStream {
             stream -> buildProperties.load(stream)
@@ -112,7 +93,6 @@ task prod {
         def server = buildProperties.getProperty("server")
         println "server = " + server
     }
-
     doLast {
         println 'dev.copy()'
         copy {

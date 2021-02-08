@@ -1,7 +1,9 @@
+<%--
 <h1><%= resourceBundles.getString("About Irish Dictionary Online") %></h1>
+--%>
 <p>
   <%= resourceBundles.getString("Irish Dictionary Online is a project by") %>
-  <a href="https://www.linkedin.com/in/dermotdoherty/"><%= resourceBundles.getString("Dermot Doherty") %></a>
+  <a href="https://www.linkedin.com/in/dermotdoherty/">Diarmuid O'Dochartaigh</a>
   <%= resourceBundles.getString("from Carndonagh, Co. Donegal.") %>
 </p>
 <p style="font-style: italic;">
@@ -9,7 +11,7 @@
   <%= resourceBundles.getString("and realized that there was no searchable database of Irish terms on the Internet at that time.") %>
   <%= resourceBundles.getString("I did eventually find the Irish word for wine") %> 'fion'
   <%= resourceBundles.getString("but spent the next 2 years researching and assembling a database of Irish words and their English translations") %>
-  <%= resourceBundles.getString("along with real-life usage examples of those words.") %>"
+  <%= resourceBundles.getString("along with real-life usage examples.") %>"
 </p>
 <p>
   <%= resourceBundles.getString("After the dictionary was completed and put online in 2003") %>,

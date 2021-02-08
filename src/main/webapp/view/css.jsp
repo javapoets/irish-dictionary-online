@@ -116,6 +116,15 @@ div.row.logo div.cell.logo
   padding-top: 10px;
 }
 
+div.about
+div.row.logo
+div.cell.logo
+{
+  padding-left: 0px;
+  text-align: center;
+  margin: auto;
+}
+
 div.row.logo div.cell.logo a
 {
   margin: 0px;
@@ -524,6 +533,7 @@ input.text {
   border:0px;
   outline:none;
   font-size:18px;
+  width: 100%;
 }
 
 input.blur {

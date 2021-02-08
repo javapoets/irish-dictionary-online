@@ -10,11 +10,7 @@
       <%--@ include file="/view/row-select-language.jsp" --%>
       <%@ include file="/view/row-lang.jsp" %>
       <%@ include file="/view/row-nav.jsp" %>
-      <div class="row logo">
-        <div class="cell logo">
-          <a href="<%= contextUrl %>"><img src="<%= imagesUrl %>Irish-Dictionary-Online-Logo.jpg" border="0" title="Irish Dictionary Online"></a>
-        </div>
-      </div>
+      <%@ include file="/view/row-logo.jsp" %>
       <div class="row name">
         <div class="cell name">
           <a href="<%= contextUrl %>"><%= resourceBundles.getString("Irish Dictionary") %></a>

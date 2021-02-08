@@ -1,4 +1,6 @@
+<%--
 <h1><%= resourceBundles.getString("Contact Irish Dictionary Online") %></h1>
+--%>
 <div class="contact-content">
   <div>
     <form method="post" action="<%= contextUrl %>contact">
