@@ -1,0 +1,64 @@
+package online.irishdictionary.database;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javapoets.dbcp.ConnectionPool;
+import javapoets.dbcp.ConnectionManager;
+import online.irishdictionary.model.Definition;
+import online.irishdictionary.model.Usage;
+import online.irishdictionary.model.Verb;
+import online.irishdictionary.model.VerbConjugation;
+import online.irishdictionary.model.Word;
+
+public class AnalyticsDatabaseManager {
+
+    private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
+
+    public static void insertWordSearched(
+        String wordParameter
+        , String fromLanguage
+        , String toLanguage
+        , String remoteAddr
+        , String locale
+        , int wordExists
+        , ConnectionManager connectionManager
+    ) throws SQLException, Exception {
+        log.debug(new StringBuilder().append("insert('")
+            .append(wordParameter)
+            .append("', '").append(fromLanguage)
+            .append("', '").append(toLanguage)
+            .append("', '").append(remoteAddr)
+            .append("', '").append(locale)
+            .append("', ").append(wordExists)
+            .append(", ").append(connectionManager)
+            .append(")").toString());
+        try {
+            String sql = new StringBuilder()
+                .append("INSERT INTO searched_word (")
+                .append("word, from_language, to_language, remote_addr, locale, was_found")
+                .append(") VALUES (?, ?, ?, ?, ?, ?)")
+                .toString();
+            PreparedStatement preparedStatement = connectionManager.prepareStatement(sql);
+            preparedStatement.setString(1, wordParameter);
+            preparedStatement.setString(2, fromLanguage);
+            preparedStatement.setString(3, toLanguage);
+            preparedStatement.setString(4, remoteAddr);
+            preparedStatement.setString(5, locale);
+            preparedStatement.setInt(6, wordExists);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        } finally {
+            try {
+              connectionManager.commit();
+            } catch (Exception exception) {}
+        }
+    }
+}
