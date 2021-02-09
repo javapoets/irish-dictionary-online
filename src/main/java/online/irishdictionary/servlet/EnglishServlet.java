@@ -5,14 +5,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
-import online.irishdictionary.model.Word;
+import online.irishdictionary.database.AnalyticsDatabaseManager;
 import online.irishdictionary.database.DictionaryDatabaseManager;
+import online.irishdictionary.model.Word;
 import online.irishdictionary.servlet.InitServlet;
 
-@WebServlet(name = "EnglishServlet", asyncSupported = false, urlPatterns = {
-      "english"
-    , "english/*"
-})
+@WebServlet(name = "EnglishServlet"
+    , asyncSupported = true
+    , urlPatterns = {
+          "english"
+        , "english/*"
+    }
+)
 public class EnglishServlet extends WordServlet {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
@@ -29,6 +33,35 @@ public class EnglishServlet extends WordServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("doPost(request, response)");
+        try {
+            super.execute(new EnglishRequest(request.startAsync()));
+            return;
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    public class EnglishRequest implements Runnable {
+        AsyncContext asyncContext;
+        public EnglishRequest(AsyncContext asyncContext) {
+            logger.debug("EnglishRequest(asyncContext)");
+            this.asyncContext = asyncContext;
+            this.asyncContext.setTimeout(1000*5);  // 5 seconds timeout
+        }
+        public void run() {
+            try {
+                doPostBak((HttpServletRequest)this.asyncContext.getRequest(), (HttpServletResponse)this.asyncContext.getResponse());
+                this.asyncContext.complete();
+            } catch (IOException e) {
+                logger.error(e);
+            } catch (Exception e) {
+                logger.error(e);
+            }
+        }
+    }
+
+    public void doPostBak(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        log.debug("doPostBak(request, response)");
         java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
         while(parameterNames.hasMoreElements()) {
             String parameterName = (String)parameterNames.nextElement();
@@ -42,15 +75,34 @@ public class EnglishServlet extends WordServlet {
         String fromLanguage = "english";
         String toLanguage = split[1];
         String wordParameter = split[2];
+        String remoteAddr = request.getRemoteAddr();
+        String locale = (request.getLocale()).toString();
+        log.debug("remoteAddr = "+remoteAddr);
+        log.debug("locale = "+locale);
         log.debug("wordParameter = " + wordParameter);
         log.debug("fromLanguage = " + fromLanguage);
         log.debug("toLanguage = " + toLanguage);
-
-        super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+        StringBuilder stringBuilder = new StringBuilder()
+            .append(locale)
+            .append("/").append(remoteAddr)
+            .append(":").append(fromLanguage)
+            .append("/").append(wordParameter);
+        log.info(stringBuilder.toString());
+        boolean wordWasFound = super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+        log.debug("wordWasFound = " + wordWasFound);
+        AnalyticsDatabaseManager.insertWordSearched(
+            wordParameter
+            , fromLanguage
+            , toLanguage
+            , remoteAddr
+            , locale
+            , (wordWasFound ? 1 : 0)
+            , connectionManager
+        );
     }
 
-    public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("pageType", "dictionary");
-        include(request, response, JSP_RESULTS);
-    }
+    //public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    //    request.setAttribute("pageType", "dictionary");
+    //    include(request, response, JSP_RESULTS);
+    //}
 }

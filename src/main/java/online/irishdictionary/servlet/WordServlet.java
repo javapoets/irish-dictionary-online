@@ -91,10 +91,10 @@ public class WordServlet extends InitServlet {
                 request.setAttribute("toLanguage", toLanguage);
             }
         }
-        displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+        boolean wordWasFound = displayWord(request, response, wordParameter, fromLanguage, toLanguage);
     }
 
-    public void displayWord(
+    public boolean displayWord(
         HttpServletRequest request
         , HttpServletResponse response
         , String wordParameter
@@ -102,7 +102,11 @@ public class WordServlet extends InitServlet {
         , String toLanguage
         //, String languageIdParameter
     ) throws ServletException, IOException {
-        log.debug("displayWord(request, response, '"+wordParameter+"', '"+fromLanguage+"', '"+toLanguage+"')");
+        log.debug(new StringBuilder()
+            .append("displayWord(request, response, '").append(wordParameter)
+            .append("', '").append(fromLanguage)
+            .append("', '").append(toLanguage)
+            .append("')").toString());
 
         super.checkForLangParameter(request, response);
 
@@ -122,18 +126,17 @@ public class WordServlet extends InitServlet {
         request.setAttribute("wordParameter", wordParameter);
 
         if (!EMPTY.equals(wordParameter)) {
-            Word word = new Word(wordParameter.trim(), fromLanguage, toLanguage);
+            //Word word = new Word(wordParameter.trim(), fromLanguage, toLanguage);
             try {
-                DictionaryDatabaseManager.populateWord(word, languageId, getConnectionPool());
                 //DictionaryDatabaseManager.selectWord(word, language, getConnectionPool());
                 //Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
-                request.setAttribute("word", word);
+                //DictionaryDatabaseManager.populateWord(word, languageId, getConnectionPool());
+                Word word = DictionaryDatabaseManager.selectWord(wordParameter, fromLanguage, toLanguage, languageId, getConnectionPool());
+                if (word != null) {
+                    request.setAttribute("word", word);
+                }
             } catch (Exception e) {
-                log.error(e);
-                StringWriter stringWriter = new StringWriter();
-                PrintWriter printWriter = new PrintWriter(stringWriter);
-                e.printStackTrace(printWriter);
-                log.error(stringWriter.toString());
+                log.error(e.getMessage(), e);
             }
             includeUtf8(request, response, JSP_RESULTS);
         } else {

@@ -29,6 +29,62 @@ public class DictionaryDatabaseManager {
     private static final String PERCENT_SIGN = "%";
     private static final String SELECT_DEFINITION_BY_WORD_AND_LANGUAGE_ID = "selectDefinitionByWordAndLanguageId";
 
+    public static Word selectWord(String wordParameter, String fromLanguage, String toLanguage, int languageId, Object connectionPoolObject) throws SQLException, Exception {
+        log.trace(new StringBuilder().append("selectWord(").append(wordParameter).append(", ").append(languageId).append(", ").append(connectionPoolObject).append(")").toString());
+        populateWord(wordParameter, languageId, (ConnectionPool) connectionPoolObject);
+    }
+
+    public static Word selectWord(String wordParameter, String fromLanguage, String toLanguage, int languageId, ConnectionPool connectionPool) throws SQLException, Exception {
+        log.trace(new StringBuilder().append("selectWord(").append(wordParameter).append(", ").append(languageId).append(", ").append(connectionPool).append(")").toString());
+        populateWord(wordParameter, languageId, new ConnectionManager(connectionPool));
+    }
+
+    public static Word selectWord(String wordParameter, String fromLanguage, String toLanguage, int languageId, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+        log.trace(new StringBuilder().append("selectWord(").append(wordParameter).append(", ").append(languageId).append(", ").append(connectionManager).append(")").toString());
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            Word word = selectWord(wordParameter, languageId, connectionManager);
+            if (word != null) {
+                List<Definition> definitionList = new ArrayList<Definition>();
+                selectDefinitions(word.getWord(), languageId, definitionList, connectionManager);
+                word.setDefinitionList(definitionList);
+                //log.debug("definitionList.size() = "+definitionList.size());
+                List<Usage> usageList = new ArrayList<Usage>();
+                if(languageId == 1) {
+                    selectUsageByEnglishPhrase(word.getWord(), usageList, connectionManager);
+                } else {
+                    selectUsageByIrishPhrase(word.getWord(), usageList, connectionManager);
+                }
+                word.setUsageList(usageList);
+                //insertWordSearched(wordParameter, 1, connectionManager);
+                return word;
+            }
+        } finally {
+            connectionManager.commit();
+        }
+        //insertWordSearched(wordParameter, 0, connectionManager);
+        return null;
+    }
+
+    public static void insert(String wordParameter, int wordExists, ConnectionManager connectionManager) throws SQLException, Exception {
+        log.debug(new StringBuilder().append("insert(").append(contactForm).append(", ").append(connectionManager).append(")").toString());
+        try {
+            String sql = "INSERT INTO searched_word (word, was_found) VALUES (?, ?)";
+            PreparedStatement preparedStatement = connectionManager.prepareStatement(sql);
+            preparedStatement.setString(1, wordParameter);
+            preparedStatement.setInt(2, wordExists);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        } finally {
+            try {
+              connectionManager.commit();
+            } catch (Exception exception) {}
+        }
+    }
+
+    /*
     public static void populateWord(Word word, int languageId, Object connectionPoolObject) throws SQLException, Exception {
         log.trace("selectWord(" + word + ", " + languageId + ", "+connectionPoolObject+")");
         populateWord(word, languageId, (ConnectionPool) connectionPoolObject);
@@ -44,7 +100,7 @@ public class DictionaryDatabaseManager {
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
         try {
-            selectWord(word, languageId, connectionManager);
+            Word word = selectWord(word, languageId, connectionManager);
             List<Definition> definitionList = new ArrayList<Definition>();
             selectDefinitions(word.getWord(), languageId, definitionList, connectionManager);
             word.setDefinitionList(definitionList);
@@ -60,18 +116,19 @@ public class DictionaryDatabaseManager {
             connectionManager.commit();
         }
     }
+    */
 
-    public static void selectWord(Word word, int languageId, Object connectionPoolObject) throws SQLException, Exception {
+    public static Word selectWord(String word, int languageId, Object connectionPoolObject) throws SQLException, Exception {
         log.debug("selectWord(" + word + ", languageId, " + connectionPoolObject + ")");
-        selectWord(word, languageId, (ConnectionPool) connectionPoolObject);
+        return selectWord(word, languageId, (ConnectionPool) connectionPoolObject);
     }
 
-    public static void selectWord(Word word, int languageId, ConnectionPool connectionPool) throws SQLException, Exception {
+    public static Word selectWord(String word, int languageId, ConnectionPool connectionPool) throws SQLException, Exception {
         log.debug("selectWord(" + word + ", languageId, " + connectionPool + ")");
-        selectWord(word, languageId, new ConnectionManager(connectionPool));
+        return selectWord(word, languageId, new ConnectionManager(connectionPool));
     }
 
-    public static void selectWord(Word word, int languageId, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+    public static Word selectWord(String word, int languageId, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectWord('" + word + "', " + languageId + ", connectionManager)");
         String sql = new StringBuilder()
             .append("SELECT id, word, word_ascii, word_description, definition, type, description, gender, declension, genitive_singular, nominative_singular, genitive_plural, nominative_plural")
@@ -86,6 +143,7 @@ public class DictionaryDatabaseManager {
         preparedStatement.setInt(2, languageId);
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
+            Word word = new Word();
             word.setId(resultSet.getInt(1));
             word.setWord(resultSet.getString(2));
             //word.setWordAscii(resultSet.getString(3));
@@ -102,7 +160,9 @@ public class DictionaryDatabaseManager {
             word.setGenitivePlural(resultSet.getString("genitive_plural"));
             word.setNominativeSingular(resultSet.getString("nominative_singular"));
             word.setNominativePlural(resultSet.getString("nominative_plural"));
+            return word;
         }
+        return null;
     }
 
     public static void selectDefinitions(String word, int languageId, List<Definition> definitionList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
