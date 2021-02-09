@@ -14,7 +14,7 @@
     String IRISH = "irish";
     String contextUrl = (String)application.getAttribute("contextUrl");
     String imagesUrl = contextUrl + "view/images/";
-    Word word = (Word) request.getAttribute("word");
+    Word word = (Word)request.getAttribute("word");
     String fromLanguage = (String)request.getAttribute("fromLanguage");
     String toLanguage = (String)request.getAttribute("toLanguage");
     log.debug("contextUrl = " + contextUrl);
@@ -72,7 +72,7 @@
         <div class="row">
           <div class="cell">
             <div style="padding-bottom: 40px;">
-              <% if(word != null) { %>
+              <% if (word != null) { %>
                 <irishdictionary:word />
               <% } %>
             </div>

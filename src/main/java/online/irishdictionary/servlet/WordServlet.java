@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import online.irishdictionary.model.Definition;
 import online.irishdictionary.model.Word;
+import online.irishdictionary.database.AnalyticsDatabaseManager;
 import online.irishdictionary.database.DictionaryDatabaseManager;
 import online.irishdictionary.servlet.InitServlet;
 
@@ -91,10 +92,32 @@ public class WordServlet extends InitServlet {
                 request.setAttribute("toLanguage", toLanguage);
             }
         }
-        boolean wordWasFound = displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+        Word word = displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+        boolean wordWasFound = false;
+        boolean usageWasFound = false;
+        if (word != null) {
+            wordWasFound = word.getWord() != null;
+            usageWasFound = word.getUsageList() != null;
+            log.debug("wordWasFound = " + wordWasFound);
+            log.debug("usageWasFound = " + usageWasFound);
+        }
+        try {
+            AnalyticsDatabaseManager.insertWordSearched(
+                wordParameter
+                , fromLanguage
+                , toLanguage
+                , remoteAddr
+                , locale
+                , (wordWasFound ? 1 : 0)
+                , (usageWasFound ? 1 : 0)
+                , getConnectionPool()
+            );
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
-    public boolean displayWord(
+    public Word displayWord(
         HttpServletRequest request
         , HttpServletResponse response
         , String wordParameter
@@ -125,29 +148,33 @@ public class WordServlet extends InitServlet {
         request.setAttribute("toLanguage", toLanguage);
         request.setAttribute("wordParameter", wordParameter);
 
+        Word word = null;
         if (!EMPTY.equals(wordParameter)) {
             //Word word = new Word(wordParameter.trim(), fromLanguage, toLanguage);
             try {
                 //DictionaryDatabaseManager.selectWord(word, language, getConnectionPool());
                 //Map<String, List<Definition>> definitionMap = word.createDefinitionMap();
                 //DictionaryDatabaseManager.populateWord(word, languageId, getConnectionPool());
-                Word word = DictionaryDatabaseManager.selectWord(wordParameter, fromLanguage, toLanguage, languageId, getConnectionPool());
+                word = DictionaryDatabaseManager.selectWord(wordParameter, fromLanguage, toLanguage, languageId, getConnectionPool());
+                log.debug("word = " + word);
                 if (word != null) {
+                    //word.setFromLanguage(fromLanguage);
+                    //word.setToLanguage(toLanguage);
                     request.setAttribute("word", word);
-                    includeUtf8(request, response, JSP_RESULTS);
-                    return true;
+                    //if (word.getWord() != null) return true;
                 }
+                includeUtf8(request, response, JSP_RESULTS);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
         } else {
             includeUtf8(request, response, JSP_HOME);
         }
-        return false;
+        return word;
     }
 
-    public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("pageType", "dictionary");
-        include(request, response, JSP_RESULTS);
-    }
+    //public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    //    request.setAttribute("pageType", "dictionary");
+    //    include(request, response, JSP_RESULTS);
+    //}
 }

@@ -16,6 +16,7 @@ public class Word {
     private String ENGLISH = "english";
     private String IRISH = "irish";
     private int id = -1;
+    private String searchedWord = null;
     private String word = null;
     private String fromLanguage = null;
     private String toLanguage = null;
@@ -32,6 +33,7 @@ public class Word {
     private List<Usage> usageList = null;
     private int startUsageIndex = 0;
     private int endUsageIndex = 40;
+    private boolean definitionFound = false;
 
     private HashMap<String, String> partsOfSpeech = new HashMap<String, String>() {
         {
@@ -88,11 +90,20 @@ public class Word {
         this.word = word;
     }
 
-    public Word(String word, String fromLanguage, String toLanguage) {
-        log.debug("('"+word+"', '"+fromLanguage+"', '"+toLanguage+"')");
-        this.word = word;
+    public Word(String searchedWord, String fromLanguage, String toLanguage) {
+        log.debug("('"+searchedWord+"', '"+fromLanguage+"', '"+toLanguage+"')");
+        //this.searchedWord = searchedWord;
+        this.word = searchedWord;
         this.fromLanguage = fromLanguage;
         this.toLanguage = toLanguage;
+    }
+
+    public void setDefinitionFound(boolean definitionFound) {
+        this.definitionFound = definitionFound;
+    }
+
+    public boolean getDefinitionFound() {
+        return this.definitionFound;
     }
 
     public void setId(int id) {
@@ -101,6 +112,10 @@ public class Word {
 
     public int getId() {
         return this.id;
+    }
+
+    public void setSearchedWord(String searchedWord) {
+        this.searchedWord = searchedWord;
     }
 
     public void setWord(String word) {
@@ -113,6 +128,14 @@ public class Word {
         //} else {
         //    return EMPTY;
         //}
+    }
+
+    public void setFromLanguage(String fromLanguage) {
+        this.fromLanguage = fromLanguage;
+    }
+
+    public void setToLanguage(String toLanguage) {
+        this.toLanguage = toLanguage;
     }
 
     public void setWordDescription(String wordDescription) {

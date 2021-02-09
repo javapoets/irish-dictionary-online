@@ -30,41 +30,74 @@ public class DictionaryDatabaseManager {
     private static final String SELECT_DEFINITION_BY_WORD_AND_LANGUAGE_ID = "selectDefinitionByWordAndLanguageId";
 
     public static Word selectWord(String wordParameter, String fromLanguage, String toLanguage, int languageId, Object connectionPoolObject) throws SQLException, Exception {
-        log.trace(new StringBuilder().append("selectWord(").append(wordParameter).append(", ").append(languageId).append(", ").append(connectionPoolObject).append(")").toString());
-        return selectWord(wordParameter, languageId, (ConnectionPool) connectionPoolObject);
+        log.trace(new StringBuilder()
+            .append("selectWord(").append(wordParameter)
+            .append(", ").append(fromLanguage)
+            .append(", ").append(toLanguage)
+            .append(", ").append(languageId)
+            .append(", ").append(connectionPoolObject)
+            .append(")").toString());
+        return selectWord(wordParameter, fromLanguage, toLanguage, languageId, (ConnectionPool) connectionPoolObject);
     }
 
     public static Word selectWord(String wordParameter, String fromLanguage, String toLanguage, int languageId, ConnectionPool connectionPool) throws SQLException, Exception {
-        log.trace(new StringBuilder().append("selectWord(").append(wordParameter).append(", ").append(languageId).append(", ").append(connectionPool).append(")").toString());
-        return selectWord(wordParameter, languageId, new ConnectionManager(connectionPool));
+        log.trace(new StringBuilder()
+            .append("selectWord(").append(wordParameter)
+            .append(", ").append(fromLanguage)
+            .append(", ").append(toLanguage)
+            .append(", ").append(languageId)
+            .append(", ").append(connectionPool)
+            .append(")").toString());
+        return selectWord(wordParameter, fromLanguage, toLanguage, languageId, new ConnectionManager(connectionPool));
     }
 
     public static Word selectWord(String wordParameter, String fromLanguage, String toLanguage, int languageId, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
-        log.trace(new StringBuilder().append("selectWord(").append(wordParameter).append(", ").append(languageId).append(", ").append(connectionManager).append(")").toString());
+        log.trace(new StringBuilder()
+            .append("selectWord(").append(wordParameter)
+            .append(", ").append(wordParameter)
+            .append(", ").append(fromLanguage)
+            .append(", ").append(toLanguage)
+            .append(", ").append(languageId)
+            .append(", ").append(connectionManager)
+            .append(")").toString());
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
+        Word word;
         try {
-            Word word = selectWord(wordParameter, languageId, connectionManager);
+            word = selectWord(wordParameter, languageId, connectionManager);
             if (word != null) {
+                word.setFromLanguage(fromLanguage);
+                word.setToLanguage(toLanguage);
                 List<Definition> definitionList = new ArrayList<Definition>();
                 selectDefinitions(word.getWord(), languageId, definitionList, connectionManager);
                 word.setDefinitionList(definitionList);
-                //log.debug("definitionList.size() = "+definitionList.size());
-                List<Usage> usageList = new ArrayList<Usage>();
-                if(languageId == 1) {
-                    selectUsageByEnglishPhrase(word.getWord(), usageList, connectionManager);
-                } else {
-                    selectUsageByIrishPhrase(word.getWord(), usageList, connectionManager);
-                }
-                word.setUsageList(usageList);
-                //insertWordSearched(wordParameter, 1, connectionManager);
-                return word;
+                log.debug("definitionList.size() = "+definitionList.size());
             }
+            List<Usage> usageList = null;
+            if(languageId == 1) {
+                usageList = selectUsageByEnglishPhrase(wordParameter, connectionManager);
+            } else {
+                usageList = selectUsageByIrishPhrase(wordParameter, connectionManager);
+            }
+            if (usageList != null) {
+                if (word == null) word = new Word(wordParameter, fromLanguage, toLanguage);
+                word.setUsageList(usageList);
+            }
+            /*
+            List<Usage> usageList = new ArrayList<Usage>();
+            if(languageId == 1) {
+                selectUsageByEnglishPhrase(word.getWord(), usageList, connectionManager);
+            } else {
+                selectUsageByIrishPhrase(word.getWord(), usageList, connectionManager);
+            }
+            word.setUsageList(usageList);
+            */
+            //insertWordSearched(wordParameter, 1, connectionManager);
         } finally {
             connectionManager.commit();
         }
         //insertWordSearched(wordParameter, 0, connectionManager);
-        return null;
+        return word;
     }
 
     /*
@@ -146,6 +179,7 @@ public class DictionaryDatabaseManager {
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             Word word = new Word();
+            word.setDefinitionFound(true);
             word.setId(resultSet.getInt(1));
             word.setWord(resultSet.getString(2));
             //word.setWordAscii(resultSet.getString(3));
@@ -362,6 +396,59 @@ public class DictionaryDatabaseManager {
         }
     }
     */
+
+    public static List<Usage> selectUsageByIrishPhrase(String word, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+        log.debug("selectUsageByIrishPhrase('" + word + "', connectionManager)");
+        PreparedStatement preparedStatement = connectionManager.loadStatement("selectUsageByIrishPhrase");
+        preparedStatement.setString(1, PERCENT_SIGN + word + PERCENT_SIGN);
+        preparedStatement.setString(2, word + PERCENT_SIGN);
+        preparedStatement.setString(3, PERCENT_SIGN + word);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            List<Usage> usageList = new ArrayList<Usage>();
+            Usage usage = null;
+            do {
+                usage = new Usage();
+                usage.setUsageId(resultSet.getInt(1));
+                usage.setUsage(resultSet.getString(2));
+                usage.setType(resultSet.getString(3));
+                usage.setDescription(resultSet.getString(4));
+                usage.setPlusSuffix(resultSet.getString(5));
+                usage.setGender(resultSet.getString(6));
+                usage.setUsageTranslated(resultSet.getString(7));
+                usageList.add(usage);
+            } while(resultSet.next());
+            return usageList;
+        }
+        return null;
+    }
+
+    public static List<Usage> selectUsageByEnglishPhrase(String word, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
+        log.debug("selectUsageByEnglishPhrase('" + word + "', usageList)");
+        String statementName = "selectUsageByEnglishPhrase";
+        PreparedStatement preparedStatement = connectionManager.loadStatement(statementName);
+        preparedStatement.setString(1, PERCENT_SIGN  + word + PERCENT_SIGN);
+        preparedStatement.setString(2, word + PERCENT_SIGN);
+        preparedStatement.setString(3, PERCENT_SIGN + word);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            List<Usage> usageList = new ArrayList<Usage>();
+            Usage usage = null;
+            do {
+                usage = new Usage();
+                usage.setUsageId(resultSet.getInt(1));
+                usage.setUsage(resultSet.getString(2));
+                usage.setType(resultSet.getString(3));
+                usage.setDescription(resultSet.getString(4));
+                usage.setPlusSuffix(resultSet.getString(5));
+                usage.setGender(resultSet.getString(6));
+                usage.setUsageTranslated(resultSet.getString(7));
+                usageList.add(usage);
+            } while(resultSet.next());
+            return usageList;
+        }
+        return null;
+    }
 
     public static void selectUsageByEnglishPhrase(String word, List<Usage> usageList, ConnectionManager connectionManager) throws java.sql.SQLException, Exception {
         log.debug("selectUsageByEnglishPhrase('" + word + "', usageList)");

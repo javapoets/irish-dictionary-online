@@ -34,8 +34,21 @@ public class EnglishServlet extends WordServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("doPost(request, response)");
+        String pathInfo = request.getPathInfo();
+        log.debug("pathInfo = " + pathInfo);
+        String[] split = pathInfo.split(FORWARDSLASH);
+        log.debug("split.length = "+split.length);
+        log.debug("split[0] = "+split[0]+", split[1] = "+split[1]+", split[2] = "+split[2]);
+        String fromLanguage = "english";
+        String toLanguage = split[1];
+        String wordParameter = split[2].trim();
         try {
-            super.execute(new EnglishRequest(request.startAsync()));
+            super.execute(new EnglishRequest(
+                request.startAsync()
+                , fromLanguage
+                , toLanguage
+                , wordParameter
+            ));
             return;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -44,14 +57,37 @@ public class EnglishServlet extends WordServlet {
 
     public class EnglishRequest implements Runnable {
         AsyncContext asyncContext;
-        public EnglishRequest(AsyncContext asyncContext) {
-            log.debug("EnglishRequest(asyncContext)");
+        String fromLanguage;
+        String toLanguage;
+        String wordParameter;
+        public EnglishRequest(
+            AsyncContext asyncContext
+            , String fromLanguage
+            , String toLanguage
+            , String wordParameter
+        ) {
+            log.debug(new StringBuilder()
+                .append("EnglishRequest(asyncContext")
+                .append(", ").append(fromLanguage)
+                .append(", ").append(toLanguage)
+                .append(", ").append(wordParameter)
+                .append(")")
+                .toString());
             this.asyncContext = asyncContext;
+            this.fromLanguage = fromLanguage;
+            this.toLanguage = toLanguage;
+            this.wordParameter = wordParameter;
             this.asyncContext.setTimeout(1000*5);  // 5 seconds timeout
         }
         public void run() {
             try {
-                doPostBak((HttpServletRequest)this.asyncContext.getRequest(), (HttpServletResponse)this.asyncContext.getResponse());
+                englishRequest(
+                    (HttpServletRequest)this.asyncContext.getRequest()
+                    , (HttpServletResponse)this.asyncContext.getResponse()
+                    , this.fromLanguage
+                    , this.toLanguage
+                    , this.wordParameter
+                );
                 this.asyncContext.complete();
             } catch (IOException e) {
                 log.error(e);
@@ -61,21 +97,20 @@ public class EnglishServlet extends WordServlet {
         }
     }
 
-    public void doPostBak(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.debug("doPostBak(request, response)");
-        java.util.Enumeration parameterNames = (java.util.Enumeration)request.getParameterNames();
-        while(parameterNames.hasMoreElements()) {
-            String parameterName = (String)parameterNames.nextElement();
-            log.debug(parameterName+" = "+request.getParameter(parameterName));
-        }
-        String pathInfo = request.getPathInfo();
-        log.debug("pathInfo = '"+pathInfo+"'");
-        String[] split = pathInfo.split(FORWARDSLASH);
-        log.debug("split.length = "+split.length);
-        log.debug("split[0] = "+split[0]+", split[1] = "+split[1]+", split[2] = "+split[2]);
-        String fromLanguage = "english";
-        String toLanguage = split[1];
-        String wordParameter = split[2];
+    public void englishRequest(
+        HttpServletRequest request
+        , HttpServletResponse response
+        , String fromLanguage
+        , String toLanguage
+        , String wordParameter
+    ) throws ServletException, IOException {
+        log.debug(new StringBuilder()
+            .append("englishRequest(request, response")
+            .append(", ").append(fromLanguage)
+            .append(", ").append(toLanguage)
+            .append(", ").append(wordParameter)
+            .append(")")
+            .toString());
         String remoteAddr = request.getRemoteAddr();
         String locale = (request.getLocale()).toString();
         log.debug("remoteAddr = "+remoteAddr);
@@ -89,8 +124,16 @@ public class EnglishServlet extends WordServlet {
             .append(":").append(fromLanguage)
             .append("/").append(wordParameter);
         log.info(stringBuilder.toString());
-        boolean wordWasFound = super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
-        log.debug("wordWasFound = " + wordWasFound);
+        Word word = super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
+        boolean wordWasFound = false;
+        boolean usageWasFound = false;
+        if (word != null) {
+            //wordWasFound = word.getWord() != null;
+            wordWasFound = word.getDefinitionFound();
+            usageWasFound = word.getUsageList() != null;
+            log.debug("wordWasFound = " + wordWasFound);
+            log.debug("usageWasFound = " + usageWasFound);
+        }
         try {
             AnalyticsDatabaseManager.insertWordSearched(
                 wordParameter
@@ -99,6 +142,7 @@ public class EnglishServlet extends WordServlet {
                 , remoteAddr
                 , locale
                 , (wordWasFound ? 1 : 0)
+                , (usageWasFound ? 1 : 0)
                 , getConnectionPool()
             );
         } catch (Exception e) {

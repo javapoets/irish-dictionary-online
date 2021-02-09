@@ -28,6 +28,7 @@ public class AnalyticsDatabaseManager {
         , String remoteAddr
         , String locale
         , int wordExists
+        , int usageExists
         , ConnectionPool connectionPool
     ) throws SQLException, Exception {
         
@@ -38,6 +39,7 @@ public class AnalyticsDatabaseManager {
             .append("', '").append(remoteAddr)
             .append("', '").append(locale)
             .append("', ").append(wordExists)
+            .append("', ").append(usageExists)
             .append(", ").append(connectionPool)
             .append(")").toString());
 
@@ -48,6 +50,7 @@ public class AnalyticsDatabaseManager {
             , remoteAddr
             , locale
             , wordExists
+            , usageExists
             , new ConnectionManager(connectionPool)
         );
     }
@@ -59,6 +62,7 @@ public class AnalyticsDatabaseManager {
         , String remoteAddr
         , String locale
         , int wordExists
+        , int usageExists
         , ConnectionManager connectionManager
     ) throws SQLException, Exception {
         log.debug(new StringBuilder().append("insert('")
@@ -68,13 +72,14 @@ public class AnalyticsDatabaseManager {
             .append("', '").append(remoteAddr)
             .append("', '").append(locale)
             .append("', ").append(wordExists)
+            .append("', ").append(usageExists)
             .append(", ").append(connectionManager)
             .append(")").toString());
         try {
             String sql = new StringBuilder()
                 .append("INSERT INTO searched_word (")
-                .append("word, from_language, to_language, remote_addr, locale, was_found")
-                .append(") VALUES (?, ?, ?, ?, ?, ?)")
+                .append("word, from_language, to_language, remote_addr, locale, word_found, usage_found")
+                .append(") VALUES (?, ?, ?, ?, ?, ?, ?)")
                 .toString();
             PreparedStatement preparedStatement = connectionManager.prepareStatement(sql);
             preparedStatement.setString(1, wordParameter);
@@ -83,6 +88,7 @@ public class AnalyticsDatabaseManager {
             preparedStatement.setString(4, remoteAddr);
             preparedStatement.setString(5, locale);
             preparedStatement.setInt(6, wordExists);
+            preparedStatement.setInt(7, usageExists);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
