@@ -113,7 +113,7 @@ public class LegacyDictionaryServlet extends InitServlet {
         if (!EMPTY.equals(wordParameter)) {
             Word word = new Word(wordParameter.trim());
             try {
-                DictionaryDatabaseManager.selectWord(word, languageId, getConnectionPool());
+                DictionaryDatabaseManager.populateWord(word, languageId, getConnectionPool());
                 request.setAttribute("word", word);
             } catch (Exception e) {
                 log.error(e);

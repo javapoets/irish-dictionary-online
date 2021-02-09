@@ -2,6 +2,7 @@ package online.irishdictionary.servlet;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.AsyncContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
@@ -44,7 +45,7 @@ public class EnglishServlet extends WordServlet {
     public class EnglishRequest implements Runnable {
         AsyncContext asyncContext;
         public EnglishRequest(AsyncContext asyncContext) {
-            logger.debug("EnglishRequest(asyncContext)");
+            log.debug("EnglishRequest(asyncContext)");
             this.asyncContext = asyncContext;
             this.asyncContext.setTimeout(1000*5);  // 5 seconds timeout
         }
@@ -53,9 +54,9 @@ public class EnglishServlet extends WordServlet {
                 doPostBak((HttpServletRequest)this.asyncContext.getRequest(), (HttpServletResponse)this.asyncContext.getResponse());
                 this.asyncContext.complete();
             } catch (IOException e) {
-                logger.error(e);
+                log.error(e);
             } catch (Exception e) {
-                logger.error(e);
+                log.error(e);
             }
         }
     }
@@ -90,15 +91,19 @@ public class EnglishServlet extends WordServlet {
         log.info(stringBuilder.toString());
         boolean wordWasFound = super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
         log.debug("wordWasFound = " + wordWasFound);
-        AnalyticsDatabaseManager.insertWordSearched(
-            wordParameter
-            , fromLanguage
-            , toLanguage
-            , remoteAddr
-            , locale
-            , (wordWasFound ? 1 : 0)
-            , connectionManager
-        );
+        try {
+            AnalyticsDatabaseManager.insertWordSearched(
+                wordParameter
+                , fromLanguage
+                , toLanguage
+                , remoteAddr
+                , locale
+                , (wordWasFound ? 1 : 0)
+                , getConnectionPool()
+            );
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     //public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -28,6 +28,37 @@ public class AnalyticsDatabaseManager {
         , String remoteAddr
         , String locale
         , int wordExists
+        , ConnectionPool connectionPool
+    ) throws SQLException, Exception {
+        
+        log.debug(new StringBuilder().append("insert('")
+            .append(wordParameter)
+            .append("', '").append(fromLanguage)
+            .append("', '").append(toLanguage)
+            .append("', '").append(remoteAddr)
+            .append("', '").append(locale)
+            .append("', ").append(wordExists)
+            .append(", ").append(connectionPool)
+            .append(")").toString());
+
+        insertWordSearched(
+            wordParameter
+            , fromLanguage
+            , toLanguage
+            , remoteAddr
+            , locale
+            , wordExists
+            , new ConnectionManager(connectionPool)
+        );
+    }
+
+    public static void insertWordSearched(
+        String wordParameter
+        , String fromLanguage
+        , String toLanguage
+        , String remoteAddr
+        , String locale
+        , int wordExists
         , ConnectionManager connectionManager
     ) throws SQLException, Exception {
         log.debug(new StringBuilder().append("insert('")

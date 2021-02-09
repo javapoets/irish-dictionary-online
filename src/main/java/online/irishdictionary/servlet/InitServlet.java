@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.Properties;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +42,12 @@ public class InitServlet extends HttpServlet {
     public ServletContext servletContext;
     public Properties properties = null;  // the init properties
     private ConnectionPool connectionPool;  // a database connection pool
+    private Executor executor = null;
+
+    protected void execute(Runnable runnable) {
+        log.debug("execute(runnable)");
+        this.executor.execute(runnable);
+    }
 
     public ConnectionPool getConnectionPool() {
         log.debug("getConnectionPool()");
@@ -178,6 +186,16 @@ public class InitServlet extends HttpServlet {
                 log.error(stringWriter.toString());
             }
         }
+
+        this.executor = new ThreadPoolExecutor (
+            10
+          , 10
+          , 50000L
+          , java.util.concurrent.TimeUnit.MILLISECONDS
+          , new java.util.concurrent.LinkedBlockingQueue<Runnable>(100)
+        );
+        log.debug( "this.executor = " + this.executor );
+
         super.init(servletConfig);
     }
 

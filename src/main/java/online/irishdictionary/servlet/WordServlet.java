@@ -134,14 +134,16 @@ public class WordServlet extends InitServlet {
                 Word word = DictionaryDatabaseManager.selectWord(wordParameter, fromLanguage, toLanguage, languageId, getConnectionPool());
                 if (word != null) {
                     request.setAttribute("word", word);
+                    includeUtf8(request, response, JSP_RESULTS);
+                    return true;
                 }
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
-            includeUtf8(request, response, JSP_RESULTS);
         } else {
             includeUtf8(request, response, JSP_HOME);
         }
+        return false;
     }
 
     public void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,6 +1,7 @@
 package online.irishdictionary.servlet;
 
 import java.io.IOException;
+import javax.servlet.AsyncContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ public class IrishServlet extends WordServlet {
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
     private final String JSP_HOME = DIR_VIEW + "home.jsp";
     private final String JSP_RESULTS = DIR_VIEW + "results.jsp";
+    private final String FORWARDSLASH = "/";
     private final String fromLanguage = "irish";
     private final String toLanguage = "english";
 
@@ -43,7 +45,7 @@ public class IrishServlet extends WordServlet {
     public class IrishRequest implements Runnable {
         AsyncContext asyncContext;
         public IrishRequest(AsyncContext asyncContext) {
-            logger.debug("EnglishRequest(asyncContext)");
+            log.debug("EnglishRequest(asyncContext)");
             this.asyncContext = asyncContext;
             this.asyncContext.setTimeout(1000*5);  // 5 seconds timeout
         }
@@ -52,9 +54,9 @@ public class IrishServlet extends WordServlet {
                 doPostBak((HttpServletRequest)this.asyncContext.getRequest(), (HttpServletResponse)this.asyncContext.getResponse());
                 this.asyncContext.complete();
             } catch (IOException e) {
-                logger.error(e);
+                log.error(e);
             } catch (Exception e) {
-                logger.error(e);
+                log.error(e);
             }
         }
     }
@@ -68,7 +70,7 @@ public class IrishServlet extends WordServlet {
         }
         String pathInfo = request.getPathInfo();
         log.debug("pathInfo = '"+pathInfo+"'");
-        String[] split = pathInfo.split(FSLASH);
+        String[] split = pathInfo.split(FORWARDSLASH);
         log.debug("split.length = "+split.length);
         log.debug("split[0] = "+split[0]+", split[1] = "+split[1]+", split[2] = "+split[2]);
         String fromLanguage = "irish";
@@ -89,14 +91,18 @@ public class IrishServlet extends WordServlet {
         log.info(stringBuilder.toString());        
         boolean wordWasFound = super.displayWord(request, response, wordParameter, fromLanguage, toLanguage);
         log.debug("wordWasFound = " + wordWasFound);
-        AnalyticsDatabaseManager.insertWordSearched(
-            wordParameter
-            , fromLanguage
-            , toLanguage
-            , remoteAddr
-            , locale
-            , (wordWasFound ? 1 : 0)
-            , connectionManager
-        );
+        try {
+            AnalyticsDatabaseManager.insertWordSearched(
+                wordParameter
+                , fromLanguage
+                , toLanguage
+                , remoteAddr
+                , locale
+                , (wordWasFound ? 1 : 0)
+                , getConnectionPool()
+            );
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }    
     }
 }
