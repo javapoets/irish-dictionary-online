@@ -98,4 +98,14 @@ public class AnalyticsDatabaseManager {
             } catch (Exception exception) {}
         }
     }
+
+    /*
+    java.util.Date dateNow = new java.util.Date();
+    java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String currentTime = simpleDateFormat.format(dateNow);
+    Then use setString in your prepared statement. 
+    //.setDatePublished(resultSet.getDate(8));
+    //.setDatetimePublished(resultSet.getDate(9));
+    //new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime())
+    */
 }
