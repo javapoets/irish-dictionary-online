@@ -37,4 +37,4 @@ Run using the embedded Jetty server: `Linux`
 ```bash
 $ . bin/start-jetty-server.sh
 ```
-[LICENSE](master/LICENSE)
+[LICENSE](/blob/master/LICENSE)
