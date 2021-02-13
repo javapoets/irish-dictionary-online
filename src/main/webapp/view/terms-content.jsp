@@ -20,7 +20,8 @@
    <a href="mailto:info@englishirishdictionary.com">info@englishirishdictionary.com</a>
    <%= resourceBundles.getString("with a quick summary of the issue and a link to the page where you found the error.") %>
 </p>
-<h2><%= resourceBundles.getString("Privacy Policy") %></h2>
+<!--a name="privacy"-->
+<h2 id="privacy"><%= resourceBundles.getString("Privacy Policy") %></h2>
 <p>
   <%= resourceBundles.getString("Irish Dictionary Online fully respects your right to privacy in relation to your interactions with this website.") %>
   <%= resourceBundles.getString("Irish Dictionary Online does not collect any personally identifiable information about users of this service.") %>
