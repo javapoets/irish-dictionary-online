@@ -25,15 +25,14 @@
   <body>
     <%--@ include file="/view/google-ads-responsive-360x90-728x90.jsp" --%>
     <div class="centering-container">
-      <div class="table about logo">
+      <div class="table">
         <%@ include file="/view/row-select-language.jsp" %>
         <%@ include file="/view/row-nav.jsp" %>
-        <%--@ include file="/view/row-header.jsp" --%>
-        <%@ include file="/view/row-logo.jsp" %>
+        <%@ include file="/view/row-header.jsp" %>
         <div class="row">
           <div class="cell">
             <div style="padding: 0px 40px 40px 40px; font-size: .9em;">
-              <%@ include file="/view/terms-content.jsp" %>
+              <%@ include file="/view/privacy-content.jsp" %>
             </div>
           </div>
         </div>

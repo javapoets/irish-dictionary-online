@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.ServletConfig;
-import online.irishdictionary.database.VerbDatabaseManager;
-import online.irishdictionary.model.Verb;
 
 @WebServlet(name = "TermsServlet", asyncSupported = false, urlPatterns = {
     "terms"

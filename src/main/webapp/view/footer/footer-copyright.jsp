@@ -12,7 +12,7 @@
   <div class="row terms">
     <div class="cell terms">
       [<a href="<%= contextUrl %>terms"><%= resourceBundles.getString("Terms of Service") %></a>]
-      <%--[<a href="<%= contextUrl %>privacy">Privacy</a>]--%>
+      [<a href="<%= contextUrl %>privacy">Privacy Policy</a>]
 	  </div>
   </div>
 </div>

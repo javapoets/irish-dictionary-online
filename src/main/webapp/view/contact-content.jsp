@@ -3,7 +3,7 @@
 --%>
 <div class="contact-content">
   <div>
-    <form method="post" action="<%= contextUrl %>contact">
+    <form method="post" action="<%= contextUrl %>contact/">
       <div class="input">
         <input type="text" name="name" tabindex="1" placeholder="<%= resourceBundles.getString("Your name") %>..." />
       </div>

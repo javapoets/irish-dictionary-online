@@ -23,6 +23,10 @@
 <!--a name="privacy"-->
 <h2 id="privacy"><%= resourceBundles.getString("Privacy Policy") %></h2>
 <p>
+  <%= resourceBundles.getString("Irish Dictionary Online's") %> <a href="privacy">privacy policy</a> <%= resourceBundles.getString("forms part of these Terms of Service.") %>
+</p>
+<%--
+<p>
   <%= resourceBundles.getString("Irish Dictionary Online fully respects your right to privacy in relation to your interactions with this website.") %>
   <%= resourceBundles.getString("Irish Dictionary Online does not collect any personally identifiable information about users of this service.") %>
 </p>
@@ -39,6 +43,7 @@
   <%= resourceBundles.getString("This session cookie is used to remember the users language preference, if selected.") %>
   <%= resourceBundles.getString("Irish Dictionary Online is not currently using this cookie to personally identify the user or record their activity.") %>
 </p>
+--%>
 <h2><%= resourceBundles.getString("Amendments") %></h2>
 <p>
   <%= resourceBundles.getString("Irish Dictionary Online reserves the right in its sole discretion to amend these terms and privacy statement at any time.") %>

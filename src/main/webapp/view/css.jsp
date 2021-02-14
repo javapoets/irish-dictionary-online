@@ -1390,6 +1390,7 @@ div.row.nav div.cell.nav nav
 }
 
 nav a
+, button
 {
   background-color: #B4CD8F;
   background-color: var(--orange);
@@ -1403,6 +1404,7 @@ nav a
   text-decoration: none;
   color: #2C5A26;
   padding: 5px 10px;
+  white-space: nowrap;
   /*
   display:inline-table;
   border: 0px;

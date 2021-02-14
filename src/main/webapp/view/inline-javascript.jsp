@@ -100,3 +100,21 @@ function selectLanguage(selectElement) {
         window.location = windowLocation + (windowLocation.includes('?') ? '&' : '?') + LANG_EQUALS + value;
     }
 }
+
+function clickAcceptCookies() {
+    console.log('clickAcceptCookies()');
+
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      if (xhr.status != 200) { // analyze HTTP status of the response
+        alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+      } else { // show the result
+        alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+      }
+    };
+    //xhr.open(method, URL, [async, user, password])
+    xhr.open('GET', '/cookie?accept=true')
+    xhr.send()
+    var cookiePopupElement = document.getElementById('cookie-popup');
+    cookiePopupElement.style.display = 'none';
+}

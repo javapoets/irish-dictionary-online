@@ -6,15 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.ServletConfig;
-import online.irishdictionary.database.VerbDatabaseManager;
-import online.irishdictionary.model.Verb;
 
-/*
 @WebServlet(name = "PrivacyServlet", asyncSupported = false, urlPatterns = {
-      "privacy"
-    //, "verb/*"
+    "privacy"
 })
-*/
 public class PrivacyServlet extends online.irishdictionary.servlet.InitServlet {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();
@@ -27,7 +22,8 @@ public class PrivacyServlet extends online.irishdictionary.servlet.InitServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         log.debug("doGet(request, response)");
         try {
-            super.checkForLangParameter(request, response);  // check for the "lang" param
+            super.checkForLangParameter(request, response); // check for the "lang" parameter
+            //super.execute(new PrivacyRequest(request.startAsync())); // Async
             privacyRequest(request, response);
         } catch(Exception e) {
             log.error(e.getMessage(), e);
