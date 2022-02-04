@@ -1,11 +1,11 @@
 package online.irishdictionary.taglib;
 
 import java.util.Calendar;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.Tag;
-import javax.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.Tag;
+import jakarta.servlet.jsp.PageContext;
 
 public class IrishDateTag implements Tag {
 

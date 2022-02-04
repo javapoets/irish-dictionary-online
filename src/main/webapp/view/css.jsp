@@ -1444,7 +1444,6 @@ div.definition ol li span.type .tag
 {
   color: #fff;
   /*
-  font-size: .9em;
   background-color: rgb(240, 240, 240);
   background-color: rgb(222, 222, 222);
   background-color: rgba(108, 108, 108, 0.33);
@@ -1457,11 +1456,12 @@ div.definition ol li span.type .tag
   border-radius: 12px/50%;
   padding: 2px 7px;
   */
-  padding: 2px 8px;
+  padding: 1px 6px;
   border-radius: 12px;
-  color: #aaa;
+  color: #999;
   border: #B4CD8F 1px solid;
   line-height: 20px;
+  font-size: .8em;
 }
 
 <%--

@@ -1,11 +1,18 @@
 package online.irishdictionary.servlet;
 
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
 import online.irishdictionary.servlet.InitServlet;
 
+@WebServlet(name = "CssServlet"
+    //, asyncSupported = true
+    , urlPatterns = {
+          "css"
+    }
+)
 public class CssServlet extends InitServlet {
 
     private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger();

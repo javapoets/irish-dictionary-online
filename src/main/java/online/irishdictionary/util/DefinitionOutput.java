@@ -791,9 +791,9 @@ public class DefinitionOutput {
                             invalid = new StringBuilder();
                         }
                         if (
-                               ((newWord != null) && (newWord.equals("</")))
+                               ((newWord != null) && (newWord.equals("</"))) // temporary fix for when we have '</i>' or <i>
                             || ((newWord != null) && (newWord.equals("<")))
-                        ) {  // temporary fix for when we have '</i>' or <i>
+                        ) {  
                             invalid.append(token.charAt(i));
                         } else {
                             valid.append(token.charAt(i));

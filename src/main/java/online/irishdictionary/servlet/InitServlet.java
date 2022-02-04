@@ -7,14 +7,14 @@ import java.io.StringWriter;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.Properties;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import org.apache.commons.lang.time.StopWatch;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+//import org.apache.commons.lang.time.StopWatch;
 import javapoets.dbcp.ConnectionPool;
 import javapoets.dbcp.ConnectionManager;
 import online.irishdictionary.util.PropertiesUtil;
@@ -151,7 +151,7 @@ public class InitServlet extends HttpServlet {
                 /**
                  * Configure the cookies
                  */
-                this.configureCookies(properties);  // configure the javax.servlet.SessionCookieConfig
+                this.configureCookies(properties);  // configure the jakarta.servlet.SessionCookieConfig
             } catch(Exception exception) {
                 log.error(exception.getMessage(), exception);
             }
@@ -220,7 +220,7 @@ public class InitServlet extends HttpServlet {
         log.debug("sessionCookieConfigMaxAgeSeconds = "+sessionCookieConfigMaxAgeSeconds);
         log.debug("sessionCookieConfigSecure = "+sessionCookieConfigSecure);
         log.debug("sessionCookieConfigHttpOnly = "+sessionCookieConfigHttpOnly);
-        javax.servlet.SessionCookieConfig sessionCookieConfig = servletContext.getSessionCookieConfig();
+        jakarta.servlet.SessionCookieConfig sessionCookieConfig = servletContext.getSessionCookieConfig();
         sessionCookieConfig.setPath(sessionCookieConfigPath); // Sets the path that will be assigned to any session tracking cookies created on behalf of the application represented by the ServletContext from which this SessionCookieConfig was acquired.
         sessionCookieConfig.setDomain(sessionCookieConfigDomain); // Sets the domain name that will be assigned to any session tracking cookies created on behalf of the application represented by the ServletContext from which this SessionCookieConfig was acquired.
         sessionCookieConfig.setComment(sessionCookieConfigComment);
@@ -237,7 +237,7 @@ public class InitServlet extends HttpServlet {
         this.printSessionCookieConfig(sessionCookieConfig);
     }
 
-    private void printSessionCookieConfig(javax.servlet.SessionCookieConfig sessionCookieConfig) {
+    private void printSessionCookieConfig(jakarta.servlet.SessionCookieConfig sessionCookieConfig) {
         log.debug("sessionCookieConfig.getComment() = "+sessionCookieConfig.getComment()); // the comment that will be assigned to any session tracking cookies created on behalf of the application represented by the ServletContext from which this SessionCookieConfig was acquired.
         log.debug("sessionCookieConfig.getDomain() = "+sessionCookieConfig.getDomain()); // the domain name that will be assigned to any session tracking cookies created on behalf of the application represented by the ServletContext from which this SessionCookieConfig was acquired.
         log.debug("sessionCookieConfig.getMaxAge() = "+sessionCookieConfig.getMaxAge()); // the lifetime (in seconds) of the session tracking cookies created on behalf of the application represented by the ServletContext from which this SessionCookieConfig was acquired.
